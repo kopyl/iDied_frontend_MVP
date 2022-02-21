@@ -1,0 +1,8 @@
+<p>login works!</p>
+
+<button (click)=googleAuth.signInHandler() google-sign-in>Login via Google</button>
+
+
+
+<angular-telegram-login-widget (load)="TGonLoad()" (loadError)="TGonLoadError()" (login)="TGonLogin($event)"
+[botName]=botname [config]=WidgetConfiguration></angular-telegram-login-widget>
