@@ -1,7 +1,5 @@
 import { Component } from "@angular/core"
 import { Router } from "@angular/router"
-import { GoogleAuthService } from "./auth/google/google-auth.service"
-import { TelegramAuthService } from "./auth/telegram/telegram-auth.service"
 
 @Component({
     selector: "app-root",
