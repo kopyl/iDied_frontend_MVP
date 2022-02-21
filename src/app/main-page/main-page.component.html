@@ -1,0 +1,11 @@
+<button *ngIf="!googleAuth.userLoggedIn" (click)=googleAuth.authorize() google-sign-in>
+    Authorize with Google
+</button>
+
+<button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes()>
+    My notes
+</button>
+
+<button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut()>
+    Sign out
+</button>
