@@ -46,8 +46,7 @@ const GoogleLogingProviders = [
     ],
     providers: [
         {
-            provide: "SocialAuthServiceConfig",
-            // https://www.youtube.com/watch?v=cvGdM8G4R74&ab_channel=TheSwagCoder
+            provide: "SocialAuthServiceConfig",  // id.doc.id#2
             useValue: {
                 autoLogin: false,
                 providers: GoogleLogingProviders,
