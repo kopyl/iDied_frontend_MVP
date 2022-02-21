@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
-import { GoogleAuthService } from "../login/services/google-auth/google-auth.service"
-import { TelegramAuthService } from "../login/services/telegram-auth/telegram-auth.service"
+import { GoogleAuthService } from "../auth/google/google-auth.service"
+import { TelegramAuthService } from "../auth/telegram/telegram-auth.service"
 import { Router } from "@angular/router"
 
 @Component({

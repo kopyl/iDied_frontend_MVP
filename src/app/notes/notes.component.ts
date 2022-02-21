@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core"
-import { GoogleAuthService } from "../login/services/google-auth/google-auth.service"
+import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Title } from "@angular/platform-browser"
 
 @Component({
