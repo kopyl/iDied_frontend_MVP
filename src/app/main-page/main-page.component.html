@@ -1,11 +1,13 @@
-<button *ngIf="!googleAuth.userLoggedIn" (click)=googleAuth.authorize() google-sign-in>
+<a href=""><img src="assets/logo_big_light.svg" alt="logotype"></a>
+
+<button *ngIf="!googleAuth.userLoggedIn" (click)=googleAuth.authorize() google-sign-in class=small-button-secondary>
     Authorize with Google
 </button>
 
-<button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes()>
+<button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes() class=small-button-secondary>
     My notes
 </button>
 
-<button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut()>
+<button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut() class=small-button-secondary>
     Sign out
 </button>

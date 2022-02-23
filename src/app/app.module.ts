@@ -17,6 +17,8 @@ import { HttpClientModule } from "@angular/common/http"
 import { UnauthorizedComponent } from "./unauthorized/unauthorized.component"
 import { NotFoundComponent } from "./not-found/not-found.component"
 import { MainPageComponent } from "./main-page/main-page.component"
+import { NoteFormComponent } from "./notes/note-form/note-form.component"
+import { NoteItemComponent } from "./notes/note-item/note-item.component"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -35,6 +37,8 @@ const GoogleLogingProviders = [
         NotesComponent,
         UnauthorizedComponent,
         NotFoundComponent,
+        NoteFormComponent,
+        NoteItemComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,7 +50,7 @@ const GoogleLogingProviders = [
     ],
     providers: [
         {
-            provide: "SocialAuthServiceConfig",  // id.doc.id#2
+            provide: "SocialAuthServiceConfig", // id.doc.id#2
             useValue: {
                 autoLogin: false,
                 providers: GoogleLogingProviders,

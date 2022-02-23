@@ -31,9 +31,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.sass"
+              "src/styles.sass",
+              "src/reset.sass"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+                "includePaths": [
+                    "src/style_vars"
+                ]
+            }
           },
           "configurations": {
             "production": {

@@ -1,0 +1,46 @@
+@import 'colors'
+@import 'geometry'
+@import 'fonts'
+@import 'distances'
+@import 'sizes'
+@import 'borders'
+
+
+@mixin button-base
+    cursor: pointer
+    margin-right: 10px
+
+
+@mixin small-button-base
+    @include button-base
+
+    padding: $small-button-padding
+    border-radius: $border-radius-small
+    font-family: $roboto
+    font-weight: $bold
+    height: $small-button-height
+
+
+@mixin small-button-primary
+    @include small-button-base
+
+    background-color: $red
+    color: $white
+    border: $no-border
+
+
+@mixin small-button-secondary
+    @include small-button-base
+
+    background-color: $bisque-light
+    color: $brown-light
+    border: $small-button-secondary-border
+
+
+@mixin main-page-big-text
+    color: $bisque-dark
+    font-family: $playfair
+    font-size: $biggest-desktop
+
+    @media screen and ( max-width: $min-mobile-width )
+        font-size: $biggest-mobile

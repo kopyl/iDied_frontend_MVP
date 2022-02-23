@@ -59,6 +59,7 @@ export class GoogleAuthService {
                 .then((data) => {
                     localStorage.setItem("google_auth", JSON.stringify(data))
                     this.initJWTauth(data)
+                    console.log(data)
                 })
         })
     }

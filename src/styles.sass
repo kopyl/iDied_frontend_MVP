@@ -1,3 +1,17 @@
-button
-    cursor: pointer
-    font-size: 30px
+@import 'organisms'
+@import 'colors'
+
+body
+    background: $bisque-dark
+
+button.small-button-primary
+    @include small-button-primary
+
+button.small-button-secondary
+    @include small-button-secondary
+
+h1.mainPageBigText
+    @include main-page-big-text
+
+
+

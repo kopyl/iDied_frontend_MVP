@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core"
 import { GoogleAuthService } from "../auth/google/google-auth.service"
-import { TelegramAuthService } from "../auth/telegram/telegram-auth.service"
 import { Router } from "@angular/router"
 
 @Component({
@@ -15,7 +14,6 @@ export class MainPageComponent implements OnInit {
     constructor(
         private router: Router,
         public googleAuth: GoogleAuthService,
-        public telegramAuth: TelegramAuthService
     ) {}
 
     ngOnInit(): void {

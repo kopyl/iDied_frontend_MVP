@@ -1,2 +1,12 @@
-<a href="/"> <button>Main</button> </a>
-<button (click)=googleAuth.signOut()>Sign out</button>
+
+<a href=""><img src="assets/logo_small_dark.svg" alt="logotype"></a>
+<button id=createNew class=small-button-primary (click)='formVisible = true'>New note</button>
+<button (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
+
+<h2>Notes</h2>
+
+<note-form *ngIf=formVisible></note-form>
+
+<note-item *ngFor="let note of notes" >{{note}}</note-item>
+
+<h1 class=mainPageBigText>Wow</h1>
