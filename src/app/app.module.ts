@@ -19,6 +19,8 @@ import { NotFoundComponent } from "./not-found/not-found.component"
 import { MainPageComponent } from "./main-page/main-page.component"
 import { NoteFormComponent } from "./notes/note-form/note-form.component"
 import { NoteItemComponent } from "./notes/note-item/note-item.component"
+import { NotificationComponent } from "./notification/notification.component"
+import { HighlightComponent } from "./notification/highlight/highlight.component"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -39,6 +41,8 @@ const GoogleLogingProviders = [
         NotFoundComponent,
         NoteFormComponent,
         NoteItemComponent,
+        NotificationComponent,
+        HighlightComponent,
     ],
     imports: [
         BrowserModule,

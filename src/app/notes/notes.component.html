@@ -1,12 +1,15 @@
-
 <a href=""><img src="assets/logo_small_dark.svg" alt="logotype"></a>
 <button id=createNew class=small-button-primary (click)='formVisible = true'>New note</button>
 <button (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
 
 <h2>Notes</h2>
 
-<note-form *ngIf=formVisible></note-form>
+<notification>
 
-<note-item *ngFor="let note of notes" >{{note}}</note-item>
+    Any SHARED note will become accessible by a link unless you
 
-<h1 class=mainPageBigText>Wow</h1>
+    <highlight>
+        log in for 30 days
+    </highlight>
+
+</notification>
