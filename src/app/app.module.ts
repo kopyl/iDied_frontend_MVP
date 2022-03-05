@@ -14,11 +14,14 @@ import { NotesComponent } from "./notes/notes.component"
 import { AppRoutingModule } from "./app-routing.module"
 
 import { HttpClientModule } from "@angular/common/http"
+
 import { UnauthorizedComponent } from "./unauthorized/unauthorized.component"
 import { NotFoundComponent } from "./not-found/not-found.component"
 import { MainPageComponent } from "./main-page/main-page.component"
+
 import { NoteFormComponent } from "./notes/note-form/note-form.component"
 import { NoteItemComponent } from "./notes/note-item/note-item.component"
+
 import { NotificationComponent } from "./notification/notification.component"
 import { HighlightComponent } from "./notification/highlight/highlight.component"
 
@@ -31,6 +34,14 @@ const GoogleLogingProviders = [
         provider: new GoogleLoginProvider(CLIENT_ID),
     },
 ]
+
+const GoogleLogingProvider = {
+    provide: "SocialAuthServiceConfig", // id.doc.id#2
+    useValue: {
+        autoLogin: false,
+        providers: GoogleLogingProviders,
+    } as SocialAuthServiceConfig,
+}
 
 @NgModule({
     declarations: [
@@ -53,13 +64,7 @@ const GoogleLogingProviders = [
         AngularTelegramLoginWidgetModule,
     ],
     providers: [
-        {
-            provide: "SocialAuthServiceConfig", // id.doc.id#2
-            useValue: {
-                autoLogin: false,
-                providers: GoogleLogingProviders,
-            } as SocialAuthServiceConfig,
-        },
+        GoogleLogingProvider
     ],
     bootstrap: [AppComponent],
 })
