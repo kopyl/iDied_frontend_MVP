@@ -4,9 +4,7 @@ import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
 import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
 
 import { Observable } from "rxjs"
-import { MatSnackBar } from '@angular/material/snack-bar';
-
-import { catchError, tap } from 'rxjs/operators';
+import { MatSnackBar } from "@angular/material/snack-bar"
 
 @Injectable({
     providedIn: "root",
@@ -52,27 +50,25 @@ export class GoogleAuthService {
 
         this.authApiRequest = this.http.get(this.API_AUTH_URL, { params })
 
-        this.authApiRequest.subscribe(
-            {
-                next: (backendResponse) =>
+        this.authApiRequest.subscribe({
+            next: (backendResponse) =>
                 this.verifyAuthAndRedirect(backendResponse),
 
-                error: (error) => this.handleHTTPError(error)
-            }
-        )
+            error: (error) => this.handleHTTPError(error),
+        })
     }
 
     handleHTTPError(error: HttpErrorResponse) {
-        const message = 'The backend is down, try again later'
+        const message = "The backend is down, try again later"
 
-        this.materialNotification
-        .open(message, 'Close', {
+        this.materialNotification.open(message, "Close", {
             duration: 5000,
         })
     }
 
     authorize() {
-        this.authService.initState.subscribe((value) => {  // id.doc.id#1
+        this.authService.initState.subscribe((value) => {
+            // id.doc.id#1
             this.authService
                 .signIn(GoogleLoginProvider.PROVIDER_ID)
                 .then((data) => {
