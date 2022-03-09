@@ -75,8 +75,8 @@ export class GoogleAuthService {
                     localStorage.setItem("google_auth", JSON.stringify(data))
                     this.initJWTauth(data)
                 })
-                .catch(e => {
-                    console.error('Login popup closed by user')
+                .catch((e) => {
+                    console.error("Login popup closed by user")
                 })
         })
     }
