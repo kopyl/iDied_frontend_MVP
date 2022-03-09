@@ -8,8 +8,6 @@ import { Router } from "@angular/router"
     styleUrls: ["./main-page.component.sass"],
 })
 export class MainPageComponent implements OnInit {
-    public jwt_token = ""
-    public userLoggedIn = false
 
     constructor(
         private router: Router,
