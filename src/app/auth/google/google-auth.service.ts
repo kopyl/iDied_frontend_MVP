@@ -6,10 +6,6 @@ import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
 import { Observable } from "rxjs"
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-// import 'rxjs/add/operator/catch'
-
-// import { catch } from 'rxjs/add/operator'
-
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
