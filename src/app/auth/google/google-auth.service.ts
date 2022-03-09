@@ -68,8 +68,6 @@ export class GoogleAuthService {
 
     handleHTTPError(error: HttpErrorResponse) {
         const message = 'The backend is down, try again later'
-        console.error(message)
-
 
         this.materialNotification
         .open(message, 'Close', {
