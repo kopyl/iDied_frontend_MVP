@@ -3,7 +3,7 @@ import { Router } from "@angular/router"
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
 import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
 
-import { Observable, throwError } from "rxjs"
+import { Observable } from "rxjs"
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 // import 'rxjs/add/operator/catch'
