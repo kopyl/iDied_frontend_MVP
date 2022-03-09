@@ -10,9 +10,9 @@ import { MatSnackBar } from "@angular/material/snack-bar"
     providedIn: "root",
 })
 export class GoogleAuthService {
-    readonly API_AUTH_URL = "http://idied.org:90/authorize"
-    authApiRequest: Observable<any>
-    userLoggedIn = false
+    private readonly API_AUTH_URL = "http://idied.org:90/authorize"
+    private authApiRequest: Observable<any>
+    public userLoggedIn = false
     public jwt_token: string
     public googleUserDetails: string
 
