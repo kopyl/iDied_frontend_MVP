@@ -15,7 +15,7 @@ export class MainPageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.googleAuth.checkIsUserLoggedIn()
+        this.googleAuth.accessControl()
     }
 
     navigateToNotes() {

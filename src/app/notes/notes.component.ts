@@ -34,6 +34,7 @@ export class NotesComponent implements OnInit {
 
     ngOnInit(): void {
         this.googleAuth.accessControl()
+        if (!this.googleAuth.userLoggedIn) return
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
     }

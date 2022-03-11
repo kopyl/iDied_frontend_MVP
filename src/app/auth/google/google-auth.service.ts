@@ -24,15 +24,6 @@ export class GoogleAuthService {
         private HTTPErrorHandler: HttpErrorHandlerService
     ) {}
 
-    checkIsUserLoggedIn() {
-        const storage = localStorage.getItem("google_auth")
-        const jwt_from_backend = localStorage.getItem("jwt_token")
-
-        if (storage && jwt_from_backend) {
-            this.userLoggedIn = true
-        }
-    }
-
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {
         if (backendResponse.error) {
             this.router.navigateByUrl("/unauthorized").then()
@@ -84,12 +75,14 @@ export class GoogleAuthService {
     }
 
     accessControl() {
+
         const storage = localStorage.getItem("google_auth")
         const jwt_from_backend = localStorage.getItem("jwt_token")
 
         if (storage && jwt_from_backend) {
             this.googleUserDetails = JSON.parse(storage)
             this.jwt_token = jwt_from_backend
+            this.userLoggedIn = true
         } else {
             this.signOut()
         }
