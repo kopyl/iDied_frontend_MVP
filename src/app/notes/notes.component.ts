@@ -6,6 +6,8 @@ import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Observable } from "rxjs"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
 
+import { HttpHeaders } from "@angular/common/http"
+
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
 
@@ -19,7 +21,7 @@ import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-h
     styleUrls: ["./notes.component.sass"],
 })
 export class NotesComponent implements OnInit {
-    notes: Array<any> = []
+    notes: Array<frontendNote> = []
     formVisible = false
     private noteApiRequest: Observable<any>
     private readonly API_NOTES_URL = "http://idied.org:90/notes"
@@ -44,19 +46,30 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigateByUrl("/unauthorized").then()
         } else {
-            this.notes.push(...backendResponse.notes)
+            this.camelCaseNotes(backendResponse.notes)
             console.log(this.notes)
+        }
+    }
+
+    camelCaseNotes(notes: backend_note[]) {
+        for (let note of notes) {
+            this.notes.push(
+                {
+                    title: note.title,
+                    body: note.body,
+                    createdAt: note.created_at,
+                    editedAt: note.edited_at,
+                    isShared: note.is_shared,
+                    isAccessible: note.is_accessible,
+                    isRemovedByRecepient: note.is_removed_by_recepient
+                }
+            )
         }
     }
 
     fetchNotes(): void {
 
-        const params = new HttpParams().set(
-            "jwt_token",
-            this.googleAuth.jwtToken ?? ""
-        )
-
-        this.noteApiRequest = this.http.get(this.API_NOTES_URL, { params })
+        this.noteApiRequest = this.http.get(this.API_NOTES_URL)
 
         this.noteApiRequest.subscribe({
             next: (backendResponse: backend_notes_response) => {

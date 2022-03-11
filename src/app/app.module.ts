@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
+import { HTTP_INTERCEPTORS } from "@angular/common/http"
+import { AuthInterceptor } from "./interceptors/auth/auth.interceptor"
 import {
     GoogleLoginProvider,
     SocialLoginModule,
@@ -13,7 +15,7 @@ import { AppComponent } from "./app.component"
 import { NotesComponent } from "./notes/notes.component"
 import { AppRoutingModule } from "./app-routing.module"
 
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from "@angular/material/snack-bar"
 
 import { HttpClientModule } from "@angular/common/http"
 
@@ -25,8 +27,8 @@ import { NoteFormComponent } from "./notes/note-form/note-form.component"
 import { NoteItemComponent } from "./notes/note-item/note-item.component"
 
 import { NotificationComponent } from "./notification/notification.component"
-import { HighlightComponent } from "./notification/highlight/highlight.component";
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { HighlightComponent } from "./notification/highlight/highlight.component"
+import { NoopAnimationsModule } from "@angular/platform-browser/animations"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -44,6 +46,12 @@ const GoogleLogingProvider = {
         autoLogin: false,
         providers: GoogleLogingProviders,
     } as SocialAuthServiceConfig,
+}
+
+const authInterceptorProvider = {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
 }
 
 @NgModule({
@@ -68,9 +76,7 @@ const GoogleLogingProvider = {
         NoopAnimationsModule,
         MatSnackBarModule,
     ],
-    providers: [
-        GoogleLogingProvider
-    ],
+    providers: [GoogleLogingProvider, authInterceptorProvider],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
