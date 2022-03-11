@@ -14,7 +14,7 @@ export class GoogleAuthService {
     private readonly API_AUTH_URL = "http://idied.org:90/authorize"
     private authApiRequest: Observable<any>
     public userLoggedIn = false
-    public jwt_token: string
+    public jwtToken: string
     public googleUserDetails: string
 
     constructor(
@@ -81,7 +81,7 @@ export class GoogleAuthService {
 
         if (storage && jwt_from_backend) {
             this.googleUserDetails = JSON.parse(storage)
-            this.jwt_token = jwt_from_backend
+            this.jwtToken = jwt_from_backend
             this.userLoggedIn = true
         } else {
             this.signOut()

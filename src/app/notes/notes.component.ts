@@ -53,7 +53,7 @@ export class NotesComponent implements OnInit {
 
         const params = new HttpParams().set(
             "jwt_token",
-            this.googleAuth.jwt_token ?? ""
+            this.googleAuth.jwtToken ?? ""
         )
 
         this.noteApiRequest = this.http.get(this.API_NOTES_URL, { params })
