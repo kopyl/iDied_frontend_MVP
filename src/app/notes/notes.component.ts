@@ -6,8 +6,6 @@ import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Observable } from "rxjs"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
 
-import { HttpHeaders } from "@angular/common/http"
-
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
 
