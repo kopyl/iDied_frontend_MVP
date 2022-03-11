@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core"
-import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
+import { HttpClient } from "@angular/common/http"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "../auth/google/google-auth.service"
