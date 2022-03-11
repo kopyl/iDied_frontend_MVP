@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core"
 import { Router } from "@angular/router"
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
-import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
+import { HttpClient, HttpParams } from "@angular/common/http"
+
+import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
 
 import { Observable } from "rxjs"
-import { MatSnackBar } from "@angular/material/snack-bar"
 
 @Injectable({
     providedIn: "root",
@@ -20,7 +21,7 @@ export class GoogleAuthService {
         private router: Router,
         private authService: SocialAuthService,
         private http: HttpClient,
-        private materialNotification: MatSnackBar
+        private HTTPErrorHandler: HttpErrorHandlerService
     ) {}
 
     checkIsUserLoggedIn() {
@@ -54,17 +55,11 @@ export class GoogleAuthService {
             next: (backendResponse) =>
                 this.verifyAuthAndRedirect(backendResponse),
 
-            error: (error) => this.handleHTTPError(error),
+            error: (error) => this.HTTPErrorHandler.handle(error),
         })
     }
 
-    handleHTTPError(error: HttpErrorResponse) {
-        const message = "The backend is down, try again later"
 
-        this.materialNotification.open(message, "Close", {
-            duration: 5000,
-        })
-    }
 
     authorize() {
         this.authService.initState.subscribe((value) => {

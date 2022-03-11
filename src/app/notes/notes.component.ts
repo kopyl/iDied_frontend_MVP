@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core"
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpParams, HttpErrorResponse } from "@angular/common/http"
 import { Title } from "@angular/platform-browser"
 import { GoogleAuthService } from "../auth/google/google-auth.service"
+import { Observable } from "rxjs"
 
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
@@ -18,6 +19,8 @@ import { GoogleAuthService } from "../auth/google/google-auth.service"
 export class NotesComponent implements OnInit {
     notes: Array<any> = []
     formVisible = false
+    private noteApiRequest: Observable<any>
+    private readonly API_NOTES_URL = "http://idied.org:90/notes"
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -38,7 +41,28 @@ export class NotesComponent implements OnInit {
     }
 
     fetchNotes(): void {
+
+        // const jwtToken = localStorage.getItem("jwt_token")
+
+        // const params = new HttpParams().set(
+        //     "jwt_token",
+        //     jwtToken ?? ""
+        // )
+
+        // this.noteApiRequest = this.http.get(this.API_NOTES_URL, { params })
+
+        // this.noteApiRequest.subscribe({
+        //     next: (backendResponse) =>
+        //         this.verifyAuthAndRedirect(backendResponse),
+
+        //     error: (error) => this.handleHTTPError(error),
+        // })
+
         this.notes.push("Note for my father")
         this.notes.push("Note for my mother")
+    }
+
+    handleHTTPError() {
+
     }
 }
