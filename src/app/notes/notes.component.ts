@@ -51,11 +51,9 @@ export class NotesComponent implements OnInit {
 
     fetchNotes(): void {
 
-        const jwtToken = localStorage.getItem("jwt_token")
-
         const params = new HttpParams().set(
             "jwt_token",
-            jwtToken ?? ""
+            this.googleAuth.jwt_token ?? ""
         )
 
         this.noteApiRequest = this.http.get(this.API_NOTES_URL, { params })
