@@ -2,7 +2,7 @@ declare global {
 
     interface frontendNote {
         title: string,
-        body: string,
+        description: string,
         createdAt: number,
         editedAt: number,
         isShared: boolean,
@@ -12,7 +12,7 @@ declare global {
 
     interface backend_note {
         title: string,
-        body: string,
+        description: string,
         created_at: number,
         edited_at: number,
         is_shared: boolean,

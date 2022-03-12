@@ -54,7 +54,7 @@ export class NotesComponent implements OnInit {
             this.notes.push(
                 {
                     title: note.title,
-                    body: note.body,
+                    description: note.description,
                     createdAt: note.created_at,
                     editedAt: note.edited_at,
                     isShared: note.is_shared,
