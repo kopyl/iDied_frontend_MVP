@@ -74,7 +74,7 @@ export class NotesComponent implements OnInit {
                 this.addNotes(backendResponse)
             },
 
-            error: (error) => this.HTTPErrorHandler.handle(error),
+            error: (error) => this.HTTPErrorHandler.handle(error, "notes"),
         })
 
     }
