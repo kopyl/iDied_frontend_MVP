@@ -5,6 +5,7 @@ import { Router } from "@angular/router"
 import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Observable } from "rxjs"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
+import { snakeToCamelCaseArray } from "../utils/transformations"
 
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
@@ -44,24 +45,8 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigateByUrl("/unauthorized").then()
         } else {
-            this.camelCaseNotes(backendResponse.notes)
-            console.log(this.notes)
-        }
-    }
-
-    camelCaseNotes(notes: backend_note[]) {
-        for (let note of notes) {
-            this.notes.push(
-                {
-                    title: note.title,
-                    description: note.description,
-                    createdAt: note.created_at,
-                    editedAt: note.edited_at,
-                    isShared: note.is_shared,
-                    isAccessible: note.is_accessible,
-                    isRemovedByRecepient: note.is_removed_by_recepient
-                }
-            )
+            this.notes =
+            snakeToCamelCaseArray(backendResponse.notes) as frontendNote[]
         }
     }
 
