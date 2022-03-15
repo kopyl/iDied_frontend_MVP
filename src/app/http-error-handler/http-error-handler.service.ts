@@ -5,6 +5,7 @@ import { HttpErrorResponse } from "@angular/common/http"
 const errorMessages = {
     generic: "The backend is down, try again later",
     notesLoad: "Unable to fetch notes from server, try again later",
+    onlineUpdate: "Unable to save your last online, try again later",
 }
 
 @Injectable({
@@ -18,6 +19,9 @@ export class HttpErrorHandlerService {
         switch (message) {
             case "notes":
                 this.messageToShow = errorMessages.notesLoad
+                break
+            case "online":
+                this.messageToShow = errorMessages.onlineUpdate
                 break
             default:
                 this.messageToShow = errorMessages.generic

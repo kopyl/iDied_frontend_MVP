@@ -6,6 +6,7 @@ import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Observable } from "rxjs"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
 import { snakeToCamelCaseArray } from "../utils/transformations"
+import { OnlineUpdaterService } from '../online-updater/online-updater.service'
 
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
@@ -30,7 +31,8 @@ export class NotesComponent implements OnInit {
         private pageTitle: Title,
         private router: Router,
         private http: HttpClient,
-        private HTTPErrorHandler: HttpErrorHandlerService
+        private HTTPErrorHandler: HttpErrorHandlerService,
+        private onlineUpdater: OnlineUpdaterService
     ) {}
 
     ngOnInit(): void {
@@ -38,6 +40,7 @@ export class NotesComponent implements OnInit {
         if (!this.googleAuth.userLoggedIn) return
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
+        this.onlineUpdater.schedule()
     }
 
     addNotes(backendResponse: backend_notes_response) {
