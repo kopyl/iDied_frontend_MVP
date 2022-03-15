@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
+import { GoogleAuthService } from "../auth/google/google-auth.service"
 
 @Injectable({
     providedIn: "root",
@@ -11,10 +12,15 @@ export class OnlineUpdaterService {
 
     constructor(
         private http: HttpClient,
-        private HTTPErrorHandler: HttpErrorHandlerService
+        private HTTPErrorHandler: HttpErrorHandlerService,
+        private readonly googleAuth: GoogleAuthService,
     ) {}
 
     saveLastOnline() {
+
+        this.googleAuth.accessControl()
+        if (!this.googleAuth.userLoggedIn) return
+
         const request = this.http.get(this.URL)
 
         request.subscribe({
