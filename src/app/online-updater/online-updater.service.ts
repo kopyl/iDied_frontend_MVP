@@ -7,7 +7,7 @@ import { GoogleAuthService } from "../auth/google/google-auth.service"
     providedIn: "root",
 })
 export class OnlineUpdaterService {
-    URL = "http://idied.org:90/update_last_online_timestamp"
+    URL = "http://idied.org:5001/update_last_online_timestamp"
     launched = false
 
     constructor(

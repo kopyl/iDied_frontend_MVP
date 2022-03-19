@@ -23,7 +23,7 @@ export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     formVisible = false
     private noteApiRequest: Observable<any>
-    private readonly API_NOTES_URL = "http://idied.org:90/notes"
+    private readonly API_NOTES_URL = "http://idied.org:5001/notes"
 
     constructor(
         public readonly googleAuth: GoogleAuthService,

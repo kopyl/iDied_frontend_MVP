@@ -11,7 +11,7 @@ import { Observable } from "rxjs"
     providedIn: "root",
 })
 export class GoogleAuthService {
-    private readonly API_AUTH_URL = "http://idied.org:90/authorize"
+    private readonly API_AUTH_URL = "http://idied.org:5001/authorize"
     private authApiRequest: Observable<any>
     public userLoggedIn = false
     public jwtToken: string = ""
