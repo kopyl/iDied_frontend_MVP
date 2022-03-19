@@ -67,14 +67,15 @@ export class GoogleAuthService {
         })
     }
 
-    signOut() {
+    signOut(args = {redirect: true}) {
         localStorage.removeItem("google_auth")
         localStorage.removeItem("jwt_token")
-        this.router.navigateByUrl("").then()
         this.userLoggedIn = false
+        if (!args.redirect) return
+        this.router.navigateByUrl("").then()
     }
 
-    accessControl() {
+    accessControl(args = {redirect: true}) {
 
         const storage = localStorage.getItem("google_auth")
         const jwt_from_backend = localStorage.getItem("jwt_token")
@@ -84,7 +85,7 @@ export class GoogleAuthService {
             this.jwtToken = jwt_from_backend
             this.userLoggedIn = true
         } else {
-            this.signOut()
+            this.signOut({redirect: args.redirect})
         }
     }
 }

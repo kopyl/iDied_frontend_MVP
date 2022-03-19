@@ -18,7 +18,7 @@ export class OnlineUpdaterService {
 
     saveLastOnline() {
 
-        this.googleAuth.accessControl()
+        this.googleAuth.accessControl({redirect: false})
         if (!this.googleAuth.userLoggedIn) return
 
         const request = this.http.get(this.URL)
