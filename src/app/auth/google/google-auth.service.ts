@@ -12,7 +12,6 @@ import { Observable } from "rxjs"
 })
 export class GoogleAuthService {
     private readonly API_AUTH_URL = "http://idied.org:5001/authorize"
-    private authApiRequest: Observable<any>
     public userLoggedIn = false
     public jwtToken: string = ""
     public googleUserDetails: string
@@ -40,9 +39,11 @@ export class GoogleAuthService {
             google_auth_data
         )
 
-        this.authApiRequest = this.http.get(this.API_AUTH_URL, { params })
+        const authApiRequest: Observable<any> = this.http.get(
+            this.API_AUTH_URL, { params }
+        )
 
-        this.authApiRequest.subscribe({
+        authApiRequest.subscribe({
             next: (backendResponse) =>
                 this.verifyAuthAndRedirect(backendResponse),
 
