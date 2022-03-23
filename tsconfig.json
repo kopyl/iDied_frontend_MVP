@@ -25,7 +25,8 @@
       "dom"
     ],
     "paths": {
-        "@utils/*": ["src/app/utils/*"]
+        "@utils/*": ["src/app/utils/*"],
+        "@services/requests": ["src/app/requests/requests.service"]
     }
   },
   "angularCompilerOptions": {

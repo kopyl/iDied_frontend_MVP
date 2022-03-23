@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Router } from "@angular/router"
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
-import { RequestsService } from "src/app/requests/requests.service"
+import { RequestsService } from "@services/requests"
 
 @Injectable({
     providedIn: "root",
