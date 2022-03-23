@@ -12,8 +12,6 @@ export class GoogleAuthService {
     public jwtToken: string = ""
     public googleUserDetails: string
 
-    // private requests
-
     constructor(
         private router: Router,
         private authService: SocialAuthService,
