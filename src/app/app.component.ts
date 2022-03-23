@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { Router } from "@angular/router"
-import { OnlineUpdaterService } from "src/app/online-updater/online-updater.service"
+import { OnlineUpdaterService } from "@services/online-updater"
 
 @Component({
     selector: "app-root",

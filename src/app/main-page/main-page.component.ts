@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core"
-import { GoogleAuthService } from "../auth/google/google-auth.service"
 import { Router } from "@angular/router"
+import { GoogleAuthService } from "@services/auth"
 
 @Component({
     selector: "app-main-page",

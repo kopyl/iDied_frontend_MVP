@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { HttpClient, HttpParams } from "@angular/common/http"
-import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
+import { HttpErrorHandlerService } from "@services/http-error-handler"
 import { makeUrl } from "@utils/constructors"
 
 const port = 5001

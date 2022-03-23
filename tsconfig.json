@@ -26,7 +26,10 @@
     ],
     "paths": {
         "@utils/*": ["src/app/utils/*"],
-        "@services/requests": ["src/app/requests/requests.service"]
+        "@services/requests": ["src/app/services/requests/requests.service"],
+        "@services/auth": ["src/app/services/auth/google/google-auth.service"],
+        "@services/http-error-handler": ["src/app/services/http-error-handler/http-error-handler.service"],
+        "@services/online-updater": ["src/app/services/online-updater/online-updater.service"],
     }
   },
   "angularCompilerOptions": {

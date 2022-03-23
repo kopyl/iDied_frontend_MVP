@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
-import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
-import { GoogleAuthService } from "../auth/google/google-auth.service"
+import { HttpErrorHandlerService } from "@services/http-error-handler"
+import { GoogleAuthService } from "@services/auth"
 
 @Injectable({
     providedIn: "root",

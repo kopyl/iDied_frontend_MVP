@@ -6,7 +6,7 @@ import {
     HttpInterceptor,
 } from "@angular/common/http"
 import { Observable } from "rxjs"
-import { GoogleAuthService } from "src/app/auth/google/google-auth.service"
+import { GoogleAuthService } from "@services/auth"
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
