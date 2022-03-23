@@ -12,22 +12,22 @@ import {
 import { AngularTelegramLoginWidgetModule } from "angular-telegram-login-widget"
 
 import { AppComponent } from "./app.component"
-import { NotesComponent } from "./notes/notes.component"
+import { NotesComponent } from "@components/notes"
 import { AppRoutingModule } from "./app-routing.module"
 
 import { MatSnackBarModule } from "@angular/material/snack-bar"
 
 import { HttpClientModule } from "@angular/common/http"
 
-import { UnauthorizedComponent } from "./unauthorized/unauthorized.component"
-import { NotFoundComponent } from "./not-found/not-found.component"
-import { MainPageComponent } from "./main-page/main-page.component"
+import { UnauthorizedComponent } from "@components/unauthorized"
+import { NotFoundComponent } from "@components/not-found"
+import { MainPageComponent } from "@components/main-page"
 
-import { NoteFormComponent } from "./notes/note-form/note-form.component"
-import { NoteItemComponent } from "./notes/note-item/note-item.component"
+import { NoteFormComponent } from "@components/notes/note-form"
+import { NoteItemComponent } from "@components/notes/note-item"
 
-import { NotificationComponent } from "./notification/notification.component"
-import { HighlightComponent } from "./notification/highlight/highlight.component"
+import { NotificationComponent } from "@components/notification"
+import { HighlightComponent } from "@components/notification/highlight"
 import { NoopAnimationsModule } from "@angular/platform-browser/animations"
 
 const CLIENT_ID =
