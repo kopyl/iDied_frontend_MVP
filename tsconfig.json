@@ -25,6 +25,8 @@
       "dom"
     ],
     "paths": {
+        "@interceptors/auth": ["src/app/interceptors/auth/auth.interceptor"],
+
         "@utils/*": ["src/app/utils/*"],
 
         "@services/requests": ["src/app/services/requests/requests.service"],

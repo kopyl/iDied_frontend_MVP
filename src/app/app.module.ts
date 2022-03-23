@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
 import { HTTP_INTERCEPTORS } from "@angular/common/http"
-import { AuthInterceptor } from "./interceptors/auth/auth.interceptor"
+import { AuthInterceptor } from "@interceptors/auth"
 import {
     GoogleLoginProvider,
     SocialLoginModule,
