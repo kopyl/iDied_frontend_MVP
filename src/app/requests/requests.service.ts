@@ -2,6 +2,14 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { HttpClient, HttpParams } from "@angular/common/http"
 import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
+import { makeUrl } from "@utils/constructors"
+
+const port = 5001
+const protocol = "http"
+
+const URLS = {
+    AUTH: makeUrl("authorize", port, protocol),
+}
 
 interface authSendArgs {
     oauthData: SocialUser
@@ -9,22 +17,27 @@ interface authSendArgs {
 
 class Auth {
     public success: Function
-    private readonly API_AUTH_URL = "http://idied.org:5001/authorize"
 
-    constructor(private http, private HTTPErrorHandler) {}
+    constructor(
+        private http: HttpClient,
+        private HTTPErrorHandler: HttpErrorHandlerService
+    ) {}
 
     set onSuccess(func: Function) {
         this.success = func
     }
 
-    send(kwargs: authSendArgs): void {
+    makeParams(kwargs: authSendArgs): HttpParams {
         const googleAuthData = JSON.stringify(kwargs.oauthData)
-        const params = new HttpParams().set("google_auth_data", googleAuthData)
+        return new HttpParams().set("google_auth_data", googleAuthData)
+    }
 
-        const authApiRequest: Observable<any> = this.http.get(
-            this.API_AUTH_URL,
-            { params }
-        )
+    send(kwargs: authSendArgs): void {
+        const authApiRequest: Observable<any> = this.http.get(URLS.AUTH, {
+            params: this.makeParams(kwargs),
+        })
+
+        console.log(authApiRequest)
 
         authApiRequest.subscribe({
             next: (backendResponse) => this.success(backendResponse),
