@@ -7,7 +7,6 @@ import { RequestsService } from "src/app/requests/requests.service"
     providedIn: "root",
 })
 export class GoogleAuthService {
-    private readonly API_AUTH_URL = "http://idied.org:5001/authorize"
     public userLoggedIn = false
     public jwtToken: string = ""
     public googleUserDetails: string
