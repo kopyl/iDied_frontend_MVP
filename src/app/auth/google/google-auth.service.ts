@@ -1,11 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Router } from "@angular/router"
 import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
-import { HttpClient, HttpParams } from "@angular/common/http"
-
-import { HttpErrorHandlerService } from "src/app/http-error-handler/http-error-handler.service"
-
-import { Observable } from "rxjs"
+import { RequestsService } from "src/app/requests/requests.service"
 
 @Injectable({
     providedIn: "root",
@@ -16,11 +12,12 @@ export class GoogleAuthService {
     public jwtToken: string = ""
     public googleUserDetails: string
 
+    // private requests
+
     constructor(
         private router: Router,
         private authService: SocialAuthService,
-        private http: HttpClient,
-        private HTTPErrorHandler: HttpErrorHandlerService
+        private requests: RequestsService
     ) {}
 
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {
@@ -32,26 +29,10 @@ export class GoogleAuthService {
         }
     }
 
-    initJWTauth(data: Object) {
-        const google_auth_data = JSON.stringify(data)
-        const params = new HttpParams().set(
-            "google_auth_data",
-            google_auth_data
-        )
-
-        const authApiRequest: Observable<any> = this.http.get(
-            this.API_AUTH_URL, { params }
-        )
-
-        authApiRequest.subscribe({
-            next: (backendResponse) =>
-                this.verifyAuthAndRedirect(backendResponse),
-
-            error: (error) => this.HTTPErrorHandler.handle(error),
-        })
+    initJWTauth(oauthData: SocialUser) {
+        this.requests.auth.onSuccess = this.verifyAuthAndRedirect.bind(this)
+        this.requests.auth.send({ oauthData })
     }
-
-
 
     authorize() {
         this.authService.initState.subscribe((value) => {
@@ -68,7 +49,7 @@ export class GoogleAuthService {
         })
     }
 
-    signOut(args = {redirect: true}) {
+    signOut(args = { redirect: true }) {
         localStorage.removeItem("google_auth")
         localStorage.removeItem("jwt_token")
         this.userLoggedIn = false
@@ -76,8 +57,7 @@ export class GoogleAuthService {
         this.router.navigateByUrl("").then()
     }
 
-    accessControl(args = {redirect: true}) {
-
+    accessControl(args = { redirect: true }) {
         const storage = localStorage.getItem("google_auth")
         const jwt_from_backend = localStorage.getItem("jwt_token")
 
@@ -86,7 +66,7 @@ export class GoogleAuthService {
             this.jwtToken = jwt_from_backend
             this.userLoggedIn = true
         } else {
-            this.signOut({redirect: args.redirect})
+            this.signOut({ redirect: args.redirect })
         }
     }
 }
