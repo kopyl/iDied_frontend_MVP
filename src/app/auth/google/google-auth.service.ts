@@ -35,7 +35,7 @@ export class GoogleAuthService {
     }
 
     authorize() {
-        this.authService.initState.subscribe((value) => {
+        this.authService.initState.subscribe((value: boolean) => {
             // id.doc.id#1
             this.authService
                 .signIn(GoogleLoginProvider.PROVIDER_ID)
