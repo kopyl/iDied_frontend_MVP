@@ -37,8 +37,6 @@ class Auth {
             params: this.makeParams(kwargs),
         })
 
-        console.log(authApiRequest)
-
         authApiRequest.subscribe({
             next: (backendResponse) => this.success(backendResponse),
             error: (error) => this.HTTPErrorHandler.handle(error),
