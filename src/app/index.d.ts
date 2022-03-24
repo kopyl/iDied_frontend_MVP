@@ -44,6 +44,10 @@ declare global {
         response: any;
     }
 
+    interface authSendArgs {
+        oauthData: SocialUser
+    }
+
 }
 
 declare module "*.svg" {

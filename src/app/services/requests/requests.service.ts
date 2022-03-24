@@ -48,10 +48,6 @@ class Base {
     }
 }
 
-interface authSendArgs {
-    oauthData: SocialUser
-}
-
 class Auth extends Base {
     override URL = URLS.AUTH
 
