@@ -37,7 +37,7 @@ class Base {
         })
     }
 
-    send(kwargs: any): void {
+    send(kwargs: any = null): void {
         this.makeParams(kwargs)
         this.makeRequest()
 
