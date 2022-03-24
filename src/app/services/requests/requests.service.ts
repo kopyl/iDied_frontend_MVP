@@ -12,6 +12,7 @@ const URLS = {
     NOTES: {
         GET: makeUrl("notes", port, protocol),
     },
+    ONLINE: makeUrl("update_last_online_timestamp", port, protocol)
 }
 
 abstract class Request {
@@ -75,12 +76,18 @@ class GetNotes extends Request {
     override errorMessage = "notes"
 }
 
+class Online extends Request {
+    URL = URLS.ONLINE
+    override errorMessage = "online"
+}
+
 @Injectable({
     providedIn: "root",
 })
 export class RequestsService {
     auth: Auth
     notes: Notes
+    online: Online
 
     constructor(
         private http: HttpClient,
@@ -88,5 +95,6 @@ export class RequestsService {
     ) {
         this.auth = new Auth(http, HTTPErrorHandler)
         this.notes = new Notes(http, HTTPErrorHandler)
+        this.online = new Online(http, HTTPErrorHandler)
     }
 }
