@@ -14,12 +14,12 @@ const URLS = {
     },
 }
 
-class Request {
+abstract class Request {
     protected success: Function
     protected request: Observable<any>
     protected params = new HttpParams()
-    protected URL: string
     protected errorMessage: string
+    protected abstract URL: string
 
     constructor(
         public http: HttpClient,
