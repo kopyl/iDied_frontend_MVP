@@ -43,11 +43,16 @@ abstract class Request {
         this.makeParams(kwargs)
         this.makeRequest()
 
-        this.request.subscribe({
-            next: (backendResponse) => this.success(backendResponse) ?? null,
+        const actions = {
             error: (error) =>
                 this.HTTPErrorHandler.handle(error, this.errorMessage),
-        })
+        }
+
+        if (this.success) {
+            actions["next"] = this.success
+        }
+
+        this.request.subscribe(actions)
     }
 }
 
