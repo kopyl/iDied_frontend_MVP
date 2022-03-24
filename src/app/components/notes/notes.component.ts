@@ -1,11 +1,10 @@
 import { Component, OnInit } from "@angular/core"
-import { HttpClient } from "@angular/common/http"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
 import { Observable } from "rxjs"
-import { HttpErrorHandlerService } from "@services/http-error-handler"
 import { snakeToCamelCaseArray } from "@utils/transformations"
+import { RequestsService } from "@services/requests"
 
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
@@ -29,8 +28,7 @@ export class NotesComponent implements OnInit {
         public readonly googleAuth: GoogleAuthService,
         private pageTitle: Title,
         private router: Router,
-        private http: HttpClient,
-        private HTTPErrorHandler: HttpErrorHandlerService,
+        private requests: RequestsService
     ) {}
 
     ngOnInit(): void {
@@ -51,17 +49,8 @@ export class NotesComponent implements OnInit {
     }
 
     fetchNotes(): void {
-
-        this.noteApiRequest = this.http.get(this.API_NOTES_URL)
-
-        this.noteApiRequest.subscribe({
-            next: (backendResponse: backend_notes_response) => {
-                this.addNotes(backendResponse)
-            },
-
-            error: (error) => this.HTTPErrorHandler.handle(error, "notes"),
-        })
-
+        this.requests.notes.onSuccess = this.addNotes.bind(this)
+        this.requests.notes.send()
     }
 
 }
