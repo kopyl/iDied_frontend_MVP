@@ -8,10 +8,6 @@ import { RequestsService } from "@services/requests"
 // import { fromEvent, interval } from "rxjs"
 // import { debounce } from "rxjs/operators"
 
-// const keydowns = fromEvent(document, "keydown")
-// const result = keydowns.pipe(debounce((i) => interval(500)))
-// result.subscribe((x) => uploadNotesToServer())
-
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",

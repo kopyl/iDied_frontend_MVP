@@ -1,6 +1,7 @@
 declare global {
 
     interface frontendNote {
+        id: string,
         title: string,
         description: string,
         createdAt: number,
@@ -11,6 +12,7 @@ declare global {
     }
 
     interface backend_note {
+        id: string,
         title: string,
         description: string,
         created_at: number,
