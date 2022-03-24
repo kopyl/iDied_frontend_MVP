@@ -53,10 +53,6 @@ class Request {
 class Auth extends Request {
     override URL = URLS.AUTH
 
-    constructor(http: HttpClient, HTTPErrorHandler: HttpErrorHandlerService) {
-        super(http, HTTPErrorHandler)
-    }
-
     override makeParams(kwargs: authSendArgs) {
         const googleAuthData = JSON.stringify(kwargs.oauthData)
         this.params = new HttpParams().set("google_auth_data", googleAuthData)
@@ -78,10 +74,6 @@ class Notes {
 class GetNotes extends Request {
     override URL = URLS.NOTES.GET
     override errorMessage = "notes"
-
-    constructor(http: HttpClient, HTTPErrorHandler: HttpErrorHandlerService) {
-        super(http, HTTPErrorHandler)
-    }
 }
 
 @Injectable({
