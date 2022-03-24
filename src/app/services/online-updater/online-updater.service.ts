@@ -6,7 +6,6 @@ import { RequestsService } from "@services/requests"
     providedIn: "root",
 })
 export class OnlineUpdaterService {
-    private readonly URL = "http://idied.org:5001/update_last_online_timestamp"
     launched = false
 
     constructor(
