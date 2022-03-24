@@ -12,7 +12,7 @@ const URLS = {
     NOTES: {
         GET: makeUrl("notes", port, protocol),
     },
-    ONLINE: makeUrl("update_last_online_timestamp", port, protocol),
+    ONLINE: makeUrl("users/online", port, protocol),
 }
 
 abstract class Request {
@@ -20,6 +20,8 @@ abstract class Request {
     protected request: Observable<any>
     protected params = new HttpParams()
     protected errorMessage: string
+    protected body: Object = {}
+    protected abstract method: string
     protected abstract URL: string
 
     constructor(
@@ -30,9 +32,23 @@ abstract class Request {
     protected makeParams(kwargs: Object) {}
 
     protected makeRequest() {
-        this.request = this.http.get(this.URL, {
-            params: this.params,
-        })
+        if (this.method === "GET") {
+            this.request = this.http.get(this.URL, {
+                params: this.params,
+            })
+        } else if (this.method === "POST") {
+            this.request = this.http.post(this.URL, this.body, {
+                params: this.params,
+            })
+        } else if (this.method === "PUT") {
+            this.request = this.http.put(this.URL, this.body, {
+                params: this.params,
+            })
+        } else if (this.method === "DELETE") {
+            this.request = this.http.delete(this.URL, {
+                params: this.params,
+            })
+        }
     }
 
     public set onSuccess(func: Function) {
@@ -57,6 +73,7 @@ abstract class Request {
 }
 
 class Auth extends Request {
+    method = "GET"
     URL = URLS.AUTH
 
     override makeParams(kwargs: authSendArgs) {
@@ -77,11 +94,13 @@ class Notes {
 }
 
 class GetNotes extends Request {
+    method = "GET"
     URL = URLS.NOTES.GET
     override errorMessage = "notes"
 }
 
 class Online extends Request {
+    method = "PUT"
     URL = URLS.ONLINE
     override errorMessage = "online"
 }
