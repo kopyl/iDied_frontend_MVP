@@ -9,6 +9,9 @@ const protocol = "http"
 
 const URLS = {
     AUTH: makeUrl("authorize", port, protocol),
+    NOTES: {
+        GET: makeUrl("notes", port, protocol),
+    },
 }
 
 class Base {
@@ -62,16 +65,27 @@ class Auth extends Base {
     }
 }
 
+class Notes extends Base {
+
+    override URL = URLS.NOTES.GET
+
+    constructor(http: HttpClient, HTTPErrorHandler: HttpErrorHandlerService) {
+        super(http, HTTPErrorHandler)
+    }
+}
+
 @Injectable({
     providedIn: "root",
 })
 export class RequestsService {
     auth: Auth
+    notes: Notes
 
     constructor(
         private http: HttpClient,
         private HTTPErrorHandler: HttpErrorHandlerService
     ) {
         this.auth = new Auth(http, HTTPErrorHandler)
+        this.notes = new Notes(http, HTTPErrorHandler)
     }
 }
