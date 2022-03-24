@@ -19,6 +19,7 @@ class Base {
     public request: Observable<any>
     public params = new HttpParams()
     public URL: string
+    public errorMessage: string
 
     constructor(
         public http: HttpClient,
@@ -43,7 +44,8 @@ class Base {
 
         this.request.subscribe({
             next: (backendResponse) => this.success(backendResponse),
-            error: (error) => this.HTTPErrorHandler.handle(error),
+            error: (error) =>
+                this.HTTPErrorHandler.handle(error, this.errorMessage),
         })
     }
 }
@@ -62,8 +64,8 @@ class Auth extends Base {
 }
 
 class Notes extends Base {
-
     override URL = URLS.NOTES.GET
+    override errorMessage = "notes"
 
     constructor(http: HttpClient, HTTPErrorHandler: HttpErrorHandlerService) {
         super(http, HTTPErrorHandler)
