@@ -14,7 +14,7 @@ const URLS = {
     },
 }
 
-class Base {
+class Request {
     public success: Function
     public request: Observable<any>
     public params = new HttpParams()
@@ -50,7 +50,7 @@ class Base {
     }
 }
 
-class Auth extends Base {
+class Auth extends Request {
     override URL = URLS.AUTH
 
     constructor(http: HttpClient, HTTPErrorHandler: HttpErrorHandlerService) {
@@ -63,7 +63,7 @@ class Auth extends Base {
     }
 }
 
-class Notes extends Base {
+class Notes extends Request {
     override URL = URLS.NOTES.GET
     override errorMessage = "notes"
 
