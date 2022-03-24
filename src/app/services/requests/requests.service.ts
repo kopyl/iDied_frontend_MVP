@@ -26,10 +26,6 @@ class Request {
         public HTTPErrorHandler: HttpErrorHandlerService
     ) {}
 
-    public set onSuccess(func: Function) {
-        this.success = func
-    }
-
     protected makeParams(kwargs: Object) {}
 
     protected makeRequest() {
@@ -38,7 +34,11 @@ class Request {
         })
     }
 
-   public send(kwargs: any = null): void {
+    public set onSuccess(func: Function) {
+        this.success = func
+    }
+
+    public send(kwargs: any = null): void {
         this.makeParams(kwargs)
         this.makeRequest()
 
@@ -60,7 +60,6 @@ class Auth extends Request {
 }
 
 class Notes {
-
     get: GetNotes
 
     constructor(
