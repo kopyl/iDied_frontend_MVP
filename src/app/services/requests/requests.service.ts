@@ -15,30 +15,30 @@ const URLS = {
 }
 
 class Request {
-    public success: Function
-    public request: Observable<any>
-    public params = new HttpParams()
-    public URL: string
-    public errorMessage: string
+    protected success: Function
+    protected request: Observable<any>
+    protected params = new HttpParams()
+    protected URL: string
+    protected errorMessage: string
 
     constructor(
         public http: HttpClient,
         public HTTPErrorHandler: HttpErrorHandlerService
     ) {}
 
-    set onSuccess(func: Function) {
+    public set onSuccess(func: Function) {
         this.success = func
     }
 
-    makeParams(kwargs: Object) {}
+    protected makeParams(kwargs: Object) {}
 
-    makeRequest() {
+    protected makeRequest() {
         this.request = this.http.get(this.URL, {
             params: this.params,
         })
     }
 
-    send(kwargs: any = null): void {
+   public send(kwargs: any = null): void {
         this.makeParams(kwargs)
         this.makeRequest()
 
