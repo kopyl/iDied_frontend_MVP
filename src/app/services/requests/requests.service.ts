@@ -43,7 +43,7 @@ abstract class Request {
         this.makeRequest()
 
         this.request.subscribe({
-            next: (backendResponse) => this.success(backendResponse),
+            next: (backendResponse) => this.success(backendResponse) ?? null,
             error: (error) =>
                 this.HTTPErrorHandler.handle(error, this.errorMessage),
         })
