@@ -51,7 +51,7 @@ abstract class Request {
 }
 
 class Auth extends Request {
-    override URL = URLS.AUTH
+    URL = URLS.AUTH
 
     override makeParams(kwargs: authSendArgs) {
         const googleAuthData = JSON.stringify(kwargs.oauthData)
@@ -71,7 +71,7 @@ class Notes {
 }
 
 class GetNotes extends Request {
-    override URL = URLS.NOTES.GET
+    URL = URLS.NOTES.GET
     override errorMessage = "notes"
 }
 
