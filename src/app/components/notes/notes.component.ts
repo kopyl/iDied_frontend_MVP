@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
-import { Observable } from "rxjs"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
 
@@ -10,7 +9,7 @@ import { RequestsService } from "@services/requests"
 // import { debounce } from "rxjs/operators"
 
 // const keydowns = fromEvent(document, "keydown")
-// const result = keydowns.pipe(debounce((i) => interval(1000)))
+// const result = keydowns.pipe(debounce((i) => interval(500)))
 // result.subscribe((x) => uploadNotesToServer())
 
 @Component({
