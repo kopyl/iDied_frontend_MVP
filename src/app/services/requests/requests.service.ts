@@ -63,7 +63,19 @@ class Auth extends Request {
     }
 }
 
-class Notes extends Request {
+class Notes {
+
+    get: GetNotes
+
+    constructor(
+        public http: HttpClient,
+        public HTTPErrorHandler: HttpErrorHandlerService
+    ) {
+        this.get = new GetNotes(http, HTTPErrorHandler)
+    }
+}
+
+class GetNotes extends Request {
     override URL = URLS.NOTES.GET
     override errorMessage = "notes"
 

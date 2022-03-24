@@ -21,8 +21,6 @@ import { RequestsService } from "@services/requests"
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     formVisible = false
-    private noteApiRequest: Observable<any>
-    private readonly API_NOTES_URL = "http://idied.org:5001/notes"
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -49,8 +47,8 @@ export class NotesComponent implements OnInit {
     }
 
     fetchNotes(): void {
-        this.requests.notes.onSuccess = this.addNotes.bind(this)
-        this.requests.notes.send()
+        this.requests.notes.get.onSuccess = this.addNotes.bind(this)
+        this.requests.notes.get.send()
     }
 
 }
