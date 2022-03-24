@@ -12,7 +12,7 @@ const URLS = {
     NOTES: {
         GET: makeUrl("notes", port, protocol),
     },
-    ONLINE: makeUrl("update_last_online_timestamp", port, protocol)
+    ONLINE: makeUrl("update_last_online_timestamp", port, protocol),
 }
 
 abstract class Request {
