@@ -44,7 +44,6 @@ declare global {
         response: any;
     }
 
-
 }
 
 declare module "*.svg" {
