@@ -11,7 +11,7 @@ export class OnlineUpdaterService {
 
     constructor(
         private readonly googleAuth: GoogleAuthService,
-        private requests: RequestsService
+        private readonly requests: RequestsService
     ) {}
 
     saveLastOnline() {

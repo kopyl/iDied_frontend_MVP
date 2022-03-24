@@ -14,7 +14,7 @@ export class GoogleAuthService {
     constructor(
         private router: Router,
         private authService: SocialAuthService,
-        private requests: RequestsService
+        private readonly requests: RequestsService
     ) {}
 
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {

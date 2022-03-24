@@ -26,7 +26,7 @@ export class NotesComponent implements OnInit {
         public readonly googleAuth: GoogleAuthService,
         private pageTitle: Title,
         private router: Router,
-        private requests: RequestsService
+        private readonly requests: RequestsService
     ) {}
 
     ngOnInit(): void {
