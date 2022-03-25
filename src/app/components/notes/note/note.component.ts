@@ -8,13 +8,13 @@ import {
 } from "@angular/core"
 import { Subscription, Subject, timer } from "rxjs"
 import {
+    scan,
     debounce,
     take,
     repeat,
     mergeAll,
     distinctUntilKeyChanged,
 } from "rxjs/operators"
-import { scan } from "rxjs/operators"
 import { RequestsService } from "@services/requests"
 
 import { FormGroup } from "@angular/forms"
