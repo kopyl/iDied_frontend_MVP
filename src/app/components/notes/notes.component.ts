@@ -40,7 +40,6 @@ export class NotesComponent implements OnInit {
             this.notes = snakeToCamelCaseArray(
                 backendResponse.notes
             ) as frontendNote[]
-            // this.notes.map( (note: frontendNote) => note.changesSynced = true)
             this.notes.forEach(
                 (note: frontendNote, index) => {
                     this.notes[index].changesSynced = true
