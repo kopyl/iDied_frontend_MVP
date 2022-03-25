@@ -48,13 +48,13 @@ export class NotesComponent implements OnInit {
             )
             this.activeNote = this.notes[0]
 
-            console.log(this.notes)
+            console.log(this.notes, "this.notes")
         }
     }
 
     changeActiveNote() {  // to be implemenyted... Just for debug
-        this.testVar = !this.testVar
-        this.activeNote = this.testVar ? this.notes[1] : this.notes[0]
+        // this.testVar = !this.testVar
+        // this.activeNote = this.testVar ? this.notes[1] : this.notes[0]
         console.log('changing active note')
     }
 
