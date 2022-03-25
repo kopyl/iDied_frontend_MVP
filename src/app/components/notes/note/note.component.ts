@@ -31,8 +31,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     form: FormGroup
 
-    changesSynced = true
-
     @Input() activeNote: frontendNote
 
     constructor(
@@ -92,7 +90,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             (activeNote: frontendNote) => {
                 if (activeNote.changesSynced) return
                 activeNote.changesSynced = true
-                this.changesSynced = true
                 const noteToSend = { ...activeNote }
                 delete noteToSend.isShared
                 delete noteToSend.isRemovedByRecepient
