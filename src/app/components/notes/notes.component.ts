@@ -47,6 +47,8 @@ export class NotesComponent implements OnInit {
                 }
             )
             this.activeNote = this.notes[0]
+
+            console.log(this.notes)
         }
     }
 
