@@ -48,6 +48,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
         this.form.valueChanges.subscribe((changes) => {
             if (!this.activeNote) return
+            this.activeNote.editedAt = Date.now()
 
             this.saveNotesBuffer$.next(this.activeNote)
 
@@ -55,6 +56,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             this.activeNote.body = changes.body
 
             this.activeNote.changesSynced = false
+
         })
     }
 
