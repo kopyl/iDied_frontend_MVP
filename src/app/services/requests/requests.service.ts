@@ -107,7 +107,7 @@ class SaveNote extends Request {
 
     override makeBody(activeNoteID: saveNoteArgs) {
         this.body = {
-            noteID: activeNoteID
+            note: activeNoteID
         }
     }
 }
