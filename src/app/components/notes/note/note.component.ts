@@ -88,19 +88,20 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             repeat()
         )
 
-        this.saveNotesSubscription$ = saveNotesPipe$.subscribe((activeNote: frontendNote) => {
-            console.log(activeNote)
-            if (activeNote.changesSynced) return
-            activeNote.changesSynced = true
-            this.changesSynced = true
-            const noteToSend = {...activeNote}
-            delete noteToSend.isShared
-            delete noteToSend.isRemovedByRecepient
-            delete noteToSend.isAccessible
-            delete noteToSend.createdAt
-            delete noteToSend.changesSynced
-            this.requests.notes.save.send(noteToSend)
-        })
+        this.saveNotesSubscription$ = saveNotesPipe$.subscribe(
+            (activeNote: frontendNote) => {
+                if (activeNote.changesSynced) return
+                activeNote.changesSynced = true
+                this.changesSynced = true
+                const noteToSend = { ...activeNote }
+                delete noteToSend.isShared
+                delete noteToSend.isRemovedByRecepient
+                delete noteToSend.isAccessible
+                delete noteToSend.createdAt
+                delete noteToSend.changesSynced
+                this.requests.notes.save.send(noteToSend)
+            }
+        )
     }
 
     ngOnDestroy(): void {
