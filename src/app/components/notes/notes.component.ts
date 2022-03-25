@@ -55,7 +55,7 @@ export class NotesComponent implements OnInit {
     changeActiveNote() {  // to be implemenyted... Just for debug
         // this.testVar = !this.testVar
         // this.activeNote = this.testVar ? this.notes[1] : this.notes[0]
-        console.log('changing active note')
+        console.log('NOT changing active note')
     }
 
     fetchNotes(): void {
