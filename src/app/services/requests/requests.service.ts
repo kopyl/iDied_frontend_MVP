@@ -85,6 +85,7 @@ class Auth extends Request {
 class Notes {
     get: GetNotes
     save: SaveNote
+    create: CreateNote
 
     constructor(
         public http: HttpClient,
@@ -92,6 +93,7 @@ class Notes {
     ) {
         this.get = new GetNotes(http, HTTPErrorHandler)
         this.save = new SaveNote(http, HTTPErrorHandler)
+        this.create = new CreateNote(http, HTTPErrorHandler)
     }
 }
 
@@ -107,10 +109,12 @@ class SaveNote extends Request {
 
     override makeBody(activeNoteID: saveNoteArgs) {
         this.body = {
-            note: activeNoteID
+            note: activeNoteID,
         }
     }
 }
+
+class CreateNote extends SaveNote {}
 
 class Online extends Request {
     method = "PUT"

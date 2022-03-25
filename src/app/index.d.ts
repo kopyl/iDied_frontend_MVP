@@ -9,7 +9,7 @@ declare global {
         isShared?: boolean,
         isAccessible?: boolean,
         isRemovedByRecepient?: boolean,
-        changesSynced?: boolean
+        changesSynced?: boolean,
     }
 
     interface backend_note {

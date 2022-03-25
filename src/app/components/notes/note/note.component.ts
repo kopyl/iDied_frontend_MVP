@@ -32,6 +32,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     form: FormGroup
 
     @Input() activeNote: frontendNote
+    @Input() toggleFormFocus = false
 
     constructor(
         private readonly requests: RequestsService,
@@ -48,7 +49,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
         this.form.valueChanges.subscribe((changes) => {
             if (!this.activeNote) return
-            this.activeNote.editedAt = Date.now()
+            this.activeNote.editedAt = Math.floor(Date.now() / 1000)
 
             this.saveNotesBuffer$.next(this.activeNote)
 
@@ -96,6 +97,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
                 delete noteToSend.createdAt
                 delete noteToSend.changesSynced
                 this.requests.notes.save.send(noteToSend)
+                console.log(noteToSend, "noteToSend--")
             }
         )
     }

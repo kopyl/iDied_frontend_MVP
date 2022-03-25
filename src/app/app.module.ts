@@ -30,7 +30,8 @@ import { HighlightComponent } from "@components/notification/highlight"
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { NoteComponent } from '@components/notes/note'
 
-import { ReactiveFormsModule } from "@angular/forms"
+import { ReactiveFormsModule } from "@angular/forms";
+import { FocusDirective } from './directives/focus.directive'
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -67,6 +68,7 @@ const authInterceptorProvider = {
         NotificationComponent,
         HighlightComponent,
         NoteComponent,
+        FocusDirective,
     ],
     imports: [
         BrowserModule,

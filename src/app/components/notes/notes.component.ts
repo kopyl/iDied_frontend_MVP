@@ -14,7 +14,7 @@ export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     formVisible = false
     activeNote: frontendNote
-
+    toggleFormFocus: boolean
 
     testVar = false
 
@@ -37,28 +37,31 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigateByUrl("/unauthorized").then()
         } else {
-            this.notes = snakeToCamelCaseArray(
+            this.notes.unshift(...snakeToCamelCaseArray(
                 backendResponse.notes
             ) as frontendNote[]
-            this.notes.forEach(
-                (note: frontendNote, index) => {
-                    this.notes[index].changesSynced = true
-                }
             )
+            this.notes.forEach((note: frontendNote, index) => {
+                this.notes[index].changesSynced = true
+            })
             this.activeNote = this.notes[0]
-
-            console.log(this.notes, "this.notes")
         }
     }
 
-    changeActiveNote() {  // to be implemenyted... Just for debug
-        // this.testVar = !this.testVar
-        // this.activeNote = this.testVar ? this.notes[1] : this.notes[0]
-        console.log('NOT changing active note')
+    changeActiveNote() {
+        // to be implemenyted... Just for debug
+        console.log("NOT changing active note")
     }
 
     fetchNotes(): void {
         this.requests.notes.get.onSuccess = this.addNotes.bind(this)
         this.requests.notes.get.send()
+    }
+
+    createNote(): void {
+        console.log("Creating new note")
+        // this.toggleFormFocus = !this.toggleFormFocus
+        this.requests.notes.create.onSuccess = this.addNotes.bind(this)
+        this.requests.notes.create.send()
     }
 }
