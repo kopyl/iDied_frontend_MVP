@@ -9,9 +9,7 @@ const protocol = "http"
 
 const URLS = {
     AUTH: makeUrl("authorize", port, protocol),
-    NOTES: {
-        GET: makeUrl("notes", port, protocol),
-    },
+    NOTES: makeUrl("notes", port, protocol),
     ONLINE: makeUrl("users/online", port, protocol),
 }
 
@@ -30,6 +28,7 @@ abstract class Request {
     ) {}
 
     protected makeParams(kwargs: Object) {}
+    protected makeBody(kwargs: Object) {}
 
     protected makeRequest() {
         if (this.method === "GET") {
@@ -57,6 +56,7 @@ abstract class Request {
 
     public send(kwargs: any = null): void {
         this.makeParams(kwargs)
+        this.makeBody(kwargs)
         this.makeRequest()
 
         const actions = {
@@ -84,19 +84,32 @@ class Auth extends Request {
 
 class Notes {
     get: GetNotes
+    save: SaveNote
 
     constructor(
         public http: HttpClient,
         public HTTPErrorHandler: HttpErrorHandlerService
     ) {
         this.get = new GetNotes(http, HTTPErrorHandler)
+        this.save = new SaveNote(http, HTTPErrorHandler)
     }
 }
 
 class GetNotes extends Request {
     method = "GET"
-    URL = URLS.NOTES.GET
+    URL = URLS.NOTES
     override errorMessage = "notes"
+}
+
+class SaveNote extends Request {
+    method = "POST"
+    URL = URLS.NOTES
+
+    override makeBody(activeNoteID: saveNoteArgs) {
+        this.body = {
+            noteID: activeNoteID
+        }
+    }
 }
 
 class Online extends Request {

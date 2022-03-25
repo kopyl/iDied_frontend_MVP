@@ -40,7 +40,7 @@
         "@components/notification": ["src/app/components/notification/notification.component"],
         "@components/notification/highlight": ["src/app/components/notification/highlight/highlight.component"],
         "@components/notes": ["src/app/components/notes/notes.component"],
-        "@components/notes/note-form": ["src/app/components/notes/note-form/note-form.component"],
+        "@components/notes/note": ["src/app/components/notes/note/note.component"],
         "@components/notes/note-item": ["src/app/components/notes/note-item/note-item.component"],
     }
   },

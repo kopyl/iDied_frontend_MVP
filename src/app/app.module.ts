@@ -23,12 +23,14 @@ import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
 import { MainPageComponent } from "@components/main-page"
 
-import { NoteFormComponent } from "@components/notes/note-form"
 import { NoteItemComponent } from "@components/notes/note-item"
 
 import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
-import { NoopAnimationsModule } from "@angular/platform-browser/animations"
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { NoteComponent } from '@components/notes/note'
+
+import { ReactiveFormsModule } from "@angular/forms"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -61,10 +63,10 @@ const authInterceptorProvider = {
         NotesComponent,
         UnauthorizedComponent,
         NotFoundComponent,
-        NoteFormComponent,
         NoteItemComponent,
         NotificationComponent,
         HighlightComponent,
+        NoteComponent,
     ],
     imports: [
         BrowserModule,
@@ -75,6 +77,7 @@ const authInterceptorProvider = {
         AngularTelegramLoginWidgetModule,
         NoopAnimationsModule,
         MatSnackBarModule,
+        ReactiveFormsModule
     ],
     providers: [GoogleLogingProvider, authInterceptorProvider],
     bootstrap: [AppComponent],

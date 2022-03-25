@@ -3,18 +3,19 @@ declare global {
     interface frontendNote {
         id: string,
         title: string,
-        description: string,
-        createdAt: number,
+        body: string,
+        createdAt?: number,
         editedAt: number,
-        isShared: boolean,
-        isAccessible: boolean,
-        isRemovedByRecepient: boolean
+        isShared?: boolean,
+        isAccessible?: boolean,
+        isRemovedByRecepient?: boolean,
+        changesSynced?: boolean
     }
 
     interface backend_note {
         id: string,
         title: string,
-        description: string,
+        body: string,
         created_at: number,
         edited_at: number,
         is_shared: boolean,
@@ -48,6 +49,10 @@ declare global {
 
     interface authSendArgs {
         oauthData: SocialUser
+    }
+
+    interface saveNoteArgs {
+        noteID: string
     }
 
 }

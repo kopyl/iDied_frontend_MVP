@@ -1,0 +1,17 @@
+<!-- <p>note works!</p>
+<p>noteID: {{ID}}</p>
+<h1>{{title}}</h1>
+<p>body: {{body}}</p> -->
+
+<form action="" [formGroup]=form>
+
+    <textarea name="tite" id="title" rows="1"
+        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+        formControlName="title"></textarea>
+
+
+    <textarea name="body" id="body" rows="1"
+        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add description"
+        formControlName="body"></textarea>
+
+</form>

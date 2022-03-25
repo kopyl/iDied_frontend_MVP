@@ -2,9 +2,9 @@
 <button id=createNew class=small-button-primary (click)='formVisible = true'>New note</button>
 <button (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
 
-<h2>Notes</h2>
+<!-- <h2 >Notes</h2> -->
 
-<notification>
+<!-- <notification>
 
     Any SHARED note will become accessible by a link unless you
 
@@ -12,4 +12,6 @@
         log in for 30 days
     </highlight>
 
-</notification>
+</notification> -->
+
+<note [activeNote]=activeNote (click)=changeActiveNote()></note>
