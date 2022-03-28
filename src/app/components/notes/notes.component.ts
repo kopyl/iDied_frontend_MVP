@@ -17,7 +17,6 @@ import { noteItem } from "@animations/note-item"
 })
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
-    formVisible = false
     activeNote: frontendNote
     formFocused: boolean
 
