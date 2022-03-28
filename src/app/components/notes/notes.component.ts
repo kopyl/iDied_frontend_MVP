@@ -24,7 +24,6 @@ export class NotesComponent implements OnInit {
     activeNote: frontendNote
     formFocused: boolean
 
-    // @ViewChild("notesListHTML") notesListHTML: HTMLDivElement
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
 
     constructor(
