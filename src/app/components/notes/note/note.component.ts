@@ -79,7 +79,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             { emitEvent: false }
         )
 
-        const previousNote = changes["activeNote"].previousValue
+        const previousNote = changes["activeNote"]?.previousValue
         if (!previousNote) return
         this.saveNotesBuffer$.next(previousNote)
     }

@@ -16,7 +16,7 @@ export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     formVisible = false
     activeNote: frontendNote
-    toggleFormFocus: boolean
+    formFocused: boolean
 
     // @ViewChild("notesListHTML") notesListHTML: HTMLDivElement
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
@@ -39,6 +39,10 @@ export class NotesComponent implements OnInit {
         this.activeNote = this.notes[0]
     }
 
+    toggleFormFocus() {
+        this.formFocused = !this.formFocused
+    }
+
     addNotes(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
@@ -54,11 +58,13 @@ export class NotesComponent implements OnInit {
 
             this.setActiveNote()
             this.scrollToFirstNote()
+            this.toggleFormFocus()
         }
     }
 
     changeActiveNote(note: frontendNote): void {
         this.activeNote = note
+        this.toggleFormFocus()
     }
 
     fetchNotes(): void {
@@ -67,7 +73,6 @@ export class NotesComponent implements OnInit {
     }
 
     createNote(): void {
-        // this.toggleFormFocus = !this.toggleFormFocus
         this.requests.notes.create.onSuccess = this.addNotes.bind(this)
         this.requests.notes.create.send()
     }

@@ -1,24 +1,15 @@
-import { Directive, ElementRef, Input, AfterViewInit, HostListener, OnChanges, SimpleChanges } from "@angular/core"
+import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from "@angular/core"
 
 @Directive({
     selector: "[appFocus]",
 })
-export class FocusDirective implements AfterViewInit, OnChanges {
+export class FocusDirective implements OnChanges {
 
-    @Input('appFocus') test
+    @Input('appFocus') formFocus
 
-    constructor(private el: ElementRef) {}
-
-    ngAfterViewInit(): void {
-        // console.log(this.el, "wow")
-    }
-
-    // @HostListener("document:click", ["$event"])
-    // handleClicks(event: Event) {
-    //     console.log(event.target)
-    // }
+    constructor(private el: ElementRef<HTMLTextAreaElement>) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        // console.log(changes, "OnChanges2")
+        this.el.nativeElement.focus()
     }
 }

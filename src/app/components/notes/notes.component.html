@@ -31,9 +31,9 @@
 
         </div>
 
-        <!-- <note [activeNote]=activeNote [toggleFormFocus]=toggleFormFocus (click)=changeActiveNote()></note> -->
 
-        <note [activeNote]=activeNote (noteContentChanged)="reSortNotes(); scrollToFirstNote()"></note>
+        <note [activeNote]=activeNote (noteContentChanged)="reSortNotes(); scrollToFirstNote()"
+            [toggleFormFocus]=formFocused></note>
 
     </main>
 
