@@ -19,6 +19,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar"
 
 import { HttpClientModule } from "@angular/common/http"
 import { ReactiveFormsModule } from "@angular/forms"
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 
 import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
@@ -31,6 +32,7 @@ import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
 
 import { FormFocusDirective } from "@directives/form-focus"
+
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -78,6 +80,7 @@ const authInterceptorProvider = {
         AngularTelegramLoginWidgetModule,
         MatSnackBarModule,
         ReactiveFormsModule,
+        BrowserAnimationsModule
     ],
     providers: [GoogleLogingProvider, authInterceptorProvider],
     bootstrap: [AppComponent],

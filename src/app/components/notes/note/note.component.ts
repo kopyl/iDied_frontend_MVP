@@ -62,7 +62,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
             this.activeNote.changesSynced = false
 
-            // console.log(this.noteContentChanged)
             this.noteContentChanged.emit()
 
         })
@@ -104,7 +103,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
                 delete noteToSend.createdAt
                 delete noteToSend.changesSynced
                 this.requests.notes.save.send(noteToSend)
-                console.log(noteToSend, "noteToSend--")
             }
         )
     }

@@ -48,9 +48,10 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigateByUrl("/unauthorized").then()
         } else {
-            this.notes.unshift(...snakeToCamelCaseArray(
-                backendResponse.notes
-            ) as frontendNote[]
+            this.notes.unshift(
+                ...(snakeToCamelCaseArray(
+                    backendResponse.notes
+                ) as frontendNote[])
             )
             this.notes.forEach((note: frontendNote, index) => {
                 this.notes[index].changesSynced = true
@@ -77,24 +78,40 @@ export class NotesComponent implements OnInit {
         this.requests.notes.create.send()
     }
 
+    removeNoteFromUI(backendResponse: backend_notes_response): void {
+        if (backendResponse.error) {
+            this.googleAuth.signOut()
+            this.router.navigateByUrl("/unauthorized").then()
+        } else {
+            this.notes = this.notes.filter(
+                (note: frontendNote) => note.id !== backendResponse.notes[0].id
+            )
+            this.setActiveNote()
+            this.scrollToFirstNote()
+            this.toggleFormFocus()
+        }
+    }
+
+    removeNote(): void {
+        this.requests.notes.remove.onSuccess = this.removeNoteFromUI.bind(this)
+        this.requests.notes.remove.send(this.activeNote)
+    }
+
     notesSorted(): boolean {
         if (this.activeNote.id === this.notes[0].id) return true
         return false
     }
 
     scrollToFirstNote(): void {
-        this.notesListHTML.nativeElement
-        .scrollTo({top: 0, behavior: 'smooth'})
+        this.notesListHTML.nativeElement.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        })
     }
 
     reSortNotes(): void {
-        if ( this.notesSorted() ) return
-
-        this.notes.sort(
-            (a, b) => b.editedAt - a.editedAt
-        )
-
+        if (this.notesSorted()) return
+        this.notes.sort((a, b) => b.editedAt - a.editedAt)
         this.scrollToFirstNote()
     }
-
 }

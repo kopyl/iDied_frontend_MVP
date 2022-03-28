@@ -46,6 +46,7 @@ abstract class Request {
         } else if (this.method === "DELETE") {
             this.request = this.http.delete(this.URL, {
                 params: this.params,
+                body: this.body
             })
         }
     }
@@ -86,6 +87,7 @@ class Notes {
     get: GetNotes
     save: SaveNote
     create: CreateNote
+    remove: RemoveNote
 
     constructor(
         public http: HttpClient,
@@ -94,6 +96,7 @@ class Notes {
         this.get = new GetNotes(http, HTTPErrorHandler)
         this.save = new SaveNote(http, HTTPErrorHandler)
         this.create = new CreateNote(http, HTTPErrorHandler)
+        this.remove = new RemoveNote(http, HTTPErrorHandler)
     }
 }
 
@@ -107,14 +110,25 @@ class SaveNote extends Request {
     method = "POST"
     URL = URLS.NOTES
 
-    override makeBody(activeNoteID: saveNoteArgs) {
+    override makeBody(note: saveNoteArgs) {
         this.body = {
-            note: activeNoteID,
+            note: note,
         }
     }
 }
 
 class CreateNote extends SaveNote {}
+
+class RemoveNote extends Request {
+    method = "DELETE"
+    URL = URLS.NOTES
+
+    override makeBody(note: saveNoteArgs) {
+        this.body = {
+            note: note,
+        }
+    }
+}
 
 class Online extends Request {
     method = "PUT"

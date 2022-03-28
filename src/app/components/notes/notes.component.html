@@ -5,7 +5,10 @@
             <a href="" id=logo><img src="assets/logo_small_dark.svg" alt="logotype"></a>
             <button id=createNew class=small-button-primary (click)=createNote()>New note</button>
         </div>
-        <button id=sign-out (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
+        <div class="right">
+            <button class=small-button-primary id="delete-note" (click)="removeNote()">Delete note</button>
+            <button id=sign-out (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
+        </div>
     </header>
 
     <!-- <h2 >Notes</h2> -->
@@ -31,9 +34,12 @@
 
         </div>
 
+        <div class="note">
 
-        <note [activeNote]=activeNote (noteContentChanged)="reSortNotes(); scrollToFirstNote()"
-            [toggleFormFocus]=formFocused></note>
+            <note [activeNote]=activeNote (noteContentChanged)="reSortNotes(); scrollToFirstNote()"
+                [toggleFormFocus]=formFocused></note>
+
+        </div>
 
     </main>
 

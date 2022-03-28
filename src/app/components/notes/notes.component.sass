@@ -36,6 +36,15 @@ header
     button#sign-out
         justify-self: right
 
+    button#delete-note
+        background-color: black
+
+    div.right
+        grid-auto-flow: column
+        display: grid
+        justify-content: space-between
+        margin-left: 50px
+
 
 main
     display: grid
@@ -73,4 +82,3 @@ main
         li:empty::after
             content: "Add title"
             opacity: 0.5
-
