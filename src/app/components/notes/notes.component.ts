@@ -40,7 +40,7 @@ export class NotesComponent implements OnInit {
         this.activeNote = this.notes[0]
     }
 
-    toggleFormFocus() {
+    toggleFormFocus(): void {
         this.formFocused = !this.formFocused
     }
 
