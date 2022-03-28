@@ -22,7 +22,7 @@
 
     <main>
 
-        <div id="list" #notesList>
+        <div id="list" #notesListHTML>
 
             <ul>
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"

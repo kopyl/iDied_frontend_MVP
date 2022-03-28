@@ -5,7 +5,7 @@ import { GoogleAuthService } from "@services/auth"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
 
-import { ViewChild } from "@angular/core"
+import { ViewChild, ElementRef } from "@angular/core"
 
 @Component({
     selector: "app-notes",
@@ -18,7 +18,8 @@ export class NotesComponent implements OnInit {
     activeNote: frontendNote
     toggleFormFocus: boolean
 
-    @ViewChild("notesList") notesList
+    // @ViewChild("notesListHTML") notesListHTML: HTMLDivElement
+    @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -66,7 +67,6 @@ export class NotesComponent implements OnInit {
     }
 
     createNote(): void {
-        console.log("Creating new note")
         // this.toggleFormFocus = !this.toggleFormFocus
         this.requests.notes.create.onSuccess = this.addNotes.bind(this)
         this.requests.notes.create.send()
@@ -78,9 +78,8 @@ export class NotesComponent implements OnInit {
     }
 
     scrollToFirstNote(): void {
-        console.log(this.notesList)
-        this.notesList.nativeElement
-        .scrollTo({top: 0, behavior: 'smooth'});
+        this.notesListHTML.nativeElement
+        .scrollTo({top: 0, behavior: 'smooth'})
     }
 
     reSortNotes(): void {
