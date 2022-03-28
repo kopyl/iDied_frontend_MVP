@@ -1,32 +1,68 @@
 @import 'fonts'
 
+
+div#container
+    display: grid
+    gap: 50px
+    grid-template-rows: 50px 1fr  // header and main
+    overflow: hidden
+    height: 100%
+
+
 header
     display: grid
-    grid-template-columns: repeat(3, 1fr)
-    min-height: 0
-    min-width: 0
-    margin: 20px 30px 0 30px
-    align-items: center
+    grid-template-columns: 2fr 1fr
+    margin: 20px 30px 0 20px
 
     button
-        justify-self: right
+        justify-self: right  // sign out
 
         &#createNew
             justify-self: center
 
-h2
-    font-size: 200px
+    div.left
+        display: grid
+        grid-template-columns: auto auto
+        align-items: center
 
-ul
-    margin-top: 50px
-    margin-bottom: 50px
+        a#logo
+            position: relative
+            top: 2px
 
-    li
-        font-family: $roboto
-        font-size: 20px
-        cursor: pointer
-        padding: 20px
-        background-color: white
+        button#createNew
+            justify-self: right
 
-li:empty::after
-    content: "Add title"
+    button#sign-out
+        justify-self: right
+
+
+main
+    display: grid
+    grid-template-columns: 2fr 1fr  // notes list and their content
+    height: 100%
+    overflow-y: hidden
+
+    div#list
+
+        height: 100%
+        overflow: auto
+        padding-bottom: 20px
+
+        ul  // notes list
+            display: grid
+            gap: 5px
+            margin-right: 20px
+            margin-left: 20px
+
+            li
+                border-radius: 4px
+                font-family: $roboto
+                font-size: 20px
+                cursor: pointer
+                padding: 20px
+                background-color: #ffffff44
+                font-size: 15px
+
+        li:empty::after
+            content: "Add title"
+

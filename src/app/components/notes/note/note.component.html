@@ -3,10 +3,15 @@
 <h1>{{title}}</h1>
 <p>body: {{body}}</p> -->
 
+
+<!-- onloadeddata -->
 <form action="" [formGroup]=form>
 
     <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [appFocus]=toggleFormFocus
         oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+        onblur='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+        onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+
         formControlName="title"></textarea>
 
 

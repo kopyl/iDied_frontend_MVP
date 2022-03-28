@@ -1,25 +1,40 @@
-<header>
-    <a href=""><img src="assets/logo_small_dark.svg" alt="logotype"></a>
-    <button id=createNew class=small-button-primary (click)=createNote()>New note</button>
-    <button (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
-</header>
 
-<!-- <h2 >Notes</h2> -->
+<div id=container>
 
-<!-- <notification>
+    <header>
+        <div class="left">
+            <a href="" id=logo><img src="assets/logo_small_dark.svg" alt="logotype"></a>
+            <button id=createNew class=small-button-primary (click)=createNote()>New note</button>
+        </div>
+        <button id=sign-out (click)=googleAuth.signOut() class=small-button-secondary>Sign out</button>
+    </header>
 
-    Any SHARED note will become accessible by a link unless you
+    <!-- <h2 >Notes</h2> -->
 
-    <highlight>
-        log in for 30 days
-    </highlight>
+    <!-- <notification>
 
-</notification> -->
+        Any SHARED note will become accessible by a link unless you
 
-<ul>
-    <li *ngFor="let note of notes">{{note.title ? note.title : ""}}</li>
-</ul>
+        <highlight>
+            log in for 30 days
+        </highlight>
 
-<!-- <note [activeNote]=activeNote [toggleFormFocus]=toggleFormFocus (click)=changeActiveNote()></note> -->
+    </notification> -->
 
-<note [activeNote]=activeNote ></note>
+    <main>
+
+        <div id="list">
+
+            <ul>
+                <li *ngFor="let note of notes">{{note.title ? note.title : ""}}</li>
+            </ul>
+
+        </div>
+
+        <!-- <note [activeNote]=activeNote [toggleFormFocus]=toggleFormFocus (click)=changeActiveNote()></note> -->
+
+        <note [activeNote]=activeNote ></note>
+
+    </main>
+
+</div>
