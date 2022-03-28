@@ -70,10 +70,12 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     ngOnChanges(changes: SimpleChanges): void {
         // of @Input
 
+        if (!this.activeNote) return
+
         this.form?.setValue(
             {
-                title: this.activeNote.title,
-                body: this.activeNote.body,
+                title: this.activeNote?.title,
+                body: this.activeNote?.body,
             },
             { emitEvent: false }
         )

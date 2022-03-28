@@ -60,6 +60,8 @@ export class NotesComponent implements OnInit {
             this.setActiveNote()
             this.scrollToFirstNote()
             this.toggleFormFocus()
+
+            console.log('addnote')
         }
     }
 
@@ -86,6 +88,7 @@ export class NotesComponent implements OnInit {
             this.notes = this.notes.filter(
                 (note: frontendNote) => note.id !== backendResponse.notes[0].id
             )
+            if (this.notes.length === 0) this.createNote()
             this.setActiveNote()
             this.scrollToFirstNote()
             this.toggleFormFocus()
