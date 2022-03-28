@@ -28,7 +28,7 @@
         <div id="list" #notesListHTML>
 
             <ul>
-                <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
+                <li [@note-item] *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
                     (click)="changeActiveNote(note)">{{note.title}}</li>
             </ul>
 

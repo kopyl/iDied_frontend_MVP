@@ -7,10 +7,16 @@ import { RequestsService } from "@services/requests"
 
 import { ViewChild, ElementRef } from "@angular/core"
 
+import { noteItem } from "@animations/note-item"
+
+
+
+
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.sass"],
+    animations: noteItem
 })
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
