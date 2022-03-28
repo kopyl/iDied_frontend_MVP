@@ -1,0 +1,103 @@
+@import colors
+@import geometry
+@import fonts
+@import sizes
+
+
+span.highlight
+    color: $red
+
+
+div#container
+    display: grid
+    height: 100%
+    grid-template-columns: auto 498px
+
+    @media screen and ( max-width:  $min-mobile-width)
+        grid-template-columns: inherit
+        grid-template-rows: 63% auto
+
+    & section#banner
+        display: grid
+        grid-template-rows: 39px auto fit-content(100%)
+        margin: 5px 0 5px 5px
+        padding: 76px 50px 80px 50px
+        background-color: $black
+        border-radius: $border-radius-big
+        background-repeat: no-repeat
+
+        @media screen and ( max-width:  $min-mobile-width)
+            grid-template-rows: 39px auto fit-content(100%)
+            margin: 5px 5px 0 5px
+            padding: 25px
+
+
+
+        & > *
+            // background-color: #ff000023
+            // border: 1px solid white
+
+        & header
+            display: grid
+            grid-auto-flow: column
+            justify-content: space-between
+            align-items: center
+
+        section#cta
+            display: grid
+            align-items: center
+            color: $bisque-dark
+            font-size: min(10vh, 5vw)
+            line-height: min(15vh, 7vw)
+            font-family: $playfair
+
+            @media screen and ( max-width:  $min-mobile-width)
+                font-size: min(10vh, 7vw)
+                line-height: min(16vh, 11vw)
+                font-weight: 500
+
+        ul#how-to
+            font-family: $roboto
+            font-size: 14px
+            font-weight: $medium
+            color: white
+            display: grid
+            gap: 16px
+
+            @media screen and ( max-width:  $min-mobile-width)
+                    gap: 5px
+
+            li
+                display: grid
+                grid-auto-flow: column
+                justify-content: left
+                align-items: center
+                gap: 18px
+
+
+            & div.number
+                display: grid
+                width: 43px
+                height: 43px
+                border-radius: 4px
+                align-content: center
+                justify-content: center
+                font-size: 20px
+
+                @media screen and ( max-width:  $min-mobile-width)
+                    width: 37px
+                    height: 37px
+                    font-size: 17px
+
+            & li:nth-child(1) div
+                background-color: rgba($bisque-dark, .05)
+
+            & li:nth-child(2) div
+                background-color: rgba($bisque-dark, .10)
+
+            & li:nth-child(3) div
+                background-color: rgba($bisque-dark, .20)
+
+
+
+    & section#app

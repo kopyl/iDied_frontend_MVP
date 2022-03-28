@@ -1,4 +1,4 @@
-<a href=""><img src="assets/logo-small-light.svg" alt="logotype"></a>
+<!-- <a href=""><img src="assets/logo-small-light.svg" alt="logotype"></a>
 
 <button *ngIf="!googleAuth.userLoggedIn" (click)=googleAuth.authorize() google-sign-in class=small-button-secondary>
     Authorize with Google
@@ -10,4 +10,32 @@
 
 <button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut() class=small-button-secondary>
     Sign out
-</button>
+</button> -->
+
+<div id=container>
+    <section id=banner>
+        <header>
+            <a href=""><img src="assets/main-page/logo-small-light.svg" alt="logotype"></a>
+            <a href="mailto:kopyloleh@gmail.com"><button class="small-button-secondary light-button"> <img
+                        src="assets/main-page/icon-email-light.svg" alt="">Contact</button></a>
+        </header>
+        <section id="cta">
+            <h1>Leave a note for your loved ones before you <span class="highlight">die</span></h1>
+        </section>
+        <ul id="how-to">
+            <li>
+                <div class="number">1</div>
+                <p>Write a note & share a link</p>
+            </li>
+            <li>
+                <div class="number">2</div>
+                <p>Don't visit this app for <span class=highlight>30 days</span></p>
+            </li>
+            <li>
+                <div class="number">3</div>
+                <p>Now note is accessible by link</p>
+            </li>
+        </ul>
+    </section>
+    <section id=app></section>
+</div>

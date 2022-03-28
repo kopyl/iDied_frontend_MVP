@@ -19,6 +19,8 @@
     font-weight: $bold
     height: $small-button-height
 
+    transition: .1s linear all
+
 
 @mixin small-button-primary
     @include small-button-base
@@ -31,9 +33,26 @@
 @mixin small-button-secondary
     @include small-button-base
 
+    display: grid
+    grid-auto-flow: column
+    align-items: center
+
     background-color: $bisque-light
     color: $brown-light
     border: $small-button-secondary-border
+
+    & > img
+        margin-right: 14px
+
+
+@mixin light-button
+    background-color: $white-lightest
+    color: $white
+    border: $light-button-border
+
+    &:hover
+        background-color: black
+        border: 2px solid black
 
 
 @mixin main-page-big-text
