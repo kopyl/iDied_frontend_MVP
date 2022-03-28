@@ -25,8 +25,6 @@ import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
 import { MainPageComponent } from "@components/main-page"
 
-import { NoteItemComponent } from "@components/notes/note-item"
-
 import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
@@ -65,7 +63,6 @@ const authInterceptorProvider = {
         NotesComponent,
         UnauthorizedComponent,
         NotFoundComponent,
-        NoteItemComponent,
         NotificationComponent,
         HighlightComponent,
         NoteComponent,
