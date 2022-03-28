@@ -18,6 +18,7 @@ import { AppRoutingModule } from "./app-routing.module"
 import { MatSnackBarModule } from "@angular/material/snack-bar"
 
 import { HttpClientModule } from "@angular/common/http"
+import { ReactiveFormsModule } from "@angular/forms"
 
 import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
@@ -27,11 +28,9 @@ import { NoteItemComponent } from "@components/notes/note-item"
 
 import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { NoteComponent } from '@components/notes/note'
+import { NoteComponent } from "@components/notes/note"
 
-import { ReactiveFormsModule } from "@angular/forms";
-import { FocusDirective } from './directives/focus.directive'
+import { FormFocusDirective } from "@directives/form-focus"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -68,7 +67,7 @@ const authInterceptorProvider = {
         NotificationComponent,
         HighlightComponent,
         NoteComponent,
-        FocusDirective,
+        FormFocusDirective,
     ],
     imports: [
         BrowserModule,
@@ -77,9 +76,8 @@ const authInterceptorProvider = {
         AppRoutingModule,
         HttpClientModule,
         AngularTelegramLoginWidgetModule,
-        NoopAnimationsModule,
         MatSnackBarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
     providers: [GoogleLogingProvider, authInterceptorProvider],
     bootstrap: [AppComponent],

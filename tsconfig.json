@@ -42,6 +42,8 @@
         "@components/notes": ["src/app/components/notes/notes.component"],
         "@components/notes/note": ["src/app/components/notes/note/note.component"],
         "@components/notes/note-item": ["src/app/components/notes/note-item/note-item.component"],
+
+        "@directives/form-focus": ["src/app/directives/form-focus/form-focus.directive"],
     }
   },
   "angularCompilerOptions": {

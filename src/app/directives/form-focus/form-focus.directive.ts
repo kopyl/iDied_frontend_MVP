@@ -9,7 +9,7 @@ import {
 @Directive({
     selector: "[formFocus]",
 })
-export class FocusDirective implements OnChanges {
+export class FormFocusDirective implements OnChanges {
     @Input("formFocus") formFocus
 
     constructor(private el: ElementRef<HTMLTextAreaElement>) {}
