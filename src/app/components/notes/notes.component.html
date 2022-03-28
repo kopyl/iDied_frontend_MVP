@@ -1,4 +1,3 @@
-
 <div id=container>
 
     <header>
@@ -23,17 +22,18 @@
 
     <main>
 
-        <div id="list">
+        <div id="list" #notesList>
 
             <ul>
-                <li *ngFor="let note of notes">{{note.title ? note.title : ""}}</li>
+                <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
+                    (click)="changeActiveNote(note)">{{note.title}}</li>
             </ul>
 
         </div>
 
         <!-- <note [activeNote]=activeNote [toggleFormFocus]=toggleFormFocus (click)=changeActiveNote()></note> -->
 
-        <note [activeNote]=activeNote ></note>
+        <note [activeNote]=activeNote (noteContentChanged)="reSortNotes(); scrollToFirstNote()"></note>
 
     </main>
 

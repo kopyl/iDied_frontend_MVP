@@ -5,6 +5,8 @@ import { GoogleAuthService } from "@services/auth"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
 
+import { ViewChild } from "@angular/core"
+
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
@@ -17,6 +19,8 @@ export class NotesComponent implements OnInit {
     toggleFormFocus: boolean
 
     testVar = false
+
+    @ViewChild("notesList") notesList
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -48,9 +52,8 @@ export class NotesComponent implements OnInit {
         }
     }
 
-    changeActiveNote() {
-        // to be implemenyted... Just for debug
-        console.log("NOT changing active note")
+    changeActiveNote(note) {
+        this.activeNote = note
     }
 
     fetchNotes(): void {
@@ -64,4 +67,25 @@ export class NotesComponent implements OnInit {
         this.requests.notes.create.onSuccess = this.addNotes.bind(this)
         this.requests.notes.create.send()
     }
+
+    notesSorted(): boolean {
+        if (this.activeNote.id === this.notes[0].id) return true
+        return false
+    }
+
+    scrollToFirstNote(): void {
+        this.notesList.nativeElement
+        .scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    reSortNotes() {
+        if ( this.notesSorted() ) return
+
+        this.notes.sort(
+            (a, b) => b.editedAt - a.editedAt
+        )
+
+        this.scrollToFirstNote()
+    }
+
 }

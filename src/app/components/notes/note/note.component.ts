@@ -5,6 +5,8 @@ import {
     Input,
     OnDestroy,
     SimpleChanges,
+    Output,
+    EventEmitter,
 } from "@angular/core"
 import { Subscription, Subject, timer } from "rxjs"
 import {
@@ -34,6 +36,8 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     @Input() activeNote: frontendNote
     @Input() toggleFormFocus = false
 
+    @Output() noteContentChanged = new EventEmitter()
+
     constructor(
         private readonly requests: RequestsService,
         private readonly fb: FormBuilder
@@ -57,6 +61,9 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             this.activeNote.body = changes.body
 
             this.activeNote.changesSynced = false
+
+            // console.log(this.noteContentChanged)
+            this.noteContentChanged.emit()
 
         })
     }

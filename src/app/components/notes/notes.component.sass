@@ -1,4 +1,5 @@
 @import 'fonts'
+@import 'colors'
 
 
 div#container
@@ -46,13 +47,15 @@ main
 
         height: 100%
         overflow: auto
+        padding: 5px
         padding-bottom: 20px
+        margin-left: 20px
+        background-color: $bisque-light
+        border-radius: 4px
 
         ul  // notes list
             display: grid
             gap: 5px
-            margin-right: 20px
-            margin-left: 20px
 
             li
                 border-radius: 4px
@@ -62,6 +65,10 @@ main
                 padding: 20px
                 background-color: #ffffff44
                 font-size: 15px
+
+                &.active
+                    background-color: $bisque-darker
+
 
         li:empty::after
             content: "Add title"
