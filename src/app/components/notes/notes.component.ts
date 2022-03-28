@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
