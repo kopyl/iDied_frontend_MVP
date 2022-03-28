@@ -39,7 +39,7 @@
         "@components/main-page": ["src/app/components/main-page/main-page.component"],
         "@components/notification": ["src/app/components/notification/notification.component"],
         "@components/notification/highlight": ["src/app/components/notification/highlight/highlight.component"],
-        "@components/notes": ["src/app/components/notes/notes.component"],
+        "@components/notes": ["src/app/components/notes/notes/notes.component"],
         "@components/notes/note": ["src/app/components/notes/note/note.component"],
 
         "@directives/form-focus": ["src/app/directives/form-focus/form-focus.directive"],
