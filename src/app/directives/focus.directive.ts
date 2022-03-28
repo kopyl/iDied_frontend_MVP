@@ -1,11 +1,16 @@
-import { Directive, ElementRef, Input, OnChanges, SimpleChanges } from "@angular/core"
+import {
+    Directive,
+    ElementRef,
+    Input,
+    OnChanges,
+    SimpleChanges,
+} from "@angular/core"
 
 @Directive({
-    selector: "[appFocus]",
+    selector: "[formFocus]",
 })
 export class FocusDirective implements OnChanges {
-
-    @Input('appFocus') formFocus
+    @Input("formFocus") formFocus
 
     constructor(private el: ElementRef<HTMLTextAreaElement>) {}
 
