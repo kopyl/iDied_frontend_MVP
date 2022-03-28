@@ -60,8 +60,6 @@ export class NotesComponent implements OnInit {
             this.setActiveNote()
             this.scrollToFirstNote()
             this.toggleFormFocus()
-
-            console.log('addnote')
         }
     }
 
