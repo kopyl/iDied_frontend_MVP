@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, HostListener, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
@@ -9,14 +9,11 @@ import { ViewChild, ElementRef } from "@angular/core"
 
 import { noteItem } from "@animations/note-item"
 
-
-
-
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.sass"],
-    animations: noteItem
+    animations: noteItem,
 })
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
@@ -58,8 +55,8 @@ export class NotesComponent implements OnInit {
                     backendResponse.notes
                 ) as frontendNote[])
             )
-            this.notes.forEach((note: frontendNote, index) => {
-                this.notes[index].changesSynced = true
+            this.notes.forEach((note: frontendNote) => {
+                note.changesSynced = true
             })
 
             this.setActiveNote()
