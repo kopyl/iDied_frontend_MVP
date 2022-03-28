@@ -18,8 +18,6 @@ export class NotesComponent implements OnInit {
     activeNote: frontendNote
     toggleFormFocus: boolean
 
-    testVar = false
-
     @ViewChild("notesList") notesList
 
     constructor(
@@ -36,7 +34,11 @@ export class NotesComponent implements OnInit {
         this.fetchNotes()
     }
 
-    addNotes(backendResponse: backend_notes_response) {
+    setActiveNote(): void {
+        this.activeNote = this.notes[0]
+    }
+
+    addNotes(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
             this.router.navigateByUrl("/unauthorized").then()
@@ -48,11 +50,13 @@ export class NotesComponent implements OnInit {
             this.notes.forEach((note: frontendNote, index) => {
                 this.notes[index].changesSynced = true
             })
-            this.activeNote = this.notes[0]
+
+            this.setActiveNote()
+            this.scrollToFirstNote()
         }
     }
 
-    changeActiveNote(note) {
+    changeActiveNote(note: frontendNote): void {
         this.activeNote = note
     }
 
@@ -74,11 +78,12 @@ export class NotesComponent implements OnInit {
     }
 
     scrollToFirstNote(): void {
+        console.log(this.notesList)
         this.notesList.nativeElement
         .scrollTo({top: 0, behavior: 'smooth'});
     }
 
-    reSortNotes() {
+    reSortNotes(): void {
         if ( this.notesSorted() ) return
 
         this.notes.sort(
