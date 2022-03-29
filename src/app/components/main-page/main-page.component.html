@@ -1,27 +1,16 @@
-<!-- <a href=""><img src="assets/logo-small-light.svg" alt="logotype"></a>
-
-<button *ngIf="!googleAuth.userLoggedIn" (click)=googleAuth.authorize() google-sign-in class=small-button-secondary>
-    Authorize with Google
-</button>
-
-<button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes() class=small-button-secondary>
-    My notes
-</button>
-
-<button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut() class=small-button-secondary>
-    Sign out
-</button> -->
-
 <div id=container>
     <section id=banner>
+
         <header>
             <a href=""><img src="assets/main-page/logo-small-light.svg" alt="logotype"></a>
-            <a href="mailto:kopyloleh@gmail.com"><button class="small-button-secondary light-button"> <img
-                        src="assets/main-page/icon-email-light.svg" alt="">Contact</button></a>
+            <a href="mailto:kopyloleh@gmail.com"><button class="small-button-secondary small-light-button">
+                <img src="assets/main-page/icon-email-light.svg" alt="">Contact</button>
+            </a>
         </header>
         <section id="cta">
             <h1>Leave a note for your loved ones before you <span class="highlight">die</span></h1>
         </section>
+
         <ul id="how-to">
             <li>
                 <div class="number" title="Доброго вечора, ми з України" onclick="alert(this.title)">1</div>
@@ -36,6 +25,46 @@
                 <p>Now note is accessible by link</p>
             </li>
         </ul>
+
     </section>
-    <section id=app></section>
-</div>
+
+    <section id=app>
+
+        <div id="top-button-container">
+            <button *ngIf="googleAuth.userLoggedIn" (click)=googleAuth.signOut() class=small-button-secondary id="logout">
+                <icon-sign-out></icon-sign-out>
+                Sign out
+            </button>
+        </div>
+
+        <div id="bottom-button-container">
+
+            <button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes() class=big-button-primary>
+
+                <div class="left-side">
+                    <icon-notes></icon-notes>
+                    My notes
+                </div>
+
+                <icon-arrow-right></icon-arrow-right>
+            </button>
+
+            <div id="auth" *ngIf="!googleAuth.userLoggedIn">
+
+                <h1>Login or sign up</h1>
+
+                <button (click)=googleAuth.authorize() google-sign-in class=big-button-primary>
+
+                    <div class="left-side">
+                        <icon-google></icon-google>
+                        By google
+                    </div>
+
+                    <icon-arrow-right></icon-arrow-right>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>

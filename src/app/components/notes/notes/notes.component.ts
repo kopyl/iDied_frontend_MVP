@@ -31,7 +31,10 @@ export class NotesComponent implements OnInit {
 
     ngOnInit(): void {
         this.googleAuth.accessControl()
-        if (!this.googleAuth.userLoggedIn) return
+        if (!this.googleAuth.userLoggedIn) {
+            this.router.navigate(["/unauthorized"])
+            return
+        }
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
     }
@@ -47,7 +50,7 @@ export class NotesComponent implements OnInit {
     addNotes(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigateByUrl("/unauthorized").then()
+            this.router.navigate(["/unauthorized"])
         } else {
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
@@ -82,7 +85,7 @@ export class NotesComponent implements OnInit {
     removeNoteFromUI(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigateByUrl("/unauthorized").then()
+            this.router.navigate(["/unauthorized"])
         } else {
             this.notes = this.notes.filter(
                 (note: frontendNote) => note.id !== backendResponse.notes[0].id

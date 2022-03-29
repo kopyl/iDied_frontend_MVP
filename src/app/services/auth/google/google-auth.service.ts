@@ -19,10 +19,10 @@ export class GoogleAuthService {
 
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {
         if (backendResponse.error) {
-            this.router.navigateByUrl("/unauthorized").then()
+            this.router.navigate(["/unauthorized"])
         } else {
             localStorage.setItem("jwt_token", backendResponse.jwt_token)
-            this.router.navigateByUrl("/notes").then()
+            this.router.navigate(["/notes"])
         }
     }
 
@@ -46,15 +46,19 @@ export class GoogleAuthService {
         })
     }
 
-    signOut(args = { redirect: true }) {
+    signOut() {
         localStorage.removeItem("google_auth")
         localStorage.removeItem("jwt_token")
         this.userLoggedIn = false
-        if (!args.redirect) return
-        this.router.navigateByUrl("").then()
     }
 
-    accessControl(args = { redirect: true }) {
+    signOutAndGoToMain() {
+        this.signOut()
+        this.router.navigate([""])
+    }
+
+    accessControl() {
+        console.log("accessControl")
         const storage = localStorage.getItem("google_auth")
         const jwt_from_backend = localStorage.getItem("jwt_token")
 
@@ -63,7 +67,7 @@ export class GoogleAuthService {
             this.jwtToken = jwt_from_backend
             this.userLoggedIn = true
         } else {
-            this.signOut({ redirect: args.redirect })
+             this.signOut()
         }
     }
 }

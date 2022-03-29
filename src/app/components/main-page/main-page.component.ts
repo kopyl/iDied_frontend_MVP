@@ -16,10 +16,9 @@ export class MainPageComponent implements OnInit {
 
     ngOnInit(): void {
         this.googleAuth.accessControl()
-        if (!this.googleAuth.userLoggedIn) return
     }
 
     navigateToNotes() {
-        this.router.navigateByUrl("/notes").then()
+        this.router.navigate(["/notes"])
     }
 }

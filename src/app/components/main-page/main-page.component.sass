@@ -42,7 +42,7 @@ div#container
             align-items: center
             color: $bisque-dark
             font-size: min(10vh, 5vw)
-            line-height: min(15vh, 7vw)
+            line-height: min(12vh, 8vw)
             font-family: $playfair
 
             @media screen and ( max-width:  $min-mobile-width)
@@ -71,8 +71,10 @@ div#container
 
             & div.number
                 display: grid
-                width: 43px
-                height: 43px
+                max-width: 43px
+                max-height: 43px
+                width: min( 5vh, 10vw )
+                height: min( 5vh, 10vw )
                 border-radius: 4px
                 align-content: center
                 justify-content: center
@@ -80,17 +82,11 @@ div#container
                 z-index: 1
 
                 @media screen and ( max-width:  $min-mobile-width)
-
-                    max-width: 43px
-                    max-height: 43px
-                    width: min( 5vh, 10vw )
-                    height: min( 5vh, 10vw )
                     font-size: 16px
 
             & li:nth-child(1) div
                 position: relative
                 background: linear-gradient(180deg, #4A9AFF 50%, #FCE227 50%)
-
 
                 &::before
                     content: ""
@@ -111,5 +107,45 @@ div#container
                 background-color: rgba($bisque-dark, .20)
 
 
-
     & section#app
+        display: grid
+        align-content: space-between
+
+        padding: 81px 50px 85px 50px
+
+        @media screen and ( max-width:  $min-mobile-width)
+            justify-content: inherit
+            padding: 30px
+
+        div#top-button-container
+
+            justify-self: right
+
+            @media screen and ( max-width:  $min-mobile-width)
+                justify-self: inherit
+
+            & button
+                width: 100%
+
+                @media screen and ( max-width:  $min-mobile-width)
+
+                    justify-content: left
+
+        div#bottom-button-container
+
+            button
+                width: 100%
+
+            div#auth
+
+                h1
+                    font-family: $roboto
+
+                    font-size: 31px
+                    margin-bottom: 58px
+                    line-height: 36px
+
+                    @media screen and ( max-width:  $min-mobile-width)
+                        font-size: 21px
+                        margin-bottom: 15px
+                        line-height: 36px

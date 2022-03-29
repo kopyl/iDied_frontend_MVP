@@ -14,19 +14,16 @@ export class OnlineUpdaterService {
     ) {}
 
     saveLastOnline() {
-        this.googleAuth.accessControl({ redirect: false })
         if (!this.googleAuth.userLoggedIn) return
-
         this.requests.online.send()
     }
 
     schedule() {
         if (this.launched) return
-        const saveLastOnline = this.saveLastOnline
-        const obj = this
+        const saveLastOnline = this.saveLastOnline.bind(this)
         setInterval(
             (function _() {
-                saveLastOnline.call(obj)
+                saveLastOnline()
                 return _
             })(),
             1000

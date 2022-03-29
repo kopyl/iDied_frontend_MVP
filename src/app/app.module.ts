@@ -29,7 +29,12 @@ import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
 
-import { FormFocusDirective } from "@directives/form-focus"
+import { FormFocusDirective } from "@directives/form-focus";
+
+import { IconArrowRightComponent } from './components/icons/icon-arrow-right/icon-arrow-right.component';
+import { IconNotesComponent } from './components/icons/icon-notes/icon-notes.component';
+import { IconGoogleComponent } from './components/icons/icon-google/icon-google.component';
+import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign-out.component'
 
 
 const CLIENT_ID =
@@ -67,6 +72,10 @@ const authInterceptorProvider = {
         HighlightComponent,
         NoteComponent,
         FormFocusDirective,
+        IconArrowRightComponent,
+        IconNotesComponent,
+        IconGoogleComponent,
+        IconSignOutComponent,
     ],
     imports: [
         BrowserModule,

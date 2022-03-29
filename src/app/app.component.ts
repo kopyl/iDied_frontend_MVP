@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core"
-import { Router } from "@angular/router"
 import { OnlineUpdaterService } from "@services/online-updater"
 
 @Component({
@@ -9,8 +8,7 @@ import { OnlineUpdaterService } from "@services/online-updater"
 })
 export class AppComponent implements OnInit {
     constructor(
-        private router: Router,
-        private onlineUpdater: OnlineUpdaterService
+        private onlineUpdater: OnlineUpdaterService,
     ) {}
 
     ngOnInit(): void {
