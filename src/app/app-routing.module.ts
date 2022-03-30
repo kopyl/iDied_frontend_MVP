@@ -10,6 +10,9 @@ const routes = [
     {
         path: "",
         component: MainPageComponent,
+        data: {
+            animation: "isRight"
+        }
     },
     {
         path: "unauthorized",
@@ -18,6 +21,9 @@ const routes = [
     {
         path: "notes",
         component: NotesComponent,
+        data: {
+            animation: "isLeft"
+        }
     },
     {
         path: "**",
