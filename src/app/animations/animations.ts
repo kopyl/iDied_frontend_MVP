@@ -59,13 +59,11 @@ export const fader = [
     ]),
 ]
 
+// id.doc.id#2
 export const slider = [
     trigger("routeAnimations", [
-        transition("void => open", []),
-        transition("* => isLeft", slideTo("left")),
-        transition("* => isRight", slideTo("right")),
-        transition("isRight => *", slideTo("left")),
-        transition("isLeft => *", slideTo("right")),
+        transition("isRight => isLeft", slideTo("left")),
+        transition("isLeft => isRight", slideTo("right")),
     ]),
 ]
 
@@ -76,7 +74,7 @@ function slideTo(direction) {
             [
                 style({
                     position: "absolute",
-                    top: 0,
+                    top: "0%",
                     [direction]: 0,
                     width: "100%",
                     height: "100%",
