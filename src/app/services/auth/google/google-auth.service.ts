@@ -58,7 +58,6 @@ export class GoogleAuthService {
     }
 
     accessControl() {
-        console.log("accessControl")
         const storage = localStorage.getItem("google_auth")
         const jwt_from_backend = localStorage.getItem("jwt_token")
 
