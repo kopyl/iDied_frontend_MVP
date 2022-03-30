@@ -7,7 +7,7 @@ import { RequestsService } from "@services/requests"
 
 import { ViewChild, ElementRef } from "@angular/core"
 
-import { noteItem } from "@animations/note-item"
+import { noteItem } from "@animations"
 
 @Component({
     selector: "app-notes",

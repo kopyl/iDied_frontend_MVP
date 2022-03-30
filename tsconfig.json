@@ -44,7 +44,7 @@
 
         "@directives/form-focus": ["src/app/directives/form-focus/form-focus.directive"],
 
-        "@animations/note-item": ["src/app/animations/note-item"],
+        "@animations": ["src/app/animations/animations"],
     }
   },
   "angularCompilerOptions": {

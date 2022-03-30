@@ -11,7 +11,7 @@ const routes = [
         path: "",
         component: MainPageComponent,
         data: {
-            animation: "isRight"
+            animation: "isLeft"
         }
     },
     {
@@ -22,7 +22,7 @@ const routes = [
         path: "notes",
         component: NotesComponent,
         data: {
-            animation: "isLeft"
+            animation: "isRight"
         }
     },
     {
