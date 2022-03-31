@@ -17,6 +17,13 @@ export class GoogleAuthService {
         private readonly requests: RequestsService
     ) {}
 
+    fakeAuthorize() {  // to be removed on prod
+        const fakeQleverusToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.oRQNI3AnbeIWmZTmkDK3MK5rJwk4VjcaHJZBJ4T8McY"
+        localStorage.setItem("google_auth", "{}")
+        localStorage.setItem("jwt_token", fakeQleverusToken)
+        this.router.navigate(["/notes"])
+    }
+
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {
         if (backendResponse.error) {
             this.router.navigate(["/unauthorized"])
@@ -32,6 +39,8 @@ export class GoogleAuthService {
     }
 
     authorize() {
+        if (window.location.host === "192.168.0.101") return this.fakeAuthorize()  // to be removed on prod
+
         this.authService.initState.subscribe((value: boolean) => {
             // id.doc.id#1
             this.authService
