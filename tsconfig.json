@@ -42,7 +42,7 @@
         "@components/notes": ["src/app/components/notes/notes/notes.component"],
         "@components/notes/note": ["src/app/components/notes/note/note.component"],
 
-        "@directives/form-focus": ["src/app/directives/form-focus/form-focus.directive"],
+        "@directives/form-focus-and-height-adjustment": ["src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"],
 
         "@animations": ["src/app/animations/animations"],
     }

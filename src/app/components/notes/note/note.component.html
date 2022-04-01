@@ -1,13 +1,13 @@
 <form action="" [formGroup]=form>
 
-    <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [formFocus]=toggleFormFocus
+    <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [formFocusAndHeightAdjustment]=toggleFormFocus
         oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
         onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
 
         formControlName="title">
     </textarea>
 
-    <textarea name="body" id="body" rows="1" [formFocus]=toggleFormFocus
+    <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
 
         oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add description"
         onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"

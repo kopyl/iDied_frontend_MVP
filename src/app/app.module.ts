@@ -29,7 +29,7 @@ import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
 
-import { FormFocusDirective } from "@directives/form-focus";
+import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment";
 
 import { IconArrowRightComponent } from './components/icons/icon-arrow-right/icon-arrow-right.component';
 import { IconNotesComponent } from './components/icons/icon-notes/icon-notes.component';
@@ -71,7 +71,7 @@ const authInterceptorProvider = {
         NotificationComponent,
         HighlightComponent,
         NoteComponent,
-        FormFocusDirective,
+        FormFocusAndHeightAdjustmentDirective,
         IconArrowRightComponent,
         IconNotesComponent,
         IconGoogleComponent,

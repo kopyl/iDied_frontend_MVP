@@ -8,10 +8,10 @@ import {
 } from "@angular/core"
 
 @Directive({
-    selector: "[formFocus]",
+    selector: "[formFocusAndHeightAdjustment]",
 })
-export class FormFocusDirective implements OnChanges {
-    @Input("formFocus") formFocus
+export class FormFocusAndHeightAdjustmentDirective implements OnChanges {
+    @Input("formFocusAndHeightAdjustment") formFocus
 
     constructor(private el: ElementRef<HTMLTextAreaElement>) {}
 
