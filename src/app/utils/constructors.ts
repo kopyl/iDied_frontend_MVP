@@ -9,9 +9,9 @@ export const makeUrl = (
 
     return `https://` + `idied.org/` + `api/` + `${endpoint}`
 
-    if (window.location.href.includes("https")) {  // for development
-        return `https://` + `${base}/` + `api/` + `${endpoint}`
-    }
+    // if (window.location.href.includes("https")) {  // for development
+    //     return `https://` + `${base}/` + `api/` + `${endpoint}`
+    // }
 
-    return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
+    // return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
 }

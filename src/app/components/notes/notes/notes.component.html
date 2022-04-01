@@ -1,4 +1,4 @@
-<div id=container>
+<!-- <div id=container>
 
     <header>
         <div class="left">
@@ -10,18 +10,6 @@
             <button id=sign-out (click)=googleAuth.signOutAndGoToMain() class=small-button-secondary>Sign out</button>
         </div>
     </header>
-
-    <!-- <h2 >Notes</h2> -->
-
-    <!-- <notification>
-
-        Any SHARED note will become accessible by a link unless you
-
-        <highlight>
-            log in for 30 days
-        </highlight>
-
-    </notification> -->
 
     <main>
 
@@ -42,5 +30,59 @@
         </div>
 
     </main>
+
+</div> -->
+
+<div id=container>
+
+    <div id="sidebar">
+        <div id="logo">
+            <icon-logo routerLink="/" color="black"></icon-logo>
+        </div>
+
+        <button id="notes-link" class='small-button-secondary sidebar-menu-item active'>
+            <icon-notes></icon-notes>
+            Notes
+        </button>
+
+        <button id="sign-out" class=small-button-secondary (click)=googleAuth.signOutAndGoToMain()>
+            <icon-sign-out></icon-sign-out>
+            Sign out
+        </button>
+
+    </div>
+
+    <div id="notes">
+
+        <header id="desktop-header">
+
+            <h1>Notes</h1>
+
+            <button id="sign-out" class=small-button-primary (click)=createNote()>
+                <img src="assets/icon-new-light.svg" alt="">
+                Create note
+            </button>
+
+        </header>
+
+
+        <div id="list" #notesListHTML>
+
+            <ul>
+                <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
+                    (click)="changeActiveNote(note)">
+                    <pre>{{note.title}}</pre>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div id="note">
+        <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (removeNoteEvent)="removeNote()"
+            [toggleFormFocus]=formFocused>
+        </note>
+    </div>
 
 </div>

@@ -19,10 +19,10 @@ export class FormFocusAndHeightAdjustmentDirective implements OnChanges {
 
 
         const textArea = this.el.nativeElement
+        textArea.style.height = "0px"
         const scrollHeight = textArea.scrollHeight
 
 
-        textArea.style.height = ""
         textArea.style.height = scrollHeight + "px"
 
 

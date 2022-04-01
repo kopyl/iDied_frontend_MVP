@@ -34,7 +34,10 @@ import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-an
 import { IconArrowRightComponent } from './components/icons/icon-arrow-right/icon-arrow-right.component';
 import { IconNotesComponent } from './components/icons/icon-notes/icon-notes.component';
 import { IconGoogleComponent } from './components/icons/icon-google/icon-google.component';
-import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign-out.component'
+import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign-out.component';
+import { IconLogoComponent } from './components/icons/icon-logo/icon-logo.component';
+import { IconShareComponent } from './components/icons/icon-share/icon-share.component';
+import { IconDeleteComponent } from './components/icons/icon-delete/icon-delete.component'
 
 
 const CLIENT_ID =
@@ -76,6 +79,9 @@ const authInterceptorProvider = {
         IconNotesComponent,
         IconGoogleComponent,
         IconSignOutComponent,
+        IconLogoComponent,
+        IconShareComponent,
+        IconDeleteComponent,
     ],
     imports: [
         BrowserModule,

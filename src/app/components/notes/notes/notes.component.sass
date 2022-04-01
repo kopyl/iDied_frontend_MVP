@@ -1,94 +1,188 @@
 @import 'fonts'
 @import 'colors'
+@import 'sizes'
 
+
+// div#container
+//     display: grid
+//     gap: 50px
+//     grid-template-rows: 50px 1fr  // header and main
+//     overflow: hidden
+//     height: 100%
+
+
+// header
+//     display: grid
+//     grid-template-columns: 2fr 1fr
+//     margin: 20px 30px 0 20px
+
+//     button
+//         justify-self: right  // sign out
+
+//         &#createNew
+//             justify-self: center
+
+//     div.left
+//         display: grid
+//         grid-template-columns: auto auto
+//         align-items: center
+
+//         a#logo
+//             position: relative
+//             top: 2px
+
+//         button#createNew
+//             justify-self: right
+
+//     button#sign-out
+//         justify-self: right
+
+//     button#delete-note
+//         background-color: black
+
+//     div.right
+//         grid-auto-flow: column
+//         display: grid
+//         justify-content: space-between
+//         margin-left: 50px
+
+
+// main
+//     display: grid
+//     grid-template-columns: 2fr 1fr  // notes list and their content
+//     height: 100%
+//     overflow-y: hidden
+
+//     div#list
+
+//         height: 100%
+//         overflow: auto
+//         padding: 5px
+//         padding-bottom: 20px
+//         margin-left: 20px
+//         background-color: $bisque-light
+//         border-radius: 4px
+
+//         ul  // notes list
+//             // display: grid
+//             // gap: 5px
+
+//             li
+//                 margin-bottom: 5px
+//                 border-radius: 4px
+//                 cursor: pointer
+//                 padding: 6px 45px 7px 45px
+//                 background-color: #ffffff44
+//                 height: 39px
+//                 overflow: hidden
+
+//                 transition: .15s linear background-color
+
+
+//                 &.active
+//                     background-color: $bisque-darker
+
+//                 pre
+//                     overflow: hidden
+//                     text-overflow: ellipsis
+//                     font-family: $roboto
+//                     font-size: 14px
+//                     line-height: 26px
+
+
+//         li pre:empty::after
+//             content: "Add title"
+//             opacity: 0.5
+
+
+// path[fill="white"]
+//     fill: $black
 
 div#container
     display: grid
-    gap: 50px
-    grid-template-rows: 50px 1fr  // header and main
-    overflow: hidden
+    grid-template-columns: 265px auto 498px
     height: 100%
 
+    div#sidebar
 
-header
-    display: grid
-    grid-template-columns: 2fr 1fr
-    margin: 20px 30px 0 20px
+        @media screen and ( max-width:  $min-mobile-width)
+            display: none
 
-    button
-        justify-self: right  // sign out
-
-        &#createNew
-            justify-self: center
-
-    div.left
         display: grid
-        grid-template-columns: auto auto
-        align-items: center
+        grid-template-rows: 99px auto 39px
+        padding: 58px 30px 50px 30px
 
-        a#logo
-            position: relative
-            top: 2px
+        button#sign-out
+            justify-content: left
 
-        button#createNew
-            justify-self: right
 
-    button#sign-out
-        justify-self: right
-
-    button#delete-note
-        background-color: black
-
-    div.right
+    header#desktop-header
+        display: grid
         grid-auto-flow: column
-        display: grid
         justify-content: space-between
-        margin-left: 50px
+        margin: 45px 50px 0 50px
+
+        @media screen and ( max-width:  $min-mobile-width)
+            display: none
+
+        h1
+            font-family: $roboto
+            font-size: 31px
+            line-height: 36px
 
 
-main
-    display: grid
-    grid-template-columns: 2fr 1fr  // notes list and their content
-    height: 100%
-    overflow-y: hidden
-
-    div#list
-
-        height: 100%
-        overflow: auto
-        padding: 5px
-        padding-bottom: 20px
-        margin-left: 20px
+    div#notes
+        margin: 5px 0px 5px 0
         background-color: $bisque-light
-        border-radius: 4px
-
-        ul  // notes list
-            // display: grid
-            // gap: 5px
-
-            li
-                margin-bottom: 5px
-                border-radius: 4px
-                cursor: pointer
-                padding: 6px 45px 7px 45px
-                background-color: #ffffff44
-                height: 39px
-                overflow: hidden
-
-                transition: .15s linear background-color
+        display: grid
+        grid-template-rows: 152px auto
+        overflow-y: hidden
+        border-radius: 8px
 
 
-                &.active
-                    background-color: $bisque-darker
+        div#list
 
-                pre
+            height: 100%
+            padding-bottom: 20px
+            margin: 0 5px
+            background-color: $bisque-light
+            border-radius: 4px
+            overflow: auto
+
+            ul  // notes list
+                display: grid
+                gap: 5px
+                border-radius: 10px
+
+
+                li
+                    border-radius: 4px
+                    cursor: pointer
+                    padding: 6px 45px 7px 45px
+                    background-color: $bisque-lightest
+                    height: 39px
                     overflow: hidden
-                    text-overflow: ellipsis
-                    font-family: $roboto
-                    font-size: 14px
-                    line-height: 26px
+
+                    transition: .15s linear background-color
 
 
-        li pre:empty::after
-            content: "Add title"
-            opacity: 0.5
+                    &.active
+                        background-color: $bisque-darker
+
+                    pre
+                        color: $brown-light
+                        font-weight: $medium
+                        overflow: hidden
+                        text-overflow: ellipsis
+                        font-family: $roboto
+                        font-size: 14px
+                        line-height: 26px
+
+
+            li pre:empty::after
+                content: "Add title"
+                opacity: 0.75
+
+
+    div#note
+        overflow: hidden

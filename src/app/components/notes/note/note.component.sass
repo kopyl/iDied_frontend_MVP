@@ -1,11 +1,38 @@
 @import 'fonts'
+@import 'colors'
+
+
+
+div#container
+    height: 100%
+    display: grid
+    grid-template-rows: 157px auto
+    overflow: hidden
+
+    header
+        display: grid
+        grid-auto-flow: column
+        justify-content: space-between
+        margin: 50px 50px 0 50px
+
+div#note-content
+    overflow-y: hidden
+    padding-bottom: 5px
 
 form
-    padding: 0px 50px 50px
-    position: relative
-    top: -10px
+    display: grid
+    grid-template-rows: max-content auto
+    height: 100%
+    overflow-y: auto
+    padding-left: 50px
+    padding-right: 50px
 
 textarea
+
+    &::placeholder
+        color: $black
+        opacity: .5
+
     border: none
     overflow: auto
     outline: none
@@ -14,16 +41,23 @@ textarea
     box-shadow: none
     resize: none
     background-color: transparent
+    color: $black
 
-    font-family: $roboto
     display: block
 
-    margin-bottom: 20px
+    margin-bottom: 31px
+
+
 
     &#title
         font-size: 40px
+        line-height: 51px
+        font-family: $playfair, serif
 
     &#body
+        font-family: $roboto
         font-size: 16px
+        line-height: 27px
+        color: $black-lighter
 
 

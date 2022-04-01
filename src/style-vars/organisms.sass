@@ -8,7 +8,7 @@
 
 @mixin button-base
     cursor: pointer
-    transition: .1s linear all
+    transition: .15s linear all
     border-radius: $border-radius-small
 
     display: grid
@@ -18,6 +18,9 @@
     font-family: $roboto
     font-weight: $bold
     font-size: $font-size-button
+
+    & path, & line
+        transition: .15s linear all
 
 
 @mixin small-button-base
@@ -30,12 +33,39 @@
         margin-right: 14px
 
 
+@mixin small-button-icon-only
+    @include small-button-base
+
+    background-color: rgba($red, .05)
+    border: 2px solid rgba($red, .08)
+
+    & > *
+        margin-right: 0
+
+    &:hover
+        background-color: $red
+        border: 2px solid $red
+
+        & svg line, & svg path
+            stroke: $white
+
+
 @mixin small-button-primary
     @include small-button-base
+
+    justify-content: space-between
 
     background-color: $red
     color: $white
     border: $no-border
+
+    &:hover
+        background-color: $black
+
+    & > *
+        grid-column: 2
+        margin-right: 0
+        margin-left: 14px
 
 
 @mixin small-button-secondary
@@ -52,6 +82,24 @@
 
         & svg line, & svg path
             stroke: $white
+
+
+@mixin sidebar-menu-item
+    justify-content: space-between
+    background-color: $black
+    border: none
+    color: $white
+
+    &.active:hover
+        background-color: $black
+        border: none
+
+    & svg line, & svg path
+        stroke: $white
+
+    & > *
+        grid-column: 2
+        margin-right: 0
 
 
 @mixin small-light-button

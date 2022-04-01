@@ -83,6 +83,7 @@ export class NotesComponent implements OnInit {
     }
 
     removeNoteFromUI(backendResponse: backend_notes_response): void {
+        console.log(backendResponse)
         if (backendResponse.error) {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
@@ -108,6 +109,7 @@ export class NotesComponent implements OnInit {
     }
 
     scrollToFirstNote(): void {
+        if (this.notesSorted()) return
         this.notesListHTML.nativeElement.scrollTo({
             top: 0,
             behavior: "smooth",
@@ -117,6 +119,5 @@ export class NotesComponent implements OnInit {
     reSortNotes(): void {
         if (this.notesSorted()) return
         this.notes.sort((a, b) => b.editedAt - a.editedAt)
-        this.scrollToFirstNote()
     }
 }

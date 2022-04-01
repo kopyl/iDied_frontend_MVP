@@ -37,6 +37,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     @Input() toggleFormFocus = false
 
     @Output() noteContentChanged = new EventEmitter()
+    @Output() removeNoteEvent = new EventEmitter()
 
     constructor(
         private readonly requests: RequestsService,
@@ -111,5 +112,10 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnDestroy(): void {
         this.saveNotesSubscription$.unsubscribe()
+    }
+
+    removeNote() {
+        console.log('rem')
+        this.removeNoteEvent.emit()
     }
 }

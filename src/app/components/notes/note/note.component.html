@@ -1,18 +1,43 @@
-<form action="" [formGroup]=form>
+<div id="container">
 
-    <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [formFocusAndHeightAdjustment]=toggleFormFocus
-        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-        onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+    <header id="note-controls">
 
-        formControlName="title">
-    </textarea>
+        <button class="small-button-icon-only" (click)="removeNote()">
+            <icon-delete></icon-delete>
+        </button>
 
-    <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
+        <button id="share" class=small-button-secondary>
+            <icon-share></icon-share>
+            Share
+        </button>
 
-        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add description"
-        onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+    </header>
 
-        formControlName="body">
-    </textarea>
 
-</form>
+
+    <div id="note-content">
+        <form action="" [formGroup]=form>
+
+            <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [formFocusAndHeightAdjustment]=toggleFormFocus
+                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+                onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+                onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+
+                formControlName="title">
+            </textarea>
+
+            <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
+
+                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add description"
+                onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+                onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+
+                formControlName="body">
+            </textarea>
+
+        </form>
+    </div>
+
+
+
+</div>
