@@ -4,6 +4,7 @@ import {
     Input,
     OnChanges,
     SimpleChanges,
+    OnInit
 } from "@angular/core"
 
 @Directive({
@@ -15,6 +16,18 @@ export class FormFocusDirective implements OnChanges {
     constructor(private el: ElementRef<HTMLTextAreaElement>) {}
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.el.nativeElement.focus()
+
+
+        const textArea = this.el.nativeElement
+        const scrollHeight = textArea.scrollHeight
+
+
+        textArea.style.height = ""
+        textArea.style.height = scrollHeight + "px"
+
+
+        if(this.el.nativeElement.id === "body") return
+
+        textArea.focus()
     }
 }
