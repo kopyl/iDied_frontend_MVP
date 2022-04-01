@@ -18,7 +18,4 @@ export class MainPageComponent implements OnInit {
         this.googleAuth.accessControl()
     }
 
-    navigateToNotes() {
-        this.router.navigate(["/notes"])
-    }
 }

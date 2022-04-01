@@ -39,7 +39,7 @@
 
         <div id="bottom-button-container">
 
-            <button *ngIf="googleAuth.userLoggedIn" (click)=navigateToNotes() class=big-button-primary>
+            <button *ngIf="googleAuth.userLoggedIn" routerLink="/notes" class=big-button-primary>
 
                 <div class="left-side">
                     <icon-notes></icon-notes>
