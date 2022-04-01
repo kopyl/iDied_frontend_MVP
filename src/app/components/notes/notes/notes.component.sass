@@ -69,18 +69,24 @@ main
             li
                 margin-bottom: 5px
                 border-radius: 4px
-                font-family: $roboto
-                font-size: 20px
                 cursor: pointer
-                padding: 20px
+                padding: 6px 45px 7px 45px
                 background-color: #ffffff44
-                font-size: 15px
+                height: 39px
+                overflow: hidden
 
                 transition: .15s linear background-color
 
 
                 &.active
                     background-color: $bisque-darker
+
+                pre
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    font-family: $roboto
+                    font-size: 14px
+                    line-height: 26px
 
 
         li pre:empty::after
