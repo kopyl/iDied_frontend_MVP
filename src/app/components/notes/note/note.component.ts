@@ -43,6 +43,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     @Output() noteContentChanged = new EventEmitter()
     @Output() removeNoteEvent = new EventEmitter()
+    @Output() notesEditing = new EventEmitter()
 
     constructor(
         private readonly requests: RequestsService,
@@ -84,6 +85,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
+
         // of @Input
 
         if (!this.activeNote) return
@@ -147,5 +149,9 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     logFocusOut() {
         console.log("focus out")
         this.textareaInFocus = false
+    }
+
+    closeNote() {
+        this.notesEditing.emit()
     }
 }

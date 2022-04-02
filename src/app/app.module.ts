@@ -38,7 +38,11 @@ import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign
 import { IconLogoComponent } from './components/icons/icon-logo/icon-logo.component';
 import { IconShareComponent } from './components/icons/icon-share/icon-share.component';
 import { IconDeleteComponent } from './components/icons/icon-delete/icon-delete.component';
-import { IconHideKeyboardComponent } from './components/icons/icon-hide-keyboard/icon-hide-keyboard.component'
+import { IconHideKeyboardComponent } from './components/icons/icon-hide-keyboard/icon-hide-keyboard.component';
+import { IconCloseNoteComponent } from './components/icons/icon-close-note/icon-close-note.component';
+import { LogoMobileComponent } from './components/icons/logo-mobile/logo-mobile.component';
+import { PersistentAlertComponent } from './components/persistent-alert/persistent-alert/persistent-alert.component';
+import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component'
 
 
 const CLIENT_ID =
@@ -84,6 +88,10 @@ const authInterceptorProvider = {
         IconShareComponent,
         IconDeleteComponent,
         IconHideKeyboardComponent,
+        IconCloseNoteComponent,
+        LogoMobileComponent,
+        PersistentAlertComponent,
+        IconWarningComponent,
     ],
     imports: [
         BrowserModule,

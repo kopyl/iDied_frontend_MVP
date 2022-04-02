@@ -2,14 +2,22 @@
 @import 'colors'
 @import 'sizes'
 
-div#container
+div#notes-page-container
     display: grid
     grid-template-columns: minmax(265px, 15%) auto minmax(400px, 35%)
     height: 100%
 
     @media screen and ( max-width:  $min-mobile-width)
         grid-template-columns: inherit
-        // grid-template-rows: 116px auto
+        grid-template-rows: inherit
+
+
+
+
+    &:not(.notesEditing)
+        @media screen and ( max-width:  $min-mobile-width)
+            grid-template-rows: 99px auto
+
 
     div#sidebar
 
@@ -38,6 +46,31 @@ div#container
             font-size: 31px
             line-height: 36px
 
+    header#mobile-header
+        padding-left: 30px
+        padding-right: 30px
+        justify-content: space-between
+        align-content: center
+        grid-auto-flow: column
+
+        div#left-side
+            display: grid
+            grid-auto-flow: column
+            gap: 22px
+            align-items: center
+            font-family: $roboto
+            font-size: 22px
+            line-height: 36px
+
+        display: none
+
+        @media screen and ( max-width:  $min-mobile-width)
+
+            display: grid
+
+            &.notesEditing
+                display: none
+
 
     div#notes
         margin: 5px 0px 5px 0
@@ -50,6 +83,28 @@ div#container
         &.notesEditing
             @media screen and ( max-width:  $min-mobile-width)
                 display: none
+
+        div#footer
+            display: none
+            @media screen and ( max-width:  $min-mobile-width)
+                display: grid
+                align-content: center
+                margin: 0 5px
+
+            button#create-note  // for some reason Safari had some margins
+                margin-right: 0px
+                margin-left: 0px
+
+
+        @media screen and ( max-width:  $min-mobile-width)
+            grid-template-rows: auto 49px
+            margin: 0 5px 5px 5px
+            padding: 5px 0
+
+
+
+            @media screen and ( max-width:  $min-mobile-width)
+                display: grid
 
 
         div#list
@@ -70,12 +125,15 @@ div#container
                 li
                     border-radius: 4px
                     cursor: pointer
-                    padding: 6px 45px 7px 45px
+                    padding: 7px 45px 6px 45px
                     background-color: $bisque-lightest
                     height: 39px
                     overflow: hidden
 
                     transition: .15s linear background-color
+
+                    @media screen and ( max-width:  $min-mobile-width)
+                        padding: 7px 15px 6px 15px
 
 
                     &.active
@@ -99,11 +157,17 @@ div#container
     div#note
         overflow: hidden
 
+        @media screen and ( max-width:  $min-mobile-width)
+            &:not(&.notesEditing)
+                display: none
 
-header#mobile-header
-    display: none
-    @media screen and ( max-width:  $min-mobile-width)
-        display: block
+        // &.notesEditing
+
+
+// header#mobile-header
+//     display: none
+//     @media screen and ( max-width:  $min-mobile-width)
+//         display: block
 
 
 

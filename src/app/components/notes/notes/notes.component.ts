@@ -1,9 +1,13 @@
+import { Observable } from "rxjs"
 import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
+import { ActivatedRoute, NavigationStart } from "@angular/router"
+import { switchMap } from "rxjs/operators"
+import { HostListener } from "@angular/core"
 
 import { ViewChild, ElementRef } from "@angular/core"
 
@@ -19,7 +23,10 @@ export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     activeNote: frontendNote
     formFocused: boolean
-    notesEditing: boolean = true
+    notesEditing: boolean = false
+    noteFromUrlId: string
+
+    navigatedRoute$
 
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
 
@@ -27,7 +34,8 @@ export class NotesComponent implements OnInit {
         public readonly googleAuth: GoogleAuthService,
         private pageTitle: Title,
         private router: Router,
-        private readonly requests: RequestsService
+        private readonly requests: RequestsService,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -38,17 +46,56 @@ export class NotesComponent implements OnInit {
         }
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
+
+
+        this.noteFromUrlId = this.router.parseUrl(
+            this.router.url
+        )?.root?.children["primary"]?.segments[1]?.path
+
+
+        this.handleiOSnavigateBySwipeLeft()
+
+
+
     }
 
-    setActiveNote(): void {
+    handleiOSnavigateBySwipeLeft() {
+        this.router.events.subscribe((event: any) => {
+            if (event.url === "/notes") {
+                this.notesEditing = false
+            } else if (event.url && event.url.startsWith('/notes/')){
+                console.log(event.url)
+                this.openMobileNote()
+            }
+        })
+        // const textarea = document?.activeElement as HTMLTextAreaElement
+        // textarea?.blur()
+    }
+
+    setActiveNote(newNote = false): void {
         this.activeNote = this.notes[0]
+        if (newNote) return
+        if (this.noteFromUrlId) {
+            this.activeNote =
+                this.notes.find((el) => el.id === this.noteFromUrlId) ??
+                this.notes[0]
+            this.openMobileNote()
+        }
     }
 
     toggleFormFocus(): void {
         this.formFocused = !this.formFocused
     }
 
-    addNotes(backendResponse: backend_notes_response): void {
+    downloadNotes(backendResponse: backend_notes_response) {
+        this.addNotes(backendResponse, false)
+    }
+
+    createNoteInUI(backendResponse: backend_notes_response) {
+        this.addNotes(backendResponse, true)
+    }
+
+    addNotes(backendResponse: backend_notes_response, newNote = false): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
@@ -62,24 +109,35 @@ export class NotesComponent implements OnInit {
                 note.changesSynced = true
             })
 
-            this.setActiveNote()
+            this.setActiveNote(newNote)
             this.scrollToFirstNote()
             this.toggleFormFocus()
+
+            if (this.notes.length === 1) {
+                this.openMobileNote()
+            }
+
+            if (newNote) {
+                this.router.navigate(["/notes", this.activeNote.id])
+            }
         }
     }
 
     changeActiveNote(note: frontendNote): void {
         this.activeNote = note
         this.toggleFormFocus()
+        this.openMobileNote()
+
+        this.router.navigate(["/notes", this.activeNote.id])
     }
 
     fetchNotes(): void {
-        this.requests.notes.get.onSuccess = this.addNotes.bind(this)
+        this.requests.notes.get.onSuccess = this.downloadNotes.bind(this)
         this.requests.notes.get.send()
     }
 
     createNote(): void {
-        this.requests.notes.create.onSuccess = this.addNotes.bind(this)
+        this.requests.notes.create.onSuccess = this.createNoteInUI.bind(this)
         this.requests.notes.create.send()
     }
 
@@ -96,6 +154,7 @@ export class NotesComponent implements OnInit {
             this.setActiveNote()
             this.scrollToFirstNote()
             this.toggleFormFocus()
+            this.closeNote()
         }
     }
 
@@ -121,4 +180,19 @@ export class NotesComponent implements OnInit {
         if (this.notesSorted()) return
         this.notes.sort((a, b) => b.editedAt - a.editedAt)
     }
+
+    openMobileNote() {
+        this.notesEditing = true
+    }
+
+    closeNote() {
+        this.notesEditing = false
+        this.router.navigate(["/notes"])
+    }
+
+    // @HostListener('window:popstate', ['$event'])
+    //   onPopState(event) {
+    //     console.log('Back button pressed', event);
+    //     alert('back')
+    //   }
 }

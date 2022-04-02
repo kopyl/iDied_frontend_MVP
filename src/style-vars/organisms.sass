@@ -36,8 +36,8 @@
 @mixin small-button-icon-only
     @include small-button-base
 
-    background-color: rgba($red, .05)
-    border: 2px solid rgba($red, .08)
+    background-color: $bisque-light
+    border: $small-button-secondary-border
 
     & > *
         margin-right: 0
@@ -50,11 +50,28 @@
             stroke: $white
 
         @media (hover: none)  // remove hover on mobiles
+            background-color: $bisque-light
+            border: $small-button-secondary-border
+
+            & svg line, & svg path
+                stroke: $brown-light
+
+
+@mixin red
+    @include small-button-icon-only
+
+    background-color: rgba($red, .05)
+    border: 2px solid rgba($red, .08)
+
+    &:hover
+
+        @media (hover: none)  // remove hover on mobiles
             background-color: rgba($red, .05)
             border: 2px solid rgba($red, .08)
 
             & svg line, & svg path
                 stroke: $red
+
 
 
 @mixin small-button-primary

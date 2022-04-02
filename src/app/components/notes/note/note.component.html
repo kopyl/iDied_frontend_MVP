@@ -2,13 +2,17 @@
 
     <header id="note-controls">
 
-        <button class="small-button-icon-only" (click)="removeNote()">
+        <button class="small-button-icon-only red" (click)="removeNote()">
             <icon-delete></icon-delete>
         </button>
 
-        <button id="share" class=small-button-secondary>
+        <button id="share" class=small-button-secondary onclick="alert('Sharing feature in development...')">
             <icon-share></icon-share>
             Share
+        </button>
+
+        <button id="close-note" class="small-button-icon-only" (click)="closeNote()">
+            <icon-close-note></icon-close-note>
         </button>
 
     </header>
@@ -44,14 +48,14 @@
 
     <div [class.visible]="alertVisible" class="bottom-alert">
         <div class="alert">
-
+            <persistent-alert>Any SHARED note will become accessible by a link unless you log in for 30 days</persistent-alert>
         </div>
     </div>
 
 
-    <div class="close-button" onclick="this.blur" *ngIf="textareaInFocus">
+    <!-- <div class="close-button" onclick="this.blur" *ngIf="textareaInFocus">
         <icon-hide-keyboard></icon-hide-keyboard>
-    </div>
+    </div> -->
 
 
 

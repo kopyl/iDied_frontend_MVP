@@ -1,4 +1,4 @@
-<div id=container>
+<div id=notes-page-container  [class.notesEditing]="notesEditing">
 
     <div id="sidebar">
         <div id="logo">
@@ -17,6 +17,26 @@
 
     </div>
 
+    <header id="mobile-header" [class.notesEditing]="notesEditing">
+
+        <!-- <h1>Mobile header</h1> -->
+<!--
+        <button id="sign-out" class=small-button-primary (click)=createNote()>
+            <img src="assets/icon-new-light.svg" alt="">
+            Create note
+        </button> -->
+        <div id="left-side">
+            <logo-mobile routerLink="/"></logo-mobile>
+            Notes
+        </div>
+
+        <button id="sign-out" class=small-button-secondary (click)=googleAuth.signOutAndGoToMain()>
+            <icon-sign-out></icon-sign-out>
+            Sign out
+        </button>
+
+    </header>
+
     <div id="notes" [class.notesEditing]="notesEditing">
 
         <header id="desktop-header">
@@ -32,6 +52,9 @@
 
 
 
+
+
+
         <div id="list" #notesListHTML>
 
             <ul>
@@ -43,24 +66,26 @@
 
         </div>
 
+        <div id="footer">
+
+            <button id="create-note" class=small-button-primary (click)=createNote()>
+                <img src="assets/icon-new-light.svg" alt="">
+                Create note
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- <header id="mobile-header">
 
-        <h1>Mobile header</h1>
 
-        <button id="sign-out" class=small-button-primary (click)=createNote()>
-            <img src="assets/icon-new-light.svg" alt="">
-            Create note
-        </button>
-
-    </header> -->
-
-    <div id="note">
-        <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (removeNoteEvent)="removeNote()"
-            [toggleFormFocus]=formFocused>
+    <div id="note" [class.notesEditing]="notesEditing">
+        <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (notesEditing)="closeNote()"
+            (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused>
         </note>
     </div>
 
 </div>
 
+
+<!-- <router-outlet></router-outlet> -->
