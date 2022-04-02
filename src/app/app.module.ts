@@ -37,7 +37,8 @@ import { IconGoogleComponent } from './components/icons/icon-google/icon-google.
 import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign-out.component';
 import { IconLogoComponent } from './components/icons/icon-logo/icon-logo.component';
 import { IconShareComponent } from './components/icons/icon-share/icon-share.component';
-import { IconDeleteComponent } from './components/icons/icon-delete/icon-delete.component'
+import { IconDeleteComponent } from './components/icons/icon-delete/icon-delete.component';
+import { IconHideKeyboardComponent } from './components/icons/icon-hide-keyboard/icon-hide-keyboard.component'
 
 
 const CLIENT_ID =
@@ -82,6 +83,7 @@ const authInterceptorProvider = {
         IconLogoComponent,
         IconShareComponent,
         IconDeleteComponent,
+        IconHideKeyboardComponent,
     ],
     imports: [
         BrowserModule,

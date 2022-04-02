@@ -17,18 +17,19 @@
 
     </div>
 
-    <div id="notes">
+    <div id="notes" [class.notesEditing]="notesEditing">
 
         <header id="desktop-header">
 
             <h1>Notes</h1>
 
-            <button id="sign-out" class=small-button-primary (click)=createNote()>
+            <button id="create-note" class=small-button-primary (click)=createNote()>
                 <img src="assets/icon-new-light.svg" alt="">
                 Create note
             </button>
 
         </header>
+
 
 
         <div id="list" #notesListHTML>
@@ -44,6 +45,17 @@
 
     </div>
 
+    <!-- <header id="mobile-header">
+
+        <h1>Mobile header</h1>
+
+        <button id="sign-out" class=small-button-primary (click)=createNote()>
+            <img src="assets/icon-new-light.svg" alt="">
+            Create note
+        </button>
+
+    </header> -->
+
     <div id="note">
         <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (removeNoteEvent)="removeNote()"
             [toggleFormFocus]=formFocused>
@@ -51,3 +63,4 @@
     </div>
 
 </div>
+

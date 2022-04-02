@@ -49,6 +49,13 @@
         & svg line, & svg path
             stroke: $white
 
+        @media (hover: none)  // remove hover on mobiles
+            background-color: rgba($red, .05)
+            border: 2px solid rgba($red, .08)
+
+            & svg line, & svg path
+                stroke: $red
+
 
 @mixin small-button-primary
     @include small-button-base
@@ -62,10 +69,15 @@
     &:hover
         background-color: $black
 
+        @media (hover: none)  // remove hover on mobiles
+            background-color: $red
+
     & > *
         grid-column: 2
         margin-right: 0
         margin-left: 14px
+
+
 
 
 @mixin small-button-secondary
@@ -83,6 +95,14 @@
         & svg line, & svg path
             stroke: $white
 
+        @media (hover: none)  // remove hover on mobiles
+            background-color: $bisque-light
+            color: $brown-light
+            border: $small-button-secondary-border
+
+            & svg line, & svg path
+                stroke: $brown-light
+
 
 @mixin sidebar-menu-item
     justify-content: space-between
@@ -93,6 +113,12 @@
     &.active:hover
         background-color: $black
         border: none
+
+        @media (hover: none)  // remove hover on mobiles
+            color: $white
+
+            & svg line, & svg path
+                stroke: $white
 
     & svg line, & svg path
         stroke: $white
@@ -110,6 +136,11 @@
     &:hover
         background-color: black
         border: 2px solid black
+
+        @media (hover: none)  // remove hover on mobiles
+            background-color: $white-lightest
+            border: $light-button-border
+            color: $white
 
 
 @mixin main-page-big-text
@@ -136,6 +167,9 @@
 
     &:hover
         background-color: $black
+
+        @media (hover: none)  // remove hover on mobiles
+            background-color: $red
 
     & div.left-side
         display: grid

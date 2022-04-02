@@ -1,13 +1,37 @@
 @import 'fonts'
 @import 'colors'
+@import 'sizes'
 
 
 
 div#container
     height: 100%
     display: grid
-    grid-template-rows: 157px auto
+    grid-template-rows: 157px 1fr auto
     overflow: hidden
+
+
+    div.bottom-alert
+        transition: .1s linear height
+        height: 30px
+        margin: 0 50px 0 50px
+
+        div.alert
+            margin: 30px 0 0 0
+            width: 100%
+            height: 100%
+            background-color: red
+
+        &.visible
+            height: 80px
+
+        @media screen and ( max-width:  $min-mobile-width)
+            margin: 0
+
+    @media screen and ( max-width:  $min-mobile-width)
+        grid-template-rows: 1fr auto auto
+
+
 
     header
         display: grid
@@ -15,19 +39,31 @@ div#container
         justify-content: space-between
         margin: 50px 50px 0 50px
 
+        @media screen and ( max-width:  $min-mobile-width)
+            grid-row: 2
+            align-content: end
+            margin: 0 30px 0 30px
+
 div#note-content
     overflow-y: hidden
     padding-bottom: 5px
 
 form
     display: grid
-    grid-template-rows: max-content auto
+    grid-template-rows: max-content 1fr
     height: 100%
     overflow-y: auto
     padding-left: 50px
     padding-right: 50px
 
+    @media screen and ( max-width:  $min-mobile-width)
+        padding-left: 30px
+        padding-right: 30px
+
 textarea
+
+    padding: 0
+
 
     &::placeholder
         color: $black
@@ -55,9 +91,27 @@ textarea
         font-family: $playfair, serif
 
     &#body
+        height: 100%
         font-family: $roboto
         font-size: 16px
         line-height: 27px
         color: $black-lighter
 
 
+
+
+div.close-button
+    display: none
+    justify-content: center
+    align-content: center
+    width: 40px
+    height: 40px
+    border-radius: 100%
+    background-color: $white
+    position: fixed
+    top: 40%
+    right: 5px
+
+
+    @media screen and ( max-width:  $min-mobile-width)
+        display: grid

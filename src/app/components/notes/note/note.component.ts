@@ -7,6 +7,8 @@ import {
     SimpleChanges,
     Output,
     EventEmitter,
+    HostListener,
+    ElementRef,
 } from "@angular/core"
 import { Subscription, Subject, timer } from "rxjs"
 import {
@@ -28,6 +30,9 @@ import { FormBuilder } from "@angular/forms"
     styleUrls: ["./note.component.sass"],
 })
 export class NoteComponent implements OnInit, OnChanges, OnDestroy {
+    alertVisible = false
+    textareaInFocus = false
+
     saveNotesSubscription$ = new Subscription()
     saveNotesBuffer$ = new Subject()
 
@@ -41,8 +46,17 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     constructor(
         private readonly requests: RequestsService,
-        private readonly fb: FormBuilder
+        private readonly fb: FormBuilder,
+        private HTML: ElementRef
     ) {}
+
+    updateAlert() {
+        if (!this.activeNote.title && !this.activeNote.body) {
+            this.alertVisible = true
+        } else {
+            this.alertVisible = false
+        }
+    }
 
     ngOnInit(): void {
         this.initSavingNote()
@@ -65,6 +79,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
             this.noteContentChanged.emit()
 
+            this.updateAlert()
         })
     }
 
@@ -80,6 +95,10 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             },
             { emitEvent: false }
         )
+
+        console.log(changes)
+
+        this.updateAlert()
 
         const previousNote = changes["activeNote"]?.previousValue
         if (!previousNote) return
@@ -115,7 +134,18 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     removeNote() {
-        console.log('rem')
         this.removeNoteEvent.emit()
+    }
+
+    @HostListener("document:focusin")
+    log() {
+        console.log("focus")
+        this.textareaInFocus = true
+    }
+
+    @HostListener("document:focusout")
+    logFocusOut() {
+        console.log("focus out")
+        this.textareaInFocus = false
     }
 }

@@ -7,6 +7,10 @@ div#container
     grid-template-columns: minmax(265px, 15%) auto minmax(400px, 35%)
     height: 100%
 
+    @media screen and ( max-width:  $min-mobile-width)
+        grid-template-columns: inherit
+        // grid-template-rows: 116px auto
+
     div#sidebar
 
         @media screen and ( max-width:  $min-mobile-width)
@@ -42,6 +46,10 @@ div#container
         grid-template-rows: 152px auto
         overflow-y: hidden
         border-radius: 8px
+
+        &.notesEditing
+            @media screen and ( max-width:  $min-mobile-width)
+                display: none
 
 
         div#list
@@ -90,3 +98,12 @@ div#container
 
     div#note
         overflow: hidden
+
+
+header#mobile-header
+    display: none
+    @media screen and ( max-width:  $min-mobile-width)
+        display: block
+
+
+

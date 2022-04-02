@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container" [class.alertVisible]="alertVisible">
 
     <header id="note-controls">
 
@@ -18,24 +18,39 @@
     <div id="note-content">
         <form action="" [formGroup]=form>
 
-            <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false" [formFocusAndHeightAdjustment]=toggleFormFocus
+            <textarea name="tite" id="title" rows="1" autofocus=true data-gramm="false"
+                [formFocusAndHeightAdjustment]=toggleFormFocus
                 oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
                 onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
                 onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-
                 formControlName="title">
             </textarea>
 
-            <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
-
-                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add description"
+            <!-- <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
+                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                placeholder="Add description"
                 onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
                 onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
+                formControlName="body">
+            </textarea> -->
 
+            <textarea name="body" id="body"
+                placeholder="Add description"
                 formControlName="body">
             </textarea>
 
         </form>
+    </div>
+
+    <div [class.visible]="alertVisible" class="bottom-alert">
+        <div class="alert">
+
+        </div>
+    </div>
+
+
+    <div class="close-button" onclick="this.blur" *ngIf="textareaInFocus">
+        <icon-hide-keyboard></icon-hide-keyboard>
     </div>
 
 

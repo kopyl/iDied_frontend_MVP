@@ -19,6 +19,7 @@ export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
     activeNote: frontendNote
     formFocused: boolean
+    notesEditing: boolean = true
 
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
 
