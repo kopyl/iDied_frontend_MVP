@@ -60,7 +60,6 @@ export class NotesComponent implements OnInit {
             if (event.url === "/notes") {
                 this.notesEditing = false
             } else if (event.url && event.url.startsWith("/notes/")) {
-                console.log(event.url)
                 this.openMobileNote()
             }
         })
@@ -139,7 +138,6 @@ export class NotesComponent implements OnInit {
     }
 
     removeNoteFromUI(backendResponse: backend_notes_response): void {
-        console.log(backendResponse)
         if (backendResponse.error) {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
@@ -194,9 +192,4 @@ export class NotesComponent implements OnInit {
         this.router.navigate(["/notes"])
     }
 
-    // @HostListener('window:popstate', ['$event'])
-    //   onPopState(event) {
-    //     console.log('Back button pressed', event);
-    //     alert('back')
-    //   }
 }

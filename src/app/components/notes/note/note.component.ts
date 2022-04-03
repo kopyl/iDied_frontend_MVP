@@ -98,8 +98,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             { emitEvent: false }
         )
 
-        console.log(changes)
-
         this.updateAlert()
 
         const previousNote = changes["activeNote"]?.previousValue
@@ -141,13 +139,11 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     @HostListener("document:focusin")
     log() {
-        console.log("focus")
         this.textareaInFocus = true
     }
 
     @HostListener("document:focusout")
     logFocusOut() {
-        console.log("focus out")
         this.textareaInFocus = false
     }
 
