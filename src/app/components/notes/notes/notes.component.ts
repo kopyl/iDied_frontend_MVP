@@ -1,4 +1,3 @@
-import { Observable } from "rxjs"
 import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
@@ -6,11 +5,7 @@ import { GoogleAuthService } from "@services/auth"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
 import { ActivatedRoute, NavigationStart } from "@angular/router"
-import { switchMap } from "rxjs/operators"
-import { HostListener } from "@angular/core"
-
 import { ViewChild, ElementRef } from "@angular/core"
-
 import { noteItem } from "@animations"
 
 @Component({
