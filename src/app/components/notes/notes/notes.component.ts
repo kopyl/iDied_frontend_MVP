@@ -25,6 +25,7 @@ export class NotesComponent implements OnInit {
     formFocused: boolean
     notesEditing: boolean = false
     noteFromUrlId: string
+    selectedNoteIndex: number
 
     navigatedRoute$
 
@@ -47,29 +48,22 @@ export class NotesComponent implements OnInit {
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
 
-
         this.noteFromUrlId = this.router.parseUrl(
             this.router.url
         )?.root?.children["primary"]?.segments[1]?.path
 
-
         this.handleiOSnavigateBySwipeLeft()
-
-
-
     }
 
     handleiOSnavigateBySwipeLeft() {
         this.router.events.subscribe((event: any) => {
             if (event.url === "/notes") {
                 this.notesEditing = false
-            } else if (event.url && event.url.startsWith('/notes/')){
+            } else if (event.url && event.url.startsWith("/notes/")) {
                 console.log(event.url)
                 this.openMobileNote()
             }
         })
-        // const textarea = document?.activeElement as HTMLTextAreaElement
-        // textarea?.blur()
     }
 
     setActiveNote(newNote = false): void {
@@ -80,6 +74,9 @@ export class NotesComponent implements OnInit {
                 this.notes.find((el) => el.id === this.noteFromUrlId) ??
                 this.notes[0]
             this.openMobileNote()
+            this.selectedNoteIndex = this.notes.findIndex(
+                (el) => el.id === this.noteFromUrlId
+            )
         }
     }
 
@@ -151,8 +148,8 @@ export class NotesComponent implements OnInit {
                 (note: frontendNote) => note.id !== backendResponse.notes[0].id
             )
             if (this.notes.length === 0) this.createNote()
-            this.setActiveNote()
             this.scrollToFirstNote()
+            this.setActiveNote()
             this.toggleFormFocus()
             this.closeNote()
         }
@@ -169,11 +166,18 @@ export class NotesComponent implements OnInit {
     }
 
     scrollToFirstNote(): void {
-        if (this.notesSorted()) return
-        this.notesListHTML.nativeElement.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        })
+        let selectedNoteOrder = this.selectedNoteIndex + 1
+        const scrollPosotion = (
+            (selectedNoteOrder - 1) * 39 +
+            (selectedNoteOrder - 1) * 5
+        )
+        const scroll = () => {
+            this.notesListHTML.nativeElement.scrollTo({
+                top: scrollPosotion,
+                behavior: "auto",
+            })
+        }
+        setTimeout(scroll)
     }
 
     reSortNotes(): void {
