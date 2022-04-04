@@ -72,13 +72,6 @@ export class NotesComponent implements OnInit {
         }
     }
 
-    // setSelectedNoteIndex() {
-    //     this.selectedNoteIndex = this.notes.findIndex(
-    //         (el) => el.id === this.noteFromUrlId
-    //     )
-    // }
-
-
     setActiveNote(newNote = false): void {
         this.activeNote = this.notes[0]
         if (newNote) return
@@ -177,10 +170,8 @@ export class NotesComponent implements OnInit {
 
     scrollToFirstNote(): void {
         let selectedNoteOrder = this.selectedNoteIndex + 1 || 1
-        const scrollPosotion = (
-            (selectedNoteOrder - 1) * 39 +
-            (selectedNoteOrder - 1) * 5
-        )
+        const scrollPosotion =
+            (selectedNoteOrder - 1) * 39 + (selectedNoteOrder - 1) * 5
         const scroll = () => {
             this.notesListHTML.nativeElement.scrollTo({
                 top: scrollPosotion,
@@ -205,5 +196,4 @@ export class NotesComponent implements OnInit {
         this.setSelectedNoteIndex()
         this.scrollToFirstNote()
     }
-
 }
