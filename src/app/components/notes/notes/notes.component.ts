@@ -60,6 +60,25 @@ export class NotesComponent implements OnInit {
         })
     }
 
+    setSelectedNoteIndex() {
+        if (this.noteFromUrlId) {
+            this.selectedNoteIndex = this.notes.findIndex(
+                (el) => el.id === this.noteFromUrlId
+            )
+        } else {
+            this.selectedNoteIndex = this.notes.findIndex(
+                (el) => el.id === this.activeNote.id
+            )
+        }
+    }
+
+    // setSelectedNoteIndex() {
+    //     this.selectedNoteIndex = this.notes.findIndex(
+    //         (el) => el.id === this.noteFromUrlId
+    //     )
+    // }
+
+
     setActiveNote(newNote = false): void {
         this.activeNote = this.notes[0]
         if (newNote) return
@@ -68,9 +87,7 @@ export class NotesComponent implements OnInit {
                 this.notes.find((el) => el.id === this.noteFromUrlId) ??
                 this.notes[0]
             this.openMobileNote()
-            this.selectedNoteIndex = this.notes.findIndex(
-                (el) => el.id === this.noteFromUrlId
-            )
+            this.setSelectedNoteIndex()
         }
     }
 
@@ -159,7 +176,7 @@ export class NotesComponent implements OnInit {
     }
 
     scrollToFirstNote(): void {
-        let selectedNoteOrder = this.selectedNoteIndex + 1
+        let selectedNoteOrder = this.selectedNoteIndex + 1 || 1
         const scrollPosotion = (
             (selectedNoteOrder - 1) * 39 +
             (selectedNoteOrder - 1) * 5
@@ -185,6 +202,8 @@ export class NotesComponent implements OnInit {
     closeNote() {
         this.notesEditing = false
         this.router.navigate(["/notes"])
+        this.setSelectedNoteIndex()
+        this.scrollToFirstNote()
     }
 
 }
