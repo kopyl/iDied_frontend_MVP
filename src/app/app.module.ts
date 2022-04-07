@@ -30,6 +30,7 @@ import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
 
 import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment";
+import { FixTextAreaTitleSizeOnDocumentResizeDirective } from '@directives/fix-text-area-size-on-document-resize'
 
 import { IconArrowRightComponent } from './components/icons/icon-arrow-right/icon-arrow-right.component';
 import { IconNotesComponent } from './components/icons/icon-notes/icon-notes.component';
@@ -42,7 +43,7 @@ import { IconHideKeyboardComponent } from './components/icons/icon-hide-keyboard
 import { IconCloseNoteComponent } from './components/icons/icon-close-note/icon-close-note.component';
 import { LogoMobileComponent } from './components/icons/logo-mobile/logo-mobile.component';
 import { PersistentAlertComponent } from './components/persistent-alert/persistent-alert/persistent-alert.component';
-import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component'
+import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component';
 
 
 const CLIENT_ID =
@@ -92,6 +93,7 @@ const authInterceptorProvider = {
         LogoMobileComponent,
         PersistentAlertComponent,
         IconWarningComponent,
+        FixTextAreaTitleSizeOnDocumentResizeDirective,
     ],
     imports: [
         BrowserModule,

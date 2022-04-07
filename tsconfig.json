@@ -43,6 +43,7 @@
         "@components/notes/note": ["src/app/components/notes/note/note.component"],
 
         "@directives/form-focus-and-height-adjustment": ["src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"],
+        "@directives/fix-text-area-size-on-document-resize": ["src/app/directives/fix-text-area-size-on-document-resize/d.directive"],
 
         "@animations": ["src/app/animations/animations"],
     }

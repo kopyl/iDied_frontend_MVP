@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, HostListener, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
@@ -169,15 +169,19 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
         } else {
-            this.notes = this.notes.filter(
-                (note: frontendNote) => note.id !== backendResponse.notes[0].id
-            )
-
-            this.scrollToFirstNote()
-            this.setActiveNote()
-            this.toggleFormFocus()
-            this.closeNote()
+            this.confirmRemoveNote(backendResponse)
         }
+    }
+
+    confirmRemoveNote(backendResponse: backend_notes_response): void {
+        this.notes = this.notes.filter(
+            (note: frontendNote) => note.id !== backendResponse.notes[0].id
+        )
+
+        this.scrollToFirstNote()
+        this.setActiveNote()
+        this.toggleFormFocus()
+        this.closeNote()
     }
 
     removeNote(): void {
@@ -220,4 +224,10 @@ export class NotesComponent implements OnInit {
         this.scrollToFirstNote()
         localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
+
+    // @HostListener("window:resize")
+    // test() {
+    //     console.log('resize')
+    //     // this.formFocused = !this.formFocused
+    // }
 }
