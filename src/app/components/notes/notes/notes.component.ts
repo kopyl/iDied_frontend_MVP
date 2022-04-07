@@ -44,15 +44,14 @@ export class NotesComponent implements OnInit {
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
 
-
-
         this.noteFromUrlId = this.router.parseUrl(
             this.router.url
         )?.root?.children["primary"]?.segments[1]?.path
 
         this.handleiOSnavigateBySwipeLeft()
 
-        if (!this.notes.length) {  // id.doc.id#4
+        if (!this.notes.length) {
+            // id.doc.id#4
             this.router.navigate(["/notes"])
         }
 
@@ -60,7 +59,9 @@ export class NotesComponent implements OnInit {
     }
 
     findOutifUserClosedNoteAtLeastOnce() {
-        let userClosedAtLeasOneNote = localStorage.getItem("userClosedAtLeasOneNote")
+        let userClosedAtLeasOneNote = localStorage.getItem(
+            "userClosedAtLeasOneNote"
+        )
         userClosedAtLeasOneNote = JSON.parse(userClosedAtLeasOneNote!)
         this.userClosedAtLeasOneNote = userClosedAtLeasOneNote ? true : false
     }
@@ -208,7 +209,7 @@ export class NotesComponent implements OnInit {
     }
 
     openMobileNote() {
-        if (!this.notes.length) return  // id.doc.id#4
+        if (!this.notes.length) return // id.doc.id#4
         this.notesEditing = true
     }
 
