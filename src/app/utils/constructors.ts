@@ -7,11 +7,11 @@ export const makeUrl = (
 ) => {
     const strProtocol = `${protocol}:`
 
+
+    if (window.location.href.includes("https")) {  // for development
+        return `https://` + `${base}/` + `api/` + `${endpoint}`
+    }
+
     return `https://` + `idied.org/` + `api/` + `${endpoint}`
-
-    // if (window.location.href.includes("https")) {  // for development
-    //     return `https://` + `${base}/` + `api/` + `${endpoint}`
-    // }
-
     // return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
 }

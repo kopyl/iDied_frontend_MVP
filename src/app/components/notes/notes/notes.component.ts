@@ -114,7 +114,11 @@ export class NotesComponent implements OnInit {
             this.scrollToFirstNote()
             this.toggleFormFocus()
 
-            if (this.notes.length === 1) {
+            if (
+                this.notes.length === 1 &&
+                !this.activeNote.title &&
+                !this.activeNote.body
+            ) {
                 this.openMobileNote()
             }
 
