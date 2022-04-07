@@ -4,7 +4,7 @@ import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
 import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
-import { ActivatedRoute, NavigationStart, NavigationEnd } from "@angular/router"
+import { ActivatedRoute, NavigationEnd } from "@angular/router"
 import { ViewChild, ElementRef } from "@angular/core"
 import { noteItem } from "@animations"
 
@@ -192,7 +192,6 @@ export class NotesComponent implements OnInit {
     }
 
     openMobileNote() {
-        console.log('openMobileNote()')
         this.notesEditing = true
     }
 
