@@ -73,7 +73,7 @@
 
 
 
-    <div id="note" [class.notesEditing]="notesEditing">
+    <div id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
         <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (notesEditing)="closeNote()"
             (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused>
         </note>

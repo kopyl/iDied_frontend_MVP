@@ -21,6 +21,7 @@ export class NotesComponent implements OnInit {
     notesEditing: boolean = false
     noteFromUrlId: string
     selectedNoteIndex: number
+    userClosedAtLeasOneNote: boolean
 
     navigatedRoute$
 
@@ -43,11 +44,25 @@ export class NotesComponent implements OnInit {
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
 
+
+
         this.noteFromUrlId = this.router.parseUrl(
             this.router.url
         )?.root?.children["primary"]?.segments[1]?.path
 
         this.handleiOSnavigateBySwipeLeft()
+
+        if (!this.notes.length) {  // id.doc.id#4
+            this.router.navigate(["/notes"])
+        }
+
+        this.findOutifUserClosedNoteAtLeastOnce()
+    }
+
+    findOutifUserClosedNoteAtLeastOnce() {
+        let userClosedAtLeasOneNote = localStorage.getItem("userClosedAtLeasOneNote")
+        userClosedAtLeasOneNote = JSON.parse(userClosedAtLeasOneNote!)
+        this.userClosedAtLeasOneNote = userClosedAtLeasOneNote ? true : false
     }
 
     handleiOSnavigateBySwipeLeft() {
@@ -116,6 +131,7 @@ export class NotesComponent implements OnInit {
             this.toggleFormFocus()
 
             if (
+                !this.userClosedAtLeasOneNote &&
                 this.notes.length === 1 &&
                 !this.activeNote.title &&
                 !this.activeNote.body
@@ -155,7 +171,7 @@ export class NotesComponent implements OnInit {
             this.notes = this.notes.filter(
                 (note: frontendNote) => note.id !== backendResponse.notes[0].id
             )
-            if (this.notes.length === 0) this.createNote()
+
             this.scrollToFirstNote()
             this.setActiveNote()
             this.toggleFormFocus()
@@ -192,6 +208,7 @@ export class NotesComponent implements OnInit {
     }
 
     openMobileNote() {
+        if (!this.notes.length) return  // id.doc.id#4
         this.notesEditing = true
     }
 
@@ -200,5 +217,6 @@ export class NotesComponent implements OnInit {
         this.router.navigate(["/notes"])
         this.setSelectedNoteIndex()
         this.scrollToFirstNote()
+        localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
 }
