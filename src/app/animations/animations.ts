@@ -59,7 +59,7 @@ export const fader = [
     ]),
 ]
 
-// id.doc.id#2
+// id.doc.id#3
 export const slider = [
     trigger("routeAnimations", [
         transition("isRight => isLeft", slideTo("left")),
