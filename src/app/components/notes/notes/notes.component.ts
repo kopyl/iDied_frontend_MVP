@@ -184,9 +184,13 @@ export class NotesComponent implements OnInit {
         this.closeNote()
     }
 
-    removeNote(): void {
+    sendNoteRemovalRequest(): void {
         this.requests.notes.remove.onSuccess = this.removeNoteFromUI.bind(this)
         this.requests.notes.remove.send(this.activeNote)
+    }
+
+    removeNote(): void {
+        this.sendNoteRemovalRequest()
     }
 
     notesSorted(): boolean {
