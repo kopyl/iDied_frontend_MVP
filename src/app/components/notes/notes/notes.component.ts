@@ -225,9 +225,4 @@ export class NotesComponent implements OnInit {
         localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
 
-    // @HostListener("window:resize")
-    // test() {
-    //     console.log('resize')
-    //     // this.formFocused = !this.formFocused
-    // }
 }
