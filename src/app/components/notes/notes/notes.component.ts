@@ -189,7 +189,18 @@ export class NotesComponent implements OnInit {
         this.requests.notes.remove.send(this.activeNote)
     }
 
+    sendRemovalConfirmation(): void {
+
+    }
+
     removeNote(): void {
+        if (
+            this.activeNote.body ||
+            this.activeNote.title ||
+            this.activeNote.isShared
+        ) {
+            this.sendRemovalConfirmation()
+        }
         this.sendNoteRemovalRequest()
     }
 
@@ -228,5 +239,4 @@ export class NotesComponent implements OnInit {
         this.scrollToFirstNote()
         localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
-
 }
