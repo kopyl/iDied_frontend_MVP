@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
         this.onlineUpdater.schedule()
     }
 
-    prepareOutlet(outlet: RouterOutlet) {
+    prepareOutlet(outlet: RouterOutlet) {  // id.doc.id#3
         return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
     }
 }
