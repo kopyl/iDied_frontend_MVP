@@ -7,10 +7,14 @@
             <icon-logo routerLink="/" color="black"></icon-logo>
         </div>
 
-        <button id="notes-link" class='small-button-secondary sidebar-menu-item active'>
-            <icon-notes></icon-notes>
-            Notes
-        </button>
+        <section id="buttons">
+
+            <button id="notes-link" class='small-button-secondary sidebar-menu-item active'>
+                <icon-notes></icon-notes>
+                Notes
+            </button>
+
+        </section>
 
         <button id="sign-out" class=small-button-secondary (click)=googleAuth.signOutAndGoToMain()>
             <icon-sign-out></icon-sign-out>

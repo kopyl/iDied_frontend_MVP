@@ -128,13 +128,28 @@
 
 @mixin sidebar-menu-item
     justify-content: space-between
-    background-color: $black
-    border: none
-    color: $white
+
+
+
+
+    background-color: $bisque-light
+    color: $brown-light
+    border: $small-button-secondary-border
+
+    & svg line, & svg path
+        stroke: $brown-light
+
+    &.active
+        cursor: auto
+        color: $white
+        background-color: $black
+        border: 2px solid $black
+        & svg line, & svg path
+            stroke: $white
 
     &.active:hover
         background-color: $black
-        border: none
+        border: 2px solid $black
 
         @media (hover: none)  // remove hover on mobiles
             color: $white
@@ -142,8 +157,6 @@
             & svg line, & svg path
                 stroke: $white
 
-    & svg line, & svg path
-        stroke: $white
 
     & > *
         grid-column: 2
