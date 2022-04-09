@@ -3,7 +3,17 @@
 
 body
     background: $bisque-dark
-    touch-action: manipulation  // Remove double tap to zoom on mobile
+
+*
+    touch-action: manipulation
+    /*
+        Remove double tap to zoom on mobile
+            (
+                doesn't work with confirmational popup,
+                but i don't know about where alse
+                double tap zoom may be triggered.
+            )
+        */
 
 *::selection
     background-color: rgba($red, .25)
