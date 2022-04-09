@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { OnlineUpdaterService } from "@services/online-updater"
 import { RouterOutlet } from "@angular/router"
-import { fader, slider } from "@animations"
+import { slider } from "@animations"
 
 @Component({
     selector: "app-root",

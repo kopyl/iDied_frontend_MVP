@@ -33,6 +33,11 @@
         margin-right: 14px
 
 
+@mixin white-icon
+    & svg line, & svg path
+        stroke: $white
+
+
 @mixin small-button-icon-only
     @include small-button-base
 
@@ -148,7 +153,7 @@
 @mixin small-light-button
     background-color: $white-lightest
     color: $white
-    border: $light-button-border
+    border: 2px solid #313031
 
     &:hover
         background-color: black

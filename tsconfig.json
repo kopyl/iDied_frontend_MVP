@@ -34,6 +34,7 @@
         "@services/http-error-handler": ["src/app/services/http-error-handler/http-error-handler.service"],
         "@services/online-updater": ["src/app/services/online-updater/online-updater.service"],
 
+        "@components/confirmation-popup": ["src/app/components/confirm-popup/confirm-popup.component"],
         "@components/unauthorized": ["src/app/components/unauthorized/unauthorized.component"],
         "@components/not-found": ["src/app/components/not-found/not-found.component"],
         "@components/main-page": ["src/app/components/main-page/main-page.component"],

@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
@@ -7,6 +7,7 @@ import { RequestsService } from "@services/requests"
 import { ActivatedRoute, NavigationEnd } from "@angular/router"
 import { ViewChild, ElementRef } from "@angular/core"
 import { noteItem } from "@animations"
+import { ConfirmPopupComponent } from "@components/confirmation-popup"
 
 @Component({
     selector: "app-notes",
@@ -26,6 +27,7 @@ export class NotesComponent implements OnInit {
     navigatedRoute$
 
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
+    @ViewChild("confirmPopup") confirmPopup: ConfirmPopupComponent
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -141,17 +143,19 @@ export class NotesComponent implements OnInit {
             }
 
             if (newNote) {
-                this.router.navigate(["/notes", this.activeNote.id])
+                this.navigateToActiveNote()
             }
         }
+    }
+
+    navigateToActiveNote(): void {
+        this.router.navigate(["/notes", this.activeNote.id])
     }
 
     changeActiveNote(note: frontendNote): void {
         this.activeNote = note
         this.toggleFormFocus()
         this.openMobileNote()
-
-        this.router.navigate(["/notes", this.activeNote.id])
     }
 
     fetchNotes(): void {
@@ -190,7 +194,9 @@ export class NotesComponent implements OnInit {
     }
 
     sendRemovalConfirmation(): void {
-
+        this.confirmPopup.type = 'noteRemoval'
+        this.confirmPopup.visible = true
+        this.confirmPopup.onSuccess = this.sendNoteRemovalRequest.bind(this)
     }
 
     removeNote(): void {
@@ -200,6 +206,7 @@ export class NotesComponent implements OnInit {
             this.activeNote.isShared
         ) {
             this.sendRemovalConfirmation()
+            return
         }
         this.sendNoteRemovalRequest()
     }
@@ -230,6 +237,7 @@ export class NotesComponent implements OnInit {
     openMobileNote() {
         if (!this.notes.length) return // id.doc.id#4
         this.notesEditing = true
+        this.router.navigate(["/notes", this.activeNote.id])
     }
 
     closeNote() {

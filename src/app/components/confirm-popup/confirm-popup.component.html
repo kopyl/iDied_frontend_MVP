@@ -1,0 +1,75 @@
+<div id="container" *ngIf="visible" @popupFader>
+
+    <div id="fg" @popupFader>
+        <header>
+
+            <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
+            <h1 *ngIf=" type === 'noteUnshare' ">Unshare note</h1>
+
+            <button id="close-puput" class="small-button-icon-only" (click)="visible = false">
+                <icon-close-note></icon-close-note>
+            </button>
+        </header>
+
+
+        <p *ngIf=" type === 'noteRemoval' ">
+
+            Do you really want to delete the note
+
+            “<strong>{{activeNoteTitle}}</strong>” ?
+        </p>
+
+
+        <p *ngIf=" type === 'noteUnshare' ">
+
+            Do you really want to unshare the note
+
+            “<strong>{{activeNoteTitle}}</strong>” ?
+
+            <br>
+
+            This note will become inaccessible by the public link
+            after you die if you unshare
+        </p>
+
+
+        <div id="buttons">
+
+
+            <button class=small-button-secondary id="logout" (click)="visible = false">
+                <icon-close-note></icon-close-note>
+                Cancel
+            </button>
+
+
+            <button id="action" class="small-button-primary white-icon"
+            *ngIf=" type === 'noteRemoval' "
+            (click)="this.onSuccess() ; visible = false"
+            >
+                <icon-delete></icon-delete>
+                <span> Remove note </span>
+            </button>
+
+            <button id="action" class=small-button-primary
+            *ngIf=" type === 'noteUnshare' "
+            >
+                <img src="assets/icon-new-light.svg" alt="">
+                <span> Unshare note </span>
+            </button>
+
+            <!-- <ng-container [ngComponentOutlet]="confirmButtonComponent"></ng-container> -->
+
+        </div>
+
+
+    </div>
+
+    <div id="bg" (click)="visible = false"></div>
+</div>
+
+<!-- <ng-container [ngTemplateOutlet]="compTemplate"></ng-container> -->
+
+
+<!-- <ng-template #compTemplate>
+    <p>www</p>
+</ng-template> -->

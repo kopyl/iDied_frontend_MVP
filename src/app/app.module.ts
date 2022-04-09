@@ -21,6 +21,8 @@ import { HttpClientModule } from "@angular/common/http"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 
+import { ConfirmPopupComponent } from '@components/confirmation-popup';
+
 import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
 import { MainPageComponent } from "@components/main-page"
@@ -94,6 +96,7 @@ const authInterceptorProvider = {
         PersistentAlertComponent,
         IconWarningComponent,
         FixTextAreaTitleSizeOnDocumentResizeDirective,
+        ConfirmPopupComponent,
     ],
     imports: [
         BrowserModule,

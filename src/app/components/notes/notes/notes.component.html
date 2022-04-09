@@ -1,3 +1,5 @@
+<confirm-popup #confirmPopup [activeNote]="activeNote"></confirm-popup>
+
 <div id=notes-page-container  [class.notesEditing]="notesEditing">
 
     <div id="sidebar">
@@ -53,7 +55,7 @@
 
             <ul>
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
-                    (click)="changeActiveNote(note)">
+                    (click)="changeActiveNote(note); navigateToActiveNote()">
                     <pre>{{note.title}}</pre>
                 </li>
             </ul>
