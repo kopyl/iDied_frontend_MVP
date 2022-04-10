@@ -7,13 +7,15 @@ import {
     trigger,
     group,
     animateChild,
-    sequence
+    sequence,
+    stagger,
+    keyframes
 } from "@angular/animations"
 
 const optional = { optional: true }
 
 export const noteItem = [
-    trigger("note-item", [
+    trigger("noteItem", [
         state(
             "void",
             style({ position: "relative", top: "-50px", marginBottom: "-55px" })
@@ -23,9 +25,30 @@ export const noteItem = [
             style({ position: "relative", top: "0px", marginBottom: "5px" })
         ),
 
-        transition("* <=> void", []),
+        transition("* <=> void", [animate(150)]),
+
     ]),
 ]
+
+
+// export const noteItem = [
+//     trigger('noteItem', [
+//         transition('* <=> void', [
+//             query('*', [
+//                 style({ opacity: 0 }),
+//                 stagger('500ms', [
+// 	                animate('500ms', style({ opacity: 1 })
+//                 )])
+//             ], optional),
+//             query('void', [
+//                 style({ opacity: 1 }),
+//                 stagger('500ms', [
+// 	                animate('500ms', style({ opacity: 0 })
+//                 )])
+//             ], optional)
+//         ])
+//     ])
+// ]
 
 export const popupSlider = trigger("popupSlider", [
     state(

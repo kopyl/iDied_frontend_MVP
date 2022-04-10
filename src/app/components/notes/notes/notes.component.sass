@@ -136,6 +136,8 @@ div#notes-page-container
                     height: 39px
                     overflow: hidden
 
+                    animation: .15s linear fade-in
+
                     transition: .15s linear background-color
 
                     @media screen and ( max-width:  $min-mobile-width)
@@ -171,3 +173,10 @@ div#notes-page-container
             &:not(&.notesEditing)
                 display: none
 
+
+
+@keyframes fade-in
+    0%
+        opacity: 0
+    100%
+        opacity: 1

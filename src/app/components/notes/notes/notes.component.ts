@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, AfterViewInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
@@ -36,6 +36,8 @@ export class NotesComponent implements OnInit {
         private readonly requests: RequestsService,
         private route: ActivatedRoute
     ) {}
+
+    public loaded = false
 
     ngOnInit(): void {
         this.googleAuth.accessControl()
@@ -125,6 +127,8 @@ export class NotesComponent implements OnInit {
                     backendResponse.notes
                 ) as frontendNote[])
             )
+            setTimeout(() => {this.loaded = true}, 0)
+
             this.notes.forEach((note: frontendNote) => {
                 note.changesSynced = true
             })
