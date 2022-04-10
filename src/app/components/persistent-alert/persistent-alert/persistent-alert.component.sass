@@ -1,5 +1,6 @@
 @import 'colors'
 @import 'fonts'
+@import 'sizes'
 
 :host, div.container
     display: grid
@@ -19,6 +20,10 @@ div.container
     font-size: 14px
     font-weight: $medium
 
-    border-radius: 4px 4px 0 0
+    border-radius: 7px 7px 0 0
+
+    @media screen and ( max-width:  $min-mobile-width)
+        border-radius: 0
+
 
 
