@@ -58,7 +58,12 @@ div#container
 
 div#note-content
     overflow-y: hidden
-    padding-bottom: 5px
+    padding-bottom: 50px
+
+    @media screen and ( max-width:  $min-mobile-width)
+        padding-bottom: 5px
+
+
 
 form
     display: grid
