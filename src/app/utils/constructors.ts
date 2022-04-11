@@ -9,7 +9,8 @@ export const makeUrl = (
 
 
     if (window.location.href.includes("https")) {  // for development
-        return `https://` + `${base}/` + `api/` + `${endpoint}`
+        // return `https://` + `${base}/` + `api/` + `${endpoint}`
+        return `https://` + `idied.org/` + `api/` + `${endpoint}`
     }
 
     return `https://` + `idied.org/` + `api/` + `${endpoint}`
