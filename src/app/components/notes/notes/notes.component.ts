@@ -23,6 +23,7 @@ export class NotesComponent implements OnInit {
     noteFromUrlId: string
     selectedNoteIndex: number
     userClosedAtLeasOneNote: boolean
+    firstLoadedIntoUI = false
 
     navigatedRoute$
 
@@ -36,8 +37,6 @@ export class NotesComponent implements OnInit {
         private readonly requests: RequestsService,
         private route: ActivatedRoute
     ) {}
-
-    public loaded = false
 
     ngOnInit(): void {
         this.googleAuth.accessControl()
@@ -127,7 +126,7 @@ export class NotesComponent implements OnInit {
                     backendResponse.notes
                 ) as frontendNote[])
             )
-            setTimeout(() => {this.loaded = true}, 0)
+            setTimeout(() => {this.firstLoadedIntoUI = true}, 0)
 
             this.notes.forEach((note: frontendNote) => {
                 note.changesSynced = true
@@ -199,7 +198,7 @@ export class NotesComponent implements OnInit {
 
     sendRemovalConfirmation(): void {
         this.confirmPopup.type = 'noteRemoval'
-        this.confirmPopup.visible = true
+        this.confirmPopup.open = true
         this.confirmPopup.onSuccess = this.sendNoteRemovalRequest.bind(this)
     }
 

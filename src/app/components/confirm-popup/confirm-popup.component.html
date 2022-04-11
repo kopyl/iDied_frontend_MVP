@@ -1,4 +1,4 @@
-<div id="container" *ngIf="visible" @popupFader>
+<div #container id="container" *ngIf="open" @popupFader>
 
     <div id="fg" @popupFader>
         <header>
@@ -6,7 +6,7 @@
             <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
             <h1 *ngIf=" type === 'noteUnshare' ">Unshare note</h1>
 
-            <button id="close-puput" class="small-button-icon-only" (click)="visible = false">
+            <button id="close-puput" class="small-button-icon-only" (click)="open = false">
                 <icon-close-note></icon-close-note>
             </button>
         </header>
@@ -36,23 +36,19 @@
         <div id="buttons">
 
 
-            <button class=small-button-secondary id="logout" (click)="visible = false">
+            <button class=small-button-secondary id="logout" (click)="open = false">
                 <icon-close-note></icon-close-note>
                 Cancel
             </button>
 
 
-            <button id="action" class="small-button-primary white-icon"
-            *ngIf=" type === 'noteRemoval' "
-            (click)="this.onSuccess() ; visible = false"
-            >
+            <button id="action" class="small-button-primary white-icon" *ngIf=" type === 'noteRemoval' "
+                (click)="this.onSuccess() ; open = false">
                 <icon-delete></icon-delete>
                 <span> Remove note </span>
             </button>
 
-            <button id="action" class=small-button-primary
-            *ngIf=" type === 'noteUnshare' "
-            >
+            <button id="action" class=small-button-primary *ngIf=" type === 'noteUnshare' ">
                 <img src="assets/icon-new-light.svg" alt="">
                 <span> Unshare note </span>
             </button>
@@ -64,7 +60,7 @@
 
     </div>
 
-    <div id="bg" (click)="visible = false"></div>
+    <div id="bg" (click)="open = false"></div>
 </div>
 
 <!-- <ng-container [ngTemplateOutlet]="compTemplate"></ng-container> -->

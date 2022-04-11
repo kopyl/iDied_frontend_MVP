@@ -43,7 +43,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     @Output() noteContentChanged = new EventEmitter()
     @Output() removeNoteEvent = new EventEmitter()
-    @Output() notesEditing = new EventEmitter()
+    @Output() closeNoteEvent = new EventEmitter()
 
     constructor(
         private readonly requests: RequestsService,
@@ -148,6 +148,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     closeNote() {
-        this.notesEditing.emit()
+        this.closeNoteEvent.emit()
     }
 }

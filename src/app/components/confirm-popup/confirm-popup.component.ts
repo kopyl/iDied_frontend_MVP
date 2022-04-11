@@ -1,31 +1,57 @@
-import { Component, OnInit, HostListener, Input } from "@angular/core"
+import {
+    Component,
+    OnInit,
+    HostListener,
+    Input,
+    ElementRef,
+} from "@angular/core"
 import { popupFader, popupSlider } from "@animations"
 import { IconCloseNoteComponent } from "../icons/icon-close-note/icon-close-note.component"
+import { Subject } from "rxjs"
+import { filter } from "rxjs/operators"
+
+const shortenText = (title) => {
+    return `${title.slice(0, 50)}...`
+}
 
 @Component({
     selector: "confirm-popup",
     templateUrl: "./confirm-popup.component.html",
     styleUrls: ["./confirm-popup.component.sass"],
-    animations: [popupFader, popupSlider]
+    animations: [popupFader, popupSlider],
 })
 export class ConfirmPopupComponent implements OnInit {
+    @Input("activeNote") activeNote: frontendNote
 
-    @Input('activeNote') activeNote: frontendNote
+    keydowns$: Subject<KeyboardEvent> = new Subject()
 
-    visible = false
+    open = false
     public confirmButtonComponent = IconCloseNoteComponent
     public onSuccess: Function
     public type: "noteRemoval" | "noteUnshare" = "noteRemoval"
 
-    constructor() {}
-
     get activeNoteTitle(): string {
-        if (this.activeNote.title.length > 50) {
-            return `${this.activeNote.title.slice(0, 50)}...`
+        const title = this.activeNote.title
+        if (title.length > 50) {
+            return shortenText(title)
         }
-        return this.activeNote.title
+        return title
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
 
+        this.keydowns$
+            .pipe(
+                filter((e) => this.open),
+                filter((e) => e.key === "Escape")
+            )
+            .subscribe((e) => {
+                this.open = false
+            })
+    }
+
+    @HostListener("document:keydown", ["$event"])
+    keydown(event: KeyboardEvent) {
+        this.keydowns$.next(event)
+    }
 }

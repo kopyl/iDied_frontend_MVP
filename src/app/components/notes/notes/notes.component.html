@@ -1,6 +1,6 @@
 <confirm-popup #confirmPopup [activeNote]="activeNote"></confirm-popup>
 
-<div id=notes-page-container  [class.notesEditing]="notesEditing">
+<div id=notes-page-container [class.notesEditing]="notesEditing">
 
     <div id="sidebar">
         <div id="logo">
@@ -57,9 +57,10 @@
 
         <div id="list" #notesListHTML>
 
-            <ul >
+            <ul>
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
-                    (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem [@.disabled]="loaded === false">
+                    (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem
+                    [@.disabled]="firstLoadedIntoUI === false">
                     <pre>{{note.title}}</pre>
                 </li>
             </ul>
@@ -80,8 +81,8 @@
 
 
     <div id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
-        <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()" (notesEditing)="closeNote()"
-            (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused>
+        <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()"
+            (closeNoteEvent)="closeNote()" (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused>
         </note>
     </div>
 
