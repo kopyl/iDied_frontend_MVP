@@ -119,6 +119,8 @@ div#notes-page-container
 
         div#list
 
+            position: relative
+
             height: 100%
             padding-bottom: 20px
             margin: 0 5px
@@ -197,3 +199,14 @@ div#notes-page-container
         opacity: 0
     100%
         opacity: 1
+
+
+div#notes #list
+    loader
+        display: none
+        @media screen and ( max-width:  $min-mobile-width)
+            display: inline-block
+            position: absolute
+            left: 50%
+            top: 50%
+            transform: translate(-50%, -50%)

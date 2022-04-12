@@ -42,6 +42,7 @@
         <header id="desktop-header">
 
             <h1>Notes</h1>
+            <loader [visible]="loaderVisible"></loader>
 
             <button id="create-note" class=small-button-primary (click)=createNote()>
                 <img src="assets/icon-new-light.svg" alt="">
@@ -56,6 +57,7 @@
 
 
         <div id="list" #notesListHTML>
+            <loader [visible]="loaderVisible"></loader>
 
             <ul>
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"

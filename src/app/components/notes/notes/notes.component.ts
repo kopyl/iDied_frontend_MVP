@@ -6,14 +6,14 @@ import { snakeToCamelCaseArray } from "@utils/transformations"
 import { RequestsService } from "@services/requests"
 import { ActivatedRoute, NavigationEnd } from "@angular/router"
 import { ViewChild, ElementRef } from "@angular/core"
-import { noteItem } from "@animations"
+import { noteItem, fadeInOut } from "@animations"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
 
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.sass"],
-    animations: noteItem,
+    animations: [noteItem, fadeInOut],
 })
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
@@ -24,6 +24,7 @@ export class NotesComponent implements OnInit {
     selectedNoteIndex: number
     userClosedAtLeasOneNote: boolean
     firstLoadedIntoUI = false
+    loaderVisible = true
 
     navigatedRoute$
 
@@ -148,6 +149,8 @@ export class NotesComponent implements OnInit {
             if (newNote) {
                 this.navigateToActiveNote()
             }
+
+            this.loaderVisible = false
         }
     }
 
@@ -162,11 +165,13 @@ export class NotesComponent implements OnInit {
     }
 
     fetchNotes(): void {
+        this.loaderVisible = true
         this.requests.notes.get.onSuccess = this.downloadNotes.bind(this)
         this.requests.notes.get.send()
     }
 
     createNote(): void {
+        this.loaderVisible = true
         this.requests.notes.create.onSuccess = this.createNoteInUI.bind(this)
         this.requests.notes.create.send()
     }

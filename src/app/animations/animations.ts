@@ -14,8 +14,7 @@ import {
 
 const optional = { optional: true }
 
-export const noteItem = [
-    trigger("noteItem", [
+export const noteItem = trigger("noteItem", [
         state(
             "void",
             style({ position: "relative", top: "-50px", marginBottom: "-55px" })
@@ -27,8 +26,7 @@ export const noteItem = [
 
         transition("* <=> void", [animate(150)]),
 
-    ]),
-]
+    ])
 
 
 // export const noteItem = [
@@ -72,6 +70,20 @@ export const popupFader = trigger("popupFader", [
     state(
         "*",
         style({opacity: "1", transform: "translateY(0px)"})
+    ),
+
+    transition("* <=> void", [animate(150)]),
+])
+
+
+export const fadeInOut = trigger("fadeInOut", [
+    state(
+        "void",
+        style({opacity: "0"})
+    ),
+    state(
+        "*",
+        style({opacity: "1"})
     ),
 
     transition("* <=> void", [animate(150)]),

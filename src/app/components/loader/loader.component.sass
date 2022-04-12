@@ -1,0 +1,33 @@
+@import 'colors'
+
+.lds-ring
+
+    display: inline-block
+    position: relative
+    width: 36px
+    height: 36px
+
+.lds-ring div
+    box-sizing: border-box
+    display: block
+    position: absolute
+    width: 20px
+    height: 20px
+    margin: 8px
+    border: 2px solid #fff
+    border-radius: 90%
+    animation: lds-ring .7s cubic-bezier(0.5, 0, 0.5, 1) infinite
+    border-color: $black transparent transparent transparent
+
+.lds-ring div:nth-child(1)
+    animation-delay: -0.05s
+
+.lds-ring div:nth-child(2)
+    animation-delay: -0.1s
+
+@keyframes lds-ring
+    0%
+        transform: rotate(0deg)
+
+    100%
+        transform: rotate(360deg)

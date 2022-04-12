@@ -30,6 +30,7 @@ import { MainPageComponent } from "@components/main-page"
 import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
+import { LoaderComponent } from './components/loader/loader.component';
 
 import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment";
 import { FixTextAreaTitleSizeOnDocumentResizeDirective } from '@directives/fix-text-area-size-on-document-resize'
@@ -97,6 +98,7 @@ const authInterceptorProvider = {
         IconWarningComponent,
         FixTextAreaTitleSizeOnDocumentResizeDirective,
         ConfirmPopupComponent,
+        LoaderComponent,
     ],
     imports: [
         BrowserModule,
