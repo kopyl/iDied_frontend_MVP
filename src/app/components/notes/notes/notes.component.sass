@@ -155,6 +155,7 @@ div#notes-page-container
                             color: white
 
                     pre
+                        transition: .15s linear all
                         color: $brown-light
                         font-weight: $medium
                         overflow: hidden
@@ -162,6 +163,19 @@ div#notes-page-container
                         font-family: $roboto
                         font-size: 14px
                         line-height: 26px
+
+                    &:not(.active):hover
+                        background-color: $red
+
+                        @media (hover: none)  // remove hover on mobiles
+                            background-color: $bisque-light
+
+
+                        pre
+                            color: white
+
+                            @media (hover: none)  // remove hover on mobiles
+                                color: $brown-light
 
 
             li pre:empty::after
