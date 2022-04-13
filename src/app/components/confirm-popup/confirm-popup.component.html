@@ -5,6 +5,7 @@
 
             <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
             <h1 *ngIf=" type === 'noteUnshare' ">Unshare note</h1>
+            <h1 *ngIf=" type === 'linkRevoke' ">Revoke note's link</h1>
 
             <button id="close-puput" class="small-button-icon-only" (click)="open = false">
                 <icon-close-note></icon-close-note>
@@ -33,24 +34,44 @@
         </p>
 
 
+        <p *ngIf=" type === 'linkRevoke' ">
+
+            Do you really want to change the access link to the note
+
+            “<strong>{{activeNoteTitle}}</strong>” ?
+
+            <br>
+
+            Everyone you shared your current link won't have
+            any access to your note using it
+        </p>
+
+
         <div id="buttons">
 
 
-            <button class=small-button-secondary id="logout" (click)="open = false">
+            <button class=small-button-secondary id="cancel" (click)="open = false">
                 <icon-close-note></icon-close-note>
                 Cancel
             </button>
 
 
-            <button id="action" class="small-button-primary white-icon" *ngIf=" type === 'noteRemoval' "
+            <button class="action small-button-primary white-icon" *ngIf=" type === 'noteRemoval' "
                 (click)="this.onSuccess() ; open = false">
                 <icon-delete></icon-delete>
                 <span> Remove note </span>
             </button>
 
-            <button id="action" class=small-button-primary *ngIf=" type === 'noteUnshare' ">
-                <img src="assets/icon-new-light.svg" alt="">
+            <button class="action small-button-primary white-icon" *ngIf=" type === 'noteUnshare' "
+                (click)="this.onSuccess() ; open = false">
+                <icon-share></icon-share>
                 <span> Unshare note </span>
+            </button>
+
+            <button class="action small-button-primary white-icon" *ngIf=" type === 'linkRevoke' "
+                (click)="this.onSuccess() ; open = false">
+                <icon-revoke></icon-revoke>
+                <span> Revoke link </span>
             </button>
 
             <!-- <ng-container [ngComponentOutlet]="confirmButtonComponent"></ng-container> -->

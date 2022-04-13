@@ -23,6 +23,7 @@
     "angular-telegram-login-widget": "^0.2.2",
     "angularx-social-login": "^4.0.1",
     "rxjs": "7.1",
+    "rxjs-boost": "^1.1.1",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

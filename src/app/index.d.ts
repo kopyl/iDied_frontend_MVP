@@ -10,6 +10,7 @@ declare global {
         isAccessible?: boolean,
         isRemovedByRecepient?: boolean,
         changesSynced?: boolean,
+        sharingToken?: string,
     }
 
     interface backend_note {
@@ -20,7 +21,8 @@ declare global {
         edited_at: number,
         is_shared: boolean,
         is_accessible: boolean,
-        is_removed_by_recepient: boolean
+        is_removed_by_recepient: boolean,
+        sharing_token: string,
     }
 
     interface backend_auth_response {

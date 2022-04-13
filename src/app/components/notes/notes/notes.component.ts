@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 import { Router } from "@angular/router"
 import { GoogleAuthService } from "@services/auth"
@@ -8,6 +8,7 @@ import { ActivatedRoute, NavigationEnd } from "@angular/router"
 import { ViewChild, ElementRef } from "@angular/core"
 import { noteItem, fadeInOut } from "@animations"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
+import { NoteComponent } from "@components/notes/note"
 
 @Component({
     selector: "app-notes",
@@ -21,15 +22,19 @@ export class NotesComponent implements OnInit {
     formFocused: boolean
     notesEditing: boolean = false
     noteFromUrlId: string
+    sharingInUrl: string
     selectedNoteIndex: number
     userClosedAtLeasOneNote: boolean
     firstLoadedIntoUI = false
     loaderVisible = true
+    sharingView = false
 
     navigatedRoute$
 
     @ViewChild("notesListHTML") notesListHTML: ElementRef<HTMLDivElement>
     @ViewChild("confirmPopup") confirmPopup: ConfirmPopupComponent
+
+    @ViewChild("note") note: NoteComponent
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -40,6 +45,9 @@ export class NotesComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+
+        // console.log(this.route.snapshot.url)
+
         this.googleAuth.accessControl()
         if (!this.googleAuth.userLoggedIn) {
             this.router.navigate(["/unauthorized"])
@@ -54,13 +62,22 @@ export class NotesComponent implements OnInit {
 
         this.handleiOSnavigateBySwipeLeft()
 
+
         if (!this.notes.length) {
             // id.doc.id#4
             this.router.navigate(["/notes"])
         }
 
         this.findOutifUserClosedNoteAtLeastOnce()
+
+
+        this.sharingInUrl = this.router.parseUrl(
+            this.router.url
+        )?.root?.children["primary"]?.segments[2]?.path
+
+
     }
+
 
     findOutifUserClosedNoteAtLeastOnce() {
         let userClosedAtLeasOneNote = localStorage.getItem(
@@ -73,6 +90,14 @@ export class NotesComponent implements OnInit {
     handleiOSnavigateBySwipeLeft() {
         this.router.events.subscribe((event: any) => {
             if (!(event instanceof NavigationEnd)) return
+
+            if (event.url.includes("/sharing")) {
+                this.sharingView = true
+                return
+            }
+
+            this.sharingView = false
+
             if (event.url === "/notes") {
                 this.notesEditing = false
             } else if (event.url && event.url.startsWith("/notes/")) {
@@ -151,6 +176,7 @@ export class NotesComponent implements OnInit {
             }
 
             this.loaderVisible = false
+            this.sharingView = false
         }
     }
 
@@ -162,6 +188,7 @@ export class NotesComponent implements OnInit {
         this.activeNote = note
         this.toggleFormFocus()
         this.openMobileNote()
+        this.sharingView = false
     }
 
     fetchNotes(): void {
@@ -245,7 +272,14 @@ export class NotesComponent implements OnInit {
     openMobileNote() {
         if (!this.notes.length) return // id.doc.id#4
         this.notesEditing = true
-        this.router.navigate(["/notes", this.activeNote.id])
+        if (this.sharingInUrl && this.activeNote.isShared) {
+            this.router.navigate(["/notes", this.activeNote.id, "sharing"])
+            this.sharingInUrl = ""
+        } else {
+            this.router.navigate(["/notes", this.activeNote.id])
+            this.sharingView = false
+            this.sharingInUrl = ""
+        }
     }
 
     closeNote() {
@@ -255,4 +289,19 @@ export class NotesComponent implements OnInit {
         this.scrollToFirstNote()
         localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
+
+    openSharingView(): void {
+        this.sharingView = true
+        this.router.navigate(["/notes", this.activeNote.id, "sharing"])
+    }
+
+    closeSharingView(): void {
+        this.sharingView = false
+        this.router.navigate(["/notes", this.activeNote.id])
+    }
+
+    logCopied(){
+        console.log('copied')
+    }
+
 }

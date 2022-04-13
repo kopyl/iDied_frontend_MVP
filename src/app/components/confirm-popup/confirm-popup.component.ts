@@ -28,7 +28,7 @@ export class ConfirmPopupComponent implements OnInit {
     open = false
     public confirmButtonComponent = IconCloseNoteComponent
     public onSuccess: Function
-    public type: "noteRemoval" | "noteUnshare" = "noteRemoval"
+    public type: "noteRemoval" | "noteUnshare" | "linkRevoke" = "noteRemoval"
 
     get activeNoteTitle(): string {
         const title = this.activeNote.title
@@ -39,7 +39,6 @@ export class ConfirmPopupComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
         this.keydowns$
             .pipe(
                 filter((e) => this.open),

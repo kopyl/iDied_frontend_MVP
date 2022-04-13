@@ -20,6 +20,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar"
 import { HttpClientModule } from "@angular/common/http"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { ConfirmPopupComponent } from '@components/confirmation-popup';
 
@@ -47,6 +48,10 @@ import { IconCloseNoteComponent } from './components/icons/icon-close-note/icon-
 import { LogoMobileComponent } from './components/icons/logo-mobile/logo-mobile.component';
 import { PersistentAlertComponent } from './components/persistent-alert/persistent-alert/persistent-alert.component';
 import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component';
+import { SharingComponent } from './components/sharing/sharing.component';
+import { ShareGlobeComponent } from './components/icons/share-globe/share-globe.component';
+import { IconRevokeComponent } from './components/icons/icon-revoke/icon-revoke.component';
+import { IconCopyComponent } from './components/icons/icon-copy/icon-copy.component';
 
 
 const CLIENT_ID =
@@ -99,6 +104,10 @@ const authInterceptorProvider = {
         FixTextAreaTitleSizeOnDocumentResizeDirective,
         ConfirmPopupComponent,
         LoaderComponent,
+        SharingComponent,
+        ShareGlobeComponent,
+        IconRevokeComponent,
+        IconCopyComponent,
     ],
     imports: [
         BrowserModule,
@@ -109,7 +118,8 @@ const authInterceptorProvider = {
         AngularTelegramLoginWidgetModule,
         MatSnackBarModule,
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        ClipboardModule
     ],
     providers: [GoogleLogingProvider, authInterceptorProvider],
     bootstrap: [AppComponent],

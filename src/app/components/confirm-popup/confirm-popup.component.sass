@@ -69,10 +69,18 @@ div#buttons
     gap: 5px
 
 
-button#action
+button.action
     justify-content: center
 
     & > icon-delete
+        transform: translateY(-1px)
+
+    & > icon-delete,
+    & > icon-share,
+    & > icon-revoke,
+    & > img
         grid-column: inherit
         margin-left: 0
-        transform: translateY(-1px)
+
+    & > icon-share
+        transform: scaleY(-1)

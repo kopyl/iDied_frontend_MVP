@@ -3,6 +3,7 @@ import { Observable } from "rxjs"
 import { HttpClient, HttpParams } from "@angular/common/http"
 import { HttpErrorHandlerService } from "@services/http-error-handler"
 import { makeUrl } from "@utils/constructors"
+import { delay, first, retryWhen, repeat } from "rxjs/operators"
 
 const port = 5001
 const protocol = "http"
@@ -46,7 +47,7 @@ abstract class Request {
         } else if (this.method === "DELETE") {
             this.request = this.http.delete(this.URL, {
                 params: this.params,
-                body: this.body
+                body: this.body,
             })
         }
     }
@@ -69,7 +70,18 @@ abstract class Request {
             actions["next"] = this.success
         }
 
-        this.request.subscribe(actions)
+        if (this.URL.includes("online")) {
+            // no infinite retries since it's alredy in loop
+            this.request.subscribe(actions)
+        } else {
+            // infinite requests till success
+            this.request
+                .pipe(
+                    retryWhen((errors) => errors.pipe(delay(1000), repeat())),
+                    first((v) => true)
+                )
+                .subscribe(actions)
+        }
     }
 }
 
@@ -88,6 +100,9 @@ class Notes {
     save: SaveNote
     create: CreateNote
     remove: RemoveNote
+    share: ShareNote
+    unshare: UnshareNote
+    revoke: RevokeNote
 
     constructor(
         public http: HttpClient,
@@ -97,6 +112,9 @@ class Notes {
         this.save = new SaveNote(http, HTTPErrorHandler)
         this.create = new CreateNote(http, HTTPErrorHandler)
         this.remove = new RemoveNote(http, HTTPErrorHandler)
+        this.share = new ShareNote(http, HTTPErrorHandler)
+        this.unshare = new UnshareNote(http, HTTPErrorHandler)
+        this.revoke = new RevokeNote(http, HTTPErrorHandler)
     }
 }
 
@@ -126,6 +144,45 @@ class RemoveNote extends Request {
     override makeBody(note: saveNoteArgs) {
         this.body = {
             note: note,
+        }
+    }
+}
+
+class ShareNote extends Request {
+    method = "POST"
+    URL = URLS.NOTES
+    override errorMessage = "share"
+
+    override makeBody(note: saveNoteArgs) {
+        this.body = {
+            note: note,
+            share: true,
+        }
+    }
+}
+
+class UnshareNote extends Request {
+    method = "POST"
+    URL = URLS.NOTES
+    override errorMessage = "unshare"
+
+    override makeBody(note: saveNoteArgs) {
+        this.body = {
+            note: note,
+            unshare: true,
+        }
+    }
+}
+
+class RevokeNote extends Request {
+    method = "POST"
+    URL = URLS.NOTES
+    override errorMessage = "revoke"
+
+    override makeBody(note: saveNoteArgs) {
+        this.body = {
+            note: note,
+            revoke: true,
         }
     }
 }

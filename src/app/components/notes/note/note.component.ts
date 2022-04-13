@@ -45,10 +45,13 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     @Output() removeNoteEvent = new EventEmitter()
     @Output() closeNoteEvent = new EventEmitter()
 
+    @Output() openSharingViewEvent = new EventEmitter()
+
+
     constructor(
         private readonly requests: RequestsService,
         private readonly fb: FormBuilder,
-        private HTML: ElementRef
+        private HTML: ElementRef,
     ) {}
 
     updateAlert() {
@@ -149,5 +152,20 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     closeNote() {
         this.closeNoteEvent.emit()
+    }
+
+    updateSharingToken(backendResponse: backend_notes_response): void {
+        const sharingToken = backendResponse.notes[0].sharing_token
+        this.activeNote.sharingToken = sharingToken
+        this.activeNote.isShared = true
+        this.openSharingViewEvent.emit()
+    }
+
+    shareNote() {
+        if (this.activeNote.isShared) {
+            return this.openSharingViewEvent.emit()
+        }
+        this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
+        this.requests.notes.share.send(this.activeNote)
     }
 }

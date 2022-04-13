@@ -1,0 +1,53 @@
+<!-- <p>{{activeNote?.sharingToken}}</p> -->
+
+<div id="container">
+
+    <div id="top-part">
+
+        <header>
+
+            <h1>Sharing</h1>
+
+
+            <button id="close-note" class="small-button-icon-only" (click)="closeSharingWindow()">
+                <icon-close-note></icon-close-note>
+            </button>
+
+        </header>
+
+        <a id="link" [href]="sharingLink" target="_blank"><span>https://idied.org</span>/n/{{activeNote?.sharingToken}}</a>
+
+        <section id="access-buttons-copy-unshare-revoke">
+
+            <button id="copy-link" class="small-button-secondary" [cdkCopyToClipboard]="sharingLink"
+                (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
+                <icon-copy></icon-copy>
+                <span>Copy link</span>
+            </button>
+
+            <button id="unshare" class="small-button-secondary red" (click)="sendUnsharingConfirmation()">
+                <icon-share></icon-share>
+                <span>Unshare</span>
+            </button>
+
+            <button id="revoke" class="small-button-secondary red" (click)="sendRevokingConfirmation()">
+                <icon-revoke></icon-revoke>
+                <span>Revoke</span>
+            </button>
+        </section>
+
+
+    </div>
+
+    <div id="bottom-part">
+
+        <div class="bottom-alert">
+            <div class="alert">
+                <persistent-alert>This note will become accessible by a link unless you log in for 30 days
+                </persistent-alert>
+            </div>
+        </div>
+
+    </div>
+
+</div>

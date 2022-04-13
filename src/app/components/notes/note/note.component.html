@@ -6,9 +6,9 @@
             <icon-delete></icon-delete>
         </button>
 
-        <button id="share" class=small-button-secondary onclick="alert('Sharing feature in development...')">
+        <button id="share" class=small-button-secondary (click)="shareNote()">
             <icon-share></icon-share>
-            Share
+            {{activeNote?.isShared ? 'Sharing settings' : 'Share'}}
         </button>
 
         <button id="close-note" class="small-button-icon-only" (click)="closeNote()">

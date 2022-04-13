@@ -5,7 +5,6 @@
 @import 'sizes'
 @import 'borders'
 
-
 @mixin button-base
     cursor: pointer
     transition: .15s linear all
@@ -22,7 +21,6 @@
     & path, & line
         transition: .15s linear all
 
-
 @mixin small-button-base
     @include button-base
 
@@ -31,7 +29,6 @@
 
     & > *
         margin-right: 14px
-
 
 @mixin white-icon
     & svg line, & svg path
@@ -61,9 +58,13 @@
             & svg line, & svg path
                 stroke: $brown-light
 
-
 @mixin red
-    @include small-button-icon-only
+    // @include small-button-icon-only
+
+    color: $red
+
+    & svg line, & svg path
+        stroke: $red
 
     background-color: rgba($red, .05)
     border: 2px solid rgba($red, .08)
@@ -71,13 +72,12 @@
     &:hover
 
         @media (hover: none)  // remove hover on mobiles
+            color: $red
             background-color: rgba($red, .05)
             border: 2px solid rgba($red, .08)
 
             & svg line, & svg path
                 stroke: $red
-
-
 
 @mixin small-button-primary
     @include small-button-base
@@ -98,9 +98,6 @@
         grid-column: 2
         margin-right: 0
         margin-left: 14px
-
-
-
 
 @mixin small-button-secondary
     @include small-button-base
@@ -125,12 +122,8 @@
             & svg line, & svg path
                 stroke: $brown-light
 
-
 @mixin sidebar-menu-item
     justify-content: space-between
-
-
-
 
     background-color: $bisque-light
     color: $brown-light
@@ -157,11 +150,9 @@
             & svg line, & svg path
                 stroke: $white
 
-
     & > *
         grid-column: 2
         margin-right: 0
-
 
 @mixin small-light-button
     background-color: $white-lightest
@@ -177,7 +168,6 @@
             border: $light-button-border
             color: $white
 
-
 @mixin main-page-big-text
     color: $bisque-dark
     font-family: $playfair
@@ -185,7 +175,6 @@
 
     @media screen and ( max-width: $min-mobile-width )
         font-size: $biggest-mobile
-
 
 @mixin big-button-primary
     @include button-base
@@ -211,4 +200,3 @@
         grid-auto-flow: column
         align-items: center
         gap: 31px
-

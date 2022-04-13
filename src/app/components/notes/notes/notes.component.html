@@ -64,6 +64,9 @@
                     (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem
                     [@.disabled]="firstLoadedIntoUI === false">
                     <pre>{{note.title}}</pre>
+                    <div id="icon-sharing-globe">
+                        <share-globe [class.globeVisible]=note.isShared></share-globe>
+                    </div>
                 </li>
             </ul>
 
@@ -82,10 +85,22 @@
 
 
 
-    <div id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
+    <div #note id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
         <note [activeNote]=activeNote (noteContentChanged)="scrollToFirstNote(); reSortNotes()"
-            (closeNoteEvent)="closeNote()" (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused>
+            (closeNoteEvent)="closeNote()" (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused
+            *ngIf="!sharingView" (openSharingViewEvent)="openSharingView()">
         </note>
+
+        <sharing [activeNote]="activeNote" *ngIf="sharingView" (sharingCloseEvent)="closeSharingView()"
+            [confirmPopup]="confirmPopup" (copied)=logCopied()></sharing>
+
+
+
+        <!-- <router-outlet name="sharing" ></router-outlet> -->
+        <!-- <router-outlet name="sharing" *ngIf="sharingView"></router-outlet> -->
+
     </div>
+
+
 
 </div>
