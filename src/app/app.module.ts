@@ -49,7 +49,7 @@ import { LogoMobileComponent } from './components/icons/logo-mobile/logo-mobile.
 import { PersistentAlertComponent } from './components/persistent-alert/persistent-alert/persistent-alert.component';
 import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component';
 import { SharingComponent } from './components/sharing/sharing.component';
-import { ShareGlobeComponent } from './components/icons/share-globe/share-globe.component';
+import { IconShareGlobeComponent } from './components/icons/icon-share-globe/icon-share-globe.component';
 import { IconRevokeComponent } from './components/icons/icon-revoke/icon-revoke.component';
 import { IconCopyComponent } from './components/icons/icon-copy/icon-copy.component';
 
@@ -105,7 +105,7 @@ const authInterceptorProvider = {
         ConfirmPopupComponent,
         LoaderComponent,
         SharingComponent,
-        ShareGlobeComponent,
+        IconShareGlobeComponent,
         IconRevokeComponent,
         IconCopyComponent,
     ],
