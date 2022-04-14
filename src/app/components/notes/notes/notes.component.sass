@@ -36,12 +36,16 @@ div#notes-page-container
         button#sign-out
             justify-content: left
 
+    header
+        color: $black-dark
+        font-family: $roboto
+        justify-content: space-between
+
 
     header#desktop-header
         display: grid
         grid-auto-flow: column
 
-        justify-content: space-between
         align-content: baseline
         align-items: center
 
@@ -51,15 +55,14 @@ div#notes-page-container
             display: none
 
         h1
-            font-family: $roboto
             font-size: 31px
             line-height: 36px
-            color: $black-dark
+
 
     header#mobile-header
         padding-left: 30px
         padding-right: 30px
-        justify-content: space-between
+
         align-content: center
         grid-auto-flow: column
 
@@ -68,9 +71,10 @@ div#notes-page-container
             grid-auto-flow: column
             gap: 22px
             align-items: center
-            font-family: $roboto
-            font-size: 22px
-            line-height: 36px
+
+            h1
+                font-size: 22px
+                line-height: 36px
 
         display: none
 
