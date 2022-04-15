@@ -41,11 +41,6 @@ const routes = [
         ],
 
     },
-    // {
-    //     path: "sharing",
-    //     component: SharingComponent,
-    //     outlet: "sharing"
-    // },
     {
         path: "**",
         component: NotFoundComponent,
