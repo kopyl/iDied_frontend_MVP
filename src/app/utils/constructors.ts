@@ -13,8 +13,8 @@ export const makeUrl = (
         return `https://` + `idied.org/` + `api/` + `${endpoint}`
     }
 
-    return `http://` + `localhost:5001/` + `${endpoint}`
-    // return `https://` + `idied.org/` + `api/` + `${endpoint}`
+    // return `http://` + `localhost:5001/` + `${endpoint}`
+    return `https://` + `idied.org/` + `api/` + `${endpoint}`
 
     // return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
 }
