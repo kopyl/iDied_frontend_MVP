@@ -1,0 +1,99 @@
+@import 'colors'
+@import 'fonts'
+@import 'sizes'
+
+div.container
+    counter-reset: my-sec-counter
+
+    word-break: break-word
+    white-space: pre-line
+
+ol
+    li::before
+        color: $red
+        counter-increment: my-sec-counter
+        content: counter(my-sec-counter) "."
+
+ol, p
+    margin-top: 34px
+
+li
+    font-family: $roboto
+    font-size: 18px
+    line-height: 35px
+    color: $black-lighter
+
+div.container
+
+    height: 100%
+
+    display: grid
+
+    justify-content: center
+    @media screen and ( max-width:  $min-mobile-width)
+        justify-content: inherit
+
+    &.forbidden
+        background-color: rgba($red, .08)
+
+    div#content
+        display: grid
+        grid-template-rows: 99px 1fr
+        width: 750px
+        height: 100%
+
+        overflow: hidden
+
+        @media screen and ( max-width:  $min-mobile-width)
+            width: 100%
+
+        header
+            display: grid
+            justify-content: space-between
+            grid-auto-flow: column
+            align-self: center
+
+            @media screen and ( max-width:  $min-mobile-width)
+                margin: 0 30px 0 30px
+
+        main
+            display: grid
+            gap: 5px
+            grid-template-rows: 1fr auto
+
+            overflow: auto
+
+            section#content
+                height: 100%
+                padding: 84px 50px 50px 50px
+                border-radius: 7px
+                background-color: $bisque-light
+
+                overflow: scroll
+
+                @media screen and ( max-width:  $min-mobile-width)
+                    margin: 0 5px 0 5px
+                    padding: 34px 25px 25px 25px
+
+                h1
+                    font-family: $playfair
+                    font-size: 30px
+                    line-height: 51px
+
+                #forbidden-text
+
+                    span
+                        color: $red
+
+            p
+                font-family: $roboto
+                font-size: 18px
+                line-height: 35px
+                color: $black-lighter
+
+div.container.forbidden div#content main section#content
+    background-color: rgba($white, 0.3 )
+
+persistent-alert
+    @media screen and ( max-width:  $min-mobile-width)
+        width: 100vw

@@ -42,6 +42,7 @@
         "@components/notification/highlight": ["src/app/components/notification/highlight/highlight.component"],
         "@components/notes": ["src/app/components/notes/notes/notes.component"],
         "@components/notes/note": ["src/app/components/notes/note/note.component"],
+        "@components/notes/note-for-recipient": ["src/app/components/notes/note-for-recipient/note-for-recipient.component"],
 
         "@directives/form-focus-and-height-adjustment": ["src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"],
         "@directives/fix-text-area-size-on-document-resize": ["src/app/directives/fix-text-area-size-on-document-resize/d.directive"],

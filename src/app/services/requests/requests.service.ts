@@ -10,7 +10,8 @@ const protocol = "http"
 
 const URLS = {
     AUTH: makeUrl("authorize", port, protocol),
-    NOTES: makeUrl("notes", port, protocol),
+    NOTES_PRIVATE: makeUrl("notes/private", port, protocol),
+    NOTES_PUBLIC: makeUrl("notes/public", port, protocol),
     ONLINE: makeUrl("users/online", port, protocol),
 }
 
@@ -66,12 +67,19 @@ abstract class Request {
                 this.HTTPErrorHandler.handle(error, this.errorMessage),
         }
 
+        if (this.URL.includes("notes/public")) {
+            actions["error"] = (error) => {}
+        }
+
         if (this.success) {
             actions["next"] = this.success
         }
 
         if (this.URL.includes("online")) {
             // no infinite retries since it's alredy in loop
+            this.request.subscribe(actions)
+        } else if (this.URL.includes("notes/public")) {
+            // no infinite retries since it may get a user rate limited in case of an error
             this.request.subscribe(actions)
         } else {
             // infinite requests till success
@@ -120,13 +128,13 @@ class Notes {
 
 class GetNotes extends Request {
     method = "GET"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
     override errorMessage = "notes"
 }
 
 class SaveNote extends Request {
     method = "POST"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
 
     override makeBody(note: saveNoteArgs) {
         this.body = {
@@ -139,7 +147,7 @@ class CreateNote extends SaveNote {}
 
 class RemoveNote extends Request {
     method = "DELETE"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
 
     override makeBody(note: saveNoteArgs) {
         this.body = {
@@ -150,7 +158,7 @@ class RemoveNote extends Request {
 
 class ShareNote extends Request {
     method = "POST"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
     override errorMessage = "share"
 
     override makeBody(note: saveNoteArgs) {
@@ -163,7 +171,7 @@ class ShareNote extends Request {
 
 class UnshareNote extends Request {
     method = "POST"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
     override errorMessage = "unshare"
 
     override makeBody(note: saveNoteArgs) {
@@ -176,7 +184,7 @@ class UnshareNote extends Request {
 
 class RevokeNote extends Request {
     method = "POST"
-    URL = URLS.NOTES
+    URL = URLS.NOTES_PRIVATE
     override errorMessage = "revoke"
 
     override makeBody(note: saveNoteArgs) {
@@ -193,6 +201,35 @@ class Online extends Request {
     override errorMessage = "online"
 }
 
+class GetNoteForRecipient extends Request {
+    method = "GET"
+    URL = URLS.NOTES_PUBLIC
+    override errorMessage = "note-for-recipient"
+
+    override makeParams(sharingToken: string) {
+        this.params = new HttpParams().set("sharingToken", sharingToken)
+    }
+}
+
+class DestroyNoteForRecipient extends Request {
+    method = "DELETE"
+    URL = URLS.NOTES_PUBLIC
+    override errorMessage = "note-for-recipient-destroy"
+}
+
+class NoteForRecipient {
+    get: GetNoteForRecipient
+    destroy: DestroyNoteForRecipient
+
+    constructor(
+        public http: HttpClient,
+        public HTTPErrorHandler: HttpErrorHandlerService
+    ) {
+        this.get = new GetNoteForRecipient(http, HTTPErrorHandler)
+        this.destroy = new DestroyNoteForRecipient(http, HTTPErrorHandler)
+    }
+}
+
 @Injectable({
     providedIn: "root",
 })
@@ -200,6 +237,7 @@ export class RequestsService {
     auth: Auth
     notes: Notes
     online: Online
+    noteForRecipient: NoteForRecipient
 
     constructor(
         private http: HttpClient,
@@ -208,5 +246,6 @@ export class RequestsService {
         this.auth = new Auth(http, HTTPErrorHandler)
         this.notes = new Notes(http, HTTPErrorHandler)
         this.online = new Online(http, HTTPErrorHandler)
+        this.noteForRecipient = new NoteForRecipient(http, HTTPErrorHandler)
     }
 }

@@ -1,2 +1,25 @@
+@import 'colors'
+@import 'borders'
+
 :host
+    height: 100%
+
+div
     display: grid
+    width: 40px
+    height: 39px
+    display: grid
+    cursor: pointer
+    border-radius: 4px
+    background-color: $bisque-light
+    border: $small-button-secondary-border
+
+    justify-content: center
+    align-content: center
+
+    &.red
+        background-color: rgba($red, .05)
+        border: 2px solid rgba($red, .08)
+
+// path:nth-child(1)
+//     fill: rgba($red, 0.5)

@@ -7,6 +7,8 @@ import { NotFoundComponent } from "@components/not-found"
 import { MainPageComponent } from "@components/main-page"
 import { NoteComponent } from "@components/notes/note"
 import { SharingComponent } from "./components/sharing/sharing.component"
+import { NoteForRecipientComponent } from "@components/notes/note-for-recipient"
+
 
 const routes = [
     {
@@ -40,6 +42,10 @@ const routes = [
 
         ],
 
+    },
+    {
+        path: "n/:sharingToken",
+        component: NoteForRecipientComponent,
     },
     {
         path: "**",

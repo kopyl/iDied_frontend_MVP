@@ -1,0 +1,59 @@
+<div class="container" [class.forbidden]=forbidden>
+
+    <div id="content">
+
+
+        <header>
+
+            <logo-mobile [red]="forbidden"></logo-mobile>
+
+            <button #destroyButton class="small-button-secondary red" *ngIf="!forbidden && destroyable">
+                <icon-delete></icon-delete>
+                Destroy note
+            </button>
+
+        </header>
+
+        <main>
+            <section id="content">
+
+                <div id="text" *ngIf="!forbidden">
+                    <h1>{{title}}</h1>
+                    <p>{{body}}</p>
+                </div>
+
+                <div id="forbidden-text" *ngIf="forbidden">
+                    <h1>
+                        You <span>can't read</span> the note due to some or one of following reasons:
+                    </h1>
+                    <ol>
+                        <li>
+                            Owner hasn't died
+                        </li>
+                        <li>
+                            Note link is wrong or has been revoked / unshared by owner
+                        </li>
+                        <li>
+                            Note has been deleted by the owner
+                        </li>
+                        <li>
+                            Note has been destroyed by the recepient
+                        </li>
+                        <li>
+                            Too many requests, you may be a scammer
+                        </li>
+                    </ol>
+
+                    <p>Try again later</p>
+                </div>
+
+            </section>
+
+            <persistent-alert *ngIf="forbidden">
+                We can't tell the exact reason due to security concerns
+            </persistent-alert>
+        </main>
+
+    </div>
+
+</div>

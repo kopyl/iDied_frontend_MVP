@@ -9,6 +9,8 @@ const errorMessages = {
     shareNote: "Unable to share note, try again later",
     unshareNote: "Unable to unshare note, try again later",
     revokeNote: "Unable to revoke note, try again later",
+    getNoteForRecepient: "Unable to fetch note for recipient, try again later",
+    destroyNote: "Unable to destroy note, try again later",
 }
 
 @Injectable({
@@ -34,6 +36,12 @@ export class HttpErrorHandlerService {
                 break
             case "revoke":
                 this.messageToShow = errorMessages.revokeNote
+                break
+            case "note-for-recipient-destroy":
+                this.messageToShow = errorMessages.destroyNote
+                break
+            case "note-for-recipient":
+                this.messageToShow = errorMessages.getNoteForRecepient
                 break
             default:
                 this.messageToShow = errorMessages.generic
