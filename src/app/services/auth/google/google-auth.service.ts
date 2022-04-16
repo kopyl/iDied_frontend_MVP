@@ -15,7 +15,13 @@ export class GoogleAuthService {
         private router: Router,
         private authService: SocialAuthService,
         private readonly requests: RequestsService
-    ) {}
+    ) {
+        this.authService.authState.subscribe((data) => {
+            localStorage.setItem("google_auth", JSON.stringify(data))
+            this.initJWTauth(data)
+            }
+        )
+    }
 
     fakeAuthorize() {  // to be removed on prod
         const fakeQleverusToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.oRQNI3AnbeIWmZTmkDK3MK5rJwk4VjcaHJZBJ4T8McY"
@@ -40,19 +46,7 @@ export class GoogleAuthService {
 
     authorize() {
         if (window.location.host === "192.168.0.101") return this.fakeAuthorize()  // to be removed on prod
-
-        this.authService.initState.subscribe((value: boolean) => {
-            // id.doc.id#1
-            this.authService
-                .signIn(GoogleLoginProvider.PROVIDER_ID)
-                .then((data) => {
-                    localStorage.setItem("google_auth", JSON.stringify(data))
-                    this.initJWTauth(data)
-                })
-                .catch((e) => {
-                    console.error("Login popup closed by user")
-                })
-        })
+        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
     }
 
     signOut() {
