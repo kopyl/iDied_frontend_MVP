@@ -4,6 +4,7 @@ import {
     HostListener,
     Input,
     ElementRef,
+    ViewChild,
 } from "@angular/core"
 import { popupFader, popupSlider } from "@animations"
 import { IconCloseNoteComponent } from "../icons/icon-close-note/icon-close-note.component"
@@ -38,6 +39,8 @@ export class ConfirmPopupComponent implements OnInit {
         return title
     }
 
+    constructor(private html: ElementRef<HTMLDivElement>) {}
+
     ngOnInit(): void {
         this.keydowns$
             .pipe(
@@ -52,5 +55,29 @@ export class ConfirmPopupComponent implements OnInit {
     @HostListener("document:keydown", ["$event"])
     keydown(event: KeyboardEvent) {
         this.keydowns$.next(event)
+    }
+
+    // Implementing slide down the popup on drag
+
+    @ViewChild("fg") fg
+    firstY: number
+    distance: number
+
+    touchStart($event: TouchEvent) {
+        this.firstY = $event.touches[0].clientY
+    }
+
+    touchMove($event: TouchEvent) {
+        const currentY = $event.touches[0].clientY
+        this.distance = currentY - this.firstY
+        this.fg.nativeElement.style.top = `${this.distance}px`
+    }
+
+    touchEnd($event: TouchEvent) {
+        if (this.distance > 150 || this.distance < -150) {
+            this.open = false
+        } else {
+            this.fg.nativeElement.style.top = "0px"
+        }
     }
 }

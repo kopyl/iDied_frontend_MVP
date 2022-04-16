@@ -1,6 +1,10 @@
 <div #container id="container" *ngIf="open" @popupFader>
 
-    <div id="fg" @popupFader>
+    <div id="fg" @popupFader
+    (touchstart)="touchStart($event)"
+    (touchmove)="touchMove($event)"
+    (touchend)="touchEnd($event)"
+    #fg>
         <header>
 
             <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
