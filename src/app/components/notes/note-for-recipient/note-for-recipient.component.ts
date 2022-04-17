@@ -14,6 +14,8 @@ export class NoteForRecipientComponent implements OnInit {
     title: string
     body: string
 
+    headerHidden = false
+
     constructor(
         private readonly route: ActivatedRoute,
         private readonly requests: RequestsService
@@ -46,5 +48,13 @@ export class NoteForRecipientComponent implements OnInit {
             this.insertNoteIntoUI.bind(this)
 
         this.requests.noteForRecipient.get.send(this.sharingToken)
+    }
+
+    onScroll(event) {
+        this.headerHidden = false
+        if (event.target.scrollTop > 20) {
+            this.headerHidden = true
+        }
+
     }
 }

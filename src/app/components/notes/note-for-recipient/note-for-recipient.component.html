@@ -3,7 +3,7 @@
     <div id="content">
 
 
-        <header>
+        <header [class.headerHidden]="headerHidden">
 
             <logo-mobile [red]="forbidden"></logo-mobile>
 
@@ -15,7 +15,7 @@
         </header>
 
         <main>
-            <section id="content">
+            <section id="content" (scroll)="onScroll($event)">
 
                 <div id="text" *ngIf="!forbidden">
                     <h1>{{title}}</h1>
