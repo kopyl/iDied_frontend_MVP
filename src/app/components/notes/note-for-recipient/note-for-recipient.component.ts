@@ -5,7 +5,7 @@ import {
     ViewChild,
 } from "@angular/core"
 import { RequestsService } from "@services/requests"
-import { Router, ActivatedRoute } from "@angular/router"
+import { ActivatedRoute } from "@angular/router"
 
 @Component({
     selector: "app-note-for-recipient",
