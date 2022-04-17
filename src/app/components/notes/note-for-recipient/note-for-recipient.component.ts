@@ -1,4 +1,9 @@
-import { Component, OnInit } from "@angular/core"
+import {
+    Component,
+    ElementRef,
+    OnInit,
+    ViewChild,
+} from "@angular/core"
 import { RequestsService } from "@services/requests"
 import { Router, ActivatedRoute } from "@angular/router"
 
@@ -57,6 +62,17 @@ export class NoteForRecipientComponent implements OnInit {
         if (event.target.scrollTop > 20) {
             this.headerHidden = true
         }
+    }
 
+    @ViewChild("content") content: ElementRef
+
+    onWheel(event): void {
+        if (
+            !event.target.classList.contains("container") &&
+            event.target.tagName !== "HEADER"
+        ) {
+            return
+        }
+        this.content.nativeElement.scrollTop += event.deltaY / 2
     }
 }

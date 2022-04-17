@@ -1,4 +1,4 @@
-<div class="container" [class.forbidden]=forbidden>
+<div class="container" [class.forbidden]=forbidden (wheel)="onWheel($event)">
 
     <div id="content">
 
@@ -15,7 +15,7 @@
         </header>
 
         <main>
-            <section id="content" (scroll)="onScroll($event)">
+            <section #content id="content" (scroll)="onScroll($event)">
 
                 <div id="text" *ngIf="!forbidden">
                     <h1>{{title}}</h1>
