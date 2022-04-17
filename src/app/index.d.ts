@@ -57,6 +57,12 @@ declare global {
         noteID: string
     }
 
+    interface requestURL {
+        url: string,
+        retriedAllowed: boolean,
+        errorNotification: boolean
+    }
+
 }
 
 declare module "*.svg" {

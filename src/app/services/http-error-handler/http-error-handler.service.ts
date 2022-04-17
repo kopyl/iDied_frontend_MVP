@@ -5,6 +5,7 @@ import { HttpErrorResponse } from "@angular/common/http"
 const errorMessages = {
     generic: "The backend is down, try again later",
     notesLoad: "Unable to fetch notes from server, try again later",
+    createNote: "Unable to create note, try again later",
     onlineUpdate: "Unable to save your last online, try again later",
     shareNote: "Unable to share note, try again later",
     unshareNote: "Unable to unshare note, try again later",
@@ -24,6 +25,9 @@ export class HttpErrorHandlerService {
         switch (message) {
             case "notes":
                 this.messageToShow = errorMessages.notesLoad
+                break
+            case "createNote":
+                this.messageToShow = errorMessages.createNote
                 break
             case "online":
                 this.messageToShow = errorMessages.onlineUpdate
@@ -48,8 +52,10 @@ export class HttpErrorHandlerService {
         }
     }
 
-    handle(error: HttpErrorResponse, message?: string) {
-        this.defineMessage(message!)
+    // handle(message?: string) {
+    handle(i = {error: new HttpErrorResponse({}), message: ""} as any) {
+        this.defineMessage(i.message!)
+        console.log(i, i.message, this.messageToShow)
         this.materialNotification.open(this.messageToShow, "Close", {
             duration: 5000,
             panelClass: ['notification']

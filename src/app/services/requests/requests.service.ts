@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core"
-import { Observable, throwError, timer } from "rxjs"
+import { Observable, timer } from "rxjs"
 import { HttpClient, HttpParams } from "@angular/common/http"
 import { HttpErrorHandlerService } from "@services/http-error-handler"
-import { makeUrl } from "@utils/constructors"
-import { delay, first, retryWhen, repeat, mergeMap } from "rxjs/operators"
+import { makeUrlObj } from "@utils/constructors"
+import { first, retryWhen, mergeMap } from "rxjs/operators"
 
 const port = 5001
 const protocol = "http"
@@ -12,25 +12,29 @@ const logAttempt = (attempt: number) => {
     console.log(`HTTP request attempt № ${attempt}`)
 }
 
-const exponentialRetry = () => {
-    return mergeMap((_, i) => {
-        const retryAttempt = i + 1
-        if (retryAttempt > 10) {
-            logAttempt(retryAttempt)
-            return timer(10000)
-        } else {
-            const waitms = retryAttempt * 1000
-            logAttempt(retryAttempt)
-            return timer(waitms)
-        }
-    })
-}
-
 const URLS = {
-    AUTH: makeUrl("authorize", port, protocol),
-    NOTES_PRIVATE: makeUrl("notes/private", port, protocol),
-    NOTES_PUBLIC: makeUrl("notes/public", port, protocol),
-    ONLINE: makeUrl("users/online", port, protocol),
+    AUTH: makeUrlObj({ endpoint: "authorize", port: port, protocol: protocol }),
+
+    NOTES_PRIVATE: makeUrlObj({
+        endpoint: "notes/private",
+        port: port,
+        protocol: protocol,
+    }),
+    NOTES_PUBLIC: makeUrlObj({
+        endpoint: "notes/public",
+        port: port,
+        protocol: protocol,
+        retriedAllowed: false,
+        errorNotification: false,
+    }),
+
+    ONLINE: makeUrlObj({
+        endpoint: "users/online",
+        port: port,
+        protocol: protocol,
+        retriedAllowed: false,
+        errorNotification: false,
+    }),
 }
 
 abstract class Request {
@@ -40,7 +44,7 @@ abstract class Request {
     protected errorMessage: string
     protected body: Object = {}
     protected abstract method: string
-    protected abstract URL: string
+    protected abstract URL: requestURL
 
     constructor(
         public http: HttpClient,
@@ -52,19 +56,19 @@ abstract class Request {
 
     protected makeRequest() {
         if (this.method === "GET") {
-            this.request = this.http.get(this.URL, {
+            this.request = this.http.get(this.URL.url, {
                 params: this.params,
             })
         } else if (this.method === "POST") {
-            this.request = this.http.post(this.URL, this.body, {
+            this.request = this.http.post(this.URL.url, this.body, {
                 params: this.params,
             })
         } else if (this.method === "PUT") {
-            this.request = this.http.put(this.URL, this.body, {
+            this.request = this.http.put(this.URL.url, this.body, {
                 params: this.params,
             })
         } else if (this.method === "DELETE") {
-            this.request = this.http.delete(this.URL, {
+            this.request = this.http.delete(this.URL.url, {
                 params: this.params,
                 body: this.body,
             })
@@ -75,39 +79,48 @@ abstract class Request {
         this.success = func
     }
 
+    private exponentialRetry() {
+        return mergeMap((_, i) => {
+            const retryAttempt = i + 1
+            if (retryAttempt > 10) {
+                logAttempt(retryAttempt)
+                this.HTTPErrorHandler.handle({message: this.errorMessage})
+                return timer(10000)
+            } else {
+                const waitms = retryAttempt * 1000
+                logAttempt(retryAttempt)
+                if (retryAttempt % 3 === 0) {
+                    this.HTTPErrorHandler.handle({message: this.errorMessage})
+                }
+                return timer(waitms)
+            }
+        })
+    }
+
     public send(kwargs: any = null): void {
         this.makeParams(kwargs)
         this.makeBody(kwargs)
         this.makeRequest()
 
-        const actions = {
-            error: (error) =>
-                this.HTTPErrorHandler.handle(error, this.errorMessage),
-        }
+        const actions = {}
 
-        if (this.URL.includes("notes/public")) {
+        if (!this.URL.errorNotification) {
             actions["error"] = (error) => {}
+        } else {
+            actions["error"] = (error) =>
+                this.HTTPErrorHandler.handle({message: this.errorMessage})
         }
 
         if (this.success) {
             actions["next"] = this.success
         }
 
-        if (this.URL.includes("online")) {
-            // no infinite retries since it's alredy in loop
-            this.request.subscribe(actions)
-        } else if (this.URL.includes("notes/public")) {
-            // no infinite retries since it may get a user rate limited in case of an error
+        if (!this.URL.retriedAllowed) {
             this.request.subscribe(actions)
         } else {
-            // infinite requests till success
             this.request
                 .pipe(
-                    retryWhen((errors) =>
-                        errors.pipe(
-                            exponentialRetry()
-                        )
-                    ),
+                    retryWhen((errors) => errors.pipe(this.exponentialRetry())),
                     first((v) => true)
                 )
                 .subscribe(actions)
@@ -165,7 +178,9 @@ class SaveNote extends Request {
     }
 }
 
-class CreateNote extends SaveNote {}
+class CreateNote extends SaveNote {
+    override errorMessage = "createNote"
+}
 
 class RemoveNote extends Request {
     method = "DELETE"
