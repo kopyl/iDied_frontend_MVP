@@ -1,12 +1,30 @@
 import { Injectable } from "@angular/core"
-import { Observable } from "rxjs"
+import { Observable, throwError, timer } from "rxjs"
 import { HttpClient, HttpParams } from "@angular/common/http"
 import { HttpErrorHandlerService } from "@services/http-error-handler"
 import { makeUrl } from "@utils/constructors"
-import { delay, first, retryWhen, repeat } from "rxjs/operators"
+import { delay, first, retryWhen, repeat, mergeMap } from "rxjs/operators"
 
 const port = 5001
 const protocol = "http"
+
+const logAttempt = (attempt: number) => {
+    console.log(`HTTP request attempt № ${attempt}`)
+}
+
+const exponentialRetry = () => {
+    return mergeMap((_, i) => {
+        const retryAttempt = i + 1
+        if (retryAttempt > 10) {
+            logAttempt(retryAttempt)
+            return timer(10000)
+        } else {
+            const waitms = retryAttempt * 1000
+            logAttempt(retryAttempt)
+            return timer(waitms)
+        }
+    })
+}
 
 const URLS = {
     AUTH: makeUrl("authorize", port, protocol),
@@ -85,7 +103,11 @@ abstract class Request {
             // infinite requests till success
             this.request
                 .pipe(
-                    retryWhen((errors) => errors.pipe(delay(1000), repeat())),
+                    retryWhen((errors) =>
+                        errors.pipe(
+                            exponentialRetry()
+                        )
+                    ),
                     first((v) => true)
                 )
                 .subscribe(actions)
