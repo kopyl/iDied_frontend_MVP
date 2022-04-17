@@ -25,6 +25,8 @@ li
 
 div.container
 
+
+
     height: 100%
 
     display: grid
@@ -39,6 +41,9 @@ div.container
     div#content
         width: 750px
         height: 100%
+
+        display: grid
+        grid-template-rows: max-content 1fr
 
         overflow: hidden
 
@@ -60,7 +65,7 @@ div.container
 
             &.headerHidden
                 height: 0
-                padding-top: 0
+                padding-top: 5px
                 padding-bottom: 0
 
 
@@ -108,3 +113,6 @@ div.container.forbidden div#content main section#content
 persistent-alert
     @media screen and ( max-width:  $min-mobile-width)
         width: 100vw
+
+    // position: absolute
+    // bottom: 0
