@@ -44,8 +44,6 @@ export class NoteForRecipientComponent implements OnInit {
 
         const note = backendResponse.notes[0]
 
-        console.log(backendResponse, note)
-
         this.title = note.title
         this.body = note.body
     }
