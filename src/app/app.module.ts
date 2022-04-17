@@ -53,6 +53,7 @@ import { SharingComponent } from './components/sharing/sharing.component';
 import { IconShareGlobeComponent } from './components/icons/icon-share-globe/icon-share-globe.component';
 import { IconRevokeComponent } from './components/icons/icon-revoke/icon-revoke.component';
 import { IconCopyComponent } from './components/icons/icon-copy/icon-copy.component';
+import { LoaderMobileComponent } from './components/loader-mobile/loader-mobile.component';
 
 
 const CLIENT_ID =
@@ -110,6 +111,7 @@ const authInterceptorProvider = {
         IconRevokeComponent,
         IconCopyComponent,
         NoteForRecipientComponent,
+        LoaderMobileComponent,
     ],
     imports: [
         BrowserModule,

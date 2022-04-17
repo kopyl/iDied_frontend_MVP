@@ -1,12 +1,19 @@
 <!-- <p>{{activeNote?.sharingToken}}</p> -->
 
+<!-- <loader-mobile [visible]="loaderVisible"></loader-mobile>
+<loader [visible]="loaderVisible"></loader> -->
+
 <div id="container">
+
+    <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <div id="top-part">
 
         <header>
 
             <h1>Sharing</h1>
+
+            <loader [visible]="loaderVisible"></loader>
 
 
             <button id="close-note" class="small-button-icon-only" (click)="closeSharingWindow()">

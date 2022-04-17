@@ -89,6 +89,33 @@ export const fadeInOut = trigger("fadeInOut", [
     transition("* <=> void", [animate(150)]),
 ])
 
+
+
+export const expandRightLine = trigger("expandRightLine", [
+    state(
+        "void",
+        style({width: "0%"})
+    ),
+    state(
+        "*",
+        style({width: "100%"})
+    ),
+
+    transition("void => *", [animate("10s")]),
+
+    transition("* => void", [animate(250,
+        keyframes([
+            style({width: "100%", opacity: "1", offset: 0}),
+            style({width: "100%", opacity: "1", offset: 0.5}),
+            style({width: "100%", opacity: "0", offset: 1}),
+        ])
+    )]),
+])
+
+
+
+
+
 // export const popupSlider = trigger("popupSlider", [
 //     state(
 //         "void",

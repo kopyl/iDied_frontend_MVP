@@ -24,7 +24,8 @@ export class GoogleAuthService {
     }
 
     fakeAuthorize() {  // to be removed on prod
-        const fakeQleverusToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.oRQNI3AnbeIWmZTmkDK3MK5rJwk4VjcaHJZBJ4T8McY"
+        // const fakeQleverusToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.oRQNI3AnbeIWmZTmkDK3MK5rJwk4VjcaHJZBJ4T8McY"
+        const fakeQleverusToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.Uo_Eixzl8CEScCWjtXhRDojM1nsbyp_uutY2qtbOnLk"
         localStorage.setItem("google_auth", "{}")
         localStorage.setItem("jwt_token", fakeQleverusToken)
         this.router.navigate(["/notes"])

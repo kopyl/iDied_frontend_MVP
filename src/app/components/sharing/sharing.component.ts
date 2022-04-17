@@ -9,6 +9,9 @@ import { RequestsService } from "@services/requests"
     styleUrls: ["./sharing.component.sass"],
 })
 export class SharingComponent implements OnInit {
+    loaderVisible = false
+
+
     @Input("activeNote") activeNote: frontendNote
     @Input("confirmPopup") confirmPopup: ConfirmPopupComponent
 
@@ -46,12 +49,14 @@ export class SharingComponent implements OnInit {
     unshare() {
         this.requests.notes.unshare.onSuccess =
             this.removeSharingToken.bind(this)
+        this.loaderVisible = true
         this.requests.notes.unshare.send(this.activeNote)
     }
 
     removeSharingToken(): void {
         this.activeNote.sharingToken = ""
         this.activeNote.isShared = false
+        this.loaderVisible = false
         this.sharingCloseEvent.emit()
     }
 
@@ -66,12 +71,14 @@ export class SharingComponent implements OnInit {
     revoke(): void {
             this.requests.notes.revoke.onSuccess =
                 this.revokeSharingToken.bind(this)
+                this.loaderVisible = true
             this.requests.notes.revoke.send(this.activeNote)
         }
 
     revokeSharingToken(backendResponse: backend_notes_response): void {
         const sharingToken = backendResponse.notes[0].sharing_token
         this.activeNote.sharingToken = sharingToken
+        this.loaderVisible = false
         this.notifyAboutRevokedLink()
     }
 

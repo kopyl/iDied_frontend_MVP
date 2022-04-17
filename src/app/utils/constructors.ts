@@ -24,8 +24,8 @@ export const makeUrl = (
         return `https://` + `idied.org/` + `api/` + `${a.endpoint}`
     }
 
-    return `http://` + `localhost:5001/` + `${a.endpoint}`
-    // return `https://` + `idied.org/` + `api/` + `${endpoint}`
+    // return `http://` + `localhost:5001/` + `${a.endpoint}`
+    return `https://` + `idied.org/` + `api/` + `${a.endpoint}`
 
     // return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
 }

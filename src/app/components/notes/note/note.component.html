@@ -1,10 +1,16 @@
+
+
 <div id="container" [class.alertVisible]="alertVisible">
+
+    <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <header id="note-controls">
 
         <button class="small-button-icon-only red" (click)="removeNote()">
             <icon-delete></icon-delete>
         </button>
+
+        <loader [visible]="loaderVisible"></loader>
 
         <button id="share" class=small-button-secondary (click)="shareNote()">
             <icon-share></icon-share>

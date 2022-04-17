@@ -217,6 +217,7 @@ export class NotesComponent implements OnInit {
             (note: frontendNote) => note.id !== backendResponse.notes[0].id
         )
 
+        this.loaderVisible = false
         this.scrollToFirstNote()
         this.setActiveNote()
         this.toggleFormFocus()
@@ -225,6 +226,7 @@ export class NotesComponent implements OnInit {
 
     sendNoteRemovalRequest(): void {
         this.requests.notes.remove.onSuccess = this.removeNoteFromUI.bind(this)
+        this.loaderVisible = true
         this.requests.notes.remove.send(this.activeNote)
     }
 

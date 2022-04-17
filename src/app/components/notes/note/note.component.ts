@@ -32,6 +32,7 @@ import { FormBuilder } from "@angular/forms"
 export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     alertVisible = false
     textareaInFocus = false
+    loaderVisible = false
 
     saveNotesSubscription$ = new Subscription()
     saveNotesBuffer$ = new Subject()
@@ -123,10 +124,12 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         this.saveNotesSubscription$ = saveNotesPipe$.subscribe(
             (activeNote: frontendNote) => {
                 if (activeNote.changesSynced) return
+                this.loaderVisible = true
                 activeNote.changesSynced = true
                 const noteToSend = { ...activeNote }
                 delete noteToSend.createdAt
                 delete noteToSend.changesSynced
+                this.requests.notes.save.onSuccess = () => {this.loaderVisible = false}
                 this.requests.notes.save.send(noteToSend)
             }
         )
@@ -158,6 +161,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         const sharingToken = backendResponse.notes[0].sharing_token
         this.activeNote.sharingToken = sharingToken
         this.activeNote.isShared = true
+        this.loaderVisible = false
         this.openSharingViewEvent.emit()
     }
 
@@ -165,6 +169,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         if (this.activeNote.isShared) {
             return this.openSharingViewEvent.emit()
         }
+        this.loaderVisible = true
         this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
         this.requests.notes.share.send(this.activeNote)
     }

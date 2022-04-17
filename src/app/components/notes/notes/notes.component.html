@@ -2,6 +2,8 @@
 
 <div id=notes-page-container [class.notesEditing]="notesEditing">
 
+    <loader-mobile [visible]="loaderVisible"></loader-mobile>
+
     <div id="sidebar">
         <div id="logo">
             <icon-logo routerLink="/" color="black"></icon-logo>
@@ -57,7 +59,6 @@
 
 
         <div id="list" #notesListHTML>
-            <loader [visible]="loaderVisible"></loader>
 
             <ul>
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
