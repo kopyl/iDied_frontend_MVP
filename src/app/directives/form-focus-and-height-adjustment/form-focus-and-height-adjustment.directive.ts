@@ -26,8 +26,7 @@ export class FormFocusAndHeightAdjustmentDirective implements OnChanges {
         textArea.style.height = scrollHeight + "px"
 
 
-        if(this.el.nativeElement.id === "body") return
-
-        textArea.focus()
+        // if(this.el.nativeElement.id === "body") return
+        // textArea.focus()
     }
 }
