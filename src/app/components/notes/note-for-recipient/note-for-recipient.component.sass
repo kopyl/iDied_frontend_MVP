@@ -59,7 +59,7 @@ div.container
             padding-top: 30px
             padding-bottom: 30px
             overflow: hidden
-            height: 99px
+            height: 89px
 
             transition: all .15s ease-in-out
 
@@ -85,7 +85,8 @@ div.container
                 border-radius: 7px
                 background-color: $bisque-light
 
-                overflow: scroll
+                overflow-y: scroll
+                overflow-x: hidden  // to hide vertical scrollbar on Windows Google Chrome v100.0.4896.88
 
                 @media screen and ( max-width:  $min-mobile-width)
                     margin: 0 5px 0 5px
