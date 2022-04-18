@@ -22,6 +22,7 @@
     "@angular/router": "~13.0.0",
     "angular-telegram-login-widget": "^0.2.2",
     "angularx-social-login": "^4.1.0",
+    "ngx-cookie-service": "^13.2.0",
     "rxjs": "7.1",
     "rxjs-boost": "^1.1.1",
     "tslib": "^2.3.0",

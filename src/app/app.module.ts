@@ -8,6 +8,7 @@ import {
     SocialLoginModule,
     SocialAuthServiceConfig,
 } from "angularx-social-login"
+import { CookieService } from "ngx-cookie-service"
 
 import { AngularTelegramLoginWidgetModule } from "angular-telegram-login-widget"
 
@@ -20,9 +21,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar"
 import { HttpClientModule } from "@angular/common/http"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
-import { ClipboardModule } from '@angular/cdk/clipboard';
+import { ClipboardModule } from "@angular/cdk/clipboard"
 
-import { ConfirmPopupComponent } from '@components/confirmation-popup';
+import { ConfirmPopupComponent } from "@components/confirmation-popup"
 
 import { UnauthorizedComponent } from "@components/unauthorized"
 import { NotFoundComponent } from "@components/not-found"
@@ -31,30 +32,29 @@ import { MainPageComponent } from "@components/main-page"
 import { NotificationComponent } from "@components/notification"
 import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
-import { LoaderComponent } from './components/loader/loader.component';
+import { LoaderComponent } from "./components/loader/loader.component"
 import { NoteForRecipientComponent } from "@components/notes/note-for-recipient"
 
-import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment";
-import { FixTextAreaTitleSizeOnDocumentResizeDirective } from '@directives/fix-text-area-size-on-document-resize'
+import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment"
+import { FixTextAreaTitleSizeOnDocumentResizeDirective } from "@directives/fix-text-area-size-on-document-resize"
 
-import { IconArrowRightComponent } from './components/icons/icon-arrow-right/icon-arrow-right.component';
-import { IconNotesComponent } from './components/icons/icon-notes/icon-notes.component';
-import { IconGoogleComponent } from './components/icons/icon-google/icon-google.component';
-import { IconSignOutComponent } from './components/icons/icon-sign-out/icon-sign-out.component';
-import { IconLogoComponent } from './components/icons/icon-logo/icon-logo.component';
-import { IconShareComponent } from './components/icons/icon-share/icon-share.component';
-import { IconDeleteComponent } from './components/icons/icon-delete/icon-delete.component';
-import { IconHideKeyboardComponent } from './components/icons/icon-hide-keyboard/icon-hide-keyboard.component';
-import { IconCloseNoteComponent } from './components/icons/icon-close-note/icon-close-note.component';
-import { LogoMobileComponent } from './components/icons/logo-mobile/logo-mobile.component';
-import { PersistentAlertComponent } from './components/persistent-alert/persistent-alert/persistent-alert.component';
-import { IconWarningComponent } from './components/icons/icon-warning/icon-warning.component';
-import { SharingComponent } from './components/sharing/sharing.component';
-import { IconShareGlobeComponent } from './components/icons/icon-share-globe/icon-share-globe.component';
-import { IconRevokeComponent } from './components/icons/icon-revoke/icon-revoke.component';
-import { IconCopyComponent } from './components/icons/icon-copy/icon-copy.component';
-import { LoaderMobileComponent } from './components/loader-mobile/loader-mobile.component';
-
+import { IconArrowRightComponent } from "./components/icons/icon-arrow-right/icon-arrow-right.component"
+import { IconNotesComponent } from "./components/icons/icon-notes/icon-notes.component"
+import { IconGoogleComponent } from "./components/icons/icon-google/icon-google.component"
+import { IconSignOutComponent } from "./components/icons/icon-sign-out/icon-sign-out.component"
+import { IconLogoComponent } from "./components/icons/icon-logo/icon-logo.component"
+import { IconShareComponent } from "./components/icons/icon-share/icon-share.component"
+import { IconDeleteComponent } from "./components/icons/icon-delete/icon-delete.component"
+import { IconHideKeyboardComponent } from "./components/icons/icon-hide-keyboard/icon-hide-keyboard.component"
+import { IconCloseNoteComponent } from "./components/icons/icon-close-note/icon-close-note.component"
+import { LogoMobileComponent } from "./components/icons/logo-mobile/logo-mobile.component"
+import { PersistentAlertComponent } from "./components/persistent-alert/persistent-alert/persistent-alert.component"
+import { IconWarningComponent } from "./components/icons/icon-warning/icon-warning.component"
+import { SharingComponent } from "./components/sharing/sharing.component"
+import { IconShareGlobeComponent } from "./components/icons/icon-share-globe/icon-share-globe.component"
+import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.component"
+import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
+import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
 
 const CLIENT_ID =
     "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
@@ -123,9 +123,9 @@ const authInterceptorProvider = {
         MatSnackBarModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        ClipboardModule
+        ClipboardModule,
     ],
-    providers: [GoogleLogingProvider, authInterceptorProvider],
+    providers: [GoogleLogingProvider, authInterceptorProvider, CookieService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
