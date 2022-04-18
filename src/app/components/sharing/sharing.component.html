@@ -32,7 +32,13 @@
 
         <section id="access-buttons-copy-unshare-revoke">
 
-            <button id="copy-link" class="small-button-secondary" [cdkCopyToClipboard]="sharingLink"
+            <button id="copy-link" class="small-button-secondary copy" [cdkCopyToClipboard]="sharingLink"
+                (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
+                <icon-copy></icon-copy>
+                <span>Copy link</span>
+            </button>
+
+            <button id="copy-link" class="small-button-primary white-icon mobile-copy" [cdkCopyToClipboard]="sharingLink"
                 (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
                 <icon-copy></icon-copy>
                 <span>Copy link</span>

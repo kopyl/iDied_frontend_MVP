@@ -1,5 +1,3 @@
-
-
 <div id="container" [class.alertVisible]="alertVisible">
 
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
@@ -12,7 +10,14 @@
 
         <loader [visible]="loaderVisible"></loader>
 
-        <button id="share" class=small-button-secondary (click)="shareNote()">
+        <button id="share" class="small-button-secondary" (click)="shareNote()">
+            <icon-share></icon-share>
+            {{activeNote?.isShared ? 'Sharing settings' : 'Share'}}
+        </button>
+
+        <button id="mobile-share" class="small-button-primary white-icon"
+
+            (click)="shareNote()">
             <icon-share></icon-share>
             {{activeNote?.isShared ? 'Sharing settings' : 'Share'}}
         </button>
@@ -30,15 +35,17 @@
 
             <div id="scrollable">
 
-            <textarea name="tite" id="title" rows="1" data-gramm="false"
-                [formFocusAndHeightAdjustment]=toggleFormFocus
-                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-                onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-                onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-                formControlName="title">
+                <textarea name="tite" id="title" rows="1" data-gramm="false"
+                    [formFocusAndHeightAdjustment]=toggleFormFocus
+                    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                    placeholder="Add title"
+                    onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                    placeholder="Add title"
+                    onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                    placeholder="Add title" formControlName="title">
             </textarea>
 
-            <!-- <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
+                <!-- <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
                 oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
                 placeholder="Add description"
                 onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
@@ -46,14 +53,13 @@
                 formControlName="body">
             </textarea> -->
 
-            <section id="body" onclick="this.firstChild.focus()">
-            <textarea name="body" id="body"
-                [formFocusAndHeightAdjustment]=toggleFormFocus
-                placeholder="Add description"
-                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' placeholder="Add title"
-                formControlName="body">
+                <section id="body" onclick="this.firstChild.focus()">
+                    <textarea name="body" id="body" [formFocusAndHeightAdjustment]=toggleFormFocus
+                        placeholder="Add description"
+                        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                        placeholder="Add title" formControlName="body">
             </textarea>
-            </section>
+                </section>
 
             </div>
 
@@ -62,7 +68,8 @@
 
     <div [class.visible]="alertVisible" class="bottom-alert">
         <div class="alert">
-            <persistent-alert>Any SHARED note will become accessible by a link unless you log in for 30 days</persistent-alert>
+            <persistent-alert>Any SHARED note will become accessible by a link unless you log in for 30 days
+            </persistent-alert>
         </div>
     </div>
 

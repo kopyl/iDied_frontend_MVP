@@ -82,6 +82,8 @@ section
         grid-column: 1 / -1
 
 
+
+
     button
         justify-content: center
 
@@ -123,3 +125,34 @@ div.bottom-alert
 
 .notification
     background-color: red
+
+
+
+button.mobile-copy
+    display: none
+    gap: 14px
+
+    icon-copy
+        grid-column: 1
+        margin-left: 0
+
+    @media screen and ( max-width:  $min-mobile-width)
+        display: grid
+
+
+
+
+button.copy
+    display: none
+
+    @media screen and ( min-width:  $min-mobile-width)
+        display: grid
+    // @media screen and ( max-height: $small-mobile-height)
+    //     display: none
+
+
+
+
+
+
+
