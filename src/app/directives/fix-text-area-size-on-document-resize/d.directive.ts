@@ -13,9 +13,15 @@ export class FixTextAreaTitleSizeOnDocumentResizeDirective {
 
         const form = this.el.nativeElement
         const textAreas = {
-            title: form.children[0] as HTMLTextAreaElement,
-            body: form.children[1] as HTMLTextAreaElement,
+            title: form.children[0].children[0] as HTMLTextAreaElement,
+            body: form.children[0].children[1].children[0] as HTMLTextAreaElement,
         }
+
+        textAreas.title.style.height = "0px"
+        textAreas.title.style.height = textAreas.title.scrollHeight + "px"
+
+        textAreas.body.style.height = "0px"
+        textAreas.body.style.height = textAreas.body.scrollHeight + "px"
 
         if (activeElement?.id === "title" || activeElement?.id === "") {
             textAreas.title.focus()
