@@ -9,6 +9,7 @@ import { ViewChild, ElementRef } from "@angular/core"
 import { noteItem, fadeInOut } from "@animations"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
 import { NoteComponent } from "@components/notes/note"
+import { CookieService } from "ngx-cookie-service"
 
 @Component({
     selector: "app-notes",
@@ -41,11 +42,11 @@ export class NotesComponent implements OnInit {
         private pageTitle: Title,
         private router: Router,
         private readonly requests: RequestsService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private cookies: CookieService
     ) {}
 
     ngOnInit(): void {
-
         // console.log(this.route.snapshot.url)
 
         this.googleAuth.accessControl()
@@ -62,7 +63,6 @@ export class NotesComponent implements OnInit {
 
         this.handleiOSnavigateBySwipeLeft()
 
-
         if (!this.notes.length) {
             // id.doc.id#4
             this.router.navigate(["/notes"])
@@ -70,14 +70,20 @@ export class NotesComponent implements OnInit {
 
         this.findOutifUserClosedNoteAtLeastOnce()
 
-
         this.sharingInUrl = this.router.parseUrl(
             this.router.url
         )?.root?.children["primary"]?.segments[2]?.path
 
-
+        this.cookies.set(
+            "jwt",
+            this.googleAuth.jwtToken,
+            9999999999,
+            "/",
+            "idied.org",
+            true,
+            "Strict"
+        )
     }
-
 
     findOutifUserClosedNoteAtLeastOnce() {
         let userClosedAtLeasOneNote = localStorage.getItem(
@@ -152,7 +158,9 @@ export class NotesComponent implements OnInit {
                     backendResponse.notes
                 ) as frontendNote[])
             )
-            setTimeout(() => {this.firstLoadedIntoUI = true}, 0)
+            setTimeout(() => {
+                this.firstLoadedIntoUI = true
+            }, 0)
 
             this.notes.forEach((note: frontendNote) => {
                 note.changesSynced = true
@@ -231,7 +239,7 @@ export class NotesComponent implements OnInit {
     }
 
     sendRemovalConfirmation(): void {
-        this.confirmPopup.type = 'noteRemoval'
+        this.confirmPopup.type = "noteRemoval"
         this.confirmPopup.open = true
         this.confirmPopup.onSuccess = this.sendNoteRemovalRequest.bind(this)
     }
@@ -302,8 +310,7 @@ export class NotesComponent implements OnInit {
         this.router.navigate(["/notes", this.activeNote.id])
     }
 
-    logCopied(){
-        console.log('copied')
+    logCopied() {
+        console.log("copied")
     }
-
 }
