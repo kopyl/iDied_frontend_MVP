@@ -78,6 +78,7 @@ export class NotesComponent implements OnInit {
 
         this.cookies.set(
             "jwt",
+            "jwt_token",
             this.googleAuth.jwtToken,
             9999999999,
             "/",
