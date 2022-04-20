@@ -4,7 +4,6 @@ import {
     Input,
     OnChanges,
     SimpleChanges,
-    OnInit
 } from "@angular/core"
 
 @Directive({
