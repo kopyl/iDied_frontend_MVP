@@ -23,7 +23,11 @@ export class FormFocusAndHeightAdjustmentDirective implements OnChanges {
         const scrollHeight = textArea.scrollHeight
 
 
-        textArea.style.height = scrollHeight + "px"
+        textArea.style.height = scrollHeight+1 + "px"
+        /* fix issues where pop up opens on initial load
+        and makes the textarea 1px smaller than it should be
+        for some reason
+        */
 
 
         // if(this.el.nativeElement.id === "body") return
