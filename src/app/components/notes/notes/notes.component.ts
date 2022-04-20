@@ -10,12 +10,14 @@ import { noteItem, fadeInOut } from "@animations"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
 import { NoteComponent } from "@components/notes/note"
 import { CookieService } from "ngx-cookie-service"
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.sass"],
     animations: [noteItem, fadeInOut],
+    encapsulation: ViewEncapsulation.None
 })
 export class NotesComponent implements OnInit {
     notes: Array<frontendNote> = []
