@@ -83,6 +83,7 @@ export class NotesComponent implements OnInit {
             9999999999,
             "/",
             "idied.org",
+            window.location.host,
             true,
             "Strict"
         )
