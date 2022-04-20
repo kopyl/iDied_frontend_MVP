@@ -176,6 +176,13 @@ div#notes-page-container
                         align-self: baseline
                         white-space: inherit
 
+                    &:not(.active):hover circle
+                        fill: transparent
+
+                    &.active circle
+                        fill: $black
+                        opacity: .3
+
                     &:not(.active):hover
                         background-color: $red
 
@@ -232,3 +239,9 @@ div#notes #list
         //     left: 50%
         //     top: 50%
         //     transform: translate(-50%, -50%)
+
+
+
+
+
+
