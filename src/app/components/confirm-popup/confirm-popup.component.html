@@ -62,19 +62,25 @@
 
             <button class="action small-button-primary white-icon" *ngIf=" type === 'noteRemoval' "
                 (click)="this.onSuccess() ; open = false">
-                <icon-delete></icon-delete>
+                <div class="icon">
+                    <icon-delete></icon-delete>
+                </div>
                 <span> Remove note </span>
             </button>
 
             <button class="action small-button-primary white-icon" *ngIf=" type === 'noteUnshare' "
                 (click)="this.onSuccess() ; open = false">
-                <icon-share></icon-share>
+                <div class="icon">
+                    <icon-share></icon-share>
+                </div>
                 <span> Unshare note </span>
             </button>
 
             <button class="action small-button-primary white-icon" *ngIf=" type === 'linkRevoke' "
                 (click)="this.onSuccess() ; open = false">
-                <icon-revoke></icon-revoke>
+                <div class="icon">
+                    <icon-revoke></icon-revoke>
+                </div>
                 <span> Revoke link </span>
             </button>
 
