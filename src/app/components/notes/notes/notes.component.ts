@@ -20,6 +20,7 @@ import { ViewEncapsulation } from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class NotesComponent implements OnInit {
+
     notes: Array<frontendNote> = []
     activeNote: frontendNote
     formFocused: boolean
@@ -77,12 +78,10 @@ export class NotesComponent implements OnInit {
         )?.root?.children["primary"]?.segments[2]?.path
 
         this.cookies.set(
-            "jwt",
             "jwt_token",
             this.googleAuth.jwtToken,
             9999999999,
             "/",
-            "idied.org",
             window.location.host,
             true,
             "Strict"
@@ -171,7 +170,7 @@ export class NotesComponent implements OnInit {
             })
 
             this.setActiveNote(newNote)
-            this.scrollToFirstNote()
+            this.scrollToActiveNote()
             this.toggleFormFocus()
 
             if (
@@ -230,7 +229,7 @@ export class NotesComponent implements OnInit {
         )
 
         this.loaderVisible = false
-        this.scrollToFirstNote()
+        this.scrollToActiveNote()
         this.setActiveNote()
         this.toggleFormFocus()
         this.closeNote()
@@ -265,7 +264,7 @@ export class NotesComponent implements OnInit {
         return false
     }
 
-    scrollToFirstNote(): void {
+    scrollToActiveNote(): void {
         let selectedNoteOrder = this.selectedNoteIndex + 1 || 1
         const scrollPosotion =
             (selectedNoteOrder - 1) * 39 + (selectedNoteOrder - 1) * 5
@@ -300,7 +299,7 @@ export class NotesComponent implements OnInit {
         this.notesEditing = false
         this.router.navigate(["/notes"])
         this.setSelectedNoteIndex()
-        this.scrollToFirstNote()
+        this.scrollToActiveNote()
         localStorage.setItem("userClosedAtLeasOneNote", "true")
     }
 
