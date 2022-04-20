@@ -28,8 +28,8 @@ export class ConfirmPopupComponent implements OnInit {
 
     open = false
     public confirmButtonComponent = IconCloseNoteComponent
-    public onSuccess: Function
     public type: "noteRemoval" | "noteUnshare" | "linkRevoke" = "noteRemoval"
+    public onSuccess = () => {}
 
     get activeNoteTitle(): string {
         const title = this.activeNote.title
