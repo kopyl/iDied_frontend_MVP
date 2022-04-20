@@ -179,6 +179,9 @@ div#notes-page-container
                     &:not(.active):hover circle
                         fill: transparent
 
+                        @media (hover: none)  // remove hover on mobiles
+                            fill: $brown-light
+
                     &.active circle
                         fill: $black
                         opacity: .3
