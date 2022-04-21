@@ -29,7 +29,14 @@ export class FormFocusAndHeightAdjustmentDirective implements OnChanges {
         */
 
 
-        // if(this.el.nativeElement.id === "body") return
-        // textArea.focus()
+
+
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) return
+        // true for mobile device
+
+        // false for not mobile device
+        if(this.el.nativeElement.id === "body") return
+        textArea.focus()
+
     }
 }
