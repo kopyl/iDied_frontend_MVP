@@ -25,7 +25,7 @@ div#notes-page-container
             display: none
 
         display: grid
-        grid-template-rows: 99px auto 39px
+        grid-template-rows: 99px auto auto
         padding: 58px 30px 50px 30px
 
         & section#buttons
@@ -33,8 +33,17 @@ div#notes-page-container
             align-content: start
             gap: 15px
 
-        button#sign-out
+        button#sign-out, button#go-pro
             justify-content: left
+
+        & section#bottom-buttons
+            display: grid
+            align-content: end
+            gap: 15px
+
+            button#go-pro icon-sign-out
+                transform: scaleX(-1)
+
 
     header
         color: $black-dark
