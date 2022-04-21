@@ -5,9 +5,23 @@
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <div id="sidebar">
-        <div id="logo">
-            <icon-logo routerLink="/" color="black"></icon-logo>
-        </div>
+
+
+        <header>
+
+            <div id="logo">
+                <icon-logo routerLink="/" color="black"></icon-logo>
+            </div>
+
+            <div id="pro-button">
+                <a href="https://idied.org/api/payment">
+                    <button id="notes-link" class='small-button-primary pro-button'>
+                        Go pro
+                    </button>
+                </a>
+            </div>
+
+        </header>
 
         <section id="buttons">
 
@@ -36,10 +50,11 @@
             <h1>Notes</h1>
         </div>
 
-        <button id="sign-out" class=small-button-secondary (click)=googleAuth.signOutAndGoToMain()>
-            <icon-sign-out></icon-sign-out>
-            Sign out
-        </button>
+        <a href="https://idied.org/api/payment">
+            <button id="notes-link" class='small-button-primary pro-button'>
+                Go pro
+            </button>
+        </a>
 
     </header>
 
@@ -98,11 +113,6 @@
 
         <sharing [activeNote]="activeNote" *ngIf="sharingView" (sharingCloseEvent)="closeSharingView()"
             [confirmPopup]="confirmPopup" (copied)=logCopied()></sharing>
-
-
-
-        <!-- <router-outlet name="sharing" ></router-outlet> -->
-        <!-- <router-outlet name="sharing" *ngIf="sharingView"></router-outlet> -->
 
     </div>
 

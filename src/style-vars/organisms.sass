@@ -99,6 +99,22 @@
         margin-right: 0
         margin-left: 14px
 
+@mixin pro-button
+    background-color: rgba($red, 0.05)
+    color: $red
+
+    border: 2px solid rgba($red, .08)
+
+    &:hover
+
+        color: $white
+        background-color: $red
+
+        @media (hover: none)  // remove hover on mobiles
+            background-color: rgba($red, 0.05)
+            color: $red
+
+
 @mixin small-button-secondary
     @include small-button-base
 

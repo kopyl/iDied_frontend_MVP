@@ -24,9 +24,16 @@ div#notes-page-container
         @media screen and ( max-width:  $min-mobile-width)
             display: none
 
+        header
+            display: grid
+            grid-auto-flow: column
+            align-items: center
+            align-content: baseline
+
+
         display: grid
-        grid-template-rows: 99px auto auto
-        padding: 58px 30px 50px 30px
+        grid-template-rows: 107px auto auto
+        padding: 50px 30px 50px 30px
 
         & section#buttons
             display: grid
@@ -43,6 +50,7 @@ div#notes-page-container
 
             button#go-pro icon-sign-out
                 transform: scaleX(-1)
+
 
 
     header
