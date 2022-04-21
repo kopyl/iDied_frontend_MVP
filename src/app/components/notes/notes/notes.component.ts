@@ -77,15 +77,7 @@ export class NotesComponent implements OnInit {
             this.router.url
         )?.root?.children["primary"]?.segments[2]?.path
 
-        this.cookies.set(
-            "jwt_token",
-            this.googleAuth.jwtToken,
-            9999999999,
-            "/",
-            window.location.host,
-            true,
-            "Strict"
-        )
+
     }
 
     findOutifUserClosedNoteAtLeastOnce() {
