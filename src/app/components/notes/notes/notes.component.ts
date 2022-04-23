@@ -117,9 +117,9 @@ export class NotesComponent implements OnInit {
         }
     }
 
-    setActiveNote(newNote = false): void {
+    setActiveNote(addingNotesFromCreation = false): void {
         this.activeNote = this.notes[0]
-        if (newNote) return
+        if (addingNotesFromCreation) return
         if (this.noteFromUrlId) {
             this.activeNote =
                 this.notes.find((el) => el.id === this.noteFromUrlId) ??
@@ -147,7 +147,7 @@ export class NotesComponent implements OnInit {
 
     addNotes(
         backendResponse: backend_notes_response | backend_init_notes_response,
-        newNote = false
+        addingNotesFromCreation = false
     ): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
@@ -168,7 +168,7 @@ export class NotesComponent implements OnInit {
                 note.changesSynced = true
             })
 
-            this.setActiveNote(newNote)
+            this.setActiveNote(addingNotesFromCreation)
             this.scrollToActiveNote()
             this.toggleFormFocus()
 
@@ -181,7 +181,7 @@ export class NotesComponent implements OnInit {
                 this.openMobileNote()
             }
 
-            if (newNote) {
+            if (addingNotesFromCreation) {
                 this.navigateToActiveNote()
             }
 
