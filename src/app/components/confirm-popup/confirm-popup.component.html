@@ -10,8 +10,9 @@
             <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
             <h1 *ngIf=" type === 'noteUnshare' ">Unshare note</h1>
             <h1 *ngIf=" type === 'linkRevoke' ">Revoke note's link</h1>
+            <h1 *ngIf=" type === 'info' ">{{title}}</h1>
 
-            <button id="close-puput" class="small-button-icon-only" (click)="open = false">
+            <button id="close-puput" class="small-button-icon-only" (click)="open = false; this.onCancel()">
                 <icon-close-note></icon-close-note>
             </button>
         </header>
@@ -51,10 +52,13 @@
         </p>
 
 
+        <p *ngIf=" type === 'info' ">{{body}}</p>
+
+
         <div id="buttons">
 
 
-            <button class=small-button-secondary id="cancel" (click)="open = false">
+            <button class=small-button-secondary id="cancel" (click)="open = false; this.onCancel()">
                 <icon-close-note></icon-close-note>
                 Cancel
             </button>
@@ -84,14 +88,22 @@
                 <span> Revoke link </span>
             </button>
 
-            <!-- <ng-container [ngComponentOutlet]="confirmButtonComponent"></ng-container> -->
+
+            <button class="action small-button-primary white-icon" *ngIf=" type === 'info' "
+                (click)="confirmationPressed.emit(); onSuccess(); open = false">
+                <div class="icon" *ngIf="confirmButtonIcon">
+                    <ng-container [ngComponentOutlet]="confirmButtonIcon"></ng-container>
+                </div>
+                <span>{{buttonText}}</span>
+            </button>
+
 
         </div>
 
 
     </div>
 
-    <div id="bg" (click)="open = false"></div>
+    <div id="bg" (click)="open = false; this.onCancel()"></div>
 </div>
 
 <!-- <ng-container [ngTemplateOutlet]="compTemplate"></ng-container> -->

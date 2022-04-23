@@ -8,8 +8,14 @@ import {
 } from "@angular/core"
 import { popupFader, popupSlider } from "@animations"
 import { IconCloseNoteComponent } from "../icons/icon-close-note/icon-close-note.component"
+import { IconRevokeComponent } from "../icons/icon-revoke/icon-revoke.component"
 import { Subject } from "rxjs"
 import { filter } from "rxjs/operators"
+import { ActivatedRoute, Router } from "@angular/router"
+
+import { EventEmitter } from "@angular/core"
+import { Output } from "@angular/core"
+
 
 const shortenText = (title) => {
     return `${title.slice(0, 50)}...`
@@ -24,12 +30,20 @@ const shortenText = (title) => {
 export class ConfirmPopupComponent implements OnInit {
     @Input("activeNote") activeNote: frontendNote
 
+    @Output() confirmationPressed = new EventEmitter()
+
     keydowns$: Subject<KeyboardEvent> = new Subject()
 
     open = false
-    public confirmButtonComponent = IconCloseNoteComponent
-    public type: "noteRemoval" | "noteUnshare" | "linkRevoke" = "noteRemoval"
+    public confirmButtonIcon
     public onSuccess = () => {}
+    public onCancel = () => {}
+    public type: "noteRemoval" | "noteUnshare" | "linkRevoke" | "info" =
+        "noteRemoval"
+
+    public title = "Set title"
+    public body = "Set body"
+    public buttonText = "Set button text"
 
     get activeNoteTitle(): string {
         const title = this.activeNote.title
@@ -39,7 +53,11 @@ export class ConfirmPopupComponent implements OnInit {
         return title
     }
 
-    constructor(private html: ElementRef<HTMLDivElement>) {}
+    constructor(
+        private html: ElementRef<HTMLDivElement>,
+        private route: ActivatedRoute,
+        private router: Router,
+    ) {}
 
     ngOnInit(): void {
         this.keydowns$
@@ -50,6 +68,9 @@ export class ConfirmPopupComponent implements OnInit {
             .subscribe((e) => {
                 this.open = false
             })
+
+        this.showPaidNotification()
+        this.showLoginNotification()
     }
 
     @HostListener("document:keydown", ["$event"])
@@ -78,6 +99,44 @@ export class ConfirmPopupComponent implements OnInit {
             this.open = false
         } else {
             this.fg.nativeElement.style.top = "0px"
+        }
+    }
+
+    showLoginNotification(): void {
+        const doesNeedLogin = this.route.snapshot.queryParams["needLogin"]
+        if (!doesNeedLogin) return
+
+        console.log("Need login")
+
+        this.type = "info"
+        this.open = true
+
+        if (doesNeedLogin !== "true") return
+
+        this.title = "Login required"
+        this.body = "Please login before making the payment"
+        this.buttonText = "Login"
+
+        this.onCancel = () => this.router.navigate([]);
+    }
+
+    showPaidNotification(): void {
+        const isPaid = this.route.snapshot.queryParams["paid"]
+        if (!isPaid) return
+
+        this.type = "info"
+        this.open = true
+
+        if (isPaid === "true") {
+            this.title = "Payment successful"
+            this.body = "You can now share 3+ notes"
+            this.buttonText = "I understand"
+        } else {
+            this.onSuccess = () => window.location.href = "https://idied.org/api/payment"
+            this.title = "Payment failed"
+            this.body = "You can try again"
+            this.buttonText = "Try again"
+            this.confirmButtonIcon = IconRevokeComponent
         }
     }
 }

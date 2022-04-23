@@ -26,9 +26,7 @@ export class MainPageComponent implements OnInit {
         this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
         this.authService.authState.subscribe((user) => {
             // do something with user
-            }
-        )
+
+        })
     }
-
-
 }
