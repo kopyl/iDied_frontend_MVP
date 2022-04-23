@@ -21,6 +21,9 @@ import { ViewEncapsulation } from "@angular/core"
 })
 export class NotesComponent implements OnInit {
     proStatus: boolean = true
+    userHasSharedMoreThan3Notes: boolean = false
+
+
     notes: Array<frontendNote> = []
     activeNote: frontendNote
     formFocused: boolean
@@ -145,6 +148,40 @@ export class NotesComponent implements OnInit {
         this.proStatus = backendResponse.pro
     }
 
+    checkWhetherUserHasSharedMoreThan3Notes(): void {
+        if (this.notes.filter((el) => el.isShared).length >= 3) {
+            this.userHasSharedMoreThan3Notes = true
+        } else {
+            this.userHasSharedMoreThan3Notes = false
+        }
+    }
+
+    get amountOfSharedNotes(): number {
+        return this.notes.filter((el) => el.isShared).length
+    }
+
+    requestPro(): void {
+        this.confirmPopup.type = "info"
+        this.confirmPopup.title = "Upgrade to Pro"
+        this.confirmPopup.body = "Upgrade to Pro to share more notes"
+        this.confirmPopup.open = true
+        this.confirmPopup.buttonText = "Upgrade"
+        this.confirmPopup.onSuccess = () => window.location.href = "https://idied.org/api/payment"
+    }
+
+
+    handleProAccountFromBackendInit(
+        backendResponse: backend_init_notes_response
+    ): void {
+        if (backendResponse) {
+            this.setProStatus(backendResponse)
+        }
+
+        if (this.proStatus === true) return
+        this.checkWhetherUserHasSharedMoreThan3Notes()
+
+    }
+
     addNotes(
         backendResponse: backend_notes_response | backend_init_notes_response,
         addingNotesFromCreation = false
@@ -153,8 +190,6 @@ export class NotesComponent implements OnInit {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
         } else {
-            this.setProStatus(backendResponse as backend_init_notes_response)
-
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
                     backendResponse.notes
@@ -187,6 +222,12 @@ export class NotesComponent implements OnInit {
 
             this.loaderVisible = false
             this.sharingView = false
+
+            if (!addingNotesFromCreation) {
+                this.handleProAccountFromBackendInit(
+                    backendResponse as backend_init_notes_response
+                )
+            }
         }
     }
 

@@ -39,6 +39,9 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     form: FormGroup
 
+    @Input() amountOfSharedNotes: number
+    @Input() proStatus: boolean
+
     @Input() activeNote: frontendNote
     @Input() toggleFormFocus = false
 
@@ -48,11 +51,12 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
     @Output() openSharingViewEvent = new EventEmitter()
 
+    @Output() requestPro = new EventEmitter()
 
     constructor(
         private readonly requests: RequestsService,
         private readonly fb: FormBuilder,
-        private HTML: ElementRef,
+        private HTML: ElementRef
     ) {}
 
     updateAlert() {
@@ -89,7 +93,6 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-
         // of @Input
 
         if (!this.activeNote) return
@@ -129,7 +132,9 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
                 const noteToSend = { ...activeNote }
                 delete noteToSend.createdAt
                 delete noteToSend.changesSynced
-                this.requests.notes.save.onSuccess = () => {this.loaderVisible = false}
+                this.requests.notes.save.onSuccess = () => {
+                    this.loaderVisible = false
+                }
                 this.requests.notes.save.send(noteToSend)
             }
         )
@@ -158,6 +163,9 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     updateSharingToken(backendResponse: backend_notes_response): void {
+        if (backendResponse.error) {
+            this.loaderVisible = false
+        }
         const sharingToken = backendResponse.notes[0].sharing_token
         this.activeNote.sharingToken = sharingToken
         this.activeNote.isShared = true
@@ -169,6 +177,12 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         if (this.activeNote.isShared) {
             return this.openSharingViewEvent.emit()
         }
+
+        if (this.proStatus === false && this.amountOfSharedNotes >= 3) {
+            this.requestPro.emit()
+            return
+        }
+
         this.loaderVisible = true
         this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
         this.requests.notes.share.send(this.activeNote)

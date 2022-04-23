@@ -17,6 +17,7 @@ export class SharingComponent implements OnInit {
 
     @Output() sharingCloseEvent = new EventEmitter()
 
+
     constructor(
         private readonly requests: RequestsService,
         private materialNotification: MatSnackBar,

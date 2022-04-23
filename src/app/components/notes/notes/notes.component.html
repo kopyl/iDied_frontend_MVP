@@ -110,11 +110,20 @@
     <div #note id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
         <note [activeNote]=activeNote (noteContentChanged)="scrollToActiveNote(); reSortNotes()"
             (closeNoteEvent)="closeNote()" (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused
-            *ngIf="!sharingView" (openSharingViewEvent)="openSharingView()">
+            *ngIf="!sharingView" (openSharingViewEvent)="openSharingView()"
+
+
+            (requestPro)="requestPro()"
+
+            [amountOfSharedNotes]="amountOfSharedNotes"
+            [proStatus]="proStatus"
+
+            >
         </note>
 
         <sharing [activeNote]="activeNote" *ngIf="sharingView" (sharingCloseEvent)="closeSharingView()"
-            [confirmPopup]="confirmPopup" (copied)=logCopied()></sharing>
+            [confirmPopup]="confirmPopup" (copied)=logCopied()
+            ></sharing>
 
     </div>
 
