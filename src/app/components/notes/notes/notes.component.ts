@@ -10,17 +10,17 @@ import { noteItem, fadeInOut } from "@animations"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
 import { NoteComponent } from "@components/notes/note"
 import { CookieService } from "ngx-cookie-service"
-import { ViewEncapsulation } from '@angular/core';
+import { ViewEncapsulation } from "@angular/core"
 
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
     styleUrls: ["./notes.component.sass"],
     animations: [noteItem, fadeInOut],
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
 })
 export class NotesComponent implements OnInit {
-
+    proStatus: boolean = true
     notes: Array<frontendNote> = []
     activeNote: frontendNote
     formFocused: boolean
@@ -76,8 +76,6 @@ export class NotesComponent implements OnInit {
         this.sharingInUrl = this.router.parseUrl(
             this.router.url
         )?.root?.children["primary"]?.segments[2]?.path
-
-
     }
 
     findOutifUserClosedNoteAtLeastOnce() {
@@ -143,11 +141,20 @@ export class NotesComponent implements OnInit {
         this.addNotes(backendResponse, true)
     }
 
-    addNotes(backendResponse: backend_notes_response, newNote = false): void {
+    setProStatus(backendResponse: backend_init_notes_response) {
+        this.proStatus = backendResponse.pro
+    }
+
+    addNotes(
+        backendResponse: backend_notes_response | backend_init_notes_response,
+        newNote = false
+    ): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
             this.router.navigate(["/unauthorized"])
         } else {
+            this.setProStatus(backendResponse as backend_init_notes_response)
+
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
                     backendResponse.notes

@@ -13,7 +13,7 @@
                 <icon-logo routerLink="/" color="black"></icon-logo>
             </div>
 
-            <div id="pro-button">
+            <div id="pro-button" [class.proButtonHidden]="proStatus">
                 <a href="https://idied.org/api/payment">
                     <button id="notes-link" class='small-button-primary pro-button'>
                         Go pro
@@ -50,11 +50,13 @@
             <h1>Notes</h1>
         </div>
 
-        <a href="https://idied.org/api/payment">
-            <button id="notes-link" class='small-button-primary pro-button'>
-                Go pro
-            </button>
-        </a>
+        <div id="pro-button" [class.proButtonHidden]="proStatus">
+            <a href="https://idied.org/api/payment">
+                <button id="notes-link" class='small-button-primary pro-button'>
+                    Go pro
+                </button>
+            </a>
+        </div>
 
     </header>
 
