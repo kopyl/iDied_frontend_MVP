@@ -135,7 +135,7 @@ export class NotesComponent implements OnInit {
         this.formFocused = !this.formFocused
     }
 
-    downloadNotes(backendResponse: backend_notes_response) {
+    downloadNotes(backendResponse: backend_init_notes_response) {
         this.addNotes(backendResponse, false)
     }
 

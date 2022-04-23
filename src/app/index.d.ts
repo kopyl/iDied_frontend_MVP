@@ -30,10 +30,15 @@ declare global {
         error: boolean
     }
 
-    interface backend_notes_response {
+    interface backend_init_notes_response {
         notes: Array<backend_note>,
         error: boolean,
         pro: boolean
+    }
+
+    interface backend_notes_response {
+        notes: Array<backend_note>,
+        error: boolean,
     }
 
     interface SocialUser {
