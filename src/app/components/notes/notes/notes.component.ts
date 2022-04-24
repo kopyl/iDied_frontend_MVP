@@ -57,7 +57,7 @@ export class NotesComponent implements OnInit {
 
         this.googleAuth.accessControl()
         if (!this.googleAuth.userLoggedIn) {
-            this.router.navigate(["/unauthorized"])
+            this.router.navigate([""])
             return
         }
         this.pageTitle.setTitle("iDied - Notes")
@@ -188,7 +188,7 @@ export class NotesComponent implements OnInit {
     ): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigate(["/unauthorized"])
+            this.router.navigate([""])
         } else {
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
@@ -257,7 +257,7 @@ export class NotesComponent implements OnInit {
     removeNoteFromUI(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigate(["/unauthorized"])
+            this.router.navigate([""])
         } else {
             this.confirmRemoveNote(backendResponse)
         }
