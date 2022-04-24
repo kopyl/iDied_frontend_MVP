@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core"
 import { MatSnackBar } from "@angular/material/snack-bar"
 import { ConfirmPopupComponent } from "@components/confirmation-popup"
 import { RequestsService } from "@services/requests"
+import { environment } from "@environment"
 
 @Component({
     selector: "sharing",
@@ -9,22 +10,22 @@ import { RequestsService } from "@services/requests"
     styleUrls: ["./sharing.component.sass"],
 })
 export class SharingComponent implements OnInit {
-    loaderVisible = false
+    baseUrl = environment.baseUrl
 
+    loaderVisible = false
 
     @Input("activeNote") activeNote: frontendNote
     @Input("confirmPopup") confirmPopup: ConfirmPopupComponent
 
     @Output() sharingCloseEvent = new EventEmitter()
 
-
     constructor(
         private readonly requests: RequestsService,
-        private materialNotification: MatSnackBar,
+        private materialNotification: MatSnackBar
     ) {}
 
     get sharingLink(): string {
-        return `https://idied.org/n/${this.activeNote.sharingToken}`
+        return `${this.baseUrl}/n/${this.activeNote.sharingToken}`
     }
 
     closeSharingWindow(): void {
@@ -61,8 +62,6 @@ export class SharingComponent implements OnInit {
         this.sharingCloseEvent.emit()
     }
 
-
-
     sendRevokingConfirmation(): void {
         this.confirmPopup.type = "linkRevoke"
         this.confirmPopup.open = true
@@ -70,11 +69,11 @@ export class SharingComponent implements OnInit {
     }
 
     revoke(): void {
-            this.requests.notes.revoke.onSuccess =
-                this.revokeSharingToken.bind(this)
-                this.loaderVisible = true
-            this.requests.notes.revoke.send(this.activeNote)
-        }
+        this.requests.notes.revoke.onSuccess =
+            this.revokeSharingToken.bind(this)
+        this.loaderVisible = true
+        this.requests.notes.revoke.send(this.activeNote)
+    }
 
     revokeSharingToken(backendResponse: backend_notes_response): void {
         const sharingToken = backendResponse.notes[0].sharing_token
@@ -84,18 +83,20 @@ export class SharingComponent implements OnInit {
     }
 
     notifyAboutRevokedLink(): void {
-        this.materialNotification.open('Link revoked.', "Close", {
+        this.materialNotification.open("Link revoked.", "Close", {
             duration: 5000,
-            panelClass: ['notification']
+            panelClass: ["notification"],
         })
     }
 
-    notifyAboutCopiedText(){
-        this.materialNotification.open('Link copied. Now send it to somebody :)', "Close", {
-            duration: 5000,
-            panelClass: ['notification']
-        })
+    notifyAboutCopiedText() {
+        this.materialNotification.open(
+            "Link copied. Now send it to somebody :)",
+            "Close",
+            {
+                duration: 5000,
+                panelClass: ["notification"],
+            }
+        )
     }
-
-
 }

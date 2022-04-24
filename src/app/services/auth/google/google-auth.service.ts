@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core"
 import { ActivatedRoute, Router } from "@angular/router"
 import { RequestsService } from "@services/requests"
 import { CookieService } from "ngx-cookie-service"
+import { environment } from "@environment"
 
 @Injectable({
     providedIn: "root",
@@ -26,7 +27,7 @@ export class GoogleAuthService {
     // }
 
     authorize() {
-        window.location.href = 'https://idied.org/api/login/google';
+        window.location.href = `${environment.apiUrl}login/google`;
     }
 
     goToMain(): void {

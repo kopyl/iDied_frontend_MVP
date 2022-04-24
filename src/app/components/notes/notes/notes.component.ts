@@ -12,6 +12,8 @@ import { NoteComponent } from "@components/notes/note"
 import { CookieService } from "ngx-cookie-service"
 import { ViewEncapsulation } from "@angular/core"
 
+import { environment } from "@environment"
+
 @Component({
     selector: "app-notes",
     templateUrl: "./notes.component.html",
@@ -20,6 +22,9 @@ import { ViewEncapsulation } from "@angular/core"
     encapsulation: ViewEncapsulation.None,
 })
 export class NotesComponent implements OnInit {
+
+    paymentUrl = `${environment.apiUrl}payment`
+
     proStatus: boolean = true
     userHasSharedMoreThan3Notes: boolean = false
 
@@ -166,7 +171,7 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.body = "Upgrade to Pro to share more notes"
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = "Upgrade"
-        this.confirmPopup.onSuccess = () => window.location.href = "https://idied.org/api/payment"
+        this.confirmPopup.onSuccess = () => window.location.href = this.paymentUrl
     }
 
 

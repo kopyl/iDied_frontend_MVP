@@ -48,6 +48,9 @@
         "@directives/fix-text-area-size-on-document-resize": ["src/app/directives/fix-text-area-size-on-document-resize/d.directive"],
 
         "@animations": ["src/app/animations/animations"],
+
+        "@environment": ["src/environments/environment"],
+
     }
   },
   "angularCompilerOptions": {

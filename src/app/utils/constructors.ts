@@ -1,3 +1,5 @@
+import { environment } from '@environment';
+
 interface urlArgs {
     endpoint: string
     port: number
@@ -15,19 +17,7 @@ export const makeUrl = (
         base: "",
     }
 ) => {
-    const host = window.location.host
-    const strProtocol = `${a.protocol}:`
-
-    if (window.location.href.includes("https")) {
-        // for development
-        // return `https://` + `${base}/` + `api/` + `${endpoint}`
-        return `https://` + `idied.org/` + `api/` + `${a.endpoint}`
-    }
-
-    // return `http://` + `localhost:5001/` + `${a.endpoint}`
-    return `https://` + `idied.org/` + `api/` + `${a.endpoint}`
-
-    // return `${strProtocol}//` + `${base}:` + `${port}/` + `${endpoint}`
+    return `${environment.apiUrl}${a.endpoint}`
 }
 
 export const makeUrlObj = (arg: urlArgs): requestURL => {

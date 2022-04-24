@@ -1,3 +1,4 @@
+import { environment } from "@environment"
 import {
     Component,
     OnInit,
@@ -15,6 +16,7 @@ import { ActivatedRoute, Router } from "@angular/router"
 
 import { EventEmitter } from "@angular/core"
 import { Output } from "@angular/core"
+
 
 
 const shortenText = (title) => {
@@ -132,7 +134,7 @@ export class ConfirmPopupComponent implements OnInit {
             this.body = "You can now share 3+ notes"
             this.buttonText = "I understand"
         } else {
-            this.onSuccess = () => window.location.href = "https://idied.org/api/payment"
+            this.onSuccess = () => window.location.href = `${environment.apiUrl}payment`
             this.title = "Payment failed"
             this.body = "You can try again"
             this.buttonText = "Try again"

@@ -14,7 +14,7 @@
             </div>
 
             <div id="pro-button" [class.proButtonHidden]="proStatus">
-                <a href="https://idied.org/api/payment">
+                <a [href]="paymentUrl">
                     <button id="notes-link" class='small-button-primary pro-button'>
                         Go pro
                     </button>
@@ -51,7 +51,7 @@
         </div>
 
         <div id="pro-button" [class.proButtonHidden]="proStatus">
-            <a href="https://idied.org/api/payment">
+            <a [href]="paymentUrl">
                 <button id="notes-link" class='small-button-primary pro-button'>
                     Go pro
                 </button>
