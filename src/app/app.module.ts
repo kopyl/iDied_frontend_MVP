@@ -3,11 +3,6 @@ import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
 import { HTTP_INTERCEPTORS } from "@angular/common/http"
 import { AuthInterceptor } from "@interceptors/auth"
-import {
-    GoogleLoginProvider,
-    SocialLoginModule,
-    SocialAuthServiceConfig,
-} from "angularx-social-login"
 import { CookieService } from "ngx-cookie-service"
 
 import { AngularTelegramLoginWidgetModule } from "angular-telegram-login-widget"
@@ -56,23 +51,7 @@ import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.
 import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
 import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
 
-const CLIENT_ID =
-    "79857033727-11tj271ajce1b51jpg4q7lljlbip2p5q.apps.googleusercontent.com"
 
-const GoogleLogingProviders = [
-    {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider(CLIENT_ID),
-    },
-]
-
-const GoogleLogingProvider = {
-    provide: "SocialAuthServiceConfig", // id.doc.id#2
-    useValue: {
-        autoLogin: false,
-        providers: GoogleLogingProviders,
-    } as SocialAuthServiceConfig,
-}
 
 const authInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
@@ -116,7 +95,6 @@ const authInterceptorProvider = {
     imports: [
         BrowserModule,
         RouterModule,
-        SocialLoginModule,
         AppRoutingModule,
         HttpClientModule,
         AngularTelegramLoginWidgetModule,
@@ -125,7 +103,7 @@ const authInterceptorProvider = {
         BrowserAnimationsModule,
         ClipboardModule,
     ],
-    providers: [GoogleLogingProvider, authInterceptorProvider, CookieService],
+    providers: [authInterceptorProvider, CookieService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

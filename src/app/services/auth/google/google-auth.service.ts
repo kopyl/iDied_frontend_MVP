@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core"
 import { ActivatedRoute, Router } from "@angular/router"
-import { SocialAuthService, GoogleLoginProvider } from "angularx-social-login"
 import { RequestsService } from "@services/requests"
 import { CookieService } from "ngx-cookie-service"
 
@@ -13,72 +12,18 @@ export class GoogleAuthService {
 
     constructor(
         private router: Router,
-        private authService: SocialAuthService,
         private readonly requests: RequestsService,
         private cookies: CookieService,
         private route: ActivatedRoute
-    ) {
-        this.authService.authState.subscribe((data) => {
-            localStorage.setItem("google_auth", JSON.stringify(data))
-            this.initJWTauth(data)
-        })
-    }
+    ) {}
 
-    fakeAuthorize() {
-        const fakeQleverusToken =
-            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMTAxMDYwMDEyNjgwOTA4ODU4Mjg3IiwiZW1haWwiOiJxbGV2ZXJ1c0BnbWFpbC5jb20ifQ.Uo_Eixzl8CEScCWjtXhRDojM1nsbyp_uutY2qtbOnLk"
-        localStorage.setItem("google_auth", "{}")
-        localStorage.setItem("jwt_token", fakeQleverusToken)
-        this.router.navigate(["/notes"])
-    }
+    // redirectToPaymentIfRequired(): void {
+    //     const needLogin = this.route.snapshot.queryParams["needLogin"]
 
-    redirectToPaymentIfRequired(): void {
-        const needLogin = this.route.snapshot.queryParams["needLogin"]
-
-        if (needLogin) {
-            window.location.href = "https://idied.org/api/payment"
-        }
-    }
-
-    setCookies(backendResponse): void {
-        this.cookies.set(
-            "jwt_token",
-            backendResponse.jwt_token,
-            9999999999,
-            "/",
-            "idied.org",
-            true,
-            "Strict"
-        )
-        this.cookies.set(
-            "jwt_token",
-            backendResponse.jwt_token,
-            9999999999,
-            "/",
-            "localhost",
-            true,
-            "Strict"
-        )
-    }
-
-    verifyAuthAndRedirect(backendResponse: backend_auth_response) {
-        if (backendResponse.error) {
-            this.router.navigate(["/unauthorized"])
-        } else {
-            localStorage.setItem("jwt_token", backendResponse.jwt_token)
-
-            this.setCookies(backendResponse)
-
-            this.router.navigate(["/notes"])
-
-            this.redirectToPaymentIfRequired()
-        }
-    }
-
-    initJWTauth(oauthData: SocialUser) {
-        this.requests.auth.onSuccess = this.verifyAuthAndRedirect.bind(this)
-        this.requests.auth.send({ oauthData })
-    }
+    //     if (needLogin) {
+    //         window.location.href = "https://idied.org/api/payment"
+    //     }
+    // }
 
     authorize() {
         window.location.href = 'https://idied.org/api/login/google';
@@ -89,16 +34,9 @@ export class GoogleAuthService {
     }
 
     signOut() {
-        localStorage.removeItem("google_auth")
-        localStorage.removeItem("jwt_token")
         this.userLoggedIn = false
-
         this.requests.logout.onSuccess = this.goToMain.bind(this)
         this.requests.logout.send()
-    }
-
-    signOutAndGoToMain() {
-        this.signOut()
     }
 
     accessControl() {
