@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
-import { HTTP_INTERCEPTORS } from "@angular/common/http"
-import { AuthInterceptor } from "@interceptors/auth"
 import { CookieService } from "ngx-cookie-service"
 
 import { AngularTelegramLoginWidgetModule } from "angular-telegram-login-widget"
@@ -51,14 +49,6 @@ import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.
 import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
 import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
 
-
-
-const authInterceptorProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-}
-
 @NgModule({
     declarations: [
         MainPageComponent,
@@ -103,7 +93,7 @@ const authInterceptorProvider = {
         BrowserAnimationsModule,
         ClipboardModule,
     ],
-    providers: [authInterceptorProvider, CookieService],
+    providers: [CookieService],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
