@@ -42,6 +42,7 @@ export class GoogleAuthService {
 
     accessControl() {
         const jwt_from_cookies = this.cookies.get('jwt_token')
+        this.jwtToken = jwt_from_cookies
         if (jwt_from_cookies) {
             this.jwtToken = jwt_from_cookies
             this.userLoggedIn = true
