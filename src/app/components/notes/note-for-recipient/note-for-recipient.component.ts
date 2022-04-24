@@ -56,6 +56,7 @@ export class NoteForRecipientComponent implements OnInit {
     }
 
     onScroll(event) {
+        if (this.forbidden) return
         this.headerHidden = false
         if (event.target.scrollTop > 20) {
             this.headerHidden = true
