@@ -36,13 +36,13 @@ export class GoogleAuthService {
 
     signOut() {
         this.userLoggedIn = false
+        this.cookies.delete('jwt_token')
         this.requests.logout.onSuccess = this.goToMain.bind(this)
         this.requests.logout.send()
     }
 
     accessControl() {
         const jwt_from_cookies = this.cookies.get('jwt_token')
-        this.jwtToken = jwt_from_cookies
         if (jwt_from_cookies) {
             this.jwtToken = jwt_from_cookies
             this.userLoggedIn = true
