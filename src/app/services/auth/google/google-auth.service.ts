@@ -61,16 +61,6 @@ export class GoogleAuthService {
         )
     }
 
-    getCookie(name): string | undefined {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) {
-            const pair = parts.pop()
-            return pair ? pair.split(';').shift() : '';
-        }
-        return undefined;
-    }
-
     verifyAuthAndRedirect(backendResponse: backend_auth_response) {
         if (backendResponse.error) {
             this.router.navigate(["/unauthorized"])
@@ -94,10 +84,17 @@ export class GoogleAuthService {
         window.location.href = 'https://idied.org/api/login/google';
     }
 
+    goToMain(): void {
+        this.router.navigate([""])
+    }
+
     signOut() {
         localStorage.removeItem("google_auth")
         localStorage.removeItem("jwt_token")
         this.userLoggedIn = false
+
+        this.requests.logout.onSuccess = this.goToMain.bind(this)
+        this.requests.logout.send()
 
         this.cookies.delete("jwt_token", "/", "idied.org", false, "None")
         this.cookies.delete("jwt_token", "/", "localhost", false, "None")
@@ -105,11 +102,10 @@ export class GoogleAuthService {
 
     signOutAndGoToMain() {
         this.signOut()
-        this.router.navigate([""])
     }
 
     accessControl() {
-        const jwt_from_cookies = this.getCookie('jwt_token')
+        const jwt_from_cookies = this.cookies.get('jwt_token')
         if (jwt_from_cookies) {
             this.jwtToken = jwt_from_cookies
             this.userLoggedIn = true
