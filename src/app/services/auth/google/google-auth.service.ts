@@ -95,9 +95,6 @@ export class GoogleAuthService {
 
         this.requests.logout.onSuccess = this.goToMain.bind(this)
         this.requests.logout.send()
-
-        this.cookies.delete("jwt_token", "/", "idied.org", false, "None")
-        this.cookies.delete("jwt_token", "/", "localhost", false, "None")
     }
 
     signOutAndGoToMain() {
