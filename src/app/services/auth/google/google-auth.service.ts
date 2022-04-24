@@ -10,7 +10,6 @@ import { CookieService } from "ngx-cookie-service"
 export class GoogleAuthService {
     public userLoggedIn = false
     public jwtToken: string = ""
-    public googleUserDetails: string
 
     constructor(
         private router: Router,
@@ -82,9 +81,11 @@ export class GoogleAuthService {
     }
 
     authorize() {
-        if (window.location.host === "192.168.0.101")
-            return this.fakeAuthorize() // to be removed on prod
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID)
+        window.location.href = 'https://idied.org/api/login/google';
+    }
+
+    goToMain(): void {
+        this.router.navigate([""])
     }
 
     signOut() {
@@ -92,22 +93,21 @@ export class GoogleAuthService {
         localStorage.removeItem("jwt_token")
         this.userLoggedIn = false
 
+        this.requests.logout.onSuccess = this.goToMain.bind(this)
+        this.requests.logout.send()
+
         this.cookies.delete("jwt_token", "/", "idied.org", false, "None")
         this.cookies.delete("jwt_token", "/", "localhost", false, "None")
     }
 
     signOutAndGoToMain() {
         this.signOut()
-        this.router.navigate([""])
     }
 
     accessControl() {
-        const storage = localStorage.getItem("google_auth")
-        const jwt_from_backend = localStorage.getItem("jwt_token")
-
-        if (storage && jwt_from_backend) {
-            this.googleUserDetails = JSON.parse(storage)
-            this.jwtToken = jwt_from_backend
+        const jwt_from_cookies = this.cookies.get('jwt_token')
+        if (jwt_from_cookies) {
+            this.jwtToken = jwt_from_cookies
             this.userLoggedIn = true
         } else {
             this.signOut()

@@ -15,6 +15,8 @@ const logAttempt = (attempt: number) => {
 const URLS = {
     AUTH: makeUrlObj({ endpoint: "authorize", port: port, protocol: protocol }),
 
+    LOGOUT: makeUrlObj({ endpoint: "logout", port: port, protocol: protocol }),
+
     NOTES_PRIVATE: makeUrlObj({
         endpoint: "notes/private",
         port: port,
@@ -136,6 +138,11 @@ class Auth extends Request {
         const googleAuthData = JSON.stringify(kwargs.oauthData)
         this.params = new HttpParams().set("google_auth_data", googleAuthData)
     }
+}
+
+class Logout extends Request {
+    method = "GET"
+    URL = URLS.LOGOUT
 }
 
 class Notes {
@@ -275,6 +282,7 @@ export class RequestsService {
     notes: Notes
     online: Online
     noteForRecipient: NoteForRecipient
+    logout: Logout
 
     constructor(
         private http: HttpClient,
@@ -284,5 +292,8 @@ export class RequestsService {
         this.notes = new Notes(http, HTTPErrorHandler)
         this.online = new Online(http, HTTPErrorHandler)
         this.noteForRecipient = new NoteForRecipient(http, HTTPErrorHandler)
+        this.logout = new Logout(http, HTTPErrorHandler)
     }
 }
+
+// 'https://idied.org/api/logout'
