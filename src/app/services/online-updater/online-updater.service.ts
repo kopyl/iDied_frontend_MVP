@@ -17,7 +17,7 @@ export class OnlineUpdaterService {
     ) {}
 
     processErrors(backendResponse: backend_auth_response): void {
-        if (backendResponse.error) {
+        if (backendResponse?.error) {
             this.googleAuth.signOut()
             this.router.navigate([""])
         }
