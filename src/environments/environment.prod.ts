@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: "https://idied.org/api/",
+  apiUrl: "https://api.idied.org/",
   baseUrl: "https://idied.org",
 };
