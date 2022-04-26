@@ -36,6 +36,7 @@ div#avatar
     #avatar-container
         border-radius: 100%
         overflow: hidden
+        transition: .15s linear all
         width: 25px
         height: 25px
         object-fit: contain
@@ -47,9 +48,20 @@ div#avatar
 
     loader
         position: absolute
-        top: -10px
-        left: -10px
-        // width: 29px
-        // height: 29px
-        // right: 0
-        // bottom: 0
+        top: -6px
+        left: -6px
+
+
+div#avatar
+    &.scaleDownAvatar
+        #avatar-container
+            width: 17px
+            height: 17px
+
+
+
+// div#avatar
+
+//     #avatar-container
+//         width: 17px
+//         height: 17px
