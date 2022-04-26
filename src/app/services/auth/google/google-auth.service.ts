@@ -9,45 +9,50 @@ import { environment } from "@environment"
 })
 export class GoogleAuthService {
     public userLoggedIn = false
-    public jwtToken: string = ""
 
     constructor(
         private router: Router,
         private readonly requests: RequestsService,
-        private cookies: CookieService,
         private route: ActivatedRoute
     ) {}
 
-    // redirectToPaymentIfRequired(): void {
-    //     const needLogin = this.route.snapshot.queryParams["needLogin"]
-
-    //     if (needLogin) {
-    //         window.location.href = "https://idied.org/api/payment"
-    //     }
-    // }
-
-    authorize() {
-        window.location.href = `${environment.apiUrl}login/google`;
+    redirectToPaymentIfRequired(): void {
+        const needPayment = this.route.snapshot.queryParams["needPayment"]
+        if (!needPayment) return
+        window.location.href = `${environment.apiUrl}payment`
     }
 
-    goToMain(): void {
-        this.router.navigate([""])
+    authorize(params="") {
+        window.location.href = `${environment.apiUrl}login/google?${params}`
     }
 
     signOut() {
-        this.userLoggedIn = false
-        this.cookies.delete('jwt_token')
-        this.requests.logout.onSuccess = this.goToMain.bind(this)
+        this.requests.logout.onSuccess = this.signOutOnFrontend.bind(this)
         this.requests.logout.send()
     }
 
+    signOutOnFrontend(): void {
+        this.userLoggedIn = false
+        localStorage.removeItem("auth")
+        this.router.navigate([""])
+    }
+
     accessControl() {
-        const jwt_from_cookies = this.cookies.get('jwt_token')
-        if (jwt_from_cookies) {
-            this.jwtToken = jwt_from_cookies
+
+        this.userLoggedIn = Boolean(localStorage.getItem("auth"))
+        if (this.userLoggedIn) return
+
+        if (this.route.snapshot.queryParams["auth"]) {
             this.userLoggedIn = true
-        } else {
-            this.signOut()
+            localStorage.setItem("auth", "true")
+
+            this.redirectToPaymentIfRequired()
+
+            this.router.navigate(["notes"])
+        }
+
+        if (!this.userLoggedIn) {
+            this.router.navigate([""])
         }
     }
 }

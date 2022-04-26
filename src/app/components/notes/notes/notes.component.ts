@@ -61,10 +61,6 @@ export class NotesComponent implements OnInit {
         // console.log(this.route.snapshot.url)
 
         this.googleAuth.accessControl()
-        if (!this.googleAuth.userLoggedIn) {
-            this.router.navigate([""])
-            return
-        }
         this.pageTitle.setTitle("iDied - Notes")
         this.fetchNotes()
 

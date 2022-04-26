@@ -1,3 +1,4 @@
+
 import { Injectable } from "@angular/core"
 import {
     HttpRequest,
@@ -16,13 +17,10 @@ export class AuthInterceptor implements HttpInterceptor {
         request: HttpRequest<unknown>,
         next: HttpHandler
     ): Observable<HttpEvent<unknown>> {
-        const headers = request.headers.set(
-            "jwt_token",
-            this.googleAuth.jwtToken
-        )
+
         const modifiedRequest = request.clone(
             {
-                headers: headers
+                withCredentials: true,
             }
         )
         return next.handle(modifiedRequest)
