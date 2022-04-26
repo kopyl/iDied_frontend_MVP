@@ -2,9 +2,7 @@
 @import 'sizes'
 
 
-:host
-    @media screen and ( max-width:  $min-mobile-width)
-        display: none
+
 
 .lds-ring
 
@@ -46,3 +44,8 @@
 
     100%
         transform: rotate(360deg)
+
+
+:host(.mobileHidden)
+    @media screen and ( max-width:  $min-mobile-width)
+        display: none

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core"
+import { Component, Input, OnInit, HostBinding } from "@angular/core"
 import { fadeInOut } from "@animations"
 
 @Component({
@@ -12,6 +12,8 @@ export class LoaderComponent implements OnInit {
 
     @Input("visible") visible: boolean
     @Input("isAvatar") isAvatar: boolean
+
+    @HostBinding("class.mobileHidden") @Input() hideOnMobile: boolean
 
     ngOnInit(): void {}
 }

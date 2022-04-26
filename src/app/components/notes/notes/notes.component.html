@@ -74,7 +74,7 @@
         <header id="desktop-header">
 
             <h1>Notes</h1>
-            <loader [visible]="loaderVisible"></loader>
+            <loader [visible]="loaderVisible" [hideOnMobile]="true"></loader>
 
             <button id="create-note" class=small-button-primary (click)=createNote()>
                 <img src="assets/icon-new-light.svg" alt="">
