@@ -33,7 +33,8 @@ declare global {
     interface backend_init_notes_response {
         notes: Array<backend_note>,
         error: boolean,
-        pro: boolean
+        pro: boolean,
+        avatar_url: string,
     }
 
     interface backend_notes_response {

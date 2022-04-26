@@ -183,6 +183,10 @@ export class NotesComponent implements OnInit {
 
     }
 
+    setAvatar(backendResponse: backend_init_notes_response): void {
+        localStorage.setItem('avatar_url', backendResponse.avatar_url)
+    }
+
     addNotes(
         backendResponse: backend_notes_response | backend_init_notes_response,
         addingNotesFromCreation = false
@@ -226,6 +230,9 @@ export class NotesComponent implements OnInit {
 
             if (!addingNotesFromCreation) {
                 this.handleProAccountFromBackendInit(
+                    backendResponse as backend_init_notes_response
+                )
+                this.setAvatar(
                     backendResponse as backend_init_notes_response
                 )
             }

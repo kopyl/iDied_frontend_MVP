@@ -1,0 +1,44 @@
+@import 'colors'
+@import 'borders'
+
+div#sign-out
+    display: grid
+    grid-template-columns: auto max-content
+    position: relative
+
+button#sign-out-button
+    justify-content: space-between
+
+    div#icon-and-text
+        display: grid
+        grid-auto-flow: column
+        gap: 14px
+        align-items: ce
+
+div#avatar
+    border-radius: 100%
+    width: 29px
+    height: 29px
+    overflow: hidden
+    padding: 0
+    display: grid
+    justify-content: center
+    align-content: center
+
+    margin: 0
+    margin-left: 20px
+
+    background-color: $bisque-dark
+
+
+    #avatar-container
+        border-radius: 100%
+        overflow: hidden
+        width: 25px
+        height: 25px
+        object-fit: contain
+
+
+    img
+        width: 100%
+        height: 100%

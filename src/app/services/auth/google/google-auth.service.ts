@@ -10,6 +10,10 @@ import { environment } from "@environment"
 export class GoogleAuthService {
     public userLoggedIn = false
 
+    public get avatarUrl(): string {
+        return localStorage.getItem("avatar_url")!
+    }
+
     constructor(
         private router: Router,
         private readonly requests: RequestsService,
@@ -55,4 +59,5 @@ export class GoogleAuthService {
             this.router.navigate([""])
         }
     }
+
 }

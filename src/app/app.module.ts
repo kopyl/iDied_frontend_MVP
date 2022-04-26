@@ -50,7 +50,8 @@ import { SharingComponent } from "./components/sharing/sharing.component"
 import { IconShareGlobeComponent } from "./components/icons/icon-share-globe/icon-share-globe.component"
 import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.component"
 import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
-import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
+import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component";
+import { ButtonLogoutComponent } from './components/button-logout/button-logout.component'
 
 
 const authInterceptorProvider = {
@@ -92,6 +93,7 @@ const authInterceptorProvider = {
         IconCopyComponent,
         NoteForRecipientComponent,
         LoaderMobileComponent,
+        ButtonLogoutComponent,
     ],
     imports: [
         BrowserModule,

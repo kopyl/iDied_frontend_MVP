@@ -34,10 +34,19 @@
 
         <section id="bottom-buttons">
 
-            <button id="sign-out" class=small-button-secondary (click)=googleAuth.signOut()>
-                <icon-sign-out></icon-sign-out>
-                Sign out
-            </button>
+            <!-- <div id="sign-out">
+                <button id="sign-out-button" class=small-button-secondary (click)=googleAuth.signOut()>
+                    <icon-sign-out></icon-sign-out>
+                    Sign out
+                </button>
+                <div id="avatar" class=small-button-secondary>
+                    <div id="avatar-container">
+                        <img [src]="avatar" referrerpolicy="no-referrer" alt="Girl in a jacket" width="31" height="31">
+                    </div>
+                </div>
+            </div> -->
+
+            <button-logout></button-logout>
 
         </section>
 
