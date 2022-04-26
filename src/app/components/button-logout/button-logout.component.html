@@ -6,6 +6,7 @@
         </div>
 
         <div id="avatar" class=small-button-secondary title="avatar">
+            <loader [visible]="googleAuth.buttonLoaderVisible" [isAvatar]="true"></loader>
             <div id="avatar-container">
                 <img [src]="googleAuth.avatarUrl" referrerpolicy="no-referrer" alt="avatar">
             </div>

@@ -11,6 +11,7 @@ export class LoaderComponent implements OnInit {
     constructor() {}
 
     @Input("visible") visible: boolean
+    @Input("isAvatar") isAvatar: boolean
 
     ngOnInit(): void {}
 }

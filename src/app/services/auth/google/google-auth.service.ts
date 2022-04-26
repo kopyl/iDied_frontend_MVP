@@ -9,6 +9,7 @@ import { environment } from "@environment"
 })
 export class GoogleAuthService {
     public userLoggedIn = false
+    public buttonLoaderVisible = false
 
     public get avatarUrl(): string {
         return localStorage.getItem("avatar_url")!
@@ -32,12 +33,14 @@ export class GoogleAuthService {
     }
 
     signOut() {
+        this.buttonLoaderVisible = true
         this.requests.logout.onSuccess = this.signOutOnFrontend.bind(this)
         this.requests.logout.send()
     }
 
     signOutOnFrontend(): void {
         this.userLoggedIn = false
+        this.buttonLoaderVisible = false
         localStorage.removeItem("auth")
         this.router.navigate([""])
     }
