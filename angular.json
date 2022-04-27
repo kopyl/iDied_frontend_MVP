@@ -86,6 +86,21 @@
                 "extractLicenses": false,
                 "sourceMap": true,
                 "namedChunks": true
+              },
+              "stage": {
+                "fileReplacements": [
+                  {
+                    "replace": "src/environments/environment.ts",
+                    "with": "src/environments/environment.stage.ts"
+                  }
+                ],
+                "outputHashing": "all",
+                "buildOptimizer": false,
+                "optimization": false,
+                "vendorChunk": true,
+                "extractLicenses": false,
+                "sourceMap": true,
+                "namedChunks": true
               }
           },
           "defaultConfiguration": "production"
@@ -101,6 +116,9 @@
             },
             "ios": {
                 "browserTarget": "angularapp:build:ios"
+            },
+            "stage": {
+                "browserTarget": "angularapp:build:stage"
             }
           },
           "defaultConfiguration": "development"
