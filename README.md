@@ -13,9 +13,10 @@ It's required for local iOS manual testing since Google doesn't want to redirect
 It's calling `fakeAuthForIOS()` in `google-auth.service.ts`
 
 ## Development with local server on stage.idied.org
+
 1. Launch NGINX
-2. Run `ng s --port 81 --host 0.0.0.0 --disable-host-check --confuration=stage`
-This should be a replacement for ios configuration
+2. Run `ng s --port 81 --host 0.0.0.0 --disable-host-check --configuration=stage`
+   This should be a replacement for ios configuration
 
 ## Code scaffolding
 
