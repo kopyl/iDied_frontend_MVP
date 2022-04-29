@@ -175,10 +175,10 @@ div#notes-page-container
                         background-color: rgba($brown-light, .7 )
                         cursor: default
 
-                        & pre
+                        & p
                             color: white
 
-                    pre
+                    p
                         transition: .15s linear all
                         color: $brown-light
                         font-weight: $medium
@@ -207,7 +207,7 @@ div#notes-page-container
                             background-color: $bisque-lightest
 
 
-                        pre
+                        p
                             color: white
 
                             @media (hover: none)  // remove hover on mobiles
@@ -226,7 +226,7 @@ div#notes-page-container
                                 bottom: 0
 
 
-            li pre:empty::after
+            li p:empty::after
                 content: "Add title"
                 opacity: 0.75
 

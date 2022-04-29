@@ -94,7 +94,7 @@
                 <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
                     (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem
                     [@.disabled]="firstLoadedIntoUI === false">
-                    <pre>{{note.title}}</pre>
+                    <p>{{note.title}}</p>
                     <div id="icon-sharing-globe">
                         <icon-share-globe [class.globeVisible]=note.isShared></icon-share-globe>
                     </div>
