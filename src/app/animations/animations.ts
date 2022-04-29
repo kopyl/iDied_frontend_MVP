@@ -29,24 +29,6 @@ export const noteItem = trigger("noteItem", [
     ])
 
 
-// export const noteItem = [
-//     trigger('noteItem', [
-//         transition('* <=> void', [
-//             query('*', [
-//                 style({ opacity: 0 }),
-//                 stagger('500ms', [
-// 	                animate('500ms', style({ opacity: 1 })
-//                 )])
-//             ], optional),
-//             query('void', [
-//                 style({ opacity: 1 }),
-//                 stagger('500ms', [
-// 	                animate('500ms', style({ opacity: 0 })
-//                 )])
-//             ], optional)
-//         ])
-//     ])
-// ]
 
 export const popupSlider = trigger("popupSlider", [
     state(
