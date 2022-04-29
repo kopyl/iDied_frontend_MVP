@@ -12,17 +12,23 @@
                 Destroy note
             </button>
 
+            <loader [visible]="loading"></loader>
+
         </header>
 
         <main>
             <section #content id="content" (scroll)="onScroll($event)">
 
-                <div id="text" *ngIf="!forbidden">
+                <div id="text" *ngIf="!forbidden && !loading">
                     <h1>{{title}}</h1>
                     <p>{{body}}</p>
                 </div>
 
-                <div id="forbidden-text" *ngIf="forbidden">
+                <div class="loading-text" id="text" *ngIf="loading">
+                    <h1>Loading</h1>
+                </div>
+
+                <div id="forbidden-text" *ngIf="forbidden && !loading">
                     <h1>
                         You <span>can't read</span> the note due to some or one of following reasons:
                     </h1>

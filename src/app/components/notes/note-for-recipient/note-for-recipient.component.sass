@@ -117,3 +117,28 @@ persistent-alert
 
     // position: absolute
     // bottom: 0
+
+loader
+    position: relative
+    top: -5px
+    left: 8px
+
+div.loading-text
+    h1::after
+        content: ""
+
+        animation: loading-text 1s steps(4, end) infinite
+
+
+@keyframes loading-text
+    0%
+        content: ""
+    25%
+        content: "."
+    50%
+        content: ".."
+    75%
+        content: "..."
+    100%
+        content: ""
+

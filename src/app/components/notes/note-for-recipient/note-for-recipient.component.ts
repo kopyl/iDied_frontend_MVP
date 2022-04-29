@@ -14,10 +14,11 @@ import { ActivatedRoute } from "@angular/router"
 })
 export class NoteForRecipientComponent implements OnInit {
     sharingToken: string
-    forbidden = true
+    forbidden = false
     destroyable = false
     title: string
     body: string
+    loading = true
 
     headerHidden = false
 
@@ -40,15 +41,20 @@ export class NoteForRecipientComponent implements OnInit {
 
     insertNoteIntoUI(backendResponse: backend_notes_response): void {
         this.forbidden = backendResponse.error
-        if (this.forbidden) return
+        if (this.forbidden) {
+            this.loading = false
+            return
+        }
 
         const note = backendResponse.notes[0]
 
         this.title = note.title
         this.body = note.body
+        this.loading = false
     }
 
     getContent() {
+        this.loading = true
         this.requests.noteForRecipient.get.onSuccess =
             this.insertNoteIntoUI.bind(this)
 
