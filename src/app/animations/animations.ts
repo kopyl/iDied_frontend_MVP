@@ -29,6 +29,81 @@ export const noteItem = trigger("noteItem", [
     ])
 
 
+export const fadeSlideInOut = trigger('fadeSlideInOut', [
+    transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(10px)' }),
+        animate('500ms', style({ opacity: 1, transform: 'translateY(0)' })),
+    ]),
+    transition(':leave', [
+        animate('500ms', style({ opacity: 0, transform: 'translateY(10px)' })),
+    ]),
+])
+
+
+export const logoutButtonSlider = trigger("logoutButtonSlider", [
+    state(
+        "void",
+        style({opacity: "0", transform: "translateY(-100px)" })
+    ),
+    state(
+        "*",
+        style({opacity: "1", transform: "stranslateY(0px)"})
+    ),
+
+    transition("void => *", [animate('400ms ease-out')]),
+    transition("* => void", [animate('400ms ease-out')]),
+])
+
+
+
+export const buttonSlider = trigger("buttonSlider", [
+    state(
+        "void",
+        style({bottom: "-60px", opacity: "0", transform: "scale(.8)" })
+    ),
+    state(
+        "*",
+        style({bottom: "0px", opacity: "1", transform: "scale(1)"})
+    ),
+
+    transition("void => *", [animate('400ms ease-out')]),
+    transition("* => void", [animate('400ms ease-out')]),
+])
+
+export const buttonSliderNotes = trigger("buttonSliderNotes", [
+    state(
+        "false",
+        style({top: "20px", opacity: "0", transform: "scale(.9)" })
+    ),
+    state(
+        "true",
+        style({top: "0px", opacity: "1", transform: "scale(1)"})
+    ),
+
+    // transition("true <=> false", [animate('1050ms')]),
+    transition("true => false", [animate('1050ms',
+        keyframes([
+            style({top: "0px", opacity: "1", transform: "scale(1)"}),
+            style({top: "0px", opacity: "1", transform: "scale(1)"}),
+            style({top: "0px", opacity: "0", transform: "scale(1)"})
+        ])
+    )]),
+
+
+    transition("false => true", [animate('1050ms',
+        keyframes([
+            style({top: "0px", opacity: "0", transform: "scale(1)"}),
+            style({top: "0px", opacity: "0", transform: "scale(1)"}),
+            style({top: "0px", opacity: "1", transform: "scale(1)"}),
+        ])
+    )]),
+
+
+])
+
+// offset: 0
+
+
 
 export const popupSlider = trigger("popupSlider", [
     state(

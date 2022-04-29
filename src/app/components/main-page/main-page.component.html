@@ -33,22 +33,28 @@
     <section id=app>
 
         <div id="top-button-container">
-            <button-logout></button-logout>
+            <div [class.userLoggedOut]="!googleAuth.userLoggedIn" class="logout">
+                <button-logout ></button-logout>
+            </div>
         </div>
 
         <div id="bottom-button-container">
 
-            <button *ngIf="googleAuth.userLoggedIn" routerLink="/notes" class=big-button-primary>
+            <div @buttonSlider *ngIf="googleAuth.userLoggedIn" id="notes">
 
-                <div class="left-side">
-                    <icon-notes></icon-notes>
-                    My notes
-                </div>
+                <button routerLink="/notes" class=big-button-primary>
 
-                <icon-arrow-right></icon-arrow-right>
-            </button>
+                    <div class="left-side">
+                        <icon-notes></icon-notes>
+                        My notes
+                    </div>
 
-            <div id="auth" *ngIf="!googleAuth.userLoggedIn">
+                    <icon-arrow-right></icon-arrow-right>
+                </button>
+
+            </div>
+
+            <div @buttonSlider *ngIf="!googleAuth.userLoggedIn" id="auth" >
 
                 <h1>Login or sign up</h1>
 

@@ -25,6 +25,7 @@ div#container
         background-color: $black
         border-radius: $border-radius-big
         background-repeat: no-repeat
+        z-index: 2
 
         @media screen and ( max-width:  $min-mobile-width)
             grid-template-rows: 39px auto fit-content(100%)
@@ -121,10 +122,16 @@ div#container
 
             justify-self: right
 
+
+
             @media screen and ( max-width:  $min-mobile-width)
                 justify-self: inherit
 
             & button
+                position: relative
+                z-index: 2
+
+
                 width: 100%
 
                 @media screen and ( max-width:  $min-mobile-width)
@@ -133,10 +140,16 @@ div#container
 
         div#bottom-button-container
 
+            position: relative
+
             button
                 width: 100%
 
             div#auth
+
+                position: absolute
+                bottom: 0px
+                width: 100%
 
                 h1
                     font-family: $roboto
@@ -152,4 +165,28 @@ div#container
                         line-height: 36px
 
 
+            div#notes
+                position: absolute
+                bottom: 0px
+                width: 100%
 
+
+
+div.logout
+    position: relative
+    transition: .15s linear all
+    left: 0px
+    top: 0px
+    opacity: 1
+    z-index: 1
+
+    @media screen and ( max-width:  $min-mobile-width)
+        transition: .3s .1s ease-in all
+
+div.userLoggedOut
+    left: 50px
+    opacity: 0
+
+    @media screen and ( max-width:  $min-mobile-width)
+        left: 0px
+        top: -50px
