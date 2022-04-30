@@ -174,19 +174,22 @@ div#container
 
 div.logout
     position: relative
-    transition: .15s linear all
-    left: 0px
+    transition: opacity .15s, transform .15s, height .15s .15s
     top: 0px
     opacity: 1
     z-index: 1
+    overflow: hidden
+    height: 100%
 
     @media screen and ( max-width:  $min-mobile-width)
-        transition: .3s .1s ease-in all
+        transition: opacity .3s .1s, transform .3s .1s, height .15s .25s
 
 div.userLoggedOut
-    left: 50px
     opacity: 0
+    transform: translateX(50px)
+    height: 0px
 
     @media screen and ( max-width:  $min-mobile-width)
-        left: 0px
-        top: -50px
+        transform: translateX(0px)
+        transform: translateY(-50px)
+
