@@ -27,27 +27,32 @@
 
         <section id="access-buttons-copy-unshare-revoke">
 
+            <div class="unshare-revoke-buttons">
+
+                <button id="unshare" class="small-button-secondary red" (click)="sendUnsharingConfirmation()">
+                    <icon-share></icon-share>
+                    <span>Unshare</span>
+                </button>
+
+                <button id="revoke" class="small-button-secondary red" (click)="sendRevokingConfirmation()">
+                    <icon-revoke></icon-revoke>
+                    <span>Revoke</span>
+                </button>
+
+            </div>
+
             <button id="copy-link" class="small-button-secondary copy" [cdkCopyToClipboard]="sharingLink"
                 (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
                 <icon-copy></icon-copy>
                 <span>Copy link</span>
             </button>
 
-            <button id="copy-link" class="small-button-primary white-icon mobile-copy" [cdkCopyToClipboard]="sharingLink"
+            <button id="copy-link" class="small-button-primary white-icon copy mobile-copy" [cdkCopyToClipboard]="sharingLink"
                 (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
                 <icon-copy></icon-copy>
                 <span>Copy link</span>
             </button>
 
-            <button id="unshare" class="small-button-secondary red" (click)="sendUnsharingConfirmation()">
-                <icon-share></icon-share>
-                <span>Unshare</span>
-            </button>
-
-            <button id="revoke" class="small-button-secondary red" (click)="sendRevokingConfirmation()">
-                <icon-revoke></icon-revoke>
-                <span>Revoke</span>
-            </button>
         </section>
 
 

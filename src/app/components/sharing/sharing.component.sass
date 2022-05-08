@@ -62,11 +62,17 @@ a
 
 
 section
-    display: grid
-    grid-template-columns: auto auto
-    grid-template-rows: auto auto
-    align-content: start
-    gap: 30px 5px
+
+    & > *
+        flex: auto
+
+    display: flex
+    // grid-template-columns: auto auto
+    // grid-template-rows: auto auto
+    // align-content: start
+    flex-flow: row wrap
+
+    gap: 30px 30px
 
     margin: 53px 50px 0 50px
     @media screen and ( max-width:  $min-mobile-width)
@@ -128,7 +134,7 @@ div.bottom-alert
 
 
 
-button.mobile-copy
+button.copy.mobile-copy
     display: none
     gap: 14px
 
@@ -151,6 +157,16 @@ button.copy
     //     display: none
 
 
+
+// button.copy
+//     flex-grow: 1
+
+
+div.unshare-revoke-buttons
+    display: grid
+    grid-template-columns: auto auto
+    // flex-flow: row wrap
+    gap: 5px
 
 
 
