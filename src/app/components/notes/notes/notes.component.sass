@@ -4,7 +4,7 @@
 
 div#notes-page-container
     display: grid
-    grid-template-columns: minmax(265px, 15%) auto minmax(400px, 35%)
+    grid-template-columns: minmax(265px, 15%) minmax(min-content, 1fr) minmax(100px, 850px)
     height: 100%
 
     @media screen and ( max-width:  $min-mobile-width)
@@ -64,6 +64,7 @@ div#notes-page-container
         align-items: center
 
         margin: 45px 50px 0 50px
+        gap: 20px
 
         @media screen and ( max-width:  $min-mobile-width)
             display: none
