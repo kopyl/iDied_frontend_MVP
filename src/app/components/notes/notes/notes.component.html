@@ -95,9 +95,7 @@
                     (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem
                     [@.disabled]="firstLoadedIntoUI === false">
                     <p>{{note.title}}</p>
-                    <div id="icon-sharing-globe">
-                        <icon-share-globe [class.globeVisible]=note.isShared></icon-share-globe>
-                    </div>
+                    <icon-share-globe id="icon-sharing-globe" [class.globeVisible]=note.isShared></icon-share-globe>
                 </li>
             </ul>
 

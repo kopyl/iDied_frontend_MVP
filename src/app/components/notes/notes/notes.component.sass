@@ -218,16 +218,14 @@ div#notes-page-container
                                 color: $brown-light
 
 
-                    div#icon-sharing-globe
+                    icon-share-globe
                         margin-left: 30px
+                        transition: .1s linear all
+                        position: relative
+                        bottom: 50px
 
-                        icon-share-globe
-                            transition: .1s linear all
-                            position: relative
-                            bottom: 50px
-
-                            &.globeVisible
-                                bottom: 0
+                        &.globeVisible
+                            bottom: 0
 
 
             li p:empty::after
