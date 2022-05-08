@@ -170,13 +170,16 @@ div#notes-page-container
                         padding: 7px 15px 6px 15px
 
 
-                    &.active
-                        // background-color: $bisque-darker
-                        background-color: rgba($brown-light, .7 )
-                        cursor: default
+                    @media screen and ( min-width:  $min-mobile-width)
+                        // Currently selected note indicator
+                        // is only visible on desktop
+                        &.active
+                            // background-color: $bisque-darker
+                            background-color: rgba($brown-light, .7 )
+                            cursor: default
 
-                        & p
-                            color: white
+                            & p
+                                color: white
 
                     p
                         transition: .15s linear all
