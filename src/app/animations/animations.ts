@@ -132,6 +132,37 @@ export const popupFader = trigger("popupFader", [
     transition("* <=> void", [animate(150)]),
 ])
 
+export const tooltipFaderParent = trigger("tooltipFaderParent", [
+    state(
+        "void",
+        style({opacity: "0"})
+    ),
+    state(
+        "*",
+        style({opacity: "1"})
+    ),
+
+    transition("* <=> *", [
+        group([
+            query('@tooltipFader', animateChild({ duration: '100ms' })),
+            animate(100),
+          ]),
+    ]),
+])
+
+export const tooltipFader = trigger("tooltipFader", [
+    state(
+        "*",
+        style({transform: "translateX(0px)"})
+    ),
+    state(
+        "void",
+        style({transform: "translateX(-20px)"})
+    ),
+
+    transition("* <=> void", [animate(100)]),
+])
+
 
 export const fadeInOut = trigger("fadeInOut", [
     state(

@@ -33,6 +33,7 @@
         "@services/auth": ["src/app/services/auth/google/google-auth.service"],
         "@services/http-error-handler": ["src/app/services/http-error-handler/http-error-handler.service"],
         "@services/online-updater": ["src/app/services/online-updater/online-updater.service"],
+        "@services/tooltip": ["src/app/services/tooltip.service"],
 
         "@components/confirmation-popup": ["src/app/components/confirm-popup/confirm-popup.component"],
         "@components/unauthorized": ["src/app/components/unauthorized/unauthorized.component"],
@@ -46,10 +47,13 @@
 
         "@directives/form-focus-and-height-adjustment": ["src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"],
         "@directives/fix-text-area-size-on-document-resize": ["src/app/directives/fix-text-area-size-on-document-resize/d.directive"],
+        "@directives/stop-propagation-on-mobile": ["src/app/directives/stop-propagation-on-mobile/stop-propagation-on-mobile.directive"],
 
         "@animations": ["src/app/animations/animations"],
 
         "@environment": ["src/environments/environment"],
+
+        "@icons/icon-share-globe": ["src/app/components/icons/icon-share-globe/icon-share-globe.component"],
 
     }
   },

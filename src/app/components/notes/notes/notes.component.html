@@ -1,39 +1,37 @@
 <confirm-popup #confirmPopup [activeNote]="activeNote"></confirm-popup>
 
-<div id=notes-page-container [class.notesEditing]="notesEditing">
-
+<div id="notes-page-container" [class.notesEditing]="notesEditing">
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <div id="sidebar">
-
-
         <header>
-
             <div id="logo">
                 <icon-logo routerLink="/" color="black"></icon-logo>
             </div>
 
             <div id="pro-button" [class.proButtonHidden]="proStatus">
                 <a [href]="paymentUrl">
-                    <button id="notes-link" class='small-button-primary pro-button'>
+                    <button
+                        id="notes-link"
+                        class="small-button-primary pro-button"
+                    >
                         Go pro
                     </button>
                 </a>
             </div>
-
         </header>
 
         <section id="buttons">
-
-            <button id="notes-link" class='small-button-secondary sidebar-menu-item active'>
+            <button
+                id="notes-link"
+                class="small-button-secondary sidebar-menu-item active"
+            >
                 <icon-notes></icon-notes>
                 Notes
             </button>
-
         </section>
 
         <section id="bottom-buttons">
-
             <!-- <div id="sign-out">
                 <button id="sign-out-button" class=small-button-secondary (click)=googleAuth.signOut()>
                     <icon-sign-out></icon-sign-out>
@@ -47,13 +45,10 @@
             </div> -->
 
             <button-logout></button-logout>
-
         </section>
-
     </div>
 
     <header id="mobile-header" [class.notesEditing]="notesEditing">
-
         <div id="left-side">
             <logo-mobile routerLink="/"></logo-mobile>
             <h1>Notes</h1>
@@ -61,79 +56,88 @@
 
         <div id="pro-button" [class.proButtonHidden]="proStatus">
             <a [href]="paymentUrl">
-                <button id="notes-link" class='small-button-primary pro-button'>
+                <button id="notes-link" class="small-button-primary pro-button">
                     Go pro
                 </button>
             </a>
         </div>
-
     </header>
 
     <div id="notes" [class.notesEditing]="notesEditing">
-
         <header id="desktop-header">
-
             <h1>Notes</h1>
             <loader [visible]="loaderVisible" class="mobileHidden"></loader>
 
-            <button id="create-note" class=small-button-primary (click)=createNote()>
-                <img src="assets/icon-new-light.svg" alt="">
+            <button
+                id="create-note"
+                class="small-button-primary"
+                (click)="createNote()"
+            >
+                <img src="assets/icon-new-light.svg" alt="" />
                 Create note
             </button>
-
         </header>
 
-
-
-
-
-
         <div id="list" #notesListHTML>
-
             <ul>
-                <li *ngFor="let note of notes" [class.active]="note.id === this.activeNote.id"
-                    (click)="changeActiveNote(note); navigateToActiveNote()" id="note-item" @noteItem
-                    [@.disabled]="firstLoadedIntoUI === false">
-                    <p>{{note.title}}</p>
-                    <icon-share-globe id="icon-sharing-globe" [class.globeVisible]=note.isShared></icon-share-globe>
+                <li
+                    *ngFor="let note of notes"
+                    [class.active]="note.id === this.activeNote.id"
+                    (click)="changeActiveNote(note); navigateToActiveNote()"
+                    id="note-item"
+                    @noteItem
+                    [@.disabled]="firstLoadedIntoUI === false"
+                >
+                    <p>{{ note.title }}</p>
+                    <icon-share-globe
+                        #source
+                        stopPropagationOnMobile
+                        tooltip="This note will be accessible once you die"
+                        id="icon-sharing-globe"
+                        [class.globeVisible]="note.isShared"
+                    ></icon-share-globe>
                 </li>
             </ul>
-
         </div>
 
         <div id="footer">
-
-            <button id="create-note" class=small-button-primary (click)=createNote()>
-                <img src="assets/icon-new-light.svg" alt="">
+            <button
+                id="create-note"
+                class="small-button-primary"
+                (click)="createNote()"
+            >
+                <img src="assets/icon-new-light.svg" alt="" />
                 Create note
             </button>
-
         </div>
-
     </div>
 
-
-
-    <div #note id="note" [class.notesEditing]="notesEditing" *ngIf="notes.length">
-        <note [activeNote]=activeNote (noteContentChanged)="scrollToActiveNote(); reSortNotes()"
-            (closeNoteEvent)="closeNote()" (removeNoteEvent)="removeNote()" [toggleFormFocus]=formFocused
-            *ngIf="!sharingView" (openSharingViewEvent)="openSharingView()"
-
-
+    <div
+        #note
+        id="note"
+        [class.notesEditing]="notesEditing"
+        *ngIf="notes.length"
+    >
+        <note
+            [activeNote]="activeNote"
+            (noteContentChanged)="scrollToActiveNote(); reSortNotes()"
+            (closeNoteEvent)="closeNote()"
+            (removeNoteEvent)="removeNote()"
+            [toggleFormFocus]="formFocused"
+            *ngIf="!sharingView"
+            (openSharingViewEvent)="openSharingView()"
             (requestPro)="requestPro()"
-
             [amountOfSharedNotes]="amountOfSharedNotes"
             [proStatus]="proStatus"
-
-            >
+        >
         </note>
 
-        <sharing [activeNote]="activeNote" *ngIf="sharingView" (sharingCloseEvent)="closeSharingView()"
-            [confirmPopup]="confirmPopup" (copied)=logCopied()
-            ></sharing>
-
+        <sharing
+            [activeNote]="activeNote"
+            *ngIf="sharingView"
+            (sharingCloseEvent)="closeSharingView()"
+            [confirmPopup]="confirmPopup"
+            (copied)="logCopied()"
+        ></sharing>
     </div>
-
-
-
 </div>

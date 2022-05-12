@@ -70,6 +70,11 @@ declare global {
         errorNotification: boolean
     }
 
+    interface TooltipPosition {
+        top: string
+        right: string
+    }
+
 }
 
 declare module "*.svg" {

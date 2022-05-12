@@ -30,9 +30,12 @@ import { HighlightComponent } from "@components/notification/highlight"
 import { NoteComponent } from "@components/notes/note"
 import { LoaderComponent } from "./components/loader/loader.component"
 import { NoteForRecipientComponent } from "@components/notes/note-for-recipient"
+import { TooltipComponent } from "./components/tooltip/tooltip.component"
 
 import { FormFocusAndHeightAdjustmentDirective } from "@directives/form-focus-and-height-adjustment"
 import { FixTextAreaTitleSizeOnDocumentResizeDirective } from "@directives/fix-text-area-size-on-document-resize"
+import { StopPropagationOnMobileDirective } from "@directives/stop-propagation-on-mobile"
+import { TooltipDirective } from './directives/tooltip/tooltip.directive';
 
 import { IconArrowRightComponent } from "./components/icons/icon-arrow-right/icon-arrow-right.component"
 import { IconNotesComponent } from "./components/icons/icon-notes/icon-notes.component"
@@ -50,16 +53,14 @@ import { SharingComponent } from "./components/sharing/sharing.component"
 import { IconShareGlobeComponent } from "./components/icons/icon-share-globe/icon-share-globe.component"
 import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.component"
 import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
-import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component";
-import { ButtonLogoutComponent } from './components/button-logout/button-logout.component'
-
+import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
+import { ButtonLogoutComponent } from "./components/button-logout/button-logout.component";
 
 const authInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true,
 }
-
 
 @NgModule({
     declarations: [
@@ -94,6 +95,9 @@ const authInterceptorProvider = {
         NoteForRecipientComponent,
         LoaderMobileComponent,
         ButtonLogoutComponent,
+        StopPropagationOnMobileDirective,
+        TooltipComponent,
+        TooltipDirective
     ],
     imports: [
         BrowserModule,

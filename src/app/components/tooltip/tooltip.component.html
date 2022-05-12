@@ -1,0 +1,13 @@
+<div
+    @tooltipFaderParent
+    [style.top]="tooltip.position.top"
+    [style.right]="tooltip.position.right"
+    id="container"
+    *ngIf="tooltip.shown"
+
+    (touchstart)="tooltip.hide()"
+>
+    <div id="tooltip" @tooltipFader>
+        <h1>{{ tooltip.text }}</h1>
+    </div>
+</div>
