@@ -33,7 +33,7 @@ export class TooltipService {
             this.processMobile()
         }
 
-        if (this.shown) {
+        if (this.shown && window.innerWidth <= 1000) {
             this.hide()
             return
         }

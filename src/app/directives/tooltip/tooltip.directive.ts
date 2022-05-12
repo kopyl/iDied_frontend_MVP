@@ -64,6 +64,7 @@ export class TooltipDirective {
 
     @HostListener("click", ["$event"])
     onClick(event): void {
+        if (window.innerWidth >= 1000) return
         this.showTooltip(event)
     }
 }
