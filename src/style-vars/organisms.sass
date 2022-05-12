@@ -29,8 +29,7 @@
     padding: $small-button-padding
     height: $small-button-height
 
-    & > *
-        margin-right: 14px
+    gap: 14px
 
 @mixin white-icon
     & svg line, & svg path
@@ -61,7 +60,6 @@
                 stroke: $brown-light
 
 @mixin red
-    // @include small-button-icon-only
 
     color: $red
 
@@ -88,18 +86,17 @@
 
     background-color: $red
     color: $white
-    border: $no-border
+    border: 2px solid $red
 
     &:hover
         background-color: $black
 
+        border: 2px solid $black
+
         @media (hover: none)  // remove hover on mobiles
             background-color: $red
+            border: 2px solid $red
 
-    & > *
-        grid-column: 2
-        margin-right: 0
-        margin-left: 14px
 
 @mixin pro-button
     background-color: rgba($red, 0.05)
@@ -218,3 +215,8 @@
         grid-auto-flow: column
         align-items: center
         gap: 31px
+
+
+@mixin grid-reverse
+    & > *
+        grid-column: 2

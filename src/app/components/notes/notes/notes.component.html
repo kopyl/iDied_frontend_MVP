@@ -70,10 +70,14 @@
 
             <button
                 id="create-note"
-                class="small-button-primary"
+
+
+                [class.small-button-primary]="!sharingView"
+                [class.red]="sharingView"
+                [class.small-button-secondary]="sharingView"
                 (click)="createNote()"
             >
-                <img src="assets/icon-new-light.svg" alt="" />
+                <icon-new></icon-new>
                 Create note
             </button>
         </header>
@@ -103,10 +107,10 @@
         <div id="footer">
             <button
                 id="create-note"
-                class="small-button-primary"
+                class="small-button-primary grid-reverse"
                 (click)="createNote()"
             >
-                <img src="assets/icon-new-light.svg" alt="" />
+                <icon-new></icon-new>
                 Create note
             </button>
         </div>

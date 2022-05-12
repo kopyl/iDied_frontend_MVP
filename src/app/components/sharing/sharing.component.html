@@ -41,13 +41,7 @@
 
             </div>
 
-            <button id="copy-link" class="small-button-secondary copy" [cdkCopyToClipboard]="sharingLink"
-                (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
-                <icon-copy></icon-copy>
-                <span>Copy link</span>
-            </button>
-
-            <button id="copy-link" class="small-button-primary white-icon copy mobile-copy" [cdkCopyToClipboard]="sharingLink"
+            <button id="copy-link" class="small-button-primary white-icon copy" [cdkCopyToClipboard]="sharingLink"
                 (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
                 <icon-copy></icon-copy>
                 <span>Copy link</span>

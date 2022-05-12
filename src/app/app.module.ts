@@ -55,6 +55,7 @@ import { IconRevokeComponent } from "./components/icons/icon-revoke/icon-revoke.
 import { IconCopyComponent } from "./components/icons/icon-copy/icon-copy.component"
 import { LoaderMobileComponent } from "./components/loader-mobile/loader-mobile.component"
 import { ButtonLogoutComponent } from "./components/button-logout/button-logout.component";
+import { IconNewComponent } from './components/icons/icon-new/icon-new.component';
 
 const authInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
@@ -97,7 +98,8 @@ const authInterceptorProvider = {
         ButtonLogoutComponent,
         StopPropagationOnMobileDirective,
         TooltipComponent,
-        TooltipDirective
+        TooltipDirective,
+        IconNewComponent
     ],
     imports: [
         BrowserModule,

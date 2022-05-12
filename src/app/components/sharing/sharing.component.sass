@@ -149,23 +149,17 @@ button.copy.mobile-copy
 
 
 button.copy
-    display: none
+    display: grid
+    gap: 14px
 
-    @media screen and ( min-width:  $min-mobile-width)
-        display: grid
-    // @media screen and ( max-height: $small-mobile-height)
-    //     display: none
-
-
-
-// button.copy
-//     flex-grow: 1
+    icon-copy
+        grid-column: 1
+        margin-left: 0
 
 
 div.unshare-revoke-buttons
     display: grid
     grid-template-columns: auto auto
-    // flex-flow: row wrap
     gap: 5px
 
 
