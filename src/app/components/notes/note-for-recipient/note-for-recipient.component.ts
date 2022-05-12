@@ -6,6 +6,7 @@ import {
 } from "@angular/core"
 import { RequestsService } from "@services/requests"
 import { ActivatedRoute } from "@angular/router"
+import { Title } from "@angular/platform-browser"
 
 @Component({
     selector: "app-note-for-recipient",
@@ -24,12 +25,14 @@ export class NoteForRecipientComponent implements OnInit {
 
     constructor(
         private readonly route: ActivatedRoute,
-        private readonly requests: RequestsService
+        private readonly requests: RequestsService,
+        private pageTitle: Title,
     ) {}
 
     ngOnInit(): void {
         this.getRequestedNoteToken()
         this.getContent()
+        this.pageTitle.setTitle("iDied - Private Note")
     }
 
     getRequestedNoteToken() {

@@ -250,6 +250,7 @@ export class NotesComponent implements OnInit {
         this.toggleFormFocus()
         this.openMobileNote()
         this.sharingView = false
+        this.pageTitle.setTitle("iDied - Note")
     }
 
     fetchNotes(): void {
@@ -351,16 +352,19 @@ export class NotesComponent implements OnInit {
         this.setSelectedNoteIndex()
         this.scrollToActiveNote()
         localStorage.setItem("userClosedAtLeasOneNote", "true")
+        this.pageTitle.setTitle("iDied - Notes")
     }
 
     openSharingView(): void {
         this.sharingView = true
         this.router.navigate(["/notes", this.activeNote.id, "sharing"])
+        this.pageTitle.setTitle("iDied - Sharing")
     }
 
     closeSharingView(): void {
         this.sharingView = false
         this.router.navigate(["/notes", this.activeNote.id])
+        this.pageTitle.setTitle("iDied - Note")
     }
 
     logCopied() {
