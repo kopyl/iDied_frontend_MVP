@@ -82,7 +82,7 @@
             </button>
         </header>
 
-        <div id="list" #notesListHTML>
+        <div id="list" #notesListHTML (scroll)="tooltip.hide()">
             <ul>
                 <li
                     *ngFor="let note of notes"

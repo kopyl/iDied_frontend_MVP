@@ -13,6 +13,7 @@ import { CookieService } from "ngx-cookie-service"
 import { ViewEncapsulation } from "@angular/core"
 
 import { environment } from "@environment"
+import { TooltipService } from "@services/tooltip"
 
 @Component({
     selector: "app-notes",
@@ -54,7 +55,8 @@ export class NotesComponent implements OnInit {
         private router: Router,
         private readonly requests: RequestsService,
         private route: ActivatedRoute,
-        private cookies: CookieService
+        private cookies: CookieService,
+        public tooltip: TooltipService
     ) {}
 
     ngOnInit(): void {
