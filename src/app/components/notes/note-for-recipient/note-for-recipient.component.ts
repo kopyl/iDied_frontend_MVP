@@ -30,8 +30,6 @@ export class NoteForRecipientComponent implements OnInit {
     ngOnInit(): void {
         this.getRequestedNoteToken()
         this.getContent()
-        // this.forbidden = false
-        // this.title = "Wow. ".repeat(4000)
     }
 
     getRequestedNoteToken() {
