@@ -33,7 +33,8 @@
         "@services/auth": ["src/app/services/auth/google/google-auth.service"],
         "@services/http-error-handler": ["src/app/services/http-error-handler/http-error-handler.service"],
         "@services/online-updater": ["src/app/services/online-updater/online-updater.service"],
-        "@services/tooltip": ["src/app/services/tooltip.service"],
+        "@services/tooltip": ["src/app/services/tooltip/tooltip.service"],
+        "@services/google-analytics": ["src/app/services/google-analytics/google-analytics.service"],
 
         "@components/confirmation-popup": ["src/app/components/confirm-popup/confirm-popup.component"],
         "@components/unauthorized": ["src/app/components/unauthorized/unauthorized.component"],
