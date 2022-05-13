@@ -14,6 +14,7 @@ import { ViewEncapsulation } from "@angular/core"
 
 import { environment } from "@environment"
 import { TooltipService } from "@services/tooltip"
+import { GoogleAnalyticsService } from "@services/google-analytics"
 
 @Component({
     selector: "app-notes",
@@ -56,7 +57,8 @@ export class NotesComponent implements OnInit {
         private readonly requests: RequestsService,
         private route: ActivatedRoute,
         private cookies: CookieService,
-        public tooltip: TooltipService
+        public tooltip: TooltipService,
+        private googleAnalytics: GoogleAnalyticsService
     ) {}
 
     ngOnInit(): void {
@@ -225,6 +227,11 @@ export class NotesComponent implements OnInit {
 
             if (addingNotesFromCreation) {
                 this.navigateToActiveNote()
+                this.googleAnalytics.sendEvent(
+                    "create_note", {
+                        "value": true
+                    }
+                )
             }
 
             this.loaderVisible = false
