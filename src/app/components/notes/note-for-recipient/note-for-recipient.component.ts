@@ -32,7 +32,7 @@ export class NoteForRecipientComponent implements OnInit {
     ngOnInit(): void {
         this.getRequestedNoteToken()
         this.getContent()
-        this.pageTitle.setTitle("iDied - Private Note")
+        this.pageTitle.setTitle("iDied - Public Note")
     }
 
     getRequestedNoteToken() {
