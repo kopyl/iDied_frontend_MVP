@@ -26,7 +26,7 @@ const URLS = {
         endpoint: "notes/public",
         port: port,
         protocol: protocol,
-        retriedAllowed: false,
+        retriedAllowed: true,
         errorNotification: false,
     }),
 
