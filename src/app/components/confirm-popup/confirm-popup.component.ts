@@ -108,8 +108,6 @@ export class ConfirmPopupComponent implements OnInit {
         const doesNeedLogin = this.route.snapshot.queryParams["needLogin"]
         if (!doesNeedLogin) return
 
-        console.log("Need login")
-
         this.type = "info"
         this.open = true
 
