@@ -35,6 +35,8 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.onlineUpdater.schedule()
+
+        console.log('for test 17 May 2022')
     }
 
     prepareOutlet(outlet: RouterOutlet) {
