@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router"
 import { RequestsService } from "@services/requests"
 import { CookieService } from "ngx-cookie-service"
 import { environment } from "@environment"
+import { GoogleAnalyticsService } from "@services/google-analytics"
 
 @Injectable({
     providedIn: "root",
@@ -19,7 +20,8 @@ export class GoogleAuthService {
         private router: Router,
         private readonly requests: RequestsService,
         private route: ActivatedRoute,
-        private cookies: CookieService
+        private cookies: CookieService,
+        private googleAnalytics: GoogleAnalyticsService,
     ) {}
 
     redirectToPaymentIfRequired(): void {
@@ -70,6 +72,7 @@ export class GoogleAuthService {
         if (this.route.snapshot.queryParams["auth"]) {
             this.userLoggedIn = true
             localStorage.setItem("auth", "true")
+            this.googleAnalytics.trackLogin()
 
             this.redirectToPaymentIfRequired()
 

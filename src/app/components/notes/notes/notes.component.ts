@@ -232,11 +232,7 @@ export class NotesComponent implements OnInit {
 
             if (addingNotesFromCreation) {
                 this.navigateToActiveNote()
-                this.googleAnalytics.sendEvent(
-                    "create_note", {
-                        "value": true
-                    }
-                )
+                this.googleAnalytics.trackNoteCreation()
             }
 
             this.loaderVisible = false

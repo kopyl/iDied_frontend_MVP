@@ -8,16 +8,27 @@ interface GoogleAnalyticsPayload {
     [key: string]: any
 }
 
+const marker = { value: true }
+const makeEventArgs = (_): eventArgs => [_, marker]
+
+type name = string
+type eventArgs = [name, GoogleAnalyticsPayload]
+
+class Events {
+    static login: eventArgs = makeEventArgs("login")
+    static createNote: eventArgs = makeEventArgs("create_note")
+}
+
 @Injectable({
     providedIn: "root",
 })
 export class GoogleAnalyticsService {
     constructor() {}
 
-    sendEvent(name: string, payload: GoogleAnalyticsPayload): void {
+    sendEvent(args: eventArgs): void {
         if (!environment.production) return
-
-        gtag("event", name, payload)
+        gtag("event", ...args)
+        console.log('28may, 06:22')
     }
 
     setUserID(userID: string): void {
@@ -29,8 +40,16 @@ export class GoogleAnalyticsService {
         If it's saved, it's retrieved in index.html
         and sent to GA
         */
-        console.log("SETTING USER ID", userID)
-        gtag("set", "user_properties", { userID: userID })
+        const uid = {userID: userID}
+        gtag("set", "user_properties", uid)
         localStorage.setItem("userID", userID)
+    }
+
+    trackLogin(): void {
+        this.sendEvent(Events.login)
+    }
+
+    trackNoteCreation(): void {
+        this.sendEvent(Events.createNote)
     }
 }
