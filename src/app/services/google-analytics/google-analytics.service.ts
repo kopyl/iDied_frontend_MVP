@@ -29,6 +29,8 @@ export class GoogleAnalyticsService {
         If it's saved, it's retrieved in index.html
         and sent to GA
         */
-        gtag("set", { userID: userID })
+        console.log("SETTING USER ID", userID)
+        gtag("set", "user_properties", { userID: userID })
+        localStorage.setItem("userID", userID)
     }
 }

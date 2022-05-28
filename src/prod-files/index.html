@@ -43,7 +43,7 @@
 
       const userID = localStorage.getItem('userID');
       if (userID) {
-          gtag('set', {'userID': userID});
+          gtag("set", "user_properties", { userID: userID })
       }
     </script>
 
