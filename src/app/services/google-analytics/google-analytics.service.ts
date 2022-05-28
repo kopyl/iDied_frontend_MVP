@@ -19,4 +19,16 @@ export class GoogleAnalyticsService {
 
         gtag("event", name, payload)
     }
+
+    setUserID(userID: string): void {
+        if (!environment.production) return
+
+        const savedUserIDInLS = localStorage.getItem("userID")
+        if (savedUserIDInLS) return
+        /*
+        If it's saved, it's retrieved in index.html
+        and sent to GA
+        */
+        gtag("set", { userID: userID })
+    }
 }

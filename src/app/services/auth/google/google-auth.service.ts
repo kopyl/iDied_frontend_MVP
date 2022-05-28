@@ -42,6 +42,7 @@ export class GoogleAuthService {
         this.userLoggedIn = false
         this.buttonLoaderVisible = false
         localStorage.removeItem("auth")
+        localStorage.removeItem("userID")
         this.router.navigate([""])
     }
 

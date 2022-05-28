@@ -35,6 +35,7 @@ declare global {
         error: boolean,
         pro: boolean,
         avatar_url: string,
+        user_id: string,
     }
 
     interface backend_notes_response {

@@ -40,6 +40,11 @@
       gtag('js', new Date());
 
       gtag('config', 'G-X9BGV3FKZ8');
+
+      const userID = localStorage.getItem('userID');
+      if (userID) {
+          gtag('set', {'userID': userID});
+      }
     </script>
 
 

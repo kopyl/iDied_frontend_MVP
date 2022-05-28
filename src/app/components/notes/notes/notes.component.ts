@@ -191,6 +191,11 @@ export class NotesComponent implements OnInit {
         localStorage.setItem('avatar_url', backendResponse.avatar_url)
     }
 
+    setUserID(backendResponse: backend_init_notes_response): void {
+        const userID = backendResponse.user_id
+        this.googleAnalytics.setUserID(userID)
+    }
+
     addNotes(
         backendResponse: backend_notes_response | backend_init_notes_response,
         addingNotesFromCreation = false
@@ -242,6 +247,9 @@ export class NotesComponent implements OnInit {
                     backendResponse as backend_init_notes_response
                 )
                 this.setAvatar(
+                    backendResponse as backend_init_notes_response
+                )
+                this.setUserID(
                     backendResponse as backend_init_notes_response
                 )
             }
