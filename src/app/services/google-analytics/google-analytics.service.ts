@@ -28,7 +28,7 @@ export class GoogleAnalyticsService {
     sendEvent(args: eventArgs): void {
         if (!environment.production) return
         gtag("event", ...args)
-        console.log('28may, 06:22')
+        console.log('28may, 07:02')
     }
 
     setUserID(userID: string): void {
@@ -40,7 +40,7 @@ export class GoogleAnalyticsService {
         If it's saved, it's retrieved in index.html
         and sent to GA
         */
-        const uid = {userID: userID}
+        const uid = { userID: "#" + userID }
         gtag("set", "user_properties", uid)
         localStorage.setItem("userID", userID)
     }
