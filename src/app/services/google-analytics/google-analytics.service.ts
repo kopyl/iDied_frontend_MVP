@@ -28,7 +28,6 @@ export class GoogleAnalyticsService {
     sendEvent(args: eventArgs): void {
         if (!environment.production) return
         gtag("event", ...args)
-        console.log('28may, 07:02')
     }
 
     setUserID(userID: string): void {
