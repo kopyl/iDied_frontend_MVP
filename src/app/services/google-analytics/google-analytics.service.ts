@@ -34,11 +34,7 @@ export class GoogleAnalyticsService {
         if (!environment.production) return
 
         const savedUserIDInLS = localStorage.getItem("userID")
-        if (savedUserIDInLS) return
-        /*
-        If it's saved, it's retrieved in index.html
-        and sent to GA
-        */
+        if (savedUserIDInLS) return  // id.doc.id#6
         const uid = { userID: "#" + userID }
         gtag("set", "user_properties", uid)
         localStorage.setItem("userID", userID)
