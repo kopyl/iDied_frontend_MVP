@@ -22,12 +22,6 @@ export class AppComponent implements OnInit {
 
     setUpGoogleAnalytics(): void {
 
-        this.router.events.subscribe((event) => {
-            if (event instanceof NavigationEnd) {
-                console.log("NavigationEnd", event, event.urlAfterRedirects)
-            }
-        })
-
         if (!environment.production) return
 
         this.router.events.subscribe((event) => {
