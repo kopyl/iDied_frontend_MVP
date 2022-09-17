@@ -9,7 +9,11 @@
                 <icon-logo routerLink="/" color="black"></icon-logo>
             </div>
 
-            <div id="pro-button" [class.proButtonHidden]="proStatus">
+            <div
+                (click)="googleAnalytics.trackProAccountRequest()"
+                id="pro-button"
+                [class.proButtonHidden]="proStatus"
+            >
                 <a [href]="paymentUrl">
                     <button
                         id="notes-link"
@@ -54,7 +58,11 @@
             <h1>Notes</h1>
         </div>
 
-        <div id="pro-button" [class.proButtonHidden]="proStatus">
+        <div
+            (click)="googleAnalytics.trackProAccountRequest()"
+            id="pro-button"
+            [class.proButtonHidden]="proStatus"
+        >
             <a [href]="paymentUrl">
                 <button id="notes-link" class="small-button-primary pro-button">
                     Go pro
@@ -70,8 +78,6 @@
 
             <button
                 id="create-note"
-
-
                 [class.small-button-primary]="!sharingView"
                 [class.red]="sharingView"
                 [class.small-button-secondary]="sharingView"
