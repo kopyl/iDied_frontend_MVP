@@ -24,6 +24,7 @@ export class LangService {
             byGoogle: 'By Google',
             myNotes: 'My notes',
             signOut: 'Sign out',
+            goPro: 'Get unlimited access',
         },
         ua: {
             title: {
@@ -44,6 +45,7 @@ export class LangService {
             byGoogle: 'За допомогою Google',
             myNotes: 'Мої нотатки',
             signOut: 'Вийти',
+            goPro: 'Отримати безліміт',
         },
     }
 
