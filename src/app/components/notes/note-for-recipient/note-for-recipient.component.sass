@@ -142,3 +142,15 @@ div.loading-text
     100%
         content: ""
 
+
+#support-link
+    color: $black-lighter
+    text-decoration: underline
+    transition: all .15s ease-in-out
+
+    &:hover
+        color: $red
+        text-decoration: underline
+
+        @media (hover: none)  // remove hover on mobiles
+            color: $black-lighter

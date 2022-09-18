@@ -8,9 +8,15 @@
         #fg
     >
         <header>
-            <h1 *ngIf="type === 'noteRemoval'">Remove note</h1>
-            <h1 *ngIf="type === 'noteUnshare'">Unshare note</h1>
-            <h1 *ngIf="type === 'linkRevoke'">Revoke note's link</h1>
+            <h1 *ngIf="type === 'noteRemoval'">
+                {{ lang.copy.popups.titles.remove }}
+            </h1>
+            <h1 *ngIf="type === 'noteUnshare'">
+                {{ lang.copy.popups.titles.unshare }}
+            </h1>
+            <h1 *ngIf="type === 'linkRevoke'">
+                {{ lang.copy.popups.titles.revoke }}
+            </h1>
             <h1 *ngIf="type === 'info'">{{ title }}</h1>
 
             <button
@@ -23,34 +29,30 @@
         </header>
 
         <p *ngIf="type === 'noteRemoval'">
-            Do you really want to delete the note “<strong>{{
+            {{ lang.copy.popups.titles.wantToDelete }} “<strong>{{
                 activeNoteTitle
             }}</strong
             >” ?
         </p>
 
         <p *ngIf="type === 'noteUnshare'">
-            Do you really want to unshare the note “<strong>{{
-                activeNoteTitle
-            }}</strong
+            {{ lang.copy.popups.descriptions.unshare.beforeTitle
+            }}<strong>{{ activeNoteTitle }}</strong
             >” ?
 
             <br />
 
-            This note will become inaccessible by the public link after you die
-            if you unshare
+            {{ lang.copy.popups.descriptions.unshare.afterTitle }}
         </p>
 
         <p *ngIf="type === 'linkRevoke'">
-            Do you really want to change the access link to the note “<strong>{{
-                activeNoteTitle
-            }}</strong
+            {{ lang.copy.popups.descriptions.revoke.beforeTitle
+            }}<strong>{{ activeNoteTitle }}</strong
             >” ?
 
             <br />
 
-            Everyone you shared your current link won't have any access to your
-            note using it
+            {{ lang.copy.popups.descriptions.revoke.afterTitle }}
         </p>
 
         <p *ngIf="type === 'info'">{{ body }}</p>
@@ -62,7 +64,7 @@
                 (click)="open = false; this.onCancel()"
             >
                 <icon-close-note></icon-close-note>
-                {{ lang.copy.cancel }}
+                {{ lang.copy.buttons.cancel }}
             </button>
 
             <button
@@ -73,7 +75,7 @@
                 <div class="icon">
                     <icon-delete></icon-delete>
                 </div>
-                <span> Remove note </span>
+                <span> {{ lang.copy.buttons.remove }} </span>
             </button>
 
             <button
@@ -84,7 +86,7 @@
                 <div class="icon">
                     <icon-share></icon-share>
                 </div>
-                <span> Unshare note </span>
+                <span> {{ lang.copy.buttons.unshare }} </span>
             </button>
 
             <button
@@ -95,7 +97,9 @@
                 <div class="icon">
                     <icon-revoke></icon-revoke>
                 </div>
-                <span> Revoke link </span>
+                <span>
+                    {{ lang.copy.buttons.revoke }}
+                </span>
             </button>
 
             <button

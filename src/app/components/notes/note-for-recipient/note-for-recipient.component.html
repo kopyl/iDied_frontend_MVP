@@ -25,38 +25,80 @@
                 </div>
 
                 <div class="loading-text" id="text" *ngIf="loading">
-                    <h1>Loading</h1>
+                    <h1>{{ lang.copy.loading }}</h1>
                 </div>
 
                 <div id="forbidden-text" *ngIf="forbidden && !loading">
                     <h1>
-                        You <span>can't read</span> the note due to some or one of following reasons:
+                        {{ lang.lang === "ua" ? "Доступ до нонатки" : "You" }}
+                        <span>
+                            {{
+                                lang.lang === "ua"
+                                    ? "заборонено"
+                                    : "can't read"
+                            }}
+                        </span>
+                        {{
+
+                            lang.lang === "ua"
+                                ? "За якихось або однієї з наступних причин:"
+                                : "the note due to some or one of following reasons:"
+                        }}
                     </h1>
                     <ol>
                         <li>
-                            Owner hasn't died
+                            {{
+                                lang.lang === "ua"
+                                    ? "Власник не загинув"
+                                    : "Owner hasn't died"
+                            }}
                         </li>
                         <li>
-                            Note link is wrong or has been revoked / unshared by owner
+                            {{
+                                lang.lang === "ua"
+                                    ? "Неправильне посилання або власник відкликав доступ"
+                                    : "Note link is wrong or has been revoked / unshared by owner"
+                            }}
                         </li>
                         <li>
-                            Note has been deleted by the owner
+                            {{
+                                lang.lang === "ua"
+                                    ? "Власник видалив нотатку"
+                                    : "Note has been deleted by the owner"
+                            }}
                         </li>
                         <li>
-                            Note has been destroyed by the recepient
-                        </li>
-                        <li>
-                            Too many requests, you may be a scammer
+                            {{
+                                lang.lang === "ua"
+                                    ? "Забагато запитів, можливо ви шахрай"
+                                    : "Too many requests, you may be a scammer"
+                            }}
                         </li>
                     </ol>
 
-                    <p>Try again later</p>
+                    <p>
+                        {{
+                            lang.lang === "ua"
+                                ? "Спробуйте пізніше або"
+                                : "Try again later or"
+                        }}
+                        <a href="mailto:kopyloleh@gmail.com" id="support-link" >{{
+                            lang.lang === "ua"
+                                ? "напишіть до підтримки"
+                                : "contact support"
+
+                            }}</a>
+                    </p>
                 </div>
 
             </section>
 
             <persistent-alert *ngIf="forbidden">
-                We can't tell the exact reason due to security concerns
+                {{
+                    lang.lang === "ua"
+                        ? "Ми не можемо повідомити точну причину з міркувань безпеки"
+                        : "We can't tell the exact reason due to security concerns"
+                }}
             </persistent-alert>
         </main>
 

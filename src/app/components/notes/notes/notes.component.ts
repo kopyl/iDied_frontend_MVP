@@ -177,11 +177,10 @@ export class NotesComponent implements OnInit {
 
     requestProDetailed(): void {
         this.confirmPopup.type = 'info'
-        this.confirmPopup.title = this.lang.copy.popups.proDetailed.title
-        this.confirmPopup.body = this.lang.copy.popups.proDetailed.description
+        this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
+        this.confirmPopup.body = this.lang.copy.popups.descriptions.proDetailed
         this.confirmPopup.open = true
-        this.confirmPopup.buttonText =
-            this.lang.copy.popups.proDetailed.buttons.upgrade
+        this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () =>
             (window.location.href = this.paymentUrl)
         this.requests.sendTGreport.send({

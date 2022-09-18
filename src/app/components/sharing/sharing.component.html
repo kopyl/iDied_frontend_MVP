@@ -1,66 +1,80 @@
 <div id="container">
-
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <div id="top-part">
-
         <header>
-
             <div id="left-side">
-
                 <logo-mobile routerLink="/"></logo-mobile>
 
-                <h1>Sharing</h1>
-
+                <h1>
+                    {{ lang.copy.sharing }}
+                </h1>
             </div>
 
             <loader [visible]="loaderVisible" class="mobileHidden"></loader>
 
-
-            <button id="close-note" class="small-button-icon-only" (click)="closeSharingWindow()">
+            <button
+                id="close-note"
+                class="small-button-icon-only"
+                (click)="closeSharingWindow()"
+            >
                 <icon-close-note></icon-close-note>
             </button>
-
         </header>
 
-        <a id="link" [href]="sharingLink" target="_blank"><span>{{baseUrl}}</span>/n/{{activeNote?.sharingToken}}</a>
+        <a id="link" [href]="sharingLink" target="_blank"
+            ><span>{{ baseUrl }}</span
+            >/n/{{ activeNote?.sharingToken }}</a
+        >
 
         <section id="access-buttons-copy-unshare-revoke">
-
             <div class="unshare-revoke-buttons">
-
-                <button id="unshare" class="small-button-secondary red" (click)="sendUnsharingConfirmation()">
+                <button
+                    id="unshare"
+                    class="small-button-secondary red"
+                    (click)="sendUnsharingConfirmation()"
+                >
                     <icon-share></icon-share>
-                    <span>Unshare</span>
+                    <span>
+                        {{ lang.copy.buttons.unshare }}
+                    </span>
                 </button>
 
-                <button id="revoke" class="small-button-secondary red" (click)="sendRevokingConfirmation()">
+                <button
+                    id="revoke"
+                    class="small-button-secondary red"
+                    (click)="sendRevokingConfirmation()"
+                >
                     <icon-revoke></icon-revoke>
-                    <span>Revoke</span>
+                    <span>
+                        {{ lang.copy.buttons.revoke }}
+                    </span>
                 </button>
-
             </div>
 
-            <button id="copy-link" class="small-button-primary white-icon copy" [cdkCopyToClipboard]="sharingLink"
-                (cdkCopyToClipboardCopied)=notifyAboutCopiedText()>
+            <button
+                id="copy-link"
+                class="small-button-primary white-icon copy"
+                [cdkCopyToClipboard]="sharingLink"
+                (cdkCopyToClipboardCopied)="notifyAboutCopiedText()"
+            >
                 <icon-copy></icon-copy>
-                <span>Copy link</span>
+                <span>
+                    {{ lang.copy.buttons.copyLink }}
+                </span>
             </button>
-
         </section>
-
-
     </div>
 
     <div id="bottom-part">
-
         <div class="bottom-alert">
             <div class="alert">
-                <persistent-alert>This note will become accessible by a link unless you log in for 30 days
+                <persistent-alert
+                    >{{
+                        this.lang.copy.sharingNotice.specific
+                    }}
                 </persistent-alert>
             </div>
         </div>
-
     </div>
-
 </div>

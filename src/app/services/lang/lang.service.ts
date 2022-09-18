@@ -33,23 +33,56 @@ export class LangService {
             },
             share: 'Share',
             sharingSettings: 'Sharing settings',
+            sharing: 'Sharing',
             sharingNotice: {
                 general:
                     'Any SHARED note will become accessible by a link unless you log in for 30 days',
                 specific:
                     'This note will become accessible by a link unless you log in for 30 days',
             },
-            cancel: 'Cancel',
+            loading: 'Loading',
+            buttons: {
+                upgrade: 'Upgrade for $1',
+                cancel: 'Cancel',
+                remove: 'Remove',
+                unshare: 'Unshare note',
+                revoke: 'Revoke link',
+                copyLink: 'Copy link',
+            },
             popups: {
-                proDetailed: {
-                    title: 'Upgrade to Pro',
-                    description:
+                titles: {
+                    wantToDelete: 'Do you really want to delete the note',
+                    proDetailed: 'Upgrade to Pro',
+                    remove: 'Remove note',
+                    unshare: 'Unshare note',
+                    revoke: "Revoke note's link",
+                },
+                descriptions: {
+                    proDetailed:
                         'On a free account you can only share 3 notes. Upgrade to Pro to share unlimited notes for $1.',
-                    buttons: {
-                        upgrade: 'Upgrade for $1',
+                    unshare: {
+                        beforeTitle: 'Do you really want to unshare the note “',
+                        afterTitle:
+                            'This note will become inaccessible by the public link after you die if you unshare',
+                    },
+                    revoke: {
+                        beforeTitle:
+                            'Do you really want to change the access link to the note “',
+                        afterTitle:
+                            "Everyone you shared your current link with, won't have any access to your note using it",
                     },
                 },
             },
+            notifications: {
+                copied: {
+                    body: 'Link copied. Now send it to somebody :)',
+                    cta: 'Close'
+                },
+                revoked: {
+                    body: 'Link revoked.',
+                    cta: 'Close'
+                },
+            }
         },
         ua: {
             title: {
@@ -79,21 +112,55 @@ export class LangService {
             },
             share: 'Поділитися',
             sharingSettings: 'Налаштування доступу',
+            sharing: 'Доступ по посиланню',
             sharingNotice: {
                 general:
                     'Пошерена нотатка стане доступною по посиланню, якщо ви не зайдете на сайт раз в 30 днів',
                 specific:
                     'Ця нотатка стане доступною по посиланню, якщо ви не ввійдете протягом 30 днів',
             },
-            cancel: 'Скасувати',
+            loading: 'Завантаження',
+            buttons: {
+                upgrade: 'Оновити за $1',
+                cancel: 'Скасувати',
+                remove: 'Видалити',
+                unshare: 'Закрити доступ',
+                revoke: 'Змінити посилання',
+                copyLink: 'Скопіювати посилання',
+            },
             popups: {
-                proDetailed: {
-                    title: 'Отримати безліміт',
-                    description:
+                titles: {
+                    wantToDelete: 'Ви дійсно хочете видалити нотатку',
+                    proDetailed: 'Отримати безліміт',
+                    remove: 'Видалити нотатку',
+                    unshare: 'Закрити доступ',
+                    revoke: 'Відкликати доступ по існуючому посиланню',
+                },
+                descriptions: {
+                    proDetailed:
                         'На безкоштовному обліковому записі ви можете поділитися лише 3 нотатками. Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток за $1.',
-                    buttons: {
-                        upgrade: 'Оновити за $1',
+                    unshare: {
+                        beforeTitle:
+                            'Ви дійсно хочете закрити доступ до нотатки “',
+                        afterTitle:
+                            'Ця нотатка стане недоступною по посиланню після того, як ви помрете, якщо ви закриєте доступ',
                     },
+                    revoke: {
+                        beforeTitle:
+                            'Ви дійсно хочете змінити посилання доступу до нотатки “',
+                        afterTitle:
+                            'Всі, з ким ви поділилися поточним посиланням, не матимуть доступу до вашої нотатки за допомогою нього',
+                    },
+                },
+            },
+            notifications: {
+                copied: {
+                    body: 'Посилання скопійовано. Тепер відправте комусь :)',
+                    cta: 'Відхилити'
+                },
+                revoked: {
+                    body: 'Посилання відкликано.',
+                    cta: 'Закрити'
                 },
             },
         },

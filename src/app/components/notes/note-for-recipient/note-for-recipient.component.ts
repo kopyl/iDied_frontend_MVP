@@ -7,6 +7,7 @@ import {
 import { RequestsService } from "@services/requests"
 import { ActivatedRoute } from "@angular/router"
 import { Title } from "@angular/platform-browser"
+import { LangService } from "@services/lang"
 
 @Component({
     selector: "app-note-for-recipient",
@@ -27,6 +28,7 @@ export class NoteForRecipientComponent implements OnInit {
         private readonly route: ActivatedRoute,
         private readonly requests: RequestsService,
         private pageTitle: Title,
+        public lang: LangService
     ) {}
 
     ngOnInit(): void {
