@@ -185,6 +185,11 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.buttonText = 'Upgrade for $1'
         this.confirmPopup.onSuccess = () =>
             (window.location.href = this.paymentUrl)
+        this.requests.sendTGreport.send({
+            type: 'requestProDetailed',
+            message: 'User requested pro detailed',
+            userId: this.googleAuth.userId
+        })
     }
 
     handleProAccountFromBackendInit(
@@ -204,7 +209,7 @@ export class NotesComponent implements OnInit {
 
     setUserID(backendResponse: backend_init_notes_response): void {
         const userID = backendResponse.user_id
-        this.googleAnalytics.setUserID(userID)
+        this.googleAuth.userId = userID
     }
 
     addNotes(
@@ -254,9 +259,9 @@ export class NotesComponent implements OnInit {
                     backendResponse as backend_init_notes_response
                 )
                 this.setAvatar(backendResponse as backend_init_notes_response)
-                // this.setUserID(
-                //     backendResponse as backend_init_notes_response
-                // )
+                this.setUserID(
+                    backendResponse as backend_init_notes_response
+                )
             }
         }
     }

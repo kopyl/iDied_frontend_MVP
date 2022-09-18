@@ -11,9 +11,19 @@ import { GoogleAnalyticsService } from "@services/google-analytics"
 export class GoogleAuthService {
     public userLoggedIn = false
     public buttonLoaderVisible = false
+    private _userId = ""
 
     public get avatarUrl(): string {
         return localStorage.getItem("avatar_url")!
+    }
+
+    public set userId(id) {
+        this._userId = id
+        localStorage.setItem("userId", id)
+    }
+
+    public get userId(): string {
+        return this._userId || localStorage.getItem("userId") || ""
     }
 
     constructor(

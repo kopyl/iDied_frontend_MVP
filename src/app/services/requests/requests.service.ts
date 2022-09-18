@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from "@angular/common/http"
 import { HttpErrorHandlerService } from "@services/http-error-handler"
 import { makeUrlObj } from "@utils/constructors"
 import { first, retryWhen, mergeMap } from "rxjs/operators"
+import { environment } from '@environment';
 
 const port = 5001
 const protocol = "http"
@@ -36,6 +37,9 @@ const URLS = {
         protocol: protocol,
         retriedAllowed: false,
         errorNotification: false,
+    }),
+    TG_REPORT: makeUrlObj({
+        customApiUrl: `${environment.baseUrl}/api/tg-report`,
     }),
 }
 
@@ -274,6 +278,15 @@ class NoteForRecipient {
     }
 }
 
+class SendTGreport extends Request {
+    method = "POST"
+    URL = URLS.TG_REPORT
+
+    override makeBody(report: string) {
+        this.body = report
+    }
+}
+
 @Injectable({
     providedIn: "root",
 })
@@ -283,6 +296,7 @@ export class RequestsService {
     online: Online
     noteForRecipient: NoteForRecipient
     logout: Logout
+    sendTGreport: SendTGreport
 
     constructor(
         private http: HttpClient,
@@ -293,6 +307,7 @@ export class RequestsService {
         this.online = new Online(http, HTTPErrorHandler)
         this.noteForRecipient = new NoteForRecipient(http, HTTPErrorHandler)
         this.logout = new Logout(http, HTTPErrorHandler)
+        this.sendTGreport = new SendTGreport(http, HTTPErrorHandler)
     }
 }
 
