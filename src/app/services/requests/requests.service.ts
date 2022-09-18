@@ -1,30 +1,30 @@
-import { Injectable } from "@angular/core"
-import { Observable, timer } from "rxjs"
-import { HttpClient, HttpParams } from "@angular/common/http"
-import { HttpErrorHandlerService } from "@services/http-error-handler"
-import { makeUrlObj } from "@utils/constructors"
-import { first, retryWhen, mergeMap } from "rxjs/operators"
-import { environment } from '@environment';
+import { Injectable } from '@angular/core'
+import { Observable, timer } from 'rxjs'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpErrorHandlerService } from '@services/http-error-handler'
+import { makeUrlObj } from '@utils/constructors'
+import { first, retryWhen, mergeMap } from 'rxjs/operators'
+import { environment } from '@environment'
 
 const port = 5001
-const protocol = "http"
+const protocol = 'http'
 
 const logAttempt = (attempt: number) => {
     console.log(`HTTP request attempt № ${attempt}`)
 }
 
 const URLS = {
-    AUTH: makeUrlObj({ endpoint: "authorize", port: port, protocol: protocol }),
+    AUTH: makeUrlObj({ endpoint: 'authorize', port: port, protocol: protocol }),
 
-    LOGOUT: makeUrlObj({ endpoint: "logout", port: port, protocol: protocol }),
+    LOGOUT: makeUrlObj({ endpoint: 'logout', port: port, protocol: protocol }),
 
     NOTES_PRIVATE: makeUrlObj({
-        endpoint: "notes/private",
+        endpoint: 'notes/private',
         port: port,
         protocol: protocol,
     }),
     NOTES_PUBLIC: makeUrlObj({
-        endpoint: "notes/public",
+        endpoint: 'notes/public',
         port: port,
         protocol: protocol,
         retriedAllowed: true,
@@ -32,7 +32,7 @@ const URLS = {
     }),
 
     ONLINE: makeUrlObj({
-        endpoint: "users/online",
+        endpoint: 'users/online',
         port: port,
         protocol: protocol,
         retriedAllowed: false,
@@ -40,6 +40,7 @@ const URLS = {
     }),
     TG_REPORT: makeUrlObj({
         customApiUrl: `${environment.baseUrl}/api/tg-report`,
+        errorNotification: false,
     }),
 }
 
@@ -61,19 +62,19 @@ abstract class Request {
     protected makeBody(kwargs: Object) {}
 
     protected makeRequest() {
-        if (this.method === "GET") {
+        if (this.method === 'GET') {
             this.request = this.http.get(this.URL.url, {
                 params: this.params,
             })
-        } else if (this.method === "POST") {
+        } else if (this.method === 'POST') {
             this.request = this.http.post(this.URL.url, this.body, {
                 params: this.params,
             })
-        } else if (this.method === "PUT") {
+        } else if (this.method === 'PUT') {
             this.request = this.http.put(this.URL.url, this.body, {
                 params: this.params,
             })
-        } else if (this.method === "DELETE") {
+        } else if (this.method === 'DELETE') {
             this.request = this.http.delete(this.URL.url, {
                 params: this.params,
                 body: this.body,
@@ -90,13 +91,19 @@ abstract class Request {
             const retryAttempt = i + 1
             if (retryAttempt > 10) {
                 logAttempt(retryAttempt)
-                this.HTTPErrorHandler.handle({message: this.errorMessage})
+                this.HTTPErrorHandler.handle({
+                    message: this.errorMessage,
+                    enabled: this.URL.errorNotification ?? true,
+                })
                 return timer(10000)
             } else {
                 const waitms = retryAttempt * 1000
                 logAttempt(retryAttempt)
                 if (retryAttempt % 3 === 0) {
-                    this.HTTPErrorHandler.handle({message: this.errorMessage})
+                    this.HTTPErrorHandler.handle({
+                        message: this.errorMessage,
+                        enabled: this.URL.errorNotification ?? true,
+                    })
                 }
                 return timer(waitms)
             }
@@ -111,14 +118,14 @@ abstract class Request {
         const actions = {}
 
         if (!this.URL.errorNotification) {
-            actions["error"] = (error) => {}
+            actions['error'] = (error) => {}
         } else {
-            actions["error"] = (error) =>
-                this.HTTPErrorHandler.handle({message: this.errorMessage})
+            actions['error'] = (error) =>
+                this.HTTPErrorHandler.handle({ message: this.errorMessage })
         }
 
         if (this.success) {
-            actions["next"] = this.success
+            actions['next'] = this.success
         }
 
         if (!this.URL.retriedAllowed) {
@@ -135,17 +142,17 @@ abstract class Request {
 }
 
 class Auth extends Request {
-    method = "GET"
+    method = 'GET'
     URL = URLS.AUTH
 
     override makeParams(kwargs: authSendArgs) {
         const googleAuthData = JSON.stringify(kwargs.oauthData)
-        this.params = new HttpParams().set("google_auth_data", googleAuthData)
+        this.params = new HttpParams().set('google_auth_data', googleAuthData)
     }
 }
 
 class Logout extends Request {
-    method = "GET"
+    method = 'GET'
     URL = URLS.LOGOUT
 }
 
@@ -173,13 +180,13 @@ class Notes {
 }
 
 class GetNotes extends Request {
-    method = "GET"
+    method = 'GET'
     URL = URLS.NOTES_PRIVATE
-    override errorMessage = "notes"
+    override errorMessage = 'notes'
 }
 
 class SaveNote extends Request {
-    method = "POST"
+    method = 'POST'
     URL = URLS.NOTES_PRIVATE
 
     override makeBody(note: saveNoteArgs) {
@@ -190,11 +197,11 @@ class SaveNote extends Request {
 }
 
 class CreateNote extends SaveNote {
-    override errorMessage = "createNote"
+    override errorMessage = 'createNote'
 }
 
 class RemoveNote extends Request {
-    method = "DELETE"
+    method = 'DELETE'
     URL = URLS.NOTES_PRIVATE
 
     override makeBody(note: saveNoteArgs) {
@@ -205,9 +212,9 @@ class RemoveNote extends Request {
 }
 
 class ShareNote extends Request {
-    method = "POST"
+    method = 'POST'
     URL = URLS.NOTES_PRIVATE
-    override errorMessage = "share"
+    override errorMessage = 'share'
 
     override makeBody(note: saveNoteArgs) {
         this.body = {
@@ -218,9 +225,9 @@ class ShareNote extends Request {
 }
 
 class UnshareNote extends Request {
-    method = "POST"
+    method = 'POST'
     URL = URLS.NOTES_PRIVATE
-    override errorMessage = "unshare"
+    override errorMessage = 'unshare'
 
     override makeBody(note: saveNoteArgs) {
         this.body = {
@@ -231,9 +238,9 @@ class UnshareNote extends Request {
 }
 
 class RevokeNote extends Request {
-    method = "POST"
+    method = 'POST'
     URL = URLS.NOTES_PRIVATE
-    override errorMessage = "revoke"
+    override errorMessage = 'revoke'
 
     override makeBody(note: saveNoteArgs) {
         this.body = {
@@ -244,25 +251,25 @@ class RevokeNote extends Request {
 }
 
 class Online extends Request {
-    method = "PUT"
+    method = 'PUT'
     URL = URLS.ONLINE
-    override errorMessage = "online"
+    override errorMessage = 'online'
 }
 
 class GetNoteForRecipient extends Request {
-    method = "GET"
+    method = 'GET'
     URL = URLS.NOTES_PUBLIC
-    override errorMessage = "note-for-recipient"
+    override errorMessage = 'note-for-recipient'
 
     override makeParams(sharingToken: string) {
-        this.params = new HttpParams().set("sharingToken", sharingToken)
+        this.params = new HttpParams().set('sharingToken', sharingToken)
     }
 }
 
 class DestroyNoteForRecipient extends Request {
-    method = "DELETE"
+    method = 'DELETE'
     URL = URLS.NOTES_PUBLIC
-    override errorMessage = "note-for-recipient-destroy"
+    override errorMessage = 'note-for-recipient-destroy'
 }
 
 class NoteForRecipient {
@@ -279,7 +286,7 @@ class NoteForRecipient {
 }
 
 class SendTGreport extends Request {
-    method = "POST"
+    method = 'POST'
     URL = URLS.TG_REPORT
 
     override makeBody(report: string) {
@@ -288,7 +295,7 @@ class SendTGreport extends Request {
 }
 
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class RequestsService {
     auth: Auth
