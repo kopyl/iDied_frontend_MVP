@@ -169,8 +169,13 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.type = 'info'
         this.confirmPopup.title = 'Upgrade to Pro'
         this.confirmPopup.body = 'Upgrade to Pro to share more notes'
+        this.confirmPopup.body = 'Upgrade to Pro to share unlimited notes'
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = 'Upgrade'
+        this.confirmPopup.buttonText = 'Upgrade for $1'
+        this.confirmPopup.onSuccess = () =>
+            (window.location.href = this.paymentUrl)
+    }
         this.confirmPopup.onSuccess = () =>
             (window.location.href = this.paymentUrl)
     }
