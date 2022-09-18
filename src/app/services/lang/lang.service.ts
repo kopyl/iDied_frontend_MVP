@@ -54,7 +54,10 @@ export class LangService {
     private _lang: string = ''
 
     public get lang(): string {
-        return this._lang || localStorage.getItem('lang') || 'en'
+        if (this._lang) return this._lang
+        const fromStorage = localStorage.getItem('lang') || 'en'
+        this.lang = fromStorage
+        return fromStorage
     }
 
     public get flag(): string {
