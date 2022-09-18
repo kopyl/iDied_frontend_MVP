@@ -3,10 +3,8 @@
 @import fonts
 @import sizes
 
-
 span.highlight
     color: $red
-
 
 div#container
     display: grid
@@ -38,6 +36,10 @@ div#container
             justify-content: space-between
             align-items: center
 
+        #header__right-side
+            display: flex
+            gap: 5px
+
         section#cta
             display: grid
             align-items: center
@@ -60,7 +62,7 @@ div#container
             gap: 16px
 
             @media screen and ( max-width:  $min-mobile-width)
-                    gap: 8px
+                gap: 8px
 
             li
                 display: grid
@@ -68,7 +70,6 @@ div#container
                 justify-content: left
                 align-items: center
                 gap: 18px
-
 
             & div.number
                 display: grid
@@ -100,13 +101,11 @@ div#container
                     border-radius: 3px
                     z-index: -1
 
-
             & li:nth-child(2) div
                 background-color: rgba($bisque-dark, .10)
 
             & li:nth-child(3) div
                 background-color: rgba($bisque-dark, .20)
-
 
     & section#app
         display: grid
@@ -122,15 +121,12 @@ div#container
 
             justify-self: right
 
-
-
             @media screen and ( max-width:  $min-mobile-width)
                 justify-self: inherit
 
             & button
                 position: relative
                 z-index: 2
-
 
                 width: 100%
 
@@ -164,13 +160,10 @@ div#container
                         margin-bottom: 15px
                         line-height: 36px
 
-
             div#notes
                 position: absolute
                 bottom: 0px
                 width: 100%
-
-
 
 div.logout
     position: relative
@@ -192,4 +185,3 @@ div.userLoggedOut
     @media screen and ( max-width:  $min-mobile-width)
         transform: translateX(0px)
         transform: translateY(-50px)
-

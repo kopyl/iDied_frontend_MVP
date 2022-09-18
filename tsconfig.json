@@ -1,67 +1,108 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noImplicitAny": false,
-    "strictPropertyInitialization": false,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
-    "paths": {
-        "@interceptors/auth": ["src/app/interceptors/auth/auth.interceptor"],
-
-        "@utils/*": ["src/app/utils/*"],
-
-        "@services/requests": ["src/app/services/requests/requests.service"],
-        "@services/auth": ["src/app/services/auth/google/google-auth.service"],
-        "@services/http-error-handler": ["src/app/services/http-error-handler/http-error-handler.service"],
-        "@services/online-updater": ["src/app/services/online-updater/online-updater.service"],
-        "@services/tooltip": ["src/app/services/tooltip/tooltip.service"],
-        "@services/google-analytics": ["src/app/services/google-analytics/google-analytics.service"],
-
-        "@components/confirmation-popup": ["src/app/components/confirm-popup/confirm-popup.component"],
-        "@components/unauthorized": ["src/app/components/unauthorized/unauthorized.component"],
-        "@components/not-found": ["src/app/components/not-found/not-found.component"],
-        "@components/main-page": ["src/app/components/main-page/main-page.component"],
-        "@components/notification": ["src/app/components/notification/notification.component"],
-        "@components/notification/highlight": ["src/app/components/notification/highlight/highlight.component"],
-        "@components/notes": ["src/app/components/notes/notes/notes.component"],
-        "@components/notes/note": ["src/app/components/notes/note/note.component"],
-        "@components/notes/note-for-recipient": ["src/app/components/notes/note-for-recipient/note-for-recipient.component"],
-
-        "@directives/form-focus-and-height-adjustment": ["src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"],
-        "@directives/fix-text-area-size-on-document-resize": ["src/app/directives/fix-text-area-size-on-document-resize/d.directive"],
-        "@directives/stop-propagation-on-mobile": ["src/app/directives/stop-propagation-on-mobile/stop-propagation-on-mobile.directive"],
-
-        "@animations": ["src/app/animations/animations"],
-
-        "@environment": ["src/environments/environment"],
-
-        "@icons/icon-share-globe": ["src/app/components/icons/icon-share-globe/icon-share-globe.component"],
-
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noImplicitAny": false,
+        "strictPropertyInitialization": false,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2017",
+        "module": "es2020",
+        "lib": [
+            "es2020",
+            "dom"
+        ],
+        "paths": {
+            "@interceptors/auth": [
+                "src/app/interceptors/auth/auth.interceptor"
+            ],
+            "@utils/*": [
+                "src/app/utils/*"
+            ],
+            "@services/requests": [
+                "src/app/services/requests/requests.service"
+            ],
+            "@services/auth": [
+                "src/app/services/auth/google/google-auth.service"
+            ],
+            "@services/http-error-handler": [
+                "src/app/services/http-error-handler/http-error-handler.service"
+            ],
+            "@services/online-updater": [
+                "src/app/services/online-updater/online-updater.service"
+            ],
+            "@services/tooltip": [
+                "src/app/services/tooltip/tooltip.service"
+            ],
+            "@services/google-analytics": [
+                "src/app/services/google-analytics/google-analytics.service"
+            ],
+            "@services/lang": [
+                "src/app/services/lang/lang.service"
+            ],
+            "@components/confirmation-popup": [
+                "src/app/components/confirm-popup/confirm-popup.component"
+            ],
+            "@components/unauthorized": [
+                "src/app/components/unauthorized/unauthorized.component"
+            ],
+            "@components/not-found": [
+                "src/app/components/not-found/not-found.component"
+            ],
+            "@components/main-page": [
+                "src/app/components/main-page/main-page.component"
+            ],
+            "@components/notification": [
+                "src/app/components/notification/notification.component"
+            ],
+            "@components/notification/highlight": [
+                "src/app/components/notification/highlight/highlight.component"
+            ],
+            "@components/notes": [
+                "src/app/components/notes/notes/notes.component"
+            ],
+            "@components/notes/note": [
+                "src/app/components/notes/note/note.component"
+            ],
+            "@components/notes/note-for-recipient": [
+                "src/app/components/notes/note-for-recipient/note-for-recipient.component"
+            ],
+            "@directives/form-focus-and-height-adjustment": [
+                "src/app/directives/form-focus-and-height-adjustment/form-focus-and-height-adjustment.directive"
+            ],
+            "@directives/fix-text-area-size-on-document-resize": [
+                "src/app/directives/fix-text-area-size-on-document-resize/d.directive"
+            ],
+            "@directives/stop-propagation-on-mobile": [
+                "src/app/directives/stop-propagation-on-mobile/stop-propagation-on-mobile.directive"
+            ],
+            "@animations": [
+                "src/app/animations/animations"
+            ],
+            "@environment": [
+                "src/environments/environment"
+            ],
+            "@icons/icon-share-globe": [
+                "src/app/components/icons/icon-share-globe/icon-share-globe.component"
+            ],
+        }
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
     }
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
 }

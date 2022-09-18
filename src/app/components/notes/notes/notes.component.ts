@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { GoogleAuthService } from '@services/auth';
-import { snakeToCamelCaseArray } from '@utils/transformations';
-import { RequestsService } from '@services/requests';
-import { ActivatedRoute, NavigationEnd } from '@angular/router';
-import { ViewChild, ElementRef } from '@angular/core';
-import { noteItem, fadeInOut } from '@animations';
-import { ConfirmPopupComponent } from '@components/confirmation-popup';
-import { NoteComponent } from '@components/notes/note';
-import { CookieService } from 'ngx-cookie-service';
-import { ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
+import { Router } from '@angular/router'
+import { GoogleAuthService } from '@services/auth'
+import { snakeToCamelCaseArray } from '@utils/transformations'
+import { RequestsService } from '@services/requests'
+import { ActivatedRoute, NavigationEnd } from '@angular/router'
+import { ViewChild, ElementRef } from '@angular/core'
+import { noteItem, fadeInOut } from '@animations'
+import { ConfirmPopupComponent } from '@components/confirmation-popup'
+import { NoteComponent } from '@components/notes/note'
+import { CookieService } from 'ngx-cookie-service'
+import { ViewEncapsulation } from '@angular/core'
 
-import { environment } from '@environment';
-import { TooltipService } from '@services/tooltip';
-import { GoogleAnalyticsService } from '@services/google-analytics';
+import { environment } from '@environment'
+import { TooltipService } from '@services/tooltip'
+import { GoogleAnalyticsService } from '@services/google-analytics'
+import { LangService } from '@services/lang'
 
 @Component({
     selector: 'app-notes',
@@ -24,29 +25,29 @@ import { GoogleAnalyticsService } from '@services/google-analytics';
     encapsulation: ViewEncapsulation.None,
 })
 export class NotesComponent implements OnInit {
-    paymentUrl = `${environment.apiUrl}payment`;
+    paymentUrl = `${environment.apiUrl}payment`
 
-    proStatus: boolean = true;
-    userHasSharedMoreThan3Notes: boolean = false;
+    proStatus: boolean = true
+    userHasSharedMoreThan3Notes: boolean = false
 
-    notes: Array<frontendNote> = [];
-    activeNote: frontendNote;
-    formFocused: boolean;
-    notesEditing: boolean = false;
-    noteFromUrlId: string;
-    sharingInUrl: string;
-    selectedNoteIndex: number;
-    userClosedAtLeasOneNote: boolean;
-    firstLoadedIntoUI = false;
-    loaderVisible = true;
-    sharingView = false;
+    notes: Array<frontendNote> = []
+    activeNote: frontendNote
+    formFocused: boolean
+    notesEditing: boolean = false
+    noteFromUrlId: string
+    sharingInUrl: string
+    selectedNoteIndex: number
+    userClosedAtLeasOneNote: boolean
+    firstLoadedIntoUI = false
+    loaderVisible = true
+    sharingView = false
 
-    navigatedRoute$;
+    navigatedRoute$
 
-    @ViewChild('notesListHTML') notesListHTML: ElementRef<HTMLDivElement>;
-    @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent;
+    @ViewChild('notesListHTML') notesListHTML: ElementRef<HTMLDivElement>
+    @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent
 
-    @ViewChild('note') note: NoteComponent;
+    @ViewChild('note') note: NoteComponent
 
     constructor(
         public readonly googleAuth: GoogleAuthService,
@@ -56,141 +57,142 @@ export class NotesComponent implements OnInit {
         private route: ActivatedRoute,
         private cookies: CookieService,
         public tooltip: TooltipService,
-        public googleAnalytics: GoogleAnalyticsService
+        public googleAnalytics: GoogleAnalyticsService,
+        public lang: LangService
     ) {}
 
     ngOnInit(): void {
         // console.log(this.route.snapshot.url)
 
-        this.googleAuth.accessControl();
-        this.pageTitle.setTitle('iDied - Notes');
-        this.fetchNotes();
+        this.googleAuth.accessControl()
+        this.pageTitle.setTitle('iDied - Notes')
+        this.fetchNotes()
 
         this.noteFromUrlId = this.router.parseUrl(
             this.router.url
-        )?.root?.children['primary']?.segments[1]?.path;
+        )?.root?.children['primary']?.segments[1]?.path
 
-        this.handleiOSnavigateBySwipeLeft();
+        this.handleiOSnavigateBySwipeLeft()
 
         if (!this.notes.length) {
             // id.doc.id#4
-            this.router.navigate(['/notes']);
+            this.router.navigate(['/notes'])
         }
 
-        this.findOutifUserClosedNoteAtLeastOnce();
+        this.findOutifUserClosedNoteAtLeastOnce()
 
         this.sharingInUrl = this.router.parseUrl(
             this.router.url
-        )?.root?.children['primary']?.segments[2]?.path;
+        )?.root?.children['primary']?.segments[2]?.path
     }
 
     findOutifUserClosedNoteAtLeastOnce() {
         let userClosedAtLeasOneNote = localStorage.getItem(
             'userClosedAtLeasOneNote'
-        );
-        userClosedAtLeasOneNote = JSON.parse(userClosedAtLeasOneNote!);
-        this.userClosedAtLeasOneNote = userClosedAtLeasOneNote ? true : false;
+        )
+        userClosedAtLeasOneNote = JSON.parse(userClosedAtLeasOneNote!)
+        this.userClosedAtLeasOneNote = userClosedAtLeasOneNote ? true : false
     }
 
     handleiOSnavigateBySwipeLeft() {
         this.router.events.subscribe((event: any) => {
-            if (!(event instanceof NavigationEnd)) return;
+            if (!(event instanceof NavigationEnd)) return
 
             if (event.url.includes('/sharing')) {
-                this.sharingView = true;
-                return;
+                this.sharingView = true
+                return
             }
 
-            this.sharingView = false;
+            this.sharingView = false
 
             if (event.url === '/notes') {
-                this.notesEditing = false;
+                this.notesEditing = false
             } else if (event.url && event.url.startsWith('/notes/')) {
-                this.openMobileNote();
+                this.openMobileNote()
             }
-        });
+        })
     }
 
     setSelectedNoteIndex() {
         if (this.noteFromUrlId) {
             this.selectedNoteIndex = this.notes.findIndex(
                 (el) => el.id === this.noteFromUrlId
-            );
+            )
         } else {
             this.selectedNoteIndex = this.notes.findIndex(
                 (el) => el.id === this.activeNote.id
-            );
+            )
         }
     }
 
     setActiveNote(addingNotesFromCreation = false): void {
-        this.activeNote = this.notes[0];
-        if (addingNotesFromCreation) return;
+        this.activeNote = this.notes[0]
+        if (addingNotesFromCreation) return
         if (this.noteFromUrlId) {
             this.activeNote =
                 this.notes.find((el) => el.id === this.noteFromUrlId) ??
-                this.notes[0];
-            this.openMobileNote();
-            this.setSelectedNoteIndex();
+                this.notes[0]
+            this.openMobileNote()
+            this.setSelectedNoteIndex()
         }
     }
 
     toggleFormFocus(): void {
-        this.formFocused = !this.formFocused;
+        this.formFocused = !this.formFocused
     }
 
     downloadNotes(backendResponse: backend_init_notes_response) {
-        this.addNotes(backendResponse, false);
+        this.addNotes(backendResponse, false)
     }
 
     createNoteInUI(backendResponse: backend_notes_response) {
-        this.addNotes(backendResponse, true);
+        this.addNotes(backendResponse, true)
     }
 
     setProStatus(backendResponse: backend_init_notes_response) {
-        this.proStatus = backendResponse.pro;
+        this.proStatus = backendResponse.pro
     }
 
     checkWhetherUserHasSharedMoreThan3Notes(): void {
         if (this.notes.filter((el) => el.isShared).length >= 3) {
-            this.userHasSharedMoreThan3Notes = true;
+            this.userHasSharedMoreThan3Notes = true
         } else {
-            this.userHasSharedMoreThan3Notes = false;
+            this.userHasSharedMoreThan3Notes = false
         }
     }
 
     get amountOfSharedNotes(): number {
-        return this.notes.filter((el) => el.isShared).length;
+        return this.notes.filter((el) => el.isShared).length
     }
 
     requestPro(): void {
-        this.confirmPopup.type = 'info';
-        this.confirmPopup.title = 'Upgrade to Pro';
-        this.confirmPopup.body = 'Upgrade to Pro to share more notes';
-        this.confirmPopup.open = true;
-        this.confirmPopup.buttonText = 'Upgrade';
+        this.confirmPopup.type = 'info'
+        this.confirmPopup.title = 'Upgrade to Pro'
+        this.confirmPopup.body = 'Upgrade to Pro to share more notes'
+        this.confirmPopup.open = true
+        this.confirmPopup.buttonText = 'Upgrade'
         this.confirmPopup.onSuccess = () =>
-            (window.location.href = this.paymentUrl);
+            (window.location.href = this.paymentUrl)
     }
 
     handleProAccountFromBackendInit(
         backendResponse: backend_init_notes_response
     ): void {
         if (backendResponse) {
-            this.setProStatus(backendResponse);
+            this.setProStatus(backendResponse)
         }
 
-        if (this.proStatus === true) return;
-        this.checkWhetherUserHasSharedMoreThan3Notes();
+        if (this.proStatus === true) return
+        this.checkWhetherUserHasSharedMoreThan3Notes()
     }
 
     setAvatar(backendResponse: backend_init_notes_response): void {
-        localStorage.setItem('avatar_url', backendResponse.avatar_url);
+        localStorage.setItem('avatar_url', backendResponse.avatar_url)
     }
 
     setUserID(backendResponse: backend_init_notes_response): void {
-        const userID = backendResponse.user_id;
-        this.googleAnalytics.setUserID(userID);
+        const userID = backendResponse.user_id
+        this.googleAnalytics.setUserID(userID)
     }
 
     addNotes(
@@ -198,25 +200,25 @@ export class NotesComponent implements OnInit {
         addingNotesFromCreation = false
     ): void {
         if (backendResponse.error) {
-            this.googleAuth.signOut();
-            this.router.navigate(['']);
+            this.googleAuth.signOut()
+            this.router.navigate([''])
         } else {
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
                     backendResponse.notes
                 ) as frontendNote[])
-            );
+            )
             setTimeout(() => {
-                this.firstLoadedIntoUI = true;
-            }, 0);
+                this.firstLoadedIntoUI = true
+            }, 0)
 
             this.notes.forEach((note: frontendNote) => {
-                note.changesSynced = true;
-            });
+                note.changesSynced = true
+            })
 
-            this.setActiveNote(addingNotesFromCreation);
-            this.scrollToActiveNote();
-            this.toggleFormFocus();
+            this.setActiveNote(addingNotesFromCreation)
+            this.scrollToActiveNote()
+            this.toggleFormFocus()
 
             if (
                 !this.userClosedAtLeasOneNote &&
@@ -224,22 +226,22 @@ export class NotesComponent implements OnInit {
                 !this.activeNote.title &&
                 !this.activeNote.body
             ) {
-                this.openMobileNote();
+                this.openMobileNote()
             }
 
             if (addingNotesFromCreation) {
-                this.navigateToActiveNote();
-                this.googleAnalytics.trackNoteCreation();
+                this.navigateToActiveNote()
+                this.googleAnalytics.trackNoteCreation()
             }
 
-            this.loaderVisible = false;
-            this.sharingView = false;
+            this.loaderVisible = false
+            this.sharingView = false
 
             if (!addingNotesFromCreation) {
                 this.handleProAccountFromBackendInit(
                     backendResponse as backend_init_notes_response
-                );
-                this.setAvatar(backendResponse as backend_init_notes_response);
+                )
+                this.setAvatar(backendResponse as backend_init_notes_response)
                 // this.setUserID(
                 //     backendResponse as backend_init_notes_response
                 // )
@@ -248,60 +250,60 @@ export class NotesComponent implements OnInit {
     }
 
     navigateToActiveNote(): void {
-        this.router.navigate(['/notes', this.activeNote.id]);
+        this.router.navigate(['/notes', this.activeNote.id])
     }
 
     changeActiveNote(note: frontendNote): void {
-        this.activeNote = note;
-        this.toggleFormFocus();
-        this.openMobileNote();
-        this.sharingView = false;
-        this.pageTitle.setTitle('iDied - Note');
+        this.activeNote = note
+        this.toggleFormFocus()
+        this.openMobileNote()
+        this.sharingView = false
+        this.pageTitle.setTitle('iDied - Note')
     }
 
     fetchNotes(): void {
-        this.loaderVisible = true;
-        this.requests.notes.get.onSuccess = this.downloadNotes.bind(this);
-        this.requests.notes.get.send();
+        this.loaderVisible = true
+        this.requests.notes.get.onSuccess = this.downloadNotes.bind(this)
+        this.requests.notes.get.send()
     }
 
     createNote(): void {
-        this.loaderVisible = true;
-        this.requests.notes.create.onSuccess = this.createNoteInUI.bind(this);
-        this.requests.notes.create.send();
+        this.loaderVisible = true
+        this.requests.notes.create.onSuccess = this.createNoteInUI.bind(this)
+        this.requests.notes.create.send()
     }
 
     removeNoteFromUI(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
-            this.googleAuth.signOut();
-            this.router.navigate(['']);
+            this.googleAuth.signOut()
+            this.router.navigate([''])
         } else {
-            this.confirmRemoveNote(backendResponse);
+            this.confirmRemoveNote(backendResponse)
         }
     }
 
     confirmRemoveNote(backendResponse: backend_notes_response): void {
         this.notes = this.notes.filter(
             (note: frontendNote) => note.id !== backendResponse.notes[0].id
-        );
+        )
 
-        this.loaderVisible = false;
-        this.scrollToActiveNote();
-        this.setActiveNote();
-        this.toggleFormFocus();
-        this.closeNote();
+        this.loaderVisible = false
+        this.scrollToActiveNote()
+        this.setActiveNote()
+        this.toggleFormFocus()
+        this.closeNote()
     }
 
     sendNoteRemovalRequest(): void {
-        this.requests.notes.remove.onSuccess = this.removeNoteFromUI.bind(this);
-        this.loaderVisible = true;
-        this.requests.notes.remove.send(this.activeNote);
+        this.requests.notes.remove.onSuccess = this.removeNoteFromUI.bind(this)
+        this.loaderVisible = true
+        this.requests.notes.remove.send(this.activeNote)
     }
 
     sendRemovalConfirmation(): void {
-        this.confirmPopup.type = 'noteRemoval';
-        this.confirmPopup.open = true;
-        this.confirmPopup.onSuccess = this.sendNoteRemovalRequest.bind(this);
+        this.confirmPopup.type = 'noteRemoval'
+        this.confirmPopup.open = true
+        this.confirmPopup.onSuccess = this.sendNoteRemovalRequest.bind(this)
     }
 
     removeNote(): void {
@@ -310,70 +312,70 @@ export class NotesComponent implements OnInit {
             this.activeNote.title ||
             this.activeNote.isShared
         ) {
-            this.sendRemovalConfirmation();
-            return;
+            this.sendRemovalConfirmation()
+            return
         }
-        this.sendNoteRemovalRequest();
+        this.sendNoteRemovalRequest()
     }
 
     notesSorted(): boolean {
-        if (this.activeNote.id === this.notes[0].id) return true;
-        return false;
+        if (this.activeNote.id === this.notes[0].id) return true
+        return false
     }
 
     scrollToActiveNote(): void {
-        let selectedNoteOrder = this.selectedNoteIndex + 1 || 1;
+        let selectedNoteOrder = this.selectedNoteIndex + 1 || 1
         const scrollPosotion =
-            (selectedNoteOrder - 1) * 39 + (selectedNoteOrder - 1) * 5;
+            (selectedNoteOrder - 1) * 39 + (selectedNoteOrder - 1) * 5
         const scroll = () => {
             this.notesListHTML.nativeElement.scrollTo({
                 top: scrollPosotion,
                 behavior: 'auto',
-            });
-        };
-        setTimeout(scroll);
+            })
+        }
+        setTimeout(scroll)
     }
 
     reSortNotes(): void {
-        if (this.notesSorted()) return;
-        this.notes.sort((a, b) => b.editedAt - a.editedAt);
+        if (this.notesSorted()) return
+        this.notes.sort((a, b) => b.editedAt - a.editedAt)
     }
 
     openMobileNote() {
-        if (!this.notes.length) return; // id.doc.id#4
-        this.notesEditing = true;
+        if (!this.notes.length) return // id.doc.id#4
+        this.notesEditing = true
         if (this.sharingInUrl && this.activeNote.isShared) {
-            this.router.navigate(['/notes', this.activeNote.id, 'sharing']);
-            this.sharingInUrl = '';
+            this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
+            this.sharingInUrl = ''
         } else {
-            this.router.navigate(['/notes', this.activeNote.id]);
-            this.sharingView = false;
-            this.sharingInUrl = '';
+            this.router.navigate(['/notes', this.activeNote.id])
+            this.sharingView = false
+            this.sharingInUrl = ''
         }
     }
 
     closeNote() {
-        this.notesEditing = false;
-        this.router.navigate(['/notes']);
-        this.setSelectedNoteIndex();
-        this.scrollToActiveNote();
-        localStorage.setItem('userClosedAtLeasOneNote', 'true');
-        this.pageTitle.setTitle('iDied - Notes');
+        this.notesEditing = false
+        this.router.navigate(['/notes'])
+        this.setSelectedNoteIndex()
+        this.scrollToActiveNote()
+        localStorage.setItem('userClosedAtLeasOneNote', 'true')
+        this.pageTitle.setTitle('iDied - Notes')
     }
 
     openSharingView(): void {
-        this.sharingView = true;
-        this.router.navigate(['/notes', this.activeNote.id, 'sharing']);
-        this.pageTitle.setTitle('iDied - Sharing');
+        this.sharingView = true
+        this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
+        this.pageTitle.setTitle('iDied - Sharing')
     }
 
     closeSharingView(): void {
-        this.sharingView = false;
-        this.router.navigate(['/notes', this.activeNote.id]);
-        this.pageTitle.setTitle('iDied - Note');
+        this.sharingView = false
+        this.router.navigate(['/notes', this.activeNote.id])
+        this.pageTitle.setTitle('iDied - Note')
     }
 
     logCopied() {
-        console.log('copied');
+        console.log('copied')
     }
 }

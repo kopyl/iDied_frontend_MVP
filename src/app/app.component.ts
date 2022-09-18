@@ -8,6 +8,7 @@ import {
 } from '@angular/router'
 import { slider } from '@animations'
 import { environment } from '@environment'
+import { LangService } from '@services/lang'
 
 declare const gtag: Function // Google Analytics
 
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     constructor(
         private onlineUpdater: OnlineUpdaterService,
         public router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public lang: LangService
     ) {
         this.setUpGoogleAnalytics()
     }
@@ -40,21 +42,13 @@ export class AppComponent implements OnInit {
 
     setLanguage() {
         this.route.queryParams.subscribe((params) => {
-            const lang = params['lang']
-            if (lang === 'en' || lang === 'ua') {
-                localStorage.setItem('lang', lang)
-            }
+            this.lang.lang = params['lang']
         })
-    }
-
-    getLanguage() {
-        return localStorage.getItem('lang') || 'en'
     }
 
     ngOnInit(): void {
         this.onlineUpdater.schedule()
         this.setLanguage()
-        this.getLanguage()
     }
 
     prepareOutlet(outlet: RouterOutlet) {

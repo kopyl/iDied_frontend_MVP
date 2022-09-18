@@ -1,75 +1,101 @@
-<confirm-popup #confirmPopup (confirmationPressed)="googleAuth.authorize('needPayment=true')"></confirm-popup>
+<confirm-popup
+    #confirmPopup
+    (confirmationPressed)="googleAuth.authorize('needPayment=true')"
+></confirm-popup>
 
-<div id=container>
-    <section id=banner>
-
+<div id="container">
+    <section id="banner">
         <header>
             <icon-logo></icon-logo>
-            <a href="mailto:kopyloleh@gmail.com"><button class="small-button-secondary small-light-button">
-                <img src="assets/main-page/icon-email-light.svg" alt="">Contact</button>
-            </a>
+            <div id="header__right-side">
+                <a href="mailto:kopyloleh@gmail.com"
+                    ><button class="small-button-secondary small-light-button">
+                        <img
+                            src="assets/main-page/icon-email-light.svg"
+                            alt=""
+                        />{{ lang.copy.contact }}
+                    </button>
+                </a>
+                <button
+                    class="small-button-secondary small-light-button"
+                    (click)="lang.toggle()"
+                >
+                    <img src="assets/main-page/{{ lang.flag }}" alt="" />
+                </button>
+            </div>
         </header>
         <section id="cta">
-            <h1>Leave a note for your loved ones before you <span class="highlight">die</span></h1>
+            <h1>
+                {{ lang.copy.title.main }}
+                <span class="highlight">{{ lang.copy.title.span }}</span>
+            </h1>
         </section>
 
         <ul id="how-to">
             <li>
-                <div class="number" title="Доброго вечора, ми з України" onclick="alert(this.title)">1</div>
-                <p>Write a note & share a link</p>
+                <div
+                    class="number"
+                    title="Доброго вечора, ми з України"
+                    onclick="alert(this.title)"
+                >
+                    1
+                </div>
+                <p>{{ lang.copy.instruction[1] }}</p>
             </li>
             <li>
                 <div class="number">2</div>
-                <p>Don't visit this app for <span class=highlight>30 days</span></p>
+                <p>
+                    {{ lang.copy.instruction[2].main }}
+                    <span class="highlight">{{
+                        lang.copy.instruction[2].span
+                    }}</span>
+                </p>
             </li>
             <li>
                 <div class="number">3</div>
-                <p>Now note is accessible by link</p>
+                <p>{{ lang.copy.instruction[3] }}</p>
             </li>
         </ul>
-
     </section>
 
-    <section id=app>
-
+    <section id="app">
         <div id="top-button-container">
-            <div [class.userLoggedOut]="!googleAuth.userLoggedIn" class="logout">
-                <button-logout ></button-logout>
+            <div
+                [class.userLoggedOut]="!googleAuth.userLoggedIn"
+                class="logout"
+            >
+                <button-logout></button-logout>
             </div>
         </div>
 
         <div id="bottom-button-container">
-
             <div @buttonSlider *ngIf="googleAuth.userLoggedIn" id="notes">
-
-                <button routerLink="/notes" class=big-button-primary>
-
+                <button routerLink="/notes" class="big-button-primary">
                     <div class="left-side">
                         <icon-notes></icon-notes>
-                        My notes
+                        {{ lang.copy.myNotes }}
                     </div>
 
                     <icon-arrow-right></icon-arrow-right>
                 </button>
-
             </div>
 
-            <div @buttonSlider *ngIf="!googleAuth.userLoggedIn" id="auth" >
+            <div @buttonSlider *ngIf="!googleAuth.userLoggedIn" id="auth">
+                <h1>{{ lang.copy.loginOrSignup }}</h1>
 
-                <h1>Login or sign up</h1>
-
-                <button (click)=googleAuth.authorize() google-sign-in class=big-button-primary>
-
+                <button
+                    (click)="googleAuth.authorize()"
+                    google-sign-in
+                    class="big-button-primary"
+                >
                     <div class="left-side">
                         <icon-google></icon-google>
-                        By Google
+                        {{ lang.copy.byGoogle }}
                     </div>
 
                     <icon-arrow-right></icon-arrow-right>
                 </button>
-
             </div>
-
         </div>
-
     </section>
+</div>
