@@ -1,27 +1,25 @@
-<div class="container" [class.forbidden]=forbidden (wheel)="onWheel($event)">
-
+<div class="container" [class.forbidden]="forbidden" (wheel)="onWheel($event)">
     <div id="content">
-
-
         <header [class.headerHidden]="headerHidden">
-
             <logo-mobile [red]="forbidden"></logo-mobile>
 
-            <button #destroyButton class="small-button-secondary red" *ngIf="!forbidden && destroyable">
-                <icon-delete></icon-delete>
-                Destroy note
+            <button
+                *ngIf="!loading"
+                class="small-button-secondary small-light-button"
+                (click)="lang.toggle()"
+                id="lang-switcher"
+            >
+                <img src="assets/main-page/{{ lang.flag }}" alt="" />
             </button>
 
             <loader [visible]="loading"></loader>
-
         </header>
 
         <main>
             <section #content id="content" (scroll)="onScroll($event)">
-
                 <div id="text" *ngIf="!forbidden && !loading">
-                    <h1>{{title}}</h1>
-                    <p>{{body}}</p>
+                    <h1>{{ title }}</h1>
+                    <p>{{ body }}</p>
                 </div>
 
                 <div class="loading-text" id="text" *ngIf="loading">
@@ -33,13 +31,10 @@
                         {{ lang.lang === "ua" ? "Доступ до нонатки" : "You" }}
                         <span>
                             {{
-                                lang.lang === "ua"
-                                    ? "заборонено"
-                                    : "can't read"
+                                lang.lang === "ua" ? "заборонено" : "can't read"
                             }}
                         </span>
                         {{
-
                             lang.lang === "ua"
                                 ? "За якихось або однієї з наступних причин:"
                                 : "the note due to some or one of following reasons:"
@@ -82,15 +77,17 @@
                                 ? "Спробуйте пізніше або"
                                 : "Try again later or"
                         }}
-                        <a href="mailto:kopyloleh@gmail.com" id="support-link" >{{
-                            lang.lang === "ua"
-                                ? "напишіть до підтримки"
-                                : "contact support"
-
-                            }}</a>
+                        <a
+                            href="mailto:kopyloleh@gmail.com"
+                            id="support-link"
+                            >{{
+                                lang.lang === "ua"
+                                    ? "напишіть до підтримки"
+                                    : "contact support"
+                            }}</a
+                        >
                     </p>
                 </div>
-
             </section>
 
             <persistent-alert *ngIf="forbidden">
@@ -101,7 +98,5 @@
                 }}
             </persistent-alert>
         </main>
-
     </div>
-
 </div>

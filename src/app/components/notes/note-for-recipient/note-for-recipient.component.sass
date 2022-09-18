@@ -55,6 +55,9 @@ div.container
             justify-content: space-between
             grid-auto-flow: column
             align-self: center
+            align-items: center
+
+            position: relative
 
             padding-top: 30px
             padding-bottom: 30px
@@ -154,3 +157,18 @@ div.loading-text
 
         @media (hover: none)  // remove hover on mobiles
             color: $black-lighter
+
+
+#lang-switcher
+    border: none
+    height: 28px
+    width: 18px
+
+    position: absolute
+    right: -8px
+
+    &:hover
+        background: none
+
+    img
+        scale: 1.8
