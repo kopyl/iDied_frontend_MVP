@@ -14,7 +14,7 @@
                 id="pro-button"
                 [class.proButtonHidden]="proStatus"
             >
-                <a [href]="paymentUrl">
+                <a (click)="requestProDetailed()">
                     <button
                         id="notes-link"
                         class="small-button-primary pro-button"
@@ -63,7 +63,7 @@
             id="pro-button"
             [class.proButtonHidden]="proStatus"
         >
-            <a [href]="paymentUrl">
+            <a (click)="requestProDetailed()">
                 <button id="notes-link" class="small-button-primary pro-button">
                     {{ lang.copy.goPro }}
                 </button>
