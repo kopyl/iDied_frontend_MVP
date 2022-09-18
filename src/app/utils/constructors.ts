@@ -1,12 +1,13 @@
 import { environment } from '@environment';
 
 interface urlArgs {
-    endpoint: string
-    port: number
+    endpoint?: string
+    port?: number
     protocol?: string
     base?: string
     retriedAllowed?: boolean
     errorNotification?: boolean
+    customApiUrl?: string
 }
 
 export const makeUrl = (
@@ -22,13 +23,13 @@ export const makeUrl = (
 
 export const makeUrlObj = (arg: urlArgs): requestURL => {
     const url = makeUrl({
-        endpoint: arg.endpoint,
-        port: arg.port,
+        endpoint: arg.endpoint ?? "",
+        port: arg.port ?? 80,
         protocol: arg.protocol ?? "",
         base: arg.base ?? "",
     })
     return {
-        url: url,
+        url: arg.customApiUrl ?? url,
         retriedAllowed: arg.retriedAllowed ?? true,
         errorNotification: arg.errorNotification ?? true,
     }
