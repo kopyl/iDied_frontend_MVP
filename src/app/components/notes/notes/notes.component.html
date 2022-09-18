@@ -84,7 +84,7 @@
                 (click)="createNote()"
             >
                 <icon-new></icon-new>
-                Create note
+                {{ lang.copy.createNote }}
             </button>
         </header>
 
@@ -93,6 +93,8 @@
                 <li
                     *ngFor="let note of notes"
                     [class.active]="note.id === this.activeNote.id"
+                    [class.en]="lang.lang === 'en'"
+                    [class.ua]="lang.lang === 'ua'"
                     (click)="changeActiveNote(note); navigateToActiveNote()"
                     id="note-item"
                     @noteItem
@@ -102,7 +104,7 @@
                     <icon-share-globe
                         #source
                         stopPropagationOnMobile
-                        tooltip="This note will be accessible once you die"
+                        tooltip="{{ lang.copy.tooltip.globe }}"
                         id="icon-sharing-globe"
                         [class.globeVisible]="note.isShared"
                     ></icon-share-globe>
@@ -117,7 +119,7 @@
                 (click)="createNote()"
             >
                 <icon-new></icon-new>
-                Create note
+                {{ lang.copy.createNote }}
             </button>
         </div>
     </div>

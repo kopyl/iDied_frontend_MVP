@@ -1,9 +1,7 @@
 <div id="container" [class.alertVisible]="alertVisible">
-
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <header id="note-controls">
-
         <button class="small-button-icon-only red" (click)="removeNote()">
             <icon-delete></icon-delete>
         </button>
@@ -12,38 +10,49 @@
 
         <button id="share" class="small-button-secondary" (click)="shareNote()">
             <icon-share></icon-share>
-            {{activeNote?.isShared ? 'Sharing settings' : 'Share'}}
+            {{
+                activeNote?.isShared
+                    ? lang.copy.sharingSettings
+                    : lang.copy.share
+            }}
         </button>
 
-        <button id="mobile-share" class="small-button-primary white-icon"
-
-            (click)="shareNote()">
+        <button
+            id="mobile-share"
+            class="small-button-primary white-icon"
+            (click)="shareNote()"
+        >
             <icon-share></icon-share>
-            {{activeNote?.isShared ? 'Sharing settings' : 'Share'}}
+            {{ activeNote?.isShared ? "Sharing settings" : "Share" }}
         </button>
 
-        <button id="close-note" class="small-button-icon-only" (click)="closeNote()">
+        <button
+            id="close-note"
+            class="small-button-icon-only"
+            (click)="closeNote()"
+        >
             <icon-close-note></icon-close-note>
         </button>
-
     </header>
 
-
-
     <div id="note-content">
-        <form action="" [formGroup]=form FixTextAreaTitleSizeOnDocumentResize>
-
+        <form action="" [formGroup]="form" FixTextAreaTitleSizeOnDocumentResize>
             <div id="scrollable">
-
-                <textarea name="tite" id="title" rows="1" data-gramm="false"
-                    [formFocusAndHeightAdjustment]=toggleFormFocus
+                <textarea
+                    name="tite"
+                    id="title"
+                    rows="1"
+                    data-gramm="false"
+                    [formFocusAndHeightAdjustment]="toggleFormFocus"
                     oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                    placeholder="Add title"
+                    placeholder="{{ lang.copy.addTitle }}"
                     onfocus='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                    placeholder="Add title"
+                    placeholder="{{ lang.copy.addTitle }}"
                     onfocusout='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                    placeholder="Add title" formControlName="title">
-            </textarea>
+                    placeholder="{{ lang.copy.addTitle }}"
+                    formControlName="title"
+                >
+                </textarea>
 
                 <!-- <textarea name="body" id="body" rows="1" [formFocusAndHeightAdjustment]=toggleFormFocus
                 oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
@@ -54,30 +63,30 @@
             </textarea> -->
 
                 <section id="body" onclick="this.firstChild.focus()">
-                    <textarea name="body" id="body" [formFocusAndHeightAdjustment]=toggleFormFocus
-                        placeholder="Add description"
+                    <textarea
+                        name="body"
+                        id="body"
+                        [formFocusAndHeightAdjustment]="toggleFormFocus"
+                        placeholder="{{ lang.copy.addDescription }}"
                         oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                        placeholder="Add description" formControlName="body">
-            </textarea>
+                        placeholder="{{ lang.copy.addDescription }}"
+                        formControlName="body"
+                    >
+                    </textarea>
                 </section>
-
             </div>
-
         </form>
     </div>
 
     <div [class.visible]="alertVisible" class="bottom-alert">
         <div class="alert">
-            <persistent-alert>Any SHARED note will become accessible by a link unless you log in for 30 days
-            </persistent-alert>
+            <persistent-alert>{{
+                lang.copy.sharingNotice.general
+            }}</persistent-alert>
         </div>
     </div>
-
 
     <!-- <div class="close-button" onclick="this.blur" *ngIf="textareaInFocus">
         <icon-hide-keyboard></icon-hide-keyboard>
     </div> -->
-
-
-
 </div>

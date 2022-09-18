@@ -19,12 +19,37 @@ export class LangService {
                 },
                 3: 'Now note is accessible by link',
             },
-            notes: 'Notes',
             loginOrSignup: 'Login or sign up',
             byGoogle: 'By Google',
             myNotes: 'My notes',
             signOut: 'Sign out',
             goPro: 'Get unlimited access',
+            notes: 'Notes',
+            createNote: 'Create note',
+            addTitle: 'Add title',
+            addDescription: 'Add description',
+            tooltip: {
+                globe: 'This note will be accessible once you die',
+            },
+            share: 'Share',
+            sharingSettings: 'Sharing settings',
+            sharingNotice: {
+                general:
+                    'Any SHARED note will become accessible by a link unless you log in for 30 days',
+                specific:
+                    'This note will become accessible by a link unless you log in for 30 days',
+            },
+            cancel: 'Cancel',
+            popups: {
+                proDetailed: {
+                    title: 'Upgrade to Pro',
+                    description:
+                        'On a free account you can only share 3 notes. Upgrade to Pro to share unlimited notes for $1.',
+                    buttons: {
+                        upgrade: 'Upgrade for $1',
+                    },
+                },
+            },
         },
         ua: {
             title: {
@@ -40,12 +65,37 @@ export class LangService {
                 },
                 3: 'Тепер лист доступний по посиланню',
             },
-            notes: 'Нотатки',
             loginOrSignup: 'Увійти',
             byGoogle: 'За допомогою Google',
             myNotes: 'Мої нотатки',
             signOut: 'Вийти',
             goPro: 'Отримати безліміт',
+            notes: 'Нотатки',
+            createNote: 'Створити нотатку',
+            addTitle: 'Додайте заголовок',
+            addDescription: 'Додайте опис',
+            tooltip: {
+                globe: 'Ця нотатка буде доступна після того, як ви помрете',
+            },
+            share: 'Поділитися',
+            sharingSettings: 'Налаштування доступу',
+            sharingNotice: {
+                general:
+                    'Пошерена нотатка стане доступною по посиланню, якщо ви не зайдете на сайт раз в 30 днів',
+                specific:
+                    'Ця нотатка стане доступною по посиланню, якщо ви не ввійдете протягом 30 днів',
+            },
+            cancel: 'Скасувати',
+            popups: {
+                proDetailed: {
+                    title: 'Отримати безліміт',
+                    description:
+                        'На безкоштовному обліковому записі ви можете поділитися лише 3 нотатками. Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток за $1.',
+                    buttons: {
+                        upgrade: 'Оновити за $1',
+                    },
+                },
+            },
         },
     }
 

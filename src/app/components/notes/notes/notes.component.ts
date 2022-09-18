@@ -177,18 +177,17 @@ export class NotesComponent implements OnInit {
 
     requestProDetailed(): void {
         this.confirmPopup.type = 'info'
-        this.confirmPopup.title = 'Upgrade to Pro'
-        this.confirmPopup.body =
-            'On a free account you can only share 3 notes'+
-            '. Upgrade to Pro to share unlimited notes for $1.'
+        this.confirmPopup.title = this.lang.copy.popups.proDetailed.title
+        this.confirmPopup.body = this.lang.copy.popups.proDetailed.description
         this.confirmPopup.open = true
-        this.confirmPopup.buttonText = 'Upgrade for $1'
+        this.confirmPopup.buttonText =
+            this.lang.copy.popups.proDetailed.buttons.upgrade
         this.confirmPopup.onSuccess = () =>
             (window.location.href = this.paymentUrl)
         this.requests.sendTGreport.send({
             type: 'requestProDetailed',
             message: 'User requested pro detailed',
-            userId: this.googleAuth.userId
+            userId: this.googleAuth.userId,
         })
     }
 
@@ -259,9 +258,7 @@ export class NotesComponent implements OnInit {
                     backendResponse as backend_init_notes_response
                 )
                 this.setAvatar(backendResponse as backend_init_notes_response)
-                this.setUserID(
-                    backendResponse as backend_init_notes_response
-                )
+                this.setUserID(backendResponse as backend_init_notes_response)
             }
         }
     }

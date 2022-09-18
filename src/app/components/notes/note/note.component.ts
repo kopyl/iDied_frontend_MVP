@@ -9,8 +9,8 @@ import {
     EventEmitter,
     HostListener,
     ElementRef,
-} from "@angular/core"
-import { Subscription, Subject, timer } from "rxjs"
+} from '@angular/core'
+import { Subscription, Subject, timer } from 'rxjs'
 import {
     scan,
     debounce,
@@ -18,16 +18,17 @@ import {
     repeat,
     mergeAll,
     distinctUntilKeyChanged,
-} from "rxjs/operators"
-import { RequestsService } from "@services/requests"
+} from 'rxjs/operators'
+import { RequestsService } from '@services/requests'
 
-import { FormGroup } from "@angular/forms"
-import { FormBuilder } from "@angular/forms"
+import { FormGroup } from '@angular/forms'
+import { FormBuilder } from '@angular/forms'
+import { LangService } from '@services/lang'
 
 @Component({
-    selector: "note",
-    templateUrl: "./note.component.html",
-    styleUrls: ["./note.component.sass"],
+    selector: 'note',
+    templateUrl: './note.component.html',
+    styleUrls: ['./note.component.sass'],
 })
 export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     alertVisible = false
@@ -56,7 +57,8 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
     constructor(
         private readonly requests: RequestsService,
         private readonly fb: FormBuilder,
-        private HTML: ElementRef
+        private HTML: ElementRef,
+        public lang: LangService
     ) {}
 
     updateAlert() {
@@ -107,7 +109,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
 
         this.updateAlert()
 
-        const previousNote = changes["activeNote"]?.previousValue
+        const previousNote = changes['activeNote']?.previousValue
         if (!previousNote) return
         this.saveNotesBuffer$.next(previousNote)
     }
@@ -120,7 +122,7 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
             debounce((_) => timer(500)),
             take(1),
             mergeAll(),
-            distinctUntilKeyChanged("id"),
+            distinctUntilKeyChanged('id'),
             repeat()
         )
 
@@ -148,12 +150,12 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         this.removeNoteEvent.emit()
     }
 
-    @HostListener("document:focusin")
+    @HostListener('document:focusin')
     log() {
         this.textareaInFocus = true
     }
 
-    @HostListener("document:focusout")
+    @HostListener('document:focusout')
     logFocusOut() {
         this.textareaInFocus = false
     }

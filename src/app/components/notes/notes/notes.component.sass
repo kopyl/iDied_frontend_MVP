@@ -231,8 +231,12 @@ div#notes-page-container
 
 
             li p:empty::after
-                content: "Add title"
                 opacity: 0.75
+
+            li.en p:empty::after
+                content: "Add title"
+            li.ua p:empty::after
+                content: "Додайте заголовок"
 
 
     div#note

@@ -1,113 +1,122 @@
 <div #container id="container" *ngIf="open" @popupFader>
-
-    <div id="fg" @popupFader
-    (touchstart)="touchStart($event)"
-    (touchmove)="touchMove($event)"
-    (touchend)="touchEnd($event)"
-    #fg>
+    <div
+        id="fg"
+        @popupFader
+        (touchstart)="touchStart($event)"
+        (touchmove)="touchMove($event)"
+        (touchend)="touchEnd($event)"
+        #fg
+    >
         <header>
+            <h1 *ngIf="type === 'noteRemoval'">Remove note</h1>
+            <h1 *ngIf="type === 'noteUnshare'">Unshare note</h1>
+            <h1 *ngIf="type === 'linkRevoke'">Revoke note's link</h1>
+            <h1 *ngIf="type === 'info'">{{ title }}</h1>
 
-            <h1 *ngIf=" type === 'noteRemoval' ">Remove note</h1>
-            <h1 *ngIf=" type === 'noteUnshare' ">Unshare note</h1>
-            <h1 *ngIf=" type === 'linkRevoke' ">Revoke note's link</h1>
-            <h1 *ngIf=" type === 'info' ">{{title}}</h1>
-
-            <button id="close-puput" class="small-button-icon-only" (click)="open = false; this.onCancel()">
+            <button
+                id="close-puput"
+                class="small-button-icon-only"
+                (click)="open = false; this.onCancel()"
+            >
                 <icon-close-note></icon-close-note>
             </button>
         </header>
 
-
-        <p *ngIf=" type === 'noteRemoval' ">
-
-            Do you really want to delete the note
-
-            “<strong>{{activeNoteTitle}}</strong>” ?
+        <p *ngIf="type === 'noteRemoval'">
+            Do you really want to delete the note “<strong>{{
+                activeNoteTitle
+            }}</strong
+            >” ?
         </p>
 
+        <p *ngIf="type === 'noteUnshare'">
+            Do you really want to unshare the note “<strong>{{
+                activeNoteTitle
+            }}</strong
+            >” ?
 
-        <p *ngIf=" type === 'noteUnshare' ">
+            <br />
 
-            Do you really want to unshare the note
-
-            “<strong>{{activeNoteTitle}}</strong>” ?
-
-            <br>
-
-            This note will become inaccessible by the public link
-            after you die if you unshare
+            This note will become inaccessible by the public link after you die
+            if you unshare
         </p>
 
+        <p *ngIf="type === 'linkRevoke'">
+            Do you really want to change the access link to the note “<strong>{{
+                activeNoteTitle
+            }}</strong
+            >” ?
 
-        <p *ngIf=" type === 'linkRevoke' ">
+            <br />
 
-            Do you really want to change the access link to the note
-
-            “<strong>{{activeNoteTitle}}</strong>” ?
-
-            <br>
-
-            Everyone you shared your current link won't have
-            any access to your note using it
+            Everyone you shared your current link won't have any access to your
+            note using it
         </p>
 
-
-        <p *ngIf=" type === 'info' ">{{body}}</p>
-
+        <p *ngIf="type === 'info'">{{ body }}</p>
 
         <div id="buttons">
-
-
-            <button class=small-button-secondary id="cancel" (click)="open = false; this.onCancel()">
+            <button
+                class="small-button-secondary"
+                id="cancel"
+                (click)="open = false; this.onCancel()"
+            >
                 <icon-close-note></icon-close-note>
-                Cancel
+                {{ lang.copy.cancel }}
             </button>
 
-
-            <button class="action small-button-primary white-icon" *ngIf=" type === 'noteRemoval' "
-                (click)="this.onSuccess() ; open = false">
+            <button
+                class="action small-button-primary white-icon"
+                *ngIf="type === 'noteRemoval'"
+                (click)="this.onSuccess(); open = false"
+            >
                 <div class="icon">
                     <icon-delete></icon-delete>
                 </div>
                 <span> Remove note </span>
             </button>
 
-            <button class="action small-button-primary white-icon" *ngIf=" type === 'noteUnshare' "
-                (click)="this.onSuccess() ; open = false">
+            <button
+                class="action small-button-primary white-icon"
+                *ngIf="type === 'noteUnshare'"
+                (click)="this.onSuccess(); open = false"
+            >
                 <div class="icon">
                     <icon-share></icon-share>
                 </div>
                 <span> Unshare note </span>
             </button>
 
-            <button class="action small-button-primary white-icon" *ngIf=" type === 'linkRevoke' "
-                (click)="this.onSuccess() ; open = false">
+            <button
+                class="action small-button-primary white-icon"
+                *ngIf="type === 'linkRevoke'"
+                (click)="this.onSuccess(); open = false"
+            >
                 <div class="icon">
                     <icon-revoke></icon-revoke>
                 </div>
                 <span> Revoke link </span>
             </button>
 
-
-            <button class="action small-button-primary white-icon" *ngIf=" type === 'info' "
-                (click)="confirmationPressed.emit(); onSuccess(); open = false">
+            <button
+                class="action small-button-primary white-icon"
+                *ngIf="type === 'info'"
+                (click)="confirmationPressed.emit(); onSuccess(); open = false"
+            >
                 <div class="icon" *ngIf="confirmButtonIcon">
-                    <ng-container [ngComponentOutlet]="confirmButtonIcon"></ng-container>
+                    <ng-container
+                        [ngComponentOutlet]="confirmButtonIcon"
+                    ></ng-container>
                 </div>
-                <span>{{buttonText}}</span>
+                <span>{{ buttonText }}</span>
             </button>
-
-
         </div>
-
-
     </div>
 
     <div id="bg" (click)="open = false; this.onCancel()"></div>
 </div>
 
 <!-- <ng-container [ngTemplateOutlet]="compTemplate"></ng-container> -->
-
 
 <!-- <ng-template #compTemplate>
     <p>www</p>
