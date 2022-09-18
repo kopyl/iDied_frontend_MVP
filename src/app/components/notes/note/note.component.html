@@ -23,7 +23,9 @@
             (click)="shareNote()"
         >
             <icon-share></icon-share>
-            {{ activeNote?.isShared ? "Sharing settings" : "Share" }}
+            {{ activeNote?.isShared
+                ? lang.copy.sharingSettings
+                : lang.copy.share }}
         </button>
 
         <button

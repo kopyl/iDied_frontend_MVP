@@ -60,6 +60,7 @@ export class LangService {
                 descriptions: {
                     proDetailed:
                         'On a free account you can only share 3 notes. Upgrade to Pro to share unlimited notes for $1.',
+                    proLimitReached: 'Upgrade to Pro to share unlimited notes',
                     unshare: {
                         beforeTitle: 'Do you really want to unshare the note “',
                         afterTitle:
@@ -139,6 +140,7 @@ export class LangService {
                 descriptions: {
                     proDetailed:
                         'На безкоштовному обліковому записі ви можете поділитися лише 3 нотатками. Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток за $1.',
+                    proLimitReached: 'Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток',
                     unshare: {
                         beforeTitle:
                             'Ви дійсно хочете закрити доступ до нотатки “',

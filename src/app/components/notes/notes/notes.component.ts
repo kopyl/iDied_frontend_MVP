@@ -167,10 +167,10 @@ export class NotesComponent implements OnInit {
 
     requestPro(): void {
         this.confirmPopup.type = 'info'
-        this.confirmPopup.title = 'Upgrade to Pro'
-        this.confirmPopup.body = 'Upgrade to Pro to share unlimited notes'
+        this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
+        this.confirmPopup.body = this.lang.copy.popups.descriptions.proLimitReached
         this.confirmPopup.open = true
-        this.confirmPopup.buttonText = 'Upgrade for $1'
+        this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () =>
             (window.location.href = this.paymentUrl)
     }
