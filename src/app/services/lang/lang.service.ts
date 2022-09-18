@@ -112,7 +112,7 @@ export class LangService {
             },
             share: 'Поділитися',
             sharingSettings: 'Налаштування доступу',
-            sharing: 'Поділитись',
+            sharing: 'Поширення доступу',
             sharingNotice: {
                 general:
                     'Пошерена нотатка стане доступною по посиланню, якщо ви не зайдете на сайт раз в 30 днів',
