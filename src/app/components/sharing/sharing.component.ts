@@ -94,8 +94,6 @@ export class SharingComponent implements OnInit {
     }
 
     notifyAboutCopiedText() {
-        console.log('copied')
-
         this.materialNotification.open(
             this.lang.copy.notifications.copied.body,
             this.lang.copy.notifications.copied.cta,
