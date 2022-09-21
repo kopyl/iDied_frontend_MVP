@@ -177,16 +177,18 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {
-            this.requests.sendTGreport.onSuccess = () => {
-                this.googleAnalytics.trackProAccountRequestConfirm()
-                window.location.href = this.paymentUrl
-            }
-            this.requests.sendTGreport.send({
-                type: 'requestProDetailedConfirmed',
-                message: 'User pressed upgrade button',
-                userId: this.googleAuth.userId,
-            })
+            this.sendTgReportConfirm()
+            this.googleAnalytics.trackProAccountRequestConfirm()
+            window.location.href = this.paymentUrl
         }
+    }
+
+    sendTgReportConfirm(): void {
+        this.requests.sendTGreport.send({
+            type: 'requestProDetailedConfirmed',
+            message: 'User pressed upgrade button',
+            userId: this.googleAuth.userId,
+        })
     }
 
     requestProDetailed(): void {
@@ -196,6 +198,7 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {
+            this.sendTgReportConfirm()
             this.googleAnalytics.trackProAccountRequestConfirm()
             window.location.href = this.paymentUrl
         }
