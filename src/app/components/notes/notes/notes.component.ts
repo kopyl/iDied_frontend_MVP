@@ -186,7 +186,7 @@ export class NotesComponent implements OnInit {
     sendTgReportConfirm(): void {
         this.requests.sendTGreport.send({
             type: 'requestProDetailedConfirmed',
-            message: 'User pressed upgrade button',
+            message: 'User pressed upgrade button ❤️',
             userId: this.googleAuth.userId,
         })
     }
