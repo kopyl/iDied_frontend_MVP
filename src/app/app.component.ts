@@ -42,7 +42,10 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 mixpanel.track('Page view')
-                mixpanel.identify(this.googleAuth.userId)
+                if (this.googleAuth.userId) {
+                    mixpanel.people.set({ id: this.googleAuth.userId })
+                }
+
                 if (!environment.production) return
                 gtag('config', 'G-X9BGV3FKZ8', {
                     page_path: event.urlAfterRedirects,
