@@ -151,6 +151,9 @@ export class NotesComponent implements OnInit {
 
     setProStatus(backendResponse: backend_init_notes_response) {
         this.proStatus = backendResponse.pro
+        if (this.proStatus) {
+            this.googleAnalytics.trackProStatusEnabled()
+        }
     }
 
     checkWhetherUserHasSharedMoreThan3Notes(): void {
@@ -166,14 +169,22 @@ export class NotesComponent implements OnInit {
     }
 
     requestPro(): void {
+        this.googleAnalytics.trackNotesLimitReached()
         this.confirmPopup.type = 'info'
         this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
         this.confirmPopup.body =
             this.lang.copy.popups.descriptions.proLimitReached
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
-        this.confirmPopup.onSuccess = () =>
-            (window.location.href = this.paymentUrl)
+        this.confirmPopup.onSuccess = () => {
+            this.requests.sendTGreport.send({
+                type: 'requestProDetailedConfirmed',
+                message: 'User pressed upgrade button',
+                userId: this.googleAuth.userId,
+            })
+            this.googleAnalytics.trackProAccountRequestConfirm()
+            window.location.href = this.paymentUrl
+        }
     }
 
     requestProDetailed(): void {
@@ -182,8 +193,10 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.body = this.lang.copy.popups.descriptions.proDetailed
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
-        this.confirmPopup.onSuccess = () =>
-            (window.location.href = this.paymentUrl)
+        this.confirmPopup.onSuccess = () => {
+            this.googleAnalytics.trackProAccountRequestConfirm()
+            window.location.href = this.paymentUrl
+        }
         this.requests.sendTGreport.send({
             type: 'requestProDetailed',
             message: 'User requested pro detailed',
@@ -314,6 +327,7 @@ export class NotesComponent implements OnInit {
         this.setActiveNote()
         this.toggleFormFocus()
         this.closeNote()
+        this.googleAnalytics.trackNoteRemoval()
     }
 
     sendNoteRemovalRequest(): void {
@@ -374,6 +388,7 @@ export class NotesComponent implements OnInit {
             this.sharingView = false
             this.sharingInUrl = ''
         }
+        this.googleAnalytics.trackOpeningNoteMobile()
     }
 
     closeNote() {
@@ -383,18 +398,21 @@ export class NotesComponent implements OnInit {
         this.scrollToActiveNote()
         localStorage.setItem('userClosedAtLeasOneNote', 'true')
         this.pageTitle.setTitle('iDied - Notes')
+        this.googleAnalytics.trackClosingNoteMobile()
     }
 
     openSharingView(): void {
         this.sharingView = true
         this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
         this.pageTitle.setTitle('iDied - Sharing')
+        this.googleAnalytics.trackOpeningSharing()
     }
 
     closeSharingView(): void {
         this.sharingView = false
         this.router.navigate(['/notes', this.activeNote.id])
         this.pageTitle.setTitle('iDied - Note')
+        this.googleAnalytics.trackClosingSharing()
     }
 
     logCopied() {

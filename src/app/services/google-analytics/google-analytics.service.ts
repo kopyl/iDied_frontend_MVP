@@ -59,4 +59,36 @@ export class GoogleAnalyticsService {
         this.sendEvent(Events.requestProAccount)
         mixpanel.track('Pro account requested')
     }
+
+    trackProAccountRequestConfirm(): void {
+        mixpanel.track('Pro account request confirmed')
+    }
+
+    trackOpeningNoteMobile(): void {
+        mixpanel.track('Note opened')
+    }
+
+    trackClosingNoteMobile(): void {
+        mixpanel.track('Note closed')
+    }
+
+    trackOpeningSharing(): void {
+        mixpanel.track('Sharing opened')
+    }
+
+    trackClosingSharing(): void {
+        mixpanel.track('Sharing closed')
+    }
+
+    trackNoteRemoval(): void {
+        mixpanel.track('Note removed')
+    }
+
+    trackNotesLimitReached(): void {
+        mixpanel.track('Notes limit reached')
+    }
+
+    trackProStatusEnabled(): void {
+        mixpanel.track('Pro status enabled')
+    }
 }
