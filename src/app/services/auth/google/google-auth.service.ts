@@ -1,29 +1,49 @@
-import { Injectable } from "@angular/core"
-import { ActivatedRoute, Router } from "@angular/router"
-import { RequestsService } from "@services/requests"
-import { CookieService } from "ngx-cookie-service"
-import { environment } from "@environment"
-import { GoogleAnalyticsService } from "@services/google-analytics"
+import { Injectable } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
+import { RequestsService } from '@services/requests'
+import { CookieService } from 'ngx-cookie-service'
+import { environment } from '@environment'
+import { GoogleAnalyticsService } from '@services/google-analytics'
 
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class GoogleAuthService {
     public userLoggedIn = false
     public buttonLoaderVisible = false
-    private _userId = ""
+    private _userId = ''
+    private _email = ''
+    private _name = ''
 
     public get avatarUrl(): string {
-        return localStorage.getItem("avatar_url")!
+        return localStorage.getItem('avatar_url')!
     }
 
     public set userId(id) {
         this._userId = id
-        localStorage.setItem("userId", id)
+        localStorage.setItem('userId', id)
     }
 
     public get userId(): string {
-        return this._userId || localStorage.getItem("userId") || ""
+        return this._userId || localStorage.getItem('userId') || ''
+    }
+
+    public set email(email: string) {
+        this._email = email
+        localStorage.setItem('email', email)
+    }
+
+    public get email(): string {
+        return this._email || localStorage.getItem('email') || ''
+    }
+
+    public set name(name: string) {
+        this._name = name
+        localStorage.setItem('name', name)
+    }
+
+    public get name(): string {
+        return this._name || localStorage.getItem('name') || ''
     }
 
     constructor(
@@ -31,16 +51,16 @@ export class GoogleAuthService {
         private readonly requests: RequestsService,
         private route: ActivatedRoute,
         private cookies: CookieService,
-        private googleAnalytics: GoogleAnalyticsService,
+        private googleAnalytics: GoogleAnalyticsService
     ) {}
 
     redirectToPaymentIfRequired(): void {
-        const needPayment = this.route.snapshot.queryParams["needPayment"]
+        const needPayment = this.route.snapshot.queryParams['needPayment']
         if (!needPayment) return
         window.location.href = `${environment.apiUrl}payment`
     }
 
-    authorize(params="") {
+    authorize(params = '') {
         window.location.href = `${environment.apiUrl}login/google?${params}`
     }
 
@@ -53,45 +73,45 @@ export class GoogleAuthService {
     signOutOnFrontend(): void {
         this.userLoggedIn = false
         this.buttonLoaderVisible = false
-        localStorage.removeItem("auth")
-        localStorage.removeItem("userID")
-        this.router.navigate([""])
+        localStorage.removeItem('auth')
+        localStorage.removeItem('userID')
+        this.router.navigate([''])
     }
 
     fakeAuthForIOS() {
-        if (environment.baseUrl === "http://192.168.0.101") {
+        if (environment.baseUrl === 'http://192.168.0.101') {
             this.cookies.set(
-                "jwt_token",
-                "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9." +
-                "eyJ1c2VyX2lkIjoiMTE3MDQ1MDk5NTQ4MzcyM" +
-                "TEwNDU2IiwiZW1haWwiOiJzcGFtbW1tbTE5OT" +
-                "dAZ21haWwuY29tIn0.YGHf70g8TpN9WWYsBVl" +
-                "z3c4-e02RrT3qqzEza8Pv9_0",
-                1, '/')
-            localStorage.setItem("auth", "true")
+                'jwt_token',
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.' +
+                    'eyJ1c2VyX2lkIjoiMTE3MDQ1MDk5NTQ4MzcyM' +
+                    'TEwNDU2IiwiZW1haWwiOiJzcGFtbW1tbTE5OT' +
+                    'dAZ21haWwuY29tIn0.YGHf70g8TpN9WWYsBVl' +
+                    'z3c4-e02RrT3qqzEza8Pv9_0',
+                1,
+                '/'
+            )
+            localStorage.setItem('auth', 'true')
         }
     }
 
     accessControl() {
-
         this.fakeAuthForIOS()
 
-        this.userLoggedIn = Boolean(localStorage.getItem("auth"))
+        this.userLoggedIn = Boolean(localStorage.getItem('auth'))
         if (this.userLoggedIn) return
 
-        if (this.route.snapshot.queryParams["auth"]) {
+        if (this.route.snapshot.queryParams['auth']) {
             this.userLoggedIn = true
-            localStorage.setItem("auth", "true")
-            this.googleAnalytics.trackLogin()
+            localStorage.setItem('auth', 'true')
+            this.googleAnalytics.trackLogin(this.route.snapshot.queryParams)
 
             this.redirectToPaymentIfRequired()
 
-            this.router.navigate(["notes"])
+            this.router.navigate(['notes'])
         }
 
         if (!this.userLoggedIn) {
-            this.router.navigate([""])
+            this.router.navigate([''])
         }
     }
-
 }

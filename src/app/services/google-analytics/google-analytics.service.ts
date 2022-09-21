@@ -42,9 +42,12 @@ export class GoogleAnalyticsService {
         localStorage.setItem('userID', userID)
     }
 
-    trackLogin(): void {
+    trackLogin(queryParams): void {
         this.sendEvent(Events.login)
         mixpanel.track('login')
+        if (queryParams['newUser']) {
+            mixpanel.track('Sign up')
+        }
     }
 
     trackNoteCreation(): void {

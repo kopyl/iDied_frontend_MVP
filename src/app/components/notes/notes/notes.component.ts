@@ -168,7 +168,8 @@ export class NotesComponent implements OnInit {
     requestPro(): void {
         this.confirmPopup.type = 'info'
         this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
-        this.confirmPopup.body = this.lang.copy.popups.descriptions.proLimitReached
+        this.confirmPopup.body =
+            this.lang.copy.popups.descriptions.proLimitReached
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () =>
@@ -208,6 +209,11 @@ export class NotesComponent implements OnInit {
     setUserID(backendResponse: backend_init_notes_response): void {
         const userID = backendResponse.user_id
         this.googleAuth.userId = userID
+    }
+
+    setEmailAndName(backendResponse: backend_init_notes_response): void {
+        this.googleAuth.email = backendResponse.email
+        this.googleAuth.name = backendResponse.name
     }
 
     addNotes(
@@ -258,6 +264,9 @@ export class NotesComponent implements OnInit {
                 )
                 this.setAvatar(backendResponse as backend_init_notes_response)
                 this.setUserID(backendResponse as backend_init_notes_response)
+                this.setEmailAndName(
+                    backendResponse as backend_init_notes_response
+                )
             }
         }
     }

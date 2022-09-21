@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
     setUpMixpanel(): void {
         mixpanel.init('de0d618a3b71d00d234cc70a58e7883d', {
             debug: !environment.production,
+            loaded: (mixpanel) => {
+                mixpanel.people.set({
+                    mixpanel_id: mixpanel.get_property('user_id'),
+                })
+            },
         })
     }
 
@@ -43,7 +48,12 @@ export class AppComponent implements OnInit {
             if (event instanceof NavigationEnd) {
                 mixpanel.track('Page view')
                 if (this.googleAuth.userId) {
-                    mixpanel.people.set({ id: this.googleAuth.userId })
+                    mixpanel.people.set({
+                        id: this.googleAuth.userId,
+                        $name: this.googleAuth.name,
+                        $email: this.googleAuth.email,
+                    })
+                    mixpanel.identify(this.googleAuth.userId)
                 }
 
                 if (!environment.production) return
