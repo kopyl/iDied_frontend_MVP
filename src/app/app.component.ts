@@ -10,6 +10,7 @@ import { slider } from '@animations'
 import { environment } from '@environment'
 import { LangService } from '@services/lang'
 import mixpanel from 'mixpanel-browser'
+import { GoogleAuthService } from '@services/auth'
 
 declare const gtag: Function // Google Analytics
 
@@ -24,7 +25,8 @@ export class AppComponent implements OnInit {
         private onlineUpdater: OnlineUpdaterService,
         public router: Router,
         private route: ActivatedRoute,
-        public lang: LangService
+        public lang: LangService,
+        private readonly googleAuth: GoogleAuthService
     ) {
         this.setUpGoogleAnalytics()
         this.setUpMixpanel()
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
                 mixpanel.track('Page view')
+                mixpanel.identify(this.googleAuth.userId)
                 if (!environment.production) return
                 gtag('config', 'G-X9BGV3FKZ8', {
                     page_path: event.urlAfterRedirects,
