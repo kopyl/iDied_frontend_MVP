@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
                         id: this.googleAuth.userId,
                         $name: this.googleAuth.name,
                         $email: this.googleAuth.email,
+                        $avatar: this.googleAuth.avatarUrl,
                     })
                     mixpanel.identify(this.googleAuth.userId)
                 }
