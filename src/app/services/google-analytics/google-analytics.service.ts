@@ -27,6 +27,15 @@ class Events {
 export class GoogleAnalyticsService {
     constructor() {}
 
+    private options(googleAuth) {
+        return {
+            id: googleAuth.userId,
+            avatar: googleAuth.avatarUrl,
+            name: googleAuth.name,
+            email: googleAuth.email,
+        }
+    }
+
     sendEvent(args: eventArgs): void {
         if (!environment.production) return
         gtag('event', ...args)
@@ -42,53 +51,66 @@ export class GoogleAnalyticsService {
         localStorage.setItem('userID', userID)
     }
 
-    trackLogin(queryParams): void {
+    trackLogin(queryParams, googleAuth): void {
         this.sendEvent(Events.login)
         mixpanel.track('login')
         if (queryParams['newUser']) {
-            mixpanel.track('Sign up')
+            mixpanel.track('Sign up', this.options(googleAuth))
         }
     }
 
-    trackNoteCreation(): void {
+    trackNoteCreation(googleAuth): void {
         this.sendEvent(Events.createNote)
-        mixpanel.track('Note created')
+        mixpanel.track('Note created', this.options(googleAuth))
     }
 
-    trackProAccountRequest(): void {
+    trackProAccountRequest(googleAuth): void {
         this.sendEvent(Events.requestProAccount)
-        mixpanel.track('Pro account requested')
+        mixpanel.track('Pro account requested', this.options(googleAuth))
     }
 
-    trackProAccountRequestConfirm(): void {
-        mixpanel.track('Pro account request confirmed')
+    trackProAccountRequestConfirm(callback, googleAuth): void {
+        mixpanel.track(
+            'Pro account request confirmed',
+            this.options(googleAuth),
+            { send_immediately: true },
+            callback
+        )
     }
 
-    trackOpeningNoteMobile(): void {
-        mixpanel.track('Note opened')
+    trackOpeningNoteMobile(googleAuth): void {
+        mixpanel.track('Note opened', this.options(googleAuth))
     }
 
-    trackClosingNoteMobile(): void {
-        mixpanel.track('Note closed')
+    trackOpeningSharingNoteMobile(googleAuth): void {
+        mixpanel.track('Sharing note opened', this.options(googleAuth))
     }
 
-    trackOpeningSharing(): void {
-        mixpanel.track('Sharing opened')
+    trackClosingNoteMobile(googleAuth): void {
+        mixpanel.track('Note closed', this.options(googleAuth))
     }
 
-    trackClosingSharing(): void {
-        mixpanel.track('Sharing closed')
+    trackOpeningSharing(googleAuth): void {
+        mixpanel.track('Sharing opened', this.options(googleAuth))
     }
 
-    trackNoteRemoval(): void {
-        mixpanel.track('Note removed')
+    trackClosingSharing(googleAuth): void {
+        mixpanel.track('Sharing closed', this.options(googleAuth))
     }
 
-    trackNotesLimitReached(): void {
-        mixpanel.track('Notes limit reached')
+    trackNoteRemoval(googleAuth): void {
+        mixpanel.track('Note removed', this.options(googleAuth))
     }
 
-    trackProStatusEnabled(): void {
-        mixpanel.track('Pro status enabled')
+    trackNotesLimitReached(googleAuth): void {
+        mixpanel.track('Notes limit reached', this.options(googleAuth))
+    }
+
+    trackProStatusEnabled(googleAuth): void {
+        mixpanel.track('Pro status enabled', this.options(googleAuth))
+    }
+
+    trackNotesLoaded(googleAuth): void {
+        mixpanel.track('Notes loaded', this.options(googleAuth))
     }
 }

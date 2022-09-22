@@ -103,7 +103,10 @@ export class GoogleAuthService {
         if (this.route.snapshot.queryParams['auth']) {
             this.userLoggedIn = true
             localStorage.setItem('auth', 'true')
-            this.googleAnalytics.trackLogin(this.route.snapshot.queryParams)
+            this.googleAnalytics.trackLogin(
+                this.route.snapshot.queryParams,
+                this
+            )
 
             this.redirectToPaymentIfRequired()
 

@@ -16,6 +16,7 @@ import { environment } from '@environment'
 import { TooltipService } from '@services/tooltip'
 import { GoogleAnalyticsService } from '@services/google-analytics'
 import { LangService } from '@services/lang'
+import mixpanel from 'mixpanel-browser'
 
 @Component({
     selector: 'app-notes',
@@ -152,7 +153,7 @@ export class NotesComponent implements OnInit {
     setProStatus(backendResponse: backend_init_notes_response) {
         this.proStatus = backendResponse.pro
         if (this.proStatus) {
-            this.googleAnalytics.trackProStatusEnabled()
+            this.googleAnalytics.trackProStatusEnabled(this.googleAuth)
         }
     }
 
@@ -169,7 +170,7 @@ export class NotesComponent implements OnInit {
     }
 
     requestPro(): void {
-        this.googleAnalytics.trackNotesLimitReached()
+        this.googleAnalytics.trackNotesLimitReached(this.googleAuth)
         this.confirmPopup.type = 'info'
         this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
         this.confirmPopup.body =
@@ -177,9 +178,12 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {
+            this.requests.sendTGreport.onSuccess = () => {
+                this.googleAnalytics.trackProAccountRequestConfirm(() => {
+                    window.location.href = this.paymentUrl
+                }, this.googleAuth)
+            }
             this.sendTgReportConfirm()
-            this.googleAnalytics.trackProAccountRequestConfirm()
-            window.location.href = this.paymentUrl
         }
     }
 
@@ -198,9 +202,12 @@ export class NotesComponent implements OnInit {
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {
+            this.requests.sendTGreport.onSuccess = () => {
+                this.googleAnalytics.trackProAccountRequestConfirm(() => {
+                    window.location.href = this.paymentUrl
+                }, this.googleAuth)
+            }
             this.sendTgReportConfirm()
-            this.googleAnalytics.trackProAccountRequestConfirm()
-            window.location.href = this.paymentUrl
         }
         this.requests.sendTGreport.send({
             type: 'requestProDetailed',
@@ -220,6 +227,16 @@ export class NotesComponent implements OnInit {
         this.checkWhetherUserHasSharedMoreThan3Notes()
     }
 
+    mixpanel_setting(): void {
+        mixpanel.people.set({
+            id: this.googleAuth.userId,
+            $name: this.googleAuth.name,
+            $email: this.googleAuth.email,
+            $avatar: this.googleAuth.avatarUrl,
+        })
+        mixpanel.identify(this.googleAuth.userId)
+    }
+
     setAvatar(backendResponse: backend_init_notes_response): void {
         localStorage.setItem('avatar_url', backendResponse.avatar_url)
     }
@@ -232,6 +249,7 @@ export class NotesComponent implements OnInit {
     setEmailAndName(backendResponse: backend_init_notes_response): void {
         this.googleAuth.email = backendResponse.email
         this.googleAuth.name = backendResponse.name
+        this.mixpanel_setting()
     }
 
     addNotes(
@@ -270,7 +288,7 @@ export class NotesComponent implements OnInit {
 
             if (addingNotesFromCreation) {
                 this.navigateToActiveNote()
-                this.googleAnalytics.trackNoteCreation()
+                this.googleAnalytics.trackNoteCreation(this.googleAuth)
             }
 
             this.loaderVisible = false
@@ -285,6 +303,7 @@ export class NotesComponent implements OnInit {
                 this.setEmailAndName(
                     backendResponse as backend_init_notes_response
                 )
+                this.googleAnalytics.trackNotesLoaded(this.googleAuth)
             }
         }
     }
@@ -332,7 +351,7 @@ export class NotesComponent implements OnInit {
         this.setActiveNote()
         this.toggleFormFocus()
         this.closeNote()
-        this.googleAnalytics.trackNoteRemoval()
+        this.googleAnalytics.trackNoteRemoval(this.googleAuth)
     }
 
     sendNoteRemovalRequest(): void {
@@ -388,12 +407,13 @@ export class NotesComponent implements OnInit {
         if (this.sharingInUrl && this.activeNote.isShared) {
             this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
             this.sharingInUrl = ''
+            this.googleAnalytics.trackOpeningSharingNoteMobile(this.googleAuth)
         } else {
             this.router.navigate(['/notes', this.activeNote.id])
             this.sharingView = false
             this.sharingInUrl = ''
+            this.googleAnalytics.trackOpeningNoteMobile(this.googleAuth)
         }
-        this.googleAnalytics.trackOpeningNoteMobile()
     }
 
     closeNote() {
@@ -403,21 +423,21 @@ export class NotesComponent implements OnInit {
         this.scrollToActiveNote()
         localStorage.setItem('userClosedAtLeasOneNote', 'true')
         this.pageTitle.setTitle('iDied - Notes')
-        this.googleAnalytics.trackClosingNoteMobile()
+        this.googleAnalytics.trackClosingNoteMobile(this.googleAuth)
     }
 
     openSharingView(): void {
         this.sharingView = true
         this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
         this.pageTitle.setTitle('iDied - Sharing')
-        this.googleAnalytics.trackOpeningSharing()
+        this.googleAnalytics.trackOpeningSharing(this.googleAuth)
     }
 
     closeSharingView(): void {
         this.sharingView = false
         this.router.navigate(['/notes', this.activeNote.id])
         this.pageTitle.setTitle('iDied - Note')
-        this.googleAnalytics.trackClosingSharing()
+        this.googleAnalytics.trackClosingSharing(this.googleAuth)
     }
 
     logCopied() {

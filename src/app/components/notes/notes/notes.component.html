@@ -10,7 +10,7 @@
             </div>
 
             <div
-                (click)="googleAnalytics.trackProAccountRequest()"
+                (click)="googleAnalytics.trackProAccountRequest(googleAuth)"
                 id="pro-button"
                 [class.proButtonHidden]="proStatus"
             >
@@ -59,7 +59,7 @@
         </div>
 
         <div
-            (click)="googleAnalytics.trackProAccountRequest()"
+            (click)="googleAnalytics.trackProAccountRequest(googleAuth)"
             id="pro-button"
             [class.proButtonHidden]="proStatus"
         >

@@ -46,13 +46,20 @@ export class AppComponent implements OnInit {
     setUpGoogleAnalytics(): void {
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                mixpanel.track('Page view')
+                mixpanel.track('Page view', {
+                    id: this.googleAuth.userId,
+                    avatar: this.googleAuth.avatarUrl,
+                    name: this.googleAuth.name,
+                    email: this.googleAuth.email,
+                })
                 if (this.googleAuth.userId) {
                     mixpanel.people.set({
                         id: this.googleAuth.userId,
                         $name: this.googleAuth.name,
                         $email: this.googleAuth.email,
                         $avatar: this.googleAuth.avatarUrl,
+                        name: this.googleAuth.name,
+                        email: this.googleAuth.email,
                     })
                     mixpanel.identify(this.googleAuth.userId)
                 }
