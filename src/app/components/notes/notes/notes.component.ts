@@ -77,7 +77,9 @@ export class NotesComponent implements OnInit {
 
         if (!this.notes.length) {
             // id.doc.id#4
-            this.router.navigate(['/notes'])
+            this.router.navigate(['/notes'], {
+                queryParamsHandling: 'preserve',
+            })
         }
 
         this.findOutifUserClosedNoteAtLeastOnce()
@@ -258,7 +260,7 @@ export class NotesComponent implements OnInit {
     ): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigate([''])
+            this.router.navigate([''], { queryParamsHandling: 'preserve' })
         } else {
             this.notes.unshift(
                 ...(snakeToCamelCaseArray(
@@ -309,7 +311,9 @@ export class NotesComponent implements OnInit {
     }
 
     navigateToActiveNote(): void {
-        this.router.navigate(['/notes', this.activeNote.id])
+        this.router.navigate(['/notes', this.activeNote.id], {
+            queryParamsHandling: 'preserve',
+        })
     }
 
     changeActiveNote(note: frontendNote): void {
@@ -335,7 +339,7 @@ export class NotesComponent implements OnInit {
     removeNoteFromUI(backendResponse: backend_notes_response): void {
         if (backendResponse.error) {
             this.googleAuth.signOut()
-            this.router.navigate([''])
+            this.router.navigate([''], { queryParamsHandling: 'preserve' })
         } else {
             this.confirmRemoveNote(backendResponse)
         }
@@ -405,11 +409,15 @@ export class NotesComponent implements OnInit {
         if (!this.notes.length) return // id.doc.id#4
         this.notesEditing = true
         if (this.sharingInUrl && this.activeNote.isShared) {
-            this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
+            this.router.navigate(['/notes', this.activeNote.id, 'sharing'], {
+                queryParamsHandling: 'preserve',
+            })
             this.sharingInUrl = ''
             this.googleAnalytics.trackOpeningSharingNoteMobile(this.googleAuth)
         } else {
-            this.router.navigate(['/notes', this.activeNote.id])
+            this.router.navigate(['/notes', this.activeNote.id], {
+                queryParamsHandling: 'preserve',
+            })
             this.sharingView = false
             this.sharingInUrl = ''
             this.googleAnalytics.trackOpeningNoteMobile(this.googleAuth)
@@ -418,7 +426,7 @@ export class NotesComponent implements OnInit {
 
     closeNote() {
         this.notesEditing = false
-        this.router.navigate(['/notes'])
+        this.router.navigate(['/notes'], { queryParamsHandling: 'preserve' })
         this.setSelectedNoteIndex()
         this.scrollToActiveNote()
         localStorage.setItem('userClosedAtLeasOneNote', 'true')
@@ -428,14 +436,18 @@ export class NotesComponent implements OnInit {
 
     openSharingView(): void {
         this.sharingView = true
-        this.router.navigate(['/notes', this.activeNote.id, 'sharing'])
+        this.router.navigate(['/notes', this.activeNote.id, 'sharing'], {
+            queryParamsHandling: 'preserve',
+        })
         this.pageTitle.setTitle('iDied - Sharing')
         this.googleAnalytics.trackOpeningSharing(this.googleAuth)
     }
 
     closeSharingView(): void {
         this.sharingView = false
-        this.router.navigate(['/notes', this.activeNote.id])
+        this.router.navigate(['/notes', this.activeNote.id], {
+            queryParamsHandling: 'preserve',
+        })
         this.pageTitle.setTitle('iDied - Note')
         this.googleAnalytics.trackClosingSharing(this.googleAuth)
     }

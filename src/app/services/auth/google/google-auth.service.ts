@@ -62,9 +62,13 @@ export class GoogleAuthService {
 
     authorize(params = '') {
         const ref = this.route.snapshot.queryParams['ref']
+        const test = this.route.snapshot.queryParams['test']
         let url = `${environment.apiUrl}login/google?${params}`
         if (ref) {
             url += `&ref=${ref}`
+        }
+        if (test) {
+            url += `&test=${test}`
         }
         window.location.href = url
     }
@@ -80,7 +84,7 @@ export class GoogleAuthService {
         this.buttonLoaderVisible = false
         localStorage.removeItem('auth')
         localStorage.removeItem('userID')
-        this.router.navigate([''])
+        this.router.navigate([''], { queryParamsHandling: 'preserve' })
     }
 
     fakeAuthForIOS() {
@@ -115,13 +119,11 @@ export class GoogleAuthService {
 
             this.redirectToPaymentIfRequired()
 
-            this.router.navigate(['notes'])
+            this.router.navigate(['notes'], { queryParamsHandling: 'preserve' })
         }
 
         if (!this.userLoggedIn) {
-            this.router.navigate([''], {
-                queryParams: this.route.snapshot.queryParams,
-            })
+            this.router.navigate([''], { queryParamsHandling: 'preserve' })
         }
     }
 }

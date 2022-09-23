@@ -70,7 +70,11 @@
 
         <div id="bottom-button-container">
             <div @buttonSlider *ngIf="googleAuth.userLoggedIn" id="notes">
-                <button routerLink="/notes" class="big-button-primary">
+                <button
+                    routerLink="/notes"
+                    queryParamsHandling="merge"
+                    class="big-button-primary"
+                >
                     <div class="left-side">
                         <icon-notes></icon-notes>
                         {{ lang.copy.myNotes }}

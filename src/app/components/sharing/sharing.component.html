@@ -4,7 +4,10 @@
     <div id="top-part">
         <header>
             <div id="left-side">
-                <logo-mobile routerLink="/"></logo-mobile>
+                <logo-mobile
+                    routerLink="/"
+                    queryParamsHandling="merge"
+                ></logo-mobile>
 
                 <h1>
                     {{ lang.copy.sharing }}
@@ -70,9 +73,7 @@
         <div class="bottom-alert">
             <div class="alert">
                 <persistent-alert
-                    >{{
-                        this.lang.copy.sharingNotice.specific
-                    }}
+                    >{{ this.lang.copy.sharingNotice.specific }}
                 </persistent-alert>
             </div>
         </div>

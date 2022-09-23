@@ -6,7 +6,11 @@
     <div id="sidebar">
         <header>
             <div id="logo">
-                <icon-logo routerLink="/" color="black"></icon-logo>
+                <icon-logo
+                    routerLink="/"
+                    queryParamsHandling="merge"
+                    color="black"
+                ></icon-logo>
             </div>
 
             <div
@@ -54,7 +58,10 @@
 
     <header id="mobile-header" [class.notesEditing]="notesEditing">
         <div id="left-side">
-            <logo-mobile routerLink="/"></logo-mobile>
+            <logo-mobile
+                routerLink="/"
+                queryParamsHandling="merge"
+            ></logo-mobile>
             <h1>Notes</h1>
         </div>
 

@@ -117,7 +117,8 @@ export class ConfirmPopupComponent implements OnInit {
         this.body = 'Please login before making the payment'
         this.buttonText = 'Login'
 
-        this.onCancel = () => this.router.navigate([])
+        this.onCancel = () =>
+            this.router.navigate([], { queryParamsHandling: 'preserve' })
     }
 
     showPaidNotification(): void {
