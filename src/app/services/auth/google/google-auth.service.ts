@@ -61,7 +61,12 @@ export class GoogleAuthService {
     }
 
     authorize(params = '') {
-        window.location.href = `${environment.apiUrl}login/google?${params}`
+        const ref = this.route.snapshot.queryParams['ref']
+        let url = `${environment.apiUrl}login/google?${params}`
+        if (ref) {
+            url += `&ref=${ref}`
+        }
+        window.location.href = url
     }
 
     signOut() {
@@ -114,7 +119,9 @@ export class GoogleAuthService {
         }
 
         if (!this.userLoggedIn) {
-            this.router.navigate([''])
+            this.router.navigate([''], {
+                queryParams: this.route.snapshot.queryParams,
+            })
         }
     }
 }
