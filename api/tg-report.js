@@ -6,7 +6,7 @@ export default function handler(request, response) {
         return response.status(400).json({ success: false })
     }
     const message = JSON.stringify(request.body, null, 4)
-    bot.sendMessage(63753908, message).then(() => {
+    bot.sendMessage(-1001758122517, message).then(() => {
         response.status(200).json({ message: "Message sent" })
     })
 }
