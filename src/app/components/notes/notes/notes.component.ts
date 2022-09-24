@@ -439,6 +439,9 @@ export class NotesComponent implements OnInit {
         })
         this.pageTitle.setTitle('iDied - Sharing')
         this.googleAnalytics.trackOpeningSharing(this.googleAuth)
+        if (!this.proStatus) {
+            this.requestProDetailed()
+        }
     }
 
     closeSharingView(): void {
