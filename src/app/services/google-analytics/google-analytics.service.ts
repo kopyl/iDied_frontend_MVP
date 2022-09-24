@@ -78,6 +78,15 @@ export class GoogleAnalyticsService {
         )
     }
 
+    trackProAccountForceRequestConfirm(callback, googleAuth): void {
+        mixpanel.track(
+            'Pro account force request confirmed',
+            this.options(googleAuth),
+            { send_immediately: true },
+            callback
+        )
+    }
+
     trackOpeningNoteMobile(googleAuth): void {
         mixpanel.track('Note opened', this.options(googleAuth))
     }

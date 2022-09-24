@@ -197,6 +197,14 @@ export class NotesComponent implements OnInit {
         })
     }
 
+    sendTgReportConfirmFromForced(): void {
+        this.requests.sendTGreport.send({
+            type: 'requestProDetailedConfirmedFromForced',
+            message: 'User pressed upgrade button FROM FORCED NOTIFICATION ❤️',
+            userId: this.googleAuth.userId,
+        })
+    }
+
     requestProDetailed(): void {
         this.confirmPopup.type = 'pro'
         this.confirmPopup.open = true
@@ -214,6 +222,20 @@ export class NotesComponent implements OnInit {
             message: 'User requested pro detailed',
             userId: this.googleAuth.userId,
         })
+    }
+
+    sendProDetailedForced(): void {
+        this.confirmPopup.type = 'pro'
+        this.confirmPopup.open = true
+        this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
+        this.confirmPopup.onSuccess = () => {
+            this.requests.sendTGreport.onSuccess = () => {
+                this.googleAnalytics.trackProAccountForceRequestConfirm(() => {
+                    window.location.href = this.paymentUrl
+                }, this.googleAuth)
+            }
+            this.sendTgReportConfirmFromForced()
+        }
     }
 
     handleProAccountFromBackendInit(
@@ -440,7 +462,7 @@ export class NotesComponent implements OnInit {
         this.pageTitle.setTitle('iDied - Sharing')
         this.googleAnalytics.trackOpeningSharing(this.googleAuth)
         if (!this.proStatus) {
-            this.requestProDetailed()
+            this.sendProDetailedForced()
         }
     }
 
