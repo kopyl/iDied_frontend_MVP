@@ -17,7 +17,7 @@ export default {
         byGoogle: 'By Google',
         myNotes: 'My notes',
         signOut: 'Sign out',
-        goPro: 'Get unlimited access',
+        goPro: 'Get pro features',
         notes: 'Notes',
         createNote: 'Create note',
         addTitle: 'Add title',
@@ -36,7 +36,7 @@ export default {
         },
         loading: 'Loading',
         buttons: {
-            upgrade: 'Upgrade for $1',
+            upgrade: 'Upgrade for $3.99',
             cancel: 'Cancel',
             remove: 'Remove',
             unshare: 'Unshare note',
@@ -46,14 +46,28 @@ export default {
         popups: {
             titles: {
                 wantToDelete: 'Do you really want to delete the note',
-                proDetailed: 'Upgrade to Pro',
+                proDetailed: 'Buy pro and get',
                 remove: 'Remove note',
                 unshare: 'Unshare note',
                 revoke: "Revoke note's link",
             },
             descriptions: {
-                proDetailed:
-                    'On a free account you can only share 3 notes. Upgrade to Pro to share unlimited notes for $1.',
+                proDetailed: {
+                    telegram: {
+                        title: 'Telegram online monitoring',
+                        description:
+                            'No need to visit this app to confirm that you’re alive! Telegram bot will monitor your online for you',
+                    },
+                    senders: {
+                        title: 'Send notes via email and Telegram',
+                        description: 'When you die',
+                    },
+                    unlimited: {
+                        title: 'Unlimited notes to share',
+                        description:
+                            'On a free plan you can only share 3 notes. Share as many as you want on PRO',
+                    },
+                },
                 proLimitReached: 'Upgrade to Pro to share unlimited notes',
                 unshare: {
                     beforeTitle: 'Do you really want to unshare the note “',
@@ -71,13 +85,13 @@ export default {
         notifications: {
             copied: {
                 body: 'Link copied. Now send it to somebody :)',
-                cta: 'Close'
+                cta: 'Close',
             },
             revoked: {
                 body: 'Link revoked.',
-                cta: 'Close'
+                cta: 'Close',
             },
-        }
+        },
     },
     ua: {
         title: {
@@ -97,7 +111,7 @@ export default {
         byGoogle: 'За допомогою Google',
         myNotes: 'Мої нотатки',
         signOut: 'Вийти',
-        goPro: 'Отримати безліміт',
+        goPro: 'Перейти на Pro',
         notes: 'Нотатки',
         createNote: 'Створити нотатку',
         addTitle: 'Додайте заголовок',
@@ -116,7 +130,7 @@ export default {
         },
         loading: 'Завантаження',
         buttons: {
-            upgrade: 'Оновити за $1',
+            upgrade: 'Оновити за $3.99',
             cancel: 'Скасувати',
             remove: 'Видалити',
             unshare: 'Закрити доступ',
@@ -126,18 +140,32 @@ export default {
         popups: {
             titles: {
                 wantToDelete: 'Ви дійсно хочете видалити нотатку',
-                proDetailed: 'Отримати безліміт',
+                proDetailed: 'Придбай Pro і отримай',
                 remove: 'Видалити нотатку',
                 unshare: 'Закрити доступ',
                 revoke: 'Відкликати доступ по існуючому посиланню',
             },
             descriptions: {
-                proDetailed:
-                    'На безкоштовному обліковому записі ви можете поділитися лише 3 нотатками. Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток за $1.',
-                proLimitReached: 'Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток',
+                proDetailed: {
+                    telegram: {
+                        title: 'Відслідковування онлайну в Telegram',
+                        description:
+                            'Не заходьте сюди щоб довести, що ви живі! Telegram бот робитиме це за вас',
+                    },
+                    senders: {
+                        title: 'Ми надішлемо ваші листи по email і Telegram',
+                        description: 'Після того, як ви помрете',
+                    },
+                    unlimited: {
+                        title: 'Необмежена кількість нотаток',
+                        description:
+                            'Без Pro можна поділитись лише 3 нотатками, а з Pro – необмежено',
+                    },
+                },
+                proLimitReached:
+                    'Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток',
                 unshare: {
-                    beforeTitle:
-                        'Ви дійсно хочете закрити доступ до нотатки “',
+                    beforeTitle: 'Ви дійсно хочете закрити доступ до нотатки “',
                     afterTitle:
                         'Ця нотатка стане недоступною по посиланню після того, як ви помрете, якщо ви закриєте доступ',
                 },
@@ -152,11 +180,11 @@ export default {
         notifications: {
             copied: {
                 body: 'Посилання скопійовано. Тепер відправте комусь :)',
-                cta: 'Відхилити'
+                cta: 'Відхилити',
             },
             revoked: {
                 body: 'Посилання відкликано.',
-                cta: 'Закрити'
+                cta: 'Закрити',
             },
         },
     },

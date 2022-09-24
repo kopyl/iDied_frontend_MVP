@@ -198,9 +198,7 @@ export class NotesComponent implements OnInit {
     }
 
     requestProDetailed(): void {
-        this.confirmPopup.type = 'info'
-        this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
-        this.confirmPopup.body = this.lang.copy.popups.descriptions.proDetailed
+        this.confirmPopup.type = 'pro'
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {

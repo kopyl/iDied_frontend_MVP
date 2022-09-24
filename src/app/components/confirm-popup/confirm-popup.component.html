@@ -7,7 +7,7 @@
         (touchend)="touchEnd($event)"
         #fg
     >
-        <header>
+        <header [class.pro]="type === 'pro'">
             <h1 *ngIf="type === 'noteRemoval'">
                 {{ lang.copy.popups.titles.remove }}
             </h1>
@@ -18,6 +18,9 @@
                 {{ lang.copy.popups.titles.revoke }}
             </h1>
             <h1 *ngIf="type === 'info'">{{ title }}</h1>
+            <h1 id="pro-title" *ngIf="type === 'pro'">
+                {{ lang.copy.popups.titles.proDetailed }}
+            </h1>
 
             <button
                 id="close-puput"
@@ -28,14 +31,68 @@
             </button>
         </header>
 
-        <p *ngIf="type === 'noteRemoval'">
+        <div id="pro" *ngIf="type === 'pro'">
+            <div class="pro-tile">
+                <img src="assets/pro-popup/telegram.svg" alt="" />
+                <div class="description">
+                    <p class="description-title">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.telegram
+                                .title
+                        }}
+                    </p>
+                    <p class="description-subtitle">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.telegram
+                                .description
+                        }}
+                    </p>
+                </div>
+            </div>
+            <div class="pro-tile">
+                <img src="assets/pro-popup/email-and-tg-sender.svg" alt="" />
+                <div class="description">
+                    <p class="description-title">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.senders
+                                .title
+                        }}
+                    </p>
+                    <p class="description-subtitle">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.senders
+                                .description
+                        }}
+                    </p>
+                </div>
+            </div>
+            <div class="pro-tile">
+                <img src="assets/pro-popup/unlimited-notes.svg" alt="" />
+                <div class="description">
+                    <p class="description-title">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.unlimited
+                                .title
+                        }}
+                    </p>
+                    <p class="description-subtitle">
+                        {{
+                            lang.copy.popups.descriptions.proDetailed.unlimited
+                                .description
+                        }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <p class="single-description" *ngIf="type === 'noteRemoval'">
             {{ lang.copy.popups.titles.wantToDelete }} “<strong>{{
                 activeNoteTitle
             }}</strong
             >” ?
         </p>
 
-        <p *ngIf="type === 'noteUnshare'">
+        <p class="single-description" *ngIf="type === 'noteUnshare'">
             {{ lang.copy.popups.descriptions.unshare.beforeTitle
             }}<strong>{{ activeNoteTitle }}</strong
             >” ?
@@ -45,7 +102,7 @@
             {{ lang.copy.popups.descriptions.unshare.afterTitle }}
         </p>
 
-        <p *ngIf="type === 'linkRevoke'">
+        <p class="single-description" *ngIf="type === 'linkRevoke'">
             {{ lang.copy.popups.descriptions.revoke.beforeTitle
             }}<strong>{{ activeNoteTitle }}</strong
             >” ?
@@ -55,7 +112,7 @@
             {{ lang.copy.popups.descriptions.revoke.afterTitle }}
         </p>
 
-        <p *ngIf="type === 'info'">{{ body }}</p>
+        <p class="single-description" *ngIf="type === 'info'">{{ body }}</p>
 
         <div id="buttons">
             <button
@@ -105,6 +162,19 @@
             <button
                 class="action small-button-primary white-icon"
                 *ngIf="type === 'info'"
+                (click)="confirmationPressed.emit(); onSuccess(); open = false"
+            >
+                <div class="icon" *ngIf="confirmButtonIcon">
+                    <ng-container
+                        [ngComponentOutlet]="confirmButtonIcon"
+                    ></ng-container>
+                </div>
+                <span>{{ buttonText }}</span>
+            </button>
+
+            <button
+                class="action small-button-primary white-icon"
+                *ngIf="type === 'pro'"
                 (click)="confirmationPressed.emit(); onSuccess(); open = false"
             >
                 <div class="icon" *ngIf="confirmButtonIcon">

@@ -62,12 +62,48 @@ strong
     font-weight: $medium
 
 p
-    margin-top: 48px
-    margin-bottom: 96px
     font-family: $roboto
     font-size: 16px
     line-height: 27px
     color: $black-lighter
+
+p.description-subtitle
+    font-size: 14px
+    line-height: 24px
+    color: $black-lighter
+    opacity: .8
+    margin-top: 5px
+
+p.single-description
+    margin-top: 48px
+    margin-bottom: 96px
+
+div#pro
+    margin-top: 48px
+    margin-bottom: 96px
+    display: flex
+    flex-direction: column
+    gap: 37px
+    @media screen and ( max-width:  $min-mobile-width)
+        margin-top: min(5vh, 48px)
+        margin-bottom: min(7vh, 96px)
+        gap: 20px
+        gap: min(4vh, 37px)
+
+
+#pro-title
+    @media screen and ( max-width:  $min-mobile-width)
+        font-size: 18px
+        line-height: 24px
+
+header.pro
+    @media screen and ( max-width:  $min-mobile-width)
+        align-items: center
+
+div.pro-tile
+    display: flex
+    gap: 21px
+    align-items: flex-start
 
 div#buttons
     display: grid
