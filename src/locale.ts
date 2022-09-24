@@ -17,7 +17,7 @@ export default {
         byGoogle: 'By Google',
         myNotes: 'My notes',
         signOut: 'Sign out',
-        goPro: 'Get pro features',
+        goPro: 'Get Pro features',
         notes: 'Notes',
         createNote: 'Create note',
         addTitle: 'Add title',
@@ -46,7 +46,7 @@ export default {
         popups: {
             titles: {
                 wantToDelete: 'Do you really want to delete the note',
-                proDetailed: 'Buy pro and get',
+                proDetailed: 'Buy Pro and get',
                 remove: 'Remove note',
                 unshare: 'Unshare note',
                 revoke: "Revoke note's link",
@@ -130,7 +130,7 @@ export default {
         },
         loading: 'Завантаження',
         buttons: {
-            upgrade: 'Оновити за $3.99',
+            upgrade: 'Придбати за $3.99',
             cancel: 'Скасувати',
             remove: 'Видалити',
             unshare: 'Закрити доступ',
