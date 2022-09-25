@@ -174,11 +174,12 @@ export class NotesComponent implements OnInit {
     requestPro(): void {
         this.googleAnalytics.trackNotesLimitReached(this.googleAuth)
         this.confirmPopup.type = 'info'
-        this.confirmPopup.title = this.lang.copy.popups.titles.proDetailed
+        this.confirmPopup.title = this.lang.copy.popups.titles.proLimitReached
         this.confirmPopup.body =
             this.lang.copy.popups.descriptions.proLimitReached
         this.confirmPopup.open = true
-        this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
+        this.confirmPopup.buttonText =
+            this.lang.copy.buttons.limitReachedUpgrade
         this.confirmPopup.onSuccess = () => {
             this.requests.sendTGreport.onSuccess = () => {
                 this.googleAnalytics.trackProAccountRequestConfirm(() => {

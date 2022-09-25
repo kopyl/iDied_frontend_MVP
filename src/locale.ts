@@ -50,6 +50,8 @@ export default {
             titles: {
                 wantToDelete: 'Do you really want to delete the note',
                 proDetailed: 'Buy Pro and get',
+                proLimitReached:
+                    'You have reached the limit of shared notes for free',
                 remove: 'Remove note',
                 unshare: 'Unshare note',
                 revoke: "Revoke note's link",
@@ -140,6 +142,7 @@ export default {
         loading: 'Завантаження',
         buttons: {
             upgrade: 'Придбати за $3.99',
+            limitReachedUpgrade: 'Оновитись за $3.99',
             cancel: 'Скасувати',
             remove: 'Видалити',
             unshare: 'Закрити доступ',
@@ -153,6 +156,8 @@ export default {
             titles: {
                 wantToDelete: 'Ви дійсно хочете видалити нотатку',
                 proDetailed: 'Придбай Pro і отримай',
+                proLimitReached:
+                    'Ви досягли ліміту безкоштовно поширених нотаток',
                 remove: 'Видалити нотатку',
                 unshare: 'Закрити доступ',
                 revoke: 'Відкликати доступ по існуючому посиланню',
