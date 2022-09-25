@@ -37,6 +37,7 @@ export default {
         loading: 'Loading',
         buttons: {
             upgrade: 'Upgrade for $3.99',
+            limitReachedUpgrade: 'Upgrade for $3.99',
             cancel: 'Cancel',
             remove: 'Remove',
             unshare: 'Unshare note',
