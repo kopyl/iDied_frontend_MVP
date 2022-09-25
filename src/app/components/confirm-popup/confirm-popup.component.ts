@@ -113,9 +113,9 @@ export class ConfirmPopupComponent implements OnInit {
 
         if (doesNeedLogin !== 'true') return
 
-        this.title = 'Login required'
-        this.body = 'Please login before making the payment'
-        this.buttonText = 'Login'
+        this.title = this.lang.copy.popups.titles.loginRequired
+        this.body = this.lang.copy.popups.descriptions.loginRequired
+        this.buttonText = this.lang.copy.buttons.login
 
         this.onCancel = () =>
             this.router.navigate([], { queryParamsHandling: 'preserve' })
@@ -129,9 +129,9 @@ export class ConfirmPopupComponent implements OnInit {
         this.open = true
 
         if (isPaid === 'true') {
-            this.title = 'Payment successful'
-            this.body = 'You can now share 3+ notes'
-            this.buttonText = 'I understand'
+            this.title = this.lang.copy.popups.titles.paymentSuccessful
+            this.body = this.lang.copy.popups.descriptions.paymentSuccessful
+            this.buttonText = this.lang.copy.buttons.iUnderstand
             this.onSuccess = () => {
                 this.router.navigate(['/notes'])
             }
@@ -142,9 +142,9 @@ export class ConfirmPopupComponent implements OnInit {
             this.onSuccess = () =>
                 (window.location.href = `${environment.apiUrl}payment`)
             this.onCancel = () => this.router.navigate(['/notes'])
-            this.title = 'Payment failed'
-            this.body = 'You can try again'
-            this.buttonText = 'Try again'
+            this.title = this.lang.copy.popups.titles.paymentFailed
+            this.body = this.lang.copy.popups.descriptions.paymentFailed
+            this.buttonText = this.lang.copy.buttons.tryAgain
             this.confirmButtonIcon = IconRevokeComponent
         }
     }

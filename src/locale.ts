@@ -42,6 +42,9 @@ export default {
             unshare: 'Unshare note',
             revoke: 'Revoke link',
             copyLink: 'Copy link',
+            iUnderstand: 'I understand',
+            tryAgain: 'Try again',
+            login: 'Login',
         },
         popups: {
             titles: {
@@ -50,6 +53,9 @@ export default {
                 remove: 'Remove note',
                 unshare: 'Unshare note',
                 revoke: "Revoke note's link",
+                paymentSuccessful: 'Payment successful',
+                paymentFailed: 'Payment failed',
+                loginRequired: 'Login required',
             },
             descriptions: {
                 proDetailed: {
@@ -80,6 +86,9 @@ export default {
                     afterTitle:
                         "Everyone you shared your current link with, won't have any access to your note using it",
                 },
+                paymentSuccessful: 'Thank you for your purchase!',
+                paymentFailed: 'Please can try again',
+                loginRequired: 'Please login before making the payment',
             },
         },
         notifications: {
@@ -136,6 +145,9 @@ export default {
             unshare: 'Закрити доступ',
             revoke: 'Змінити посилання',
             copyLink: 'Скопіювати посилання',
+            iUnderstand: 'Я розумію',
+            tryAgain: 'Спробувати ще раз',
+            login: 'Увійти',
         },
         popups: {
             titles: {
@@ -144,6 +156,9 @@ export default {
                 remove: 'Видалити нотатку',
                 unshare: 'Закрити доступ',
                 revoke: 'Відкликати доступ по існуючому посиланню',
+                paymentSuccessful: 'Оплата успішна',
+                paymentFailed: 'Оплата не пройшла',
+                loginRequired: 'Ви повинні увійти в обліковий запис',
             },
             descriptions: {
                 proDetailed: {
@@ -175,6 +190,11 @@ export default {
                     afterTitle:
                         'Всі, з ким ви поділилися поточним посиланням, не матимуть доступу до вашої нотатки за допомогою нього',
                 },
+                paymentSuccessful:
+                    'Дякуємо за підтримку! Ви тепер можете користуватися Pro',
+                paymentFailed: 'Спробуйте будь ласка ще раз',
+                loginRequired:
+                    'Ви повинні увійти в обліковий запис, перш ніж заплатити',
             },
         },
         notifications: {
