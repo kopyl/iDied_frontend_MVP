@@ -64,7 +64,6 @@ export class NotesComponent implements OnInit {
 
     ngOnInit(): void {
         // console.log(this.route.snapshot.url)
-
         this.googleAuth.accessControl()
         this.pageTitle.setTitle('iDied - Notes')
         this.fetchNotes()
@@ -280,6 +279,7 @@ export class NotesComponent implements OnInit {
         addingNotesFromCreation = false
     ): void {
         if (backendResponse.error) {
+            alert(JSON.stringify(backendResponse))
             this.googleAuth.signOut()
             this.router.navigate([''], { queryParamsHandling: 'preserve' })
         } else {
@@ -370,6 +370,9 @@ export class NotesComponent implements OnInit {
         this.notes = this.notes.filter(
             (note: frontendNote) => note.id !== backendResponse.notes[0].id
         )
+        if (this.notes.length === 0) {
+            this.fetchNotes()
+        }
 
         this.loaderVisible = false
         this.scrollToActiveNote()
