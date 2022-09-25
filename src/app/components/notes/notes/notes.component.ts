@@ -279,7 +279,6 @@ export class NotesComponent implements OnInit {
         addingNotesFromCreation = false
     ): void {
         if (backendResponse.error) {
-            alert(JSON.stringify(backendResponse))
             this.googleAuth.signOut()
             this.router.navigate([''], { queryParamsHandling: 'preserve' })
         } else {
