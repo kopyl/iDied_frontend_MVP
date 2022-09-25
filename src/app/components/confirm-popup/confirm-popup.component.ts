@@ -117,8 +117,7 @@ export class ConfirmPopupComponent implements OnInit {
         this.body = this.lang.copy.popups.descriptions.loginRequired
         this.buttonText = this.lang.copy.buttons.login
 
-        this.onCancel = () =>
-            this.router.navigate([], { queryParamsHandling: 'preserve' })
+        this.onCancel = () => this.router.navigate([])
     }
 
     showPaidNotification(): void {
