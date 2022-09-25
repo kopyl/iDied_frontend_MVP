@@ -132,6 +132,12 @@ export class ConfirmPopupComponent implements OnInit {
             this.title = 'Payment successful'
             this.body = 'You can now share 3+ notes'
             this.buttonText = 'I understand'
+            this.onSuccess = () => {
+                this.router.navigate(['/notes'])
+            }
+            this.onCancel = () => {
+                this.router.navigate(['/notes'])
+            }
         } else {
             this.onSuccess = () =>
                 (window.location.href = `${environment.apiUrl}payment`)
