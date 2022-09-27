@@ -1,20 +1,24 @@
 import {
+    AfterViewInit,
     Component,
     ElementRef,
     OnInit,
     ViewChild,
-} from "@angular/core"
-import { RequestsService } from "@services/requests"
-import { ActivatedRoute } from "@angular/router"
-import { Title } from "@angular/platform-browser"
-import { LangService } from "@services/lang"
+} from '@angular/core'
+import { RequestsService } from '@services/requests'
+import { ActivatedRoute } from '@angular/router'
+import { Title } from '@angular/platform-browser'
+import { LangService } from '@services/lang'
+import { ConfirmPopupComponent } from '@components/confirmation-popup'
 
 @Component({
-    selector: "app-note-for-recipient",
-    templateUrl: "./note-for-recipient.component.html",
-    styleUrls: ["./note-for-recipient.component.sass"],
+    selector: 'app-note-for-recipient',
+    templateUrl: './note-for-recipient.component.html',
+    styleUrls: ['./note-for-recipient.component.sass'],
 })
-export class NoteForRecipientComponent implements OnInit {
+export class NoteForRecipientComponent implements OnInit, AfterViewInit {
+    @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent
+
     sharingToken: string
     forbidden = false
     destroyable = false
@@ -34,12 +38,17 @@ export class NoteForRecipientComponent implements OnInit {
     ngOnInit(): void {
         this.getRequestedNoteToken()
         this.getContent()
-        this.pageTitle.setTitle("iDied - Public Note")
+        this.pageTitle.setTitle('iDied - Public Note')
+    }
+
+    ngAfterViewInit(): void {
+        this.lang.confirmPopup = this.confirmPopup
+        console.log(this.lang.confirmPopup, this.confirmPopup)
     }
 
     getRequestedNoteToken() {
         const snapshot = this.route.snapshot
-        this.sharingToken = snapshot.params["sharingToken"]
+        this.sharingToken = snapshot.params['sharingToken']
     }
 
     insertNoteIntoUI(backendResponse: backend_notes_response): void {
@@ -72,12 +81,12 @@ export class NoteForRecipientComponent implements OnInit {
         }
     }
 
-    @ViewChild("content") content: ElementRef
+    @ViewChild('content') content: ElementRef
 
     onWheel(event): void {
         if (
-            !event.target.classList.contains("container") &&
-            event.target.tagName !== "HEADER"
+            !event.target.classList.contains('container') &&
+            event.target.tagName !== 'HEADER'
         ) {
             return
         }

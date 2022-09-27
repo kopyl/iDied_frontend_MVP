@@ -102,6 +102,7 @@
                     [class.active]="note.id === this.activeNote.id"
                     [class.en]="lang.lang === 'en'"
                     [class.ua]="lang.lang === 'ua'"
+                    [class.ru]="lang.lang === 'ru'"
                     (click)="changeActiveNote(note); navigateToActiveNote()"
                     id="note-item"
                     @noteItem

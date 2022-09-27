@@ -104,6 +104,25 @@ export default {
                 cta: 'Close',
             },
         },
+        noteForRecipient: {
+            title: {
+                beforeSpan: 'You',
+                span: "can't read",
+                afterSpan: 'the note due to some or one of following reasons:',
+            },
+            reasons: {
+                1: "Owner hasn't died",
+                2: 'Note link is wrong or has been revoked / unshared by owner',
+                3: 'Note has been deleted by the owner',
+                4: 'Too many requests, you may be a scammer',
+            },
+            whatToDo: {
+                text: 'Try again later or',
+                link: 'contact support',
+            },
+            cantDiscloseReason:
+                "We can't tell the exact reason due to security concerns",
+        },
     },
     ua: {
         title: {
@@ -212,6 +231,154 @@ export default {
                 body: 'Посилання відкликано.',
                 cta: 'Закрити',
             },
+        },
+        noteForRecipient: {
+            title: {
+                beforeSpan: 'Доступ до нонатки',
+                span: 'заборонено',
+                afterSpan: 'За якихось або однієї з наступних причин:',
+            },
+            reasons: {
+                1: 'Власник не загинув',
+                2: 'Неправильне посилання або власник відкликав доступ',
+                3: 'Власник видалив нотатку',
+                4: 'Забагато запитів, можливо ви шахрай',
+            },
+            whatToDo: {
+                text: 'Спробуйте пізніше або',
+                link: 'напишіть до підтримки',
+            },
+            cantDiscloseReason:
+                'Ми не можемо повідомити точну причину з міркувань безпеки',
+        },
+    },
+    ru: {
+        title: {
+            main: 'Напиши письмо близким прежде чем',
+            span: 'умрешь',
+        },
+        contact: 'Контакты',
+        instruction: {
+            1: 'Напиши письмо, поделись ссылкой',
+            2: {
+                main: 'Не заходи сюда на протяжении',
+                span: '30 дней',
+            },
+            3: 'Теперь письмо доступно по ссылке',
+        },
+        loginOrSignup: 'Ввойти',
+        byGoogle: 'С помощью Google',
+        myNotes: 'Мои заметки',
+        signOut: 'Выйти',
+        goPro: 'Перейти на Pro',
+        notes: 'Заметки',
+        createNote: 'Создать заметку',
+        addTitle: 'Добавьте заголовок',
+        addDescription: 'Добавьте описание',
+        tooltip: {
+            globe: 'Эта заметка будет доступна после того, как вы умрете',
+        },
+        share: 'Поделиться',
+        sharingSettings: 'Настройка доступа',
+        sharing: 'Поделиться доступом',
+        sharingNotice: {
+            general:
+                'Расшаренная заметка станет доступна по ссылке, если вы не зайдете на сайт раз в 30 дней',
+            specific:
+                'Эта заметка станет доступна по ссылке, если вы не войдете в течение 30 дней',
+        },
+        loading: 'Загрузка',
+        buttons: {
+            upgrade: 'Купить за $3.99',
+            limitReachedUpgrade: 'Обновиться за $3.99',
+            cancel: 'Отменить',
+            remove: 'Удалить',
+            unshare: 'Закрыть доступ',
+            revoke: 'Изменить ссылку',
+            copyLink: 'Скопировать ссылку',
+            iUnderstand: 'Я понимаю',
+            tryAgain: 'Попробовать еще раз',
+            login: 'Ввойти',
+        },
+        popups: {
+            titles: {
+                wantToDelete: 'Вы действительно хотите удалить заметку',
+                proDetailed: 'Приобрети Pro и получи',
+                proLimitReached:
+                    'Вы достигли лимита бесплатно расшаренных заметок',
+                remove: 'Удалить заметку',
+                unshare: 'Закрыть доступ',
+                revoke: 'Отозвать доступ по существующей ссылке',
+                paymentSuccessful: 'Оплата успешна',
+                paymentFailed: 'Оплата не прошла',
+                loginRequired: 'Вы должны войти в аккаунт',
+            },
+            descriptions: {
+                proDetailed: {
+                    telegram: {
+                        title: 'Отслеживание онлайн в Telegram',
+                        description:
+                            'Не заходите сюда, чтобы доказать, что вы живы! Telegram бот будет делать это за вас',
+                    },
+                    senders: {
+                        title: 'Мы пришлем ваши письма по email и Telegram',
+                        description: 'После того, как вы умрете',
+                    },
+                    unlimited: {
+                        title: 'Неограниченное количество заметок',
+                        description:
+                            'Без Pro можно поделиться только 3 заметками, а с Pro – неограниченно',
+                    },
+                },
+                proLimitReached:
+                    'Обновитесь до Pro, чтобы поделиться неограниченным количеством заметок',
+                unshare: {
+                    beforeTitle:
+                        'Вы действительно хотите закрыть доступ к заметке“',
+                    afterTitle:
+                        'Эта заметка станет недоступной по ссылке после того, как вы умрете, если вы закроете доступ',
+                },
+                revoke: {
+                    beforeTitle:
+                        'Вы действительно хотите изменить ссылку доступа к заметке“',
+                    afterTitle:
+                        'Все, с кем вы поделились текущей ссылкой, без доступа к вашей заметке с помощью него',
+                },
+                paymentSuccessful:
+                    'Спасибо за поддержку! Вы теперь можете пользоваться Pro',
+                paymentFailed: 'Попробуйте еще раз',
+                loginRequired:
+                    'Вы должны войти в аккаунт, прежде чем заплатить',
+            },
+        },
+        notifications: {
+            copied: {
+                body: 'Ссылка скопирована. Теперь отправьте кому-то :)',
+                cta: 'Отклонить',
+            },
+            revoked: {
+                body: 'Ссылка отозвана.',
+                cta: 'Закрыть',
+            },
+        },
+        noteForRecipient: {
+            title: {
+                beforeSpan: 'Доступ к заметке',
+                span: 'запрещен',
+                afterSpan: 'По какой-то или одной из следующих причин:',
+            },
+            reasons: {
+                1: 'Владелец не умер',
+                2: 'Неправильная ссылка или владелец отозвал доступ',
+                3: 'Владелец удалил заметку',
+                4: 'Слишком много запросов, может быть вы мошенник',
+            },
+            whatToDo: {
+                text: 'Попробуйте позже или',
+                link: 'напишите в поддержку',
+            },
+            cantDiscloseReason:
+                'Мы не можем сообщить точную причину из соображений безопасности',
         },
     },
 }

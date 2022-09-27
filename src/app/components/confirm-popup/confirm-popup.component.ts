@@ -37,10 +37,16 @@ export class ConfirmPopupComponent implements OnInit {
 
     open = false
     public confirmButtonIcon
+    public setLang
     public onSuccess = () => {}
     public onCancel = () => {}
-    public type: 'noteRemoval' | 'noteUnshare' | 'linkRevoke' | 'info' | 'pro' =
-        'noteRemoval'
+    public type:
+        | 'noteRemoval'
+        | 'noteUnshare'
+        | 'linkRevoke'
+        | 'info'
+        | 'pro'
+        | 'lang' = 'noteRemoval'
 
     public title = 'Set title'
     public body = 'Set body'

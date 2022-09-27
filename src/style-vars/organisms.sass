@@ -136,6 +136,22 @@
             & svg line, & svg path
                 stroke: $brown-light
 
+@mixin language-item
+    @include small-button-secondary
+    display: flex
+
+
+    &:hover
+        background-color: $white
+        color: $brown-light
+        border: 2px solid $white
+
+        @media (hover: none)  // remove hover on mobiles
+            background-color: $bisque-light
+            color: $brown-light
+            border: $small-button-secondary-border
+
+
 @mixin sidebar-menu-item
     justify-content: space-between
 

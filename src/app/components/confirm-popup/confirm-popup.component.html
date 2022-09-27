@@ -21,6 +21,9 @@
             <h1 id="pro-title" *ngIf="type === 'pro'">
                 {{ lang.copy.popups.titles.proDetailed }}
             </h1>
+            <h1 *ngIf="type === 'lang'">
+                {{ title }}
+            </h1>
 
             <button
                 id="close-puput"
@@ -30,6 +33,33 @@
                 <icon-close-note></icon-close-note>
             </button>
         </header>
+
+        <div id="lang" *ngIf="type === 'lang'">
+            <button
+                class="language-item"
+                id="cancel"
+                (click)="open = false; this.setLang('en')"
+            >
+                <img src="assets/main-page/en-flag.svg" alt="" />
+                English
+            </button>
+            <button
+                class="language-item"
+                id="cancel"
+                (click)="open = false; this.setLang('ua')"
+            >
+                <img src="assets/main-page/ua-flag.svg" alt="" />
+                Українська
+            </button>
+            <button
+                class="language-item"
+                id="cancel"
+                (click)="open = false; this.setLang('ru')"
+            >
+                <img src="assets/main-page/ru-flag.svg" alt="" />
+                руский
+            </button>
+        </div>
 
         <div id="pro" *ngIf="type === 'pro'">
             <div class="pro-tile">
@@ -114,7 +144,7 @@
 
         <p class="single-description" *ngIf="type === 'info'">{{ body }}</p>
 
-        <div id="buttons">
+        <div id="buttons" *ngIf="type !== 'lang'">
             <button
                 class="small-button-secondary"
                 id="cancel"
