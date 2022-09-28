@@ -1,4 +1,4 @@
-export default {
+export let _copy = {
     en: {
         title: {
             main: 'Leave a note for your loved ones before you',
@@ -382,3 +382,6 @@ export default {
         },
     },
 }
+
+export type LocaleKey = typeof _copy['en']
+export const copy: typeof _copy = _copy

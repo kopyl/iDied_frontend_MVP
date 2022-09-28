@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import copy from 'src/locale'
+import { copy, LocaleKey } from 'src/locale'
 import { ConfirmPopupComponent } from '@components/confirmation-popup'
 
 @Injectable({
@@ -8,7 +8,7 @@ import { ConfirmPopupComponent } from '@components/confirmation-popup'
 export class LangService {
     confirmPopup: ConfirmPopupComponent
 
-    public get copy() {
+    public get copy(): LocaleKey {
         return copy[this.lang]
     }
 
