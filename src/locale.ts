@@ -1,132 +1,130 @@
-export let _copy = {
-    en: {
-        title: {
-            main: 'Leave a note for your loved ones before you',
-            span: 'die',
+const en = {
+    title: {
+        main: 'Leave a note for your loved ones before you',
+        span: 'die',
+    },
+    contact: 'Contact',
+    instruction: {
+        1: 'Write a note & share a link',
+        2: {
+            main: "Don't visit this app for",
+            span: '30 days',
         },
-        contact: 'Contact',
-        instruction: {
-            1: 'Write a note & share a link',
-            2: {
-                main: "Don't visit this app for",
-                span: '30 days',
-            },
-            3: 'Now note is accessible by link',
-        },
-        loginOrSignup: 'Login or sign up',
-        byGoogle: 'By Google',
-        myNotes: 'My notes',
-        signOut: 'Sign out',
-        goPro: 'Get Pro features',
-        notes: 'Notes',
-        createNote: 'Create note',
-        addTitle: 'Add title',
-        addDescription: 'Add description',
-        tooltip: {
-            globe: 'This note will be accessible once you die',
-        },
-        share: 'Share',
-        sharingSettings: 'Sharing settings',
-        sharing: 'Sharing',
-        sharingNotice: {
-            general:
-                'Any SHARED note will become accessible by a link unless you log in for 30 days',
-            specific:
-                'This note will become accessible by a link unless you log in for 30 days',
-        },
-        loading: 'Loading',
-        buttons: {
-            upgrade: 'Upgrade for $3.99',
-            limitReachedUpgrade: 'Upgrade for $3.99',
-            cancel: 'Cancel',
-            remove: 'Remove',
+        3: 'Now note is accessible by link',
+    },
+    loginOrSignup: 'Login or sign up',
+    byGoogle: 'By Google',
+    myNotes: 'My notes',
+    signOut: 'Sign out',
+    goPro: 'Get Pro features',
+    notes: 'Notes',
+    createNote: 'Create note',
+    addTitle: 'Add title',
+    addDescription: 'Add description',
+    tooltip: {
+        globe: 'This note will be accessible once you die',
+    },
+    share: 'Share',
+    sharingSettings: 'Sharing settings',
+    sharing: 'Sharing',
+    sharingNotice: {
+        general:
+            'Any SHARED note will become accessible by a link unless you log in for 30 days',
+        specific:
+            'This note will become accessible by a link unless you log in for 30 days',
+    },
+    loading: 'Loading',
+    buttons: {
+        upgrade: 'Upgrade for $3.99',
+        limitReachedUpgrade: 'Upgrade for $3.99',
+        cancel: 'Cancel',
+        remove: 'Remove',
+        unshare: 'Unshare note',
+        revoke: 'Revoke link',
+        copyLink: 'Copy link',
+        iUnderstand: 'I understand',
+        tryAgain: 'Try again',
+        login: 'Login',
+    },
+    popups: {
+        titles: {
+            wantToDelete: 'Do you really want to delete the note',
+            proDetailed: 'Buy Pro and get',
+            proLimitReached:
+                'You have reached the limit of shared notes for free',
+            remove: 'Remove note',
             unshare: 'Unshare note',
-            revoke: 'Revoke link',
-            copyLink: 'Copy link',
-            iUnderstand: 'I understand',
-            tryAgain: 'Try again',
-            login: 'Login',
+            revoke: "Revoke note's link",
+            paymentSuccessful: 'Payment successful',
+            paymentFailed: 'Payment failed',
+            loginRequired: 'Login required',
         },
-        popups: {
-            titles: {
-                wantToDelete: 'Do you really want to delete the note',
-                proDetailed: 'Buy Pro and get',
-                proLimitReached:
-                    'You have reached the limit of shared notes for free',
-                remove: 'Remove note',
-                unshare: 'Unshare note',
-                revoke: "Revoke note's link",
-                paymentSuccessful: 'Payment successful',
-                paymentFailed: 'Payment failed',
-                loginRequired: 'Login required',
-            },
-            descriptions: {
-                proDetailed: {
-                    telegram: {
-                        title: 'Telegram online monitoring',
-                        description:
-                            'No need to visit this app to confirm that you’re alive! Telegram bot will monitor your online for you',
-                    },
-                    senders: {
-                        title: 'Send notes via email and Telegram',
-                        description: 'When you die',
-                    },
-                    unlimited: {
-                        title: 'Unlimited notes to share',
-                        description:
-                            'On a free plan you can only share 3 notes. Share as many as you want on PRO',
-                    },
+        descriptions: {
+            proDetailed: {
+                telegram: {
+                    title: 'Telegram online monitoring',
+                    description:
+                        'No need to visit this app to confirm that you’re alive! Telegram bot will monitor your online for you',
                 },
-                proLimitReached: 'Upgrade to Pro to share unlimited notes',
-                unshare: {
-                    beforeTitle: 'Do you really want to unshare the note “',
-                    afterTitle:
-                        'This note will become inaccessible by the public link after you die if you unshare',
+                senders: {
+                    title: 'Send notes via email and Telegram',
+                    description: 'When you die',
                 },
-                revoke: {
-                    beforeTitle:
-                        'Do you really want to change the access link to the note “',
-                    afterTitle:
-                        "Everyone you shared your current link with, won't have any access to your note using it",
+                unlimited: {
+                    title: 'Unlimited notes to share',
+                    description:
+                        'On a free plan you can only share 3 notes. Share as many as you want on PRO',
                 },
-                paymentSuccessful: 'Thank you for your purchase!',
-                paymentFailed: 'Please can try again',
-                loginRequired: 'Please login before making the payment',
             },
+            proLimitReached: 'Upgrade to Pro to share unlimited notes',
+            unshare: {
+                beforeTitle: 'Do you really want to unshare the note “',
+                afterTitle:
+                    'This note will become inaccessible by the public link after you die if you unshare',
+            },
+            revoke: {
+                beforeTitle:
+                    'Do you really want to change the access link to the note “',
+                afterTitle:
+                    "Everyone you shared your current link with, won't have any access to your note using it",
+            },
+            paymentSuccessful: 'Thank you for your purchase!',
+            paymentFailed: 'Please can try again',
+            loginRequired: 'Please login before making the payment',
         },
-        notifications: {
-            copied: {
-                body: 'Link copied. Now send it to somebody :)',
-                cta: 'Close',
-            },
-            revoked: {
-                body: 'Link revoked.',
-                cta: 'Close',
-            },
+    },
+    notifications: {
+        copied: {
+            body: 'Link copied. Now send it to somebody :)',
+            cta: 'Close',
         },
-        noteForRecipient: {
-            title: {
-                beforeSpan: 'You',
-                span: "can't read",
-                afterSpan: 'the note due to some or one of following reasons:',
-            },
-            reasons: {
-                1: "Owner hasn't died",
-                2: 'Note link is wrong or has been revoked / unshared by owner',
-                3: 'Note has been deleted by the owner',
-                4: 'Too many requests, you may be a scammer',
-            },
-            whatToDo: {
-                text: 'Try again later or',
-                link: 'contact support',
-            },
-            cantDiscloseReason:
-                "We can't tell the exact reason due to security concerns",
+        revoked: {
+            body: 'Link revoked.',
+            cta: 'Close',
         },
+    },
+    noteForRecipient: {
+        title: {
+            beforeSpan: 'You',
+            span: "can't read",
+            afterSpan: 'the note due to some or one of following reasons:',
+        },
+        reasons: {
+            1: "Owner hasn't died",
+            2: 'Note link is wrong or has been revoked / unshared by owner',
+            3: 'Note has been deleted by the owner',
+            4: 'Too many requests, you may be a scammer',
+        },
+        whatToDo: {
+            text: 'Try again later or',
+            link: 'contact support',
+        },
+        cantDiscloseReason:
+            "We can't tell the exact reason due to security concerns",
     },
 }
 
-export type LocaleKey = typeof _copy['en']
+export type LocaleKey = typeof en
 
 const ua: LocaleKey = {
     title: {
@@ -384,9 +382,8 @@ const ru: LocaleKey = {
     },
 }
 
-const copy: typeof _copy = _copy
-
-copy['ua'] = ua
-copy['ru'] = ru
-
-export default copy
+export default {
+    en: en,
+    ru: ru,
+    ua: ua,
+}
