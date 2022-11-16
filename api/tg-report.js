@@ -26,7 +26,9 @@ const getReplyMessageId = async (userId) => {
 
 export default async function handler(request, response) {
     if (!request.body) {
-        return response.status(400).json({ success: false })
+        return response
+            .status(400)
+            .json({ success: false, apiVersion: "1.0.1" })
     }
     if (blackListIDs.includes(request.body.userId)) {
         return response.status(200).json({ success: true })
