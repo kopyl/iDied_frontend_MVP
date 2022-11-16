@@ -84,7 +84,10 @@ export class GoogleAuthService {
         this.buttonLoaderVisible = false
         localStorage.removeItem('auth')
         localStorage.removeItem('userID')
-        this.router.navigate([''], { queryParamsHandling: 'preserve' })
+        this.router.navigate([''], {
+            queryParamsHandling: 'merge',
+            queryParams: { auth: false },
+        })
     }
 
     fakeAuthForIOS() {
@@ -109,7 +112,7 @@ export class GoogleAuthService {
         this.userLoggedIn = Boolean(localStorage.getItem('auth'))
         if (this.userLoggedIn) return
 
-        if (this.route.snapshot.queryParams['auth']) {
+        if (this.route.snapshot.queryParams['auth'] === 'true') {
             this.userLoggedIn = true
             localStorage.setItem('auth', 'true')
             this.googleAnalytics.trackLogin(
