@@ -5,7 +5,7 @@
             <logo-mobile [red]="forbidden"></logo-mobile>
 
             <button
-                *ngIf="!loading"
+                *ngIf="forbidden && !loading"
                 class="small-button-secondary small-light-button"
                 (click)="lang.toggle()"
                 id="lang-switcher"
