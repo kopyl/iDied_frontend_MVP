@@ -35,4 +35,9 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         this.lang.confirmPopup = this.confirmPopup
         console.log(this.lang.confirmPopup, this.confirmPopup)
     }
+
+    requestContactsPopup(): void {
+        this.confirmPopup.type = 'contacts'
+        this.confirmPopup.open = true
+    }
 }

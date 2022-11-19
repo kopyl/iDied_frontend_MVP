@@ -58,6 +58,7 @@ const en = {
             paymentSuccessful: 'Payment successful',
             paymentFailed: 'Payment failed',
             loginRequired: 'Login required',
+            contacts: 'Send founder a message',
         },
         descriptions: {
             proDetailed: {
@@ -185,6 +186,7 @@ const ua: LocaleKey = {
             paymentSuccessful: 'Оплата успішна',
             paymentFailed: 'Оплата не пройшла',
             loginRequired: 'Ви повинні увійти в обліковий запис',
+            contacts: 'Написати CEO',
         },
         descriptions: {
             proDetailed: {
@@ -313,6 +315,7 @@ const ru: LocaleKey = {
             paymentSuccessful: 'Оплата успешна',
             paymentFailed: 'Оплата не прошла',
             loginRequired: 'Вы должны войти в аккаунт',
+            contacts: 'Написать CEO',
         },
         descriptions: {
             proDetailed: {

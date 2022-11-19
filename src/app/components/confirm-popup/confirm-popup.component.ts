@@ -46,6 +46,7 @@ export class ConfirmPopupComponent implements OnInit {
         | 'linkRevoke'
         | 'info'
         | 'pro'
+        | 'contacts'
         | 'lang' = 'noteRemoval'
 
     public title = 'Set title'

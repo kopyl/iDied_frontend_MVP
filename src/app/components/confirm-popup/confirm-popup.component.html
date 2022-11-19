@@ -24,6 +24,9 @@
             <h1 *ngIf="type === 'lang'">
                 {{ title }}
             </h1>
+            <h1 *ngIf="type === 'contacts'">
+                {{ lang.copy.popups.titles.contacts }}
+            </h1>
 
             <button
                 id="close-puput"
@@ -34,9 +37,9 @@
             </button>
         </header>
 
-        <div id="lang" *ngIf="type === 'lang'">
+        <div id="list-popup" *ngIf="type === 'lang'">
             <button
-                class="language-item"
+                class="popup-list-item"
                 id="cancel"
                 (click)="open = false; this.setLang('en')"
             >
@@ -44,7 +47,7 @@
                 English
             </button>
             <button
-                class="language-item"
+                class="popup-list-item"
                 id="cancel"
                 (click)="open = false; this.setLang('ua')"
             >
@@ -52,13 +55,44 @@
                 Українська
             </button>
             <button
-                class="language-item"
+                class="popup-list-item"
                 id="cancel"
                 (click)="open = false; this.setLang('ru')"
             >
                 <img src="assets/main-page/ru-flag.svg" alt="" />
                 руский
             </button>
+        </div>
+
+        <div id="list-popup" *ngIf="type === 'contacts'">
+            <a
+                href="https://t.me/kopyl"
+                target="_blank"
+                class="popup-list-item"
+            >
+                <img src="assets/main-page/telegram-logo.svg" alt="" />
+                Telegram
+            </a>
+            <a
+                href="https://wa.me/380507308141"
+                target="_blank"
+                class="popup-list-item"
+            >
+                <img src="assets/main-page/whatsapp-logo.svg" alt="" />
+                WhatsApp
+            </a>
+            <a
+                href="https://m.me/kopyloleh"
+                target="_blank"
+                class="popup-list-item"
+            >
+                <img src="assets/main-page/facebook-logo.svg" alt="" />
+                Facebook
+            </a>
+            <a class="popup-list-item" href="mailto:kopyloleh@gmail.com">
+                <img src="assets/main-page/iosmailicon.svg" alt="" />
+                Email
+            </a>
         </div>
 
         <div id="pro" *ngIf="type === 'pro'">
@@ -144,7 +178,7 @@
 
         <p class="single-description" *ngIf="type === 'info'">{{ body }}</p>
 
-        <div id="buttons" *ngIf="type !== 'lang'">
+        <div id="buttons" *ngIf="type !== 'lang' && type !== 'contacts'">
             <button
                 class="small-button-secondary"
                 id="cancel"
