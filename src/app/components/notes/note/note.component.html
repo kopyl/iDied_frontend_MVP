@@ -8,8 +8,18 @@
 
         <loader [visible]="loaderVisible" class="mobileHidden"></loader>
 
-        <button id="share" class="small-button-secondary" (click)="shareNote()">
-            <icon-share></icon-share>
+        <button
+            id="share"
+            (click)="shareNote()"
+            [ngClass]="
+                activeNote?.isShared
+                    ? 'small-button-secondary'
+                    : 'small-button-primary'
+            "
+        >
+            <icon-share
+                [color]="activeNote?.isShared ? '#878179' : 'white'"
+            ></icon-share>
             {{
                 activeNote?.isShared
                     ? lang.copy.sharingSettings
@@ -23,9 +33,11 @@
             (click)="shareNote()"
         >
             <icon-share></icon-share>
-            {{ activeNote?.isShared
-                ? lang.copy.sharingSettings
-                : lang.copy.share }}
+            {{
+                activeNote?.isShared
+                    ? lang.copy.sharingSettings
+                    : lang.copy.share
+            }}
         </button>
 
         <button

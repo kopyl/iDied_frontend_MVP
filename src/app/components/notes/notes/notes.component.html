@@ -85,9 +85,13 @@
 
             <button
                 id="create-note"
-                [class.small-button-primary]="!sharingView"
-                [class.red]="sharingView"
-                [class.small-button-secondary]="sharingView"
+                [class.small-button-primary]="
+                    !sharingView && activeNote.isShared
+                "
+                [class.red]="sharingView || !activeNote.isShared"
+                [class.small-button-secondary]="
+                    sharingView || !activeNote.isShared
+                "
                 (click)="createNote()"
             >
                 <icon-new></icon-new>
