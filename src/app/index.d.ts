@@ -70,6 +70,7 @@ declare global {
         url: string
         retriedAllowed: boolean
         errorNotification: boolean
+        skipHttpErrors?: boolean
     }
 
     interface TooltipPosition {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core'
-import { Observable, timer } from 'rxjs'
+import { Observable, of, timer } from 'rxjs'
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { HttpErrorHandlerService } from '@services/http-error-handler'
 import { makeUrlObj } from '@utils/constructors'
-import { first, retryWhen, mergeMap } from 'rxjs/operators'
+import { first, retryWhen, mergeMap, catchError } from 'rxjs/operators'
 import { environment } from '@environment'
 
 const port = 5001
@@ -41,6 +41,8 @@ const URLS = {
     TG_REPORT: makeUrlObj({
         customApiUrl: `${environment.baseUrl}/api/tg-report`,
         errorNotification: false,
+        retriedAllowed: false,
+        skipHttpErrors: true,
     }),
 }
 
@@ -128,8 +130,10 @@ abstract class Request {
             actions['next'] = this.success
         }
 
-        if (!this.URL.retriedAllowed) {
+        if (!this.URL.retriedAllowed && !this.URL.skipHttpErrors) {
             this.request.subscribe(actions)
+        } else if (this.URL.skipHttpErrors) {
+            this.request.pipe(catchError((_) => of(false))).subscribe(actions)
         } else {
             this.request
                 .pipe(
