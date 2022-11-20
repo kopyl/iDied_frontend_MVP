@@ -113,11 +113,14 @@ div.pro-tile
     gap: 21px
     align-items: flex-start
 
-div#buttons
+div#buttons:not(.noCancelButton)
     display: grid
     grid-template-columns: fit-content( 100% ) auto
     gap: 5px
 
+div.noCancelButton
+    display: grid
+    grid-template-columns: auto
 
 button.action
 

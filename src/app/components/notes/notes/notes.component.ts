@@ -173,6 +173,7 @@ export class NotesComponent implements OnInit {
     requestPro(): void {
         this.googleAnalytics.trackNotesLimitReached(this.googleAuth)
         this.confirmPopup.type = 'info'
+        this.confirmPopup.noCancelButton = true
         this.confirmPopup.title = this.lang.copy.popups.titles.proLimitReached
         this.confirmPopup.body =
             this.lang.copy.popups.descriptions.proLimitReached
@@ -207,6 +208,7 @@ export class NotesComponent implements OnInit {
 
     requestProDetailed(): void {
         this.confirmPopup.type = 'pro'
+        this.confirmPopup.noCancelButton = true
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {
@@ -226,6 +228,7 @@ export class NotesComponent implements OnInit {
 
     sendProDetailedForced(): void {
         this.confirmPopup.type = 'pro'
+        this.confirmPopup.noCancelButton = true
         this.confirmPopup.open = true
         this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
         this.confirmPopup.onSuccess = () => {

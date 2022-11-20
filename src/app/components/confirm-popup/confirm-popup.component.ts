@@ -35,7 +35,7 @@ export class ConfirmPopupComponent implements OnInit {
 
     keydowns$: Subject<KeyboardEvent> = new Subject()
 
-    open = false
+    _open = false
     public confirmButtonIcon
     public setLang
     public onSuccess = () => {}
@@ -52,6 +52,18 @@ export class ConfirmPopupComponent implements OnInit {
     public title = 'Set title'
     public body = 'Set body'
     public buttonText = 'Set button text'
+    public noCancelButton = false
+
+    get open(): boolean {
+        return this._open
+    }
+
+    set open(value: boolean) {
+        if (!value) {
+            this.noCancelButton = false
+        }
+        this._open = value
+    }
 
     get activeNoteTitle(): string {
         const title = this.activeNote.title

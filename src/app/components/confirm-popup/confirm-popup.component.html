@@ -178,8 +178,13 @@
 
         <p class="single-description" *ngIf="type === 'info'">{{ body }}</p>
 
-        <div id="buttons" *ngIf="type !== 'lang' && type !== 'contacts'">
+        <div
+            id="buttons"
+            *ngIf="type !== 'lang' && type !== 'contacts'"
+            [class.noCancelButton]="noCancelButton"
+        >
             <button
+                *ngIf="!noCancelButton"
                 class="small-button-secondary"
                 id="cancel"
                 (click)="open = false; this.onCancel()"

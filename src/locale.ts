@@ -35,8 +35,8 @@ const en = {
     },
     loading: 'Loading',
     buttons: {
-        upgrade: 'Upgrade for $3.99',
-        limitReachedUpgrade: 'Upgrade for $3.99',
+        upgrade: 'Upgrade for $1.99/month',
+        limitReachedUpgrade: 'Upgrade for $1.99/month',
         cancel: 'Cancel',
         remove: 'Remove',
         unshare: 'Unshare note',
@@ -49,7 +49,7 @@ const en = {
     popups: {
         titles: {
             wantToDelete: 'Do you really want to delete the note',
-            proDetailed: 'Buy Pro and get',
+            proDetailed: 'Upgrade to Pro and get',
             proLimitReached:
                 'You have reached the limit of shared notes for free',
             remove: 'Remove note',
@@ -164,8 +164,8 @@ const ua: LocaleKey = {
     },
     loading: 'Завантаження',
     buttons: {
-        upgrade: 'Придбати за $3.99',
-        limitReachedUpgrade: 'Оновитись за $3.99',
+        upgrade: 'Перейти за $1.99/місяць',
+        limitReachedUpgrade: 'Оновитись за $1.99/місяць',
         cancel: 'Скасувати',
         remove: 'Видалити',
         unshare: 'Закрити доступ',
@@ -178,7 +178,7 @@ const ua: LocaleKey = {
     popups: {
         titles: {
             wantToDelete: 'Ви дійсно хочете видалити нотатку',
-            proDetailed: 'Придбай Pro і отримай',
+            proDetailed: 'Перейди на Pro і отримай',
             proLimitReached: 'Ви досягли ліміту безкоштовно поширених нотаток',
             remove: 'Видалити нотатку',
             unshare: 'Закрити доступ',
@@ -293,8 +293,8 @@ const ru: LocaleKey = {
     },
     loading: 'Загрузка',
     buttons: {
-        upgrade: 'Купить за $3.99',
-        limitReachedUpgrade: 'Обновиться за $3.99',
+        upgrade: 'Подписаться за $1.99 в месяц',
+        limitReachedUpgrade: 'Обновиться за $1.99 в месяц',
         cancel: 'Отменить',
         remove: 'Удалить',
         unshare: 'Закрыть доступ',
@@ -307,7 +307,7 @@ const ru: LocaleKey = {
     popups: {
         titles: {
             wantToDelete: 'Вы действительно хотите удалить заметку',
-            proDetailed: 'Приобрети Pro и получи',
+            proDetailed: 'Перейди на Pro и получи',
             proLimitReached: 'Вы достигли лимита бесплатно расшаренных заметок',
             remove: 'Удалить заметку',
             unshare: 'Закрыть доступ',
