@@ -385,8 +385,4 @@ const ru: LocaleKey = {
     },
 }
 
-export default {
-    en: en,
-    ru: ru,
-    ua: ua,
-}
+export default { en, ru, ua }
