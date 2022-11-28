@@ -9,7 +9,11 @@ client.on("error", function (error) {
     console.error(error)
 })
 
-const blackListIDs = ["104011162568084558955", "101060012680908858287"]
+const blackListIDs = [
+    "104011162568084558955",
+    "101060012680908858287",
+    "109753745729280187999",
+]
 
 const saveMessageIdToRedis = async (userId, messageId) => {
     await client.connect()
