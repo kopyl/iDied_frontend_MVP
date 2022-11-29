@@ -13,7 +13,10 @@
                         <img
                             src="assets/main-page/icon-email-light.svg"
                             alt=""
-                        />{{ lang.copy.contact }}
+                        />
+                        <p class="lang_button__text">
+                            {{ lang.copy.contact }}
+                        </p>
                     </button>
                 </a>
                 <button
@@ -21,6 +24,7 @@
                     (click)="lang.toggle()"
                 >
                     <img src="assets/main-page/{{ lang.flag }}" alt="" />
+                    Language
                 </button>
             </div>
         </header>
