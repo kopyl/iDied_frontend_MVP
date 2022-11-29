@@ -88,7 +88,7 @@ div#container
 
             & li:nth-child(1) div
                 position: relative
-                background: linear-gradient(180deg, #4A9AFF 50%, #FCE227 50%)
+                overflow: hidden
 
                 &::before
                     content: ""
@@ -100,6 +100,15 @@ div#container
                     background-color: $black
                     border-radius: 3px
                     z-index: -1
+
+                &::after
+                    content: ""
+                    position: absolute
+                    background: linear-gradient(180deg, #4A9AFF 50%, #FCE227 50%)
+                    inset: -10px
+                    border-radius: 3px
+                    z-index: -2
+                    animation: gradient-rotate 4s linear infinite
 
             & li:nth-child(2) div
                 background-color: rgba($bisque-dark, .10)
@@ -190,3 +199,12 @@ div.userLoggedOut
 .lang_button__text
     @media screen and ( max-width:  $min-mobile-width)
         display: none
+
+
+@keyframes gradient-rotate
+    0%
+        transform: rotate(0deg)
+    50%
+        background-position: 100% 50%
+    100%
+        transform: rotate(360deg)
