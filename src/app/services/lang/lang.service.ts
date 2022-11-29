@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core'
 import copy, { LocaleKey } from 'src/locale'
 import { ConfirmPopupComponent } from '@components/confirmation-popup'
 
+const defaultLocale = 'ua'
+
 @Injectable({
     providedIn: 'root',
 })
@@ -16,9 +18,9 @@ export class LangService {
 
     public get lang(): string {
         if (this._lang) return this._lang
-        const fromStorage = localStorage.getItem('lang') || 'en'
-        this.lang = fromStorage
-        return fromStorage
+        const fromStorage = localStorage.getItem('lang')
+        this.lang = fromStorage || defaultLocale
+        return fromStorage || defaultLocale
     }
 
     public get flag(): string {
