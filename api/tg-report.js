@@ -13,6 +13,7 @@ const blackListIDs = [
     "104011162568084558955",
     "101060012680908858287",
     "109753745729280187999",
+    "117045099548372110456",
 ]
 
 const saveMessageIdToRedis = async (userId, messageId) => {
