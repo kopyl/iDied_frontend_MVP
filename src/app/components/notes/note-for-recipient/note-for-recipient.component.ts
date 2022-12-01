@@ -73,6 +73,11 @@ export class NoteForRecipientComponent implements OnInit, AfterViewInit {
         this.requests.noteForRecipient.get.send(this.sharingToken)
     }
 
+    requestContactsPopup(): void {
+        this.confirmPopup.type = 'contacts'
+        this.confirmPopup.open = true
+    }
+
     onScroll(event) {
         if (this.forbidden) return
         this.headerHidden = false
