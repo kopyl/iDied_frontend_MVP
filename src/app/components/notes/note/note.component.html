@@ -12,16 +12,16 @@
             id="share"
             (click)="shareNote()"
             [ngClass]="
-                activeNote?.isShared
+                activeNote.isShared
                     ? 'small-button-secondary'
                     : 'small-button-primary'
             "
         >
             <icon-share
-                [color]="activeNote?.isShared ? '#878179' : 'white'"
+                [color]="activeNote.isShared ? '#878179' : 'white'"
             ></icon-share>
             {{
-                activeNote?.isShared
+                activeNote.isShared
                     ? lang.copy.sharingSettings
                     : lang.copy.share
             }}
@@ -34,7 +34,7 @@
         >
             <icon-share></icon-share>
             {{
-                activeNote?.isShared
+                activeNote.isShared
                     ? lang.copy.sharingSettings
                     : lang.copy.share
             }}
