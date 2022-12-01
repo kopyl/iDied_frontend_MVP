@@ -75,6 +75,7 @@ export class NoteForRecipientComponent implements OnInit, AfterViewInit {
 
     requestContactsPopup(): void {
         this.confirmPopup.type = 'contacts'
+        this.confirmPopup.title = this.lang.copy.popups.titles.supportConacts
         this.confirmPopup.open = true
     }
 

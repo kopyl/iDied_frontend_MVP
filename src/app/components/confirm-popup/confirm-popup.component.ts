@@ -49,7 +49,7 @@ export class ConfirmPopupComponent implements OnInit {
         | 'contacts'
         | 'lang' = 'noteRemoval'
 
-    public title = 'Set title'
+    public title = ''
     public body = 'Set body'
     public buttonText = 'Set button text'
     public noCancelButton = false
@@ -61,6 +61,7 @@ export class ConfirmPopupComponent implements OnInit {
     set open(value: boolean) {
         if (!value) {
             this.noCancelButton = false
+            this.title = ''
         }
         this._open = value
     }
