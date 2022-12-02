@@ -142,8 +142,10 @@ button.action
     align-items: center
     gap: 25px
     position: relative
-    transition: .15s ease-in-out left, .1s ease-in-out color
     left: 0
+
+.popup-list-item__left:not(.contact_list_item__left)
+    transition: .1s ease-in-out color
 
 .popup-list-item__button
     opacity: 0
@@ -158,3 +160,34 @@ button.action
 
 .popup-list-item__button
     pointer-events: none
+
+.contact_list_item
+    p
+        color: inherit
+        font-size: inherit
+        font-weight: inherit
+
+    ::ng-deep svg path
+        transition: .1s ease-in-out
+
+    &:hover
+        color: $white
+        ::ng-deep svg path
+            stroke: $white
+
+
+    &#telegram
+        &:hover
+            background: #2CA5E0
+
+    &#whatsapp
+        &:hover
+            background: #28BE3D
+
+    &#linkedin
+        &:hover
+            background: #3D7ADD
+
+    &#email
+        &:hover
+            background: #6F57FF

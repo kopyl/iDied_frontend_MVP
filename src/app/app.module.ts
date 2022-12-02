@@ -56,7 +56,8 @@ import { IconCopyComponent } from './components/icons/icon-copy/icon-copy.compon
 import { LoaderMobileComponent } from './components/loader-mobile/loader-mobile.component'
 import { ButtonLogoutComponent } from './components/button-logout/button-logout.component'
 import { IconNewComponent } from './components/icons/icon-new/icon-new.component'
-import { IconCheckComponent } from './components/icons/icon-check/icon-check.component'
+import { IconCheckComponent } from './components/icons/icon-check/icon-check.component';
+import { IconExternalLinkComponent } from './components/icons/icon-external-link/icon-external-link.component'
 
 const authInterceptorProvider = {
     provide: HTTP_INTERCEPTORS,
@@ -102,6 +103,7 @@ const authInterceptorProvider = {
         TooltipDirective,
         IconNewComponent,
         IconCheckComponent,
+        IconExternalLinkComponent,
     ],
     imports: [
         BrowserModule,
