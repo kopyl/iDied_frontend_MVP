@@ -170,24 +170,67 @@ button.action
     ::ng-deep svg path
         transition: .1s ease-in-out
 
-    &:hover
-        color: $white
-        ::ng-deep svg path
-            stroke: $white
+    @media screen and ( min-width:  $min-mobile-width)
 
-
-    &#telegram
         &:hover
-            background: #2CA5E0
+            color: $white
+            ::ng-deep svg path
+                stroke: $white
 
-    &#whatsapp
-        &:hover
-            background: #28BE3D
+        &#telegram
+            &:hover
+                background: #2CA5E0
 
-    &#linkedin
-        &:hover
-            background: #3D7ADD
+        &#whatsapp
+            &:hover
+                background: #28BE3D
 
-    &#email
+        &#linkedin
+            &:hover
+                background: #3D7ADD
+
+        &#email
+            &:hover
+                background: #6F57FF
+
+
+.contact_list_item__logo
+    width: 35px
+    height: 35px
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+
+    &.contact_list_item__logo__telegram
+        background: #2CA5E0
+
+    &.contact_list_item__logo__whatsapp
+        background: #28BE3D
+
+    &.contact_list_item__logo__linkedin
+        background: #3D7ADD
+
+    &.contact_list_item__logo__email
+        background: #6F57FF
+
+
+
+.contact_list_item
+    @media screen and ( min-width:  $min-mobile-width)
+        .contact_list_item__logo
+            transition: .1s ease-in-out
         &:hover
-            background: #6F57FF
+            .contact_list_item__logo
+                background: rgba(255, 255, 255, .20)
+
+        &:hover
+            .contact_list_item__logo__whatsapp
+                background: rgba(255, 255, 255, .23)
+        &:hover
+            .contact_list_item__logo__linkedin
+                background: rgba(255, 255, 255, .18)
+        &:hover
+            .contact_list_item__logo__email
+                background: rgba(255, 255, 255, .19)
+
