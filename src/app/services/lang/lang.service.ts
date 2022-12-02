@@ -50,7 +50,7 @@ export class LangService {
 
     public toggle(): void {
         this.confirmPopup.type = 'lang'
-        this.confirmPopup.title = 'Language / Мова / Язык'
+        this.confirmPopup.title = 'Language'
         this.confirmPopup.open = true
         this.confirmPopup.setLang = this.setLang
     }

@@ -19,6 +19,8 @@
     font-size: $font-size-button
 
     min-width: max-content
+    border: none
+    background-color: transparent
 
     & path, & line
         transition: .15s linear all
@@ -142,19 +144,33 @@
                 stroke: $brown-light
 
 @mixin popup-list-item
-    @include small-button-secondary
+    @include button-base
     display: flex
+    justify-content: space-between
+    align-items: center
+    height: $popup-list-item
+    color: $brown-light
+    padding: 0 37px 0 25px
+    background-color: $bisque-almost-white
+    font-size: 13px
+    overflow: hidden
+
+    @media screen and ( min-width:  $min-mobile-width)
+        // &:hover:not(.active)
+
+            // & .popup-list-item__left
+            //     left: -60px
 
 
-    &:hover
-        background-color: $white
-        color: $brown-light
-        border: 2px solid $white
+    // &:hover
+    //     background-color: $white
+    //     color: $brown-light
+    //     border: 2px solid $white
 
-        @media (hover: none)  // remove hover on mobiles
-            background-color: $bisque-light
-            color: $brown-light
-            border: $small-button-secondary-border
+    //     @media (hover: none)  // remove hover on mobiles
+    //         background-color: $bisque-light
+    //         color: $brown-light
+    //         border: $small-button-secondary-border
 
 
 @mixin sidebar-menu-item

@@ -135,3 +135,26 @@ button.action
 
     & icon-share
         transform: scaleY(-1)
+
+
+.popup-list-item__left
+    display: flex
+    align-items: center
+    gap: 25px
+    position: relative
+    transition: .15s ease-in-out left, .1s ease-in-out color
+    left: 0
+
+.popup-list-item__button
+    opacity: 0
+    transition: .1s ease-in-out
+    position: relative
+    right: -25px
+
+@media screen and ( min-width:  $min-mobile-width)
+    .popup-list-item:not(.active):hover .popup-list-item__button
+        opacity: 1
+        right: -15px
+
+.popup-list-item__button
+    pointer-events: none

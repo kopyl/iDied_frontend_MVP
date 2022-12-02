@@ -40,27 +40,54 @@
         <div id="list-popup" *ngIf="type === 'lang'">
             <button
                 class="popup-list-item"
-                id="cancel"
+                [class.active]="lang.lang === 'en'"
                 (click)="open = false; this.setLang('en')"
             >
-                <img src="assets/main-page/en-flag.svg" alt="" />
-                English
+                <div class="popup-list-item__left">
+                    <img src="assets/main-page/en-flag-round.svg" alt="" />
+                    English
+                </div>
+                <icon-check *ngIf="lang.lang === 'en'"></icon-check>
+                <button
+                    *ngIf="lang.lang !== 'en'"
+                    class="small-button-secondary popup-list-item__button"
+                >
+                    Select
+                </button>
             </button>
             <button
                 class="popup-list-item"
-                id="cancel"
+                [class.active]="lang.lang === 'ua'"
                 (click)="open = false; this.setLang('ua')"
             >
-                <img src="assets/main-page/ua-flag.svg" alt="" />
-                Українська
+                <div class="popup-list-item__left">
+                    <img src="assets/main-page/ua-flag-round.svg" alt="" />
+                    Українська
+                </div>
+                <icon-check *ngIf="lang.lang === 'ua'"></icon-check>
+                <button
+                    *ngIf="lang.lang !== 'ua'"
+                    class="small-button-secondary popup-list-item__button"
+                >
+                    Обрати
+                </button>
             </button>
             <button
                 class="popup-list-item"
-                id="cancel"
+                [class.active]="lang.lang === 'ru'"
                 (click)="open = false; this.setLang('ru')"
             >
-                <img src="assets/main-page/ru-flag.svg" alt="" />
-                руский
+                <div class="popup-list-item__left">
+                    <img src="assets/main-page/ru-flag-round.svg" alt="" />
+                    Кацапский
+                </div>
+                <icon-check *ngIf="lang.lang === 'ru'"></icon-check>
+                <button
+                    *ngIf="lang.lang !== 'ru'"
+                    class="small-button-secondary popup-list-item__button"
+                >
+                    Выбрать
+                </button>
             </button>
         </div>
 
