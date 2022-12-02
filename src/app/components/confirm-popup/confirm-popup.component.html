@@ -44,7 +44,9 @@
                 (click)="open = false; this.setLang('en')"
             >
                 <div class="popup-list-item__left">
-                    <img src="assets/main-page/en-flag-round.svg" alt="" />
+                    <div class="popup-list-item__lang-image">
+                        <img src="assets/main-page/en-flag-round.svg" alt="" />
+                    </div>
                     English
                 </div>
                 <icon-check *ngIf="lang.lang === 'en'"></icon-check>
@@ -61,7 +63,9 @@
                 (click)="open = false; this.setLang('ua')"
             >
                 <div class="popup-list-item__left">
-                    <img src="assets/main-page/ua-flag-round.svg" alt="" />
+                    <div class="popup-list-item__lang-image">
+                        <img src="assets/main-page/ua-flag-round.svg" alt="" />
+                    </div>
                     Українська
                 </div>
                 <icon-check *ngIf="lang.lang === 'ua'"></icon-check>
@@ -78,7 +82,9 @@
                 (click)="open = false; this.setLang('ru')"
             >
                 <div class="popup-list-item__left">
-                    <img src="assets/main-page/ru-flag-round.svg" alt="" />
+                    <div class="popup-list-item__lang-image">
+                        <img src="assets/main-page/ru-flag-round.svg" alt="" />
+                    </div>
                     Кацапский
                 </div>
                 <icon-check *ngIf="lang.lang === 'ru'"></icon-check>
@@ -159,7 +165,7 @@
                         class="contact_list_item__logo contact_list_item__logo__email"
                     >
                         <img
-                            src="assets/main-page/iosmailicon-inner.svg"
+                            src="assets/main-page/icon-email-inner.svg"
                             alt=""
                         />
                     </div>

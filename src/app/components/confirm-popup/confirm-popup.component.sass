@@ -144,6 +144,9 @@ button.action
     position: relative
     left: 0
 
+    @media screen and ( max-height:  $small-mobile-height)
+        gap: 13px
+
 .popup-list-item__left:not(.contact_list_item__left)
     transition: .1s ease-in-out color
 
@@ -160,6 +163,14 @@ button.action
 
 .popup-list-item__button
     pointer-events: none
+
+
+.popup-list-item__lang-image img
+    @media screen and ( max-height:  $small-mobile-height)
+        width: 25px
+        height: 25px
+
+
 
 .contact_list_item
     p
@@ -201,6 +212,13 @@ button.action
     display: flex
     align-items: center
     justify-content: center
+
+    @media screen and ( max-height:  $small-mobile-height)
+        width: 25px
+        height: 25px
+
+        & img
+            transform: scale(.8)
 
     &.contact_list_item__logo__telegram
         background: #2CA5E0
