@@ -14,7 +14,7 @@ export class LangService {
         return copy[this.lang]
     }
 
-    private _lang: string = ''
+    private _lang: string = defaultLocale
 
     public get lang(): string {
         if (this._lang) return this._lang
