@@ -33,7 +33,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.lang.confirmPopup = this.confirmPopup
-        console.log(this.lang.confirmPopup, this.confirmPopup)
     }
 
     requestContactsPopup(): void {
