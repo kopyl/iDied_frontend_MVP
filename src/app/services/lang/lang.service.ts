@@ -27,7 +27,7 @@ export class LangService {
 
     public get lang(): LocaleCode {
         if (this._lang) return this._lang
-        const fromStorage = localStorage.getItem('lang') as LocaleCode
+        const fromStorage = <LocaleCode>localStorage.getItem('lang')
         this.lang = fromStorage || defaultLocale
         return fromStorage || defaultLocale
     }
