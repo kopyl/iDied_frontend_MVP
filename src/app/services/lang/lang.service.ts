@@ -52,6 +52,5 @@ export class LangService {
         this.confirmPopup.type = 'lang'
         this.confirmPopup.title = 'Language'
         this.confirmPopup.open = true
-        this.confirmPopup.setLang = this.setLang
     }
 }

@@ -37,7 +37,6 @@ export class ConfirmPopupComponent implements OnInit {
 
     _open = false
     public confirmButtonIcon
-    public setLang
     public onSuccess = () => {}
     public onCancel = () => {}
     public type:
