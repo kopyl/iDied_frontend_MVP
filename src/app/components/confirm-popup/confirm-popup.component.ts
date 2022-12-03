@@ -112,6 +112,7 @@ export class ConfirmPopupComponent implements OnInit {
 
     touchStart($event: TouchEvent) {
         this.firstY = $event.touches[0].clientY
+        this.distance = 0
     }
 
     touchMove($event: TouchEvent) {
