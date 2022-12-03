@@ -16,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 
 import { EventEmitter } from '@angular/core'
 import { Output } from '@angular/core'
-import { LangService } from '@services/lang'
+import { LangService, LocaleCode } from '@services/lang'
 
 const shortenText = (title) => {
     return `${title.slice(0, 50)}...`
@@ -98,6 +98,11 @@ export class ConfirmPopupComponent implements OnInit {
     @HostListener('document:keydown', ['$event'])
     keydown(event: KeyboardEvent) {
         this.keydowns$.next(event)
+    }
+
+    selectLang(langCode: LocaleCode): void {
+        this.lang.lang = langCode
+        this.open = false
     }
 
     // Implementing slide down the popup on drag

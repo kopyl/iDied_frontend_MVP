@@ -41,7 +41,7 @@
             <button
                 class="popup-list-item"
                 [class.active]="lang.lang === 'en'"
-                (click)="open = false; this.setLang('en')"
+                (click)="selectLang('en')"
             >
                 <div class="popup-list-item__left">
                     <div class="popup-list-item__lang-image">
@@ -60,7 +60,7 @@
             <button
                 class="popup-list-item"
                 [class.active]="lang.lang === 'ua'"
-                (click)="open = false; this.setLang('ua')"
+                (click)="selectLang('ua')"
             >
                 <div class="popup-list-item__left">
                     <div class="popup-list-item__lang-image">
@@ -79,7 +79,7 @@
             <button
                 class="popup-list-item"
                 [class.active]="lang.lang === 'ru'"
-                (click)="open = false; this.setLang('ru')"
+                (click)="selectLang('ru')"
             >
                 <div class="popup-list-item__left">
                     <div class="popup-list-item__lang-image">

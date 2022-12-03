@@ -10,7 +10,7 @@ const flags = {
     ru: 'ru-flag.svg',
 } as const
 
-type LocaleCode = 'ua' | 'en' | 'ru' | ''
+export type LocaleCode = 'ua' | 'en' | 'ru' | ''
 type Flag = typeof flags[keyof typeof flags]
 
 @Injectable({
