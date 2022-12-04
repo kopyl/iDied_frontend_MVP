@@ -27,7 +27,7 @@
 
         <a id="link" [href]="sharingLink" target="_blank"
             ><span>{{ baseUrl }}</span
-            >/n/{{ activeNote?.sharingToken }}</a
+            >/n/{{ activeNote && activeNote.sharingToken }}</a
         >
 
         <section id="access-buttons-copy-unshare-revoke">
