@@ -109,9 +109,10 @@ div.bottom-alert
         div.alert
             transition: .1s linear all
             width: 100%
-
             transform: translateY(100%)
-            animation: .1s linear slideup forwards
+
+            &.visible
+                transform: translateY(0%)
 
 
         @media screen and ( max-width:  $min-mobile-width)

@@ -110,7 +110,7 @@
 
     <div id="bottom-part">
         <div class="bottom-alert">
-            <div class="alert">
+            <div class="alert" [class.visible]="activeNote.sharingToken">
                 <persistent-alert
                     >{{ this.lang.copy.sharingNotice.specific }}
                 </persistent-alert>
