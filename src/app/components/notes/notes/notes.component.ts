@@ -437,7 +437,7 @@ export class NotesComponent implements OnInit {
     openMobileNote() {
         if (!this.notes.length) return // id.doc.id#4
         this.notesEditing = true
-        if (this.sharingInUrl && this.activeNote.isShared) {
+        if (this.sharingInUrl) {
             this.router.navigate(['/notes', this.activeNote.id, 'sharing'], {
                 queryParamsHandling: 'preserve',
             })
