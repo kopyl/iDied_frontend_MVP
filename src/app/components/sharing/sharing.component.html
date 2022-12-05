@@ -25,15 +25,22 @@
             </button>
         </header>
 
-        <input
-            readonly
-            value="{{
-                activeNote && baseUrl + '/n/' + activeNote.sharingToken
-            }}"
-            type="text"
-            id="link"
-            class="input"
-        />
+        <div class="link-and-buttons">
+            <input
+                readonly
+                value="{{
+                    activeNote && baseUrl + '/n/' + activeNote.sharingToken
+                }}"
+                type="text"
+                id="link"
+                class="input"
+            />
+
+            <div class="email-and-tg-buttons">
+                <button class="small-button-secondary">Email</button>
+                <button class="small-button-secondary">Telegram</button>
+            </div>
+        </div>
 
         <section id="access-buttons-copy-unshare-revoke">
             <div class="unshare-revoke-buttons">
