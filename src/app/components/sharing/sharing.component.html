@@ -26,17 +26,34 @@
         </header>
 
         <div class="link-and-buttons">
-            <input
-                readonly
-                value="{{
-                    activeNote.sharingToken
-                        ? baseUrl + '/n/' + activeNote.sharingToken
-                        : lang.copy.linkSharingDisabled
-                }}"
-                type="text"
-                id="link"
-                class="input"
-            />
+            <div
+                class="input-and-link"
+                [class.openLinkButtonVisible]="activeNote.sharingToken"
+            >
+                <input
+                    readonly
+                    value="{{
+                        activeNote.sharingToken
+                            ? baseUrl + '/n/' + activeNote.sharingToken
+                            : lang.copy.linkSharingDisabled
+                    }}"
+                    type="text"
+                    id="link"
+                    class="input"
+                />
+                <a
+                    id="sharink-link-open"
+                    class="small-button-icon-only"
+                    href="{{
+                        activeNote.sharingToken
+                            ? baseUrl + '/n/' + activeNote.sharingToken
+                            : ''
+                    }}"
+                    target="_blank"
+                >
+                    <icon-external-link></icon-external-link>
+                </a>
+            </div>
 
             <div class="email-and-tg-buttons">
                 <button

@@ -68,6 +68,7 @@ header
     white-space: nowrap
     display: flex
     grid-column: 1 / -1
+    overflow: hidden
 
 
 section#access-buttons-copy-unshare-revoke
@@ -167,7 +168,19 @@ div.unshare-revoke-buttons *
     @media screen and ( min-width:  $min-mobile-width)
         flex: 1
 
+.input-and-link
+    grid-column: 1/-1
+    position: relative
+    z-index: 1
 
+    input
+        width: 100%
 
+    &.openLinkButtonVisible:hover input
+        width: calc(100% - 48px)
 
-
+#sharink-link-open
+    position: absolute
+    right: 0
+    top: 0
+    z-index: -1
