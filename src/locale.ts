@@ -34,6 +34,7 @@ const en = {
             'This note will become accessible by a link unless you log in for 30 days',
     },
     loading: 'Loading',
+    linkSharingDisabled: 'Link sharing disabled',
     buttons: {
         upgrade: 'Upgrade for $1.99/month',
         limitReachedUpgrade: 'Upgrade for $1.99/month',
@@ -45,6 +46,7 @@ const en = {
         iUnderstand: 'I understand',
         tryAgain: 'Try again',
         login: 'Login',
+        makeAccessibleByLink: 'Make accessible by link when i die',
     },
     popups: {
         titles: {
@@ -107,6 +109,10 @@ const en = {
             body: 'Link revoked.',
             cta: 'Close',
         },
+        errorRevoking: {
+            body: 'Error revoking link.',
+            cta: 'Close',
+        },
     },
     noteForRecipient: {
         title: {
@@ -167,6 +173,7 @@ const ua: LocaleKey = {
             'Ця нотатка стане доступною по посиланню, якщо ви не ввійдете протягом 30 днів',
     },
     loading: 'Завантаження',
+    linkSharingDisabled: 'Доступ по посиланню вимкнений',
     buttons: {
         upgrade: 'Перейти за $1.99/місяць',
         limitReachedUpgrade: 'Оновитись за $1.99/місяць',
@@ -178,6 +185,7 @@ const ua: LocaleKey = {
         iUnderstand: 'Я розумію',
         tryAgain: 'Спробувати ще раз',
         login: 'Увійти',
+        makeAccessibleByLink: 'Відкрити доступ по посиланню коли я помру',
     },
     popups: {
         titles: {
@@ -243,6 +251,10 @@ const ua: LocaleKey = {
             body: 'Посилання відкликано.',
             cta: 'Закрити',
         },
+        errorRevoking: {
+            body: 'Помилка відкликання посилання',
+            cta: 'Закрити',
+        },
     },
     noteForRecipient: {
         title: {
@@ -301,6 +313,7 @@ const ru: LocaleKey = {
             'Эта заметка станет доступна по ссылке, если вы не войдете в течение 30 дней',
     },
     loading: 'Загрузка',
+    linkSharingDisabled: 'Доступ по ссылке выключен',
     buttons: {
         upgrade: 'Подписаться за $1.99 в месяц',
         limitReachedUpgrade: 'Обновиться за $1.99 в месяц',
@@ -312,6 +325,7 @@ const ru: LocaleKey = {
         iUnderstand: 'Я понимаю',
         tryAgain: 'Попробовать еще раз',
         login: 'Ввойти',
+        makeAccessibleByLink: 'Открыть доступ по ссылке когда я умру',
     },
     popups: {
         titles: {
@@ -375,6 +389,10 @@ const ru: LocaleKey = {
         },
         revoked: {
             body: 'Ссылка отозвана.',
+            cta: 'Закрыть',
+        },
+        errorRevoking: {
+            body: 'Не удалось отозвать ссылку',
             cta: 'Закрыть',
         },
     },

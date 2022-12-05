@@ -29,7 +29,9 @@
             <input
                 readonly
                 value="{{
-                    activeNote && baseUrl + '/n/' + activeNote.sharingToken
+                    activeNote.sharingToken
+                        ? baseUrl + '/n/' + activeNote.sharingToken
+                        : lang.copy.linkSharingDisabled
                 }}"
                 type="text"
                 id="link"
@@ -60,10 +62,22 @@
                 class="big-button-primary white-icon copy"
                 [cdkCopyToClipboard]="sharingLink"
                 (cdkCopyToClipboardCopied)="notifyAboutCopiedText()"
+                *ngIf="activeNote.sharingToken"
             >
                 <icon-copy></icon-copy>
                 <span>
                     {{ lang.copy.buttons.copyLink }}
+                </span>
+            </button>
+
+            <button
+                id="make-accessible-by-link"
+                class="big-button-primary white-icon copy"
+                (click)="shareNote()"
+                *ngIf="!activeNote.sharingToken"
+            >
+                <span>
+                    {{ lang.copy.buttons.makeAccessibleByLink }}
                 </span>
             </button>
 
@@ -72,6 +86,7 @@
                     id="unshare"
                     class="small-button-secondary red"
                     (click)="sendUnsharingConfirmation()"
+                    *ngIf="activeNote.sharingToken"
                 >
                     <span>
                         {{ lang.copy.buttons.unshare }}
@@ -82,6 +97,7 @@
                     id="revoke"
                     class="small-button-secondary red"
                     (click)="sendRevokingConfirmation()"
+                    *ngIf="activeNote.sharingToken"
                 >
                     <icon-revoke></icon-revoke>
                     <span>

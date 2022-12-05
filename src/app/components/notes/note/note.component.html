@@ -10,7 +10,7 @@
 
         <button
             id="share"
-            (click)="shareNote()"
+            (click)="openSharingView()"
             [ngClass]="
                 activeNote.isShared
                     ? 'small-button-secondary'
@@ -30,7 +30,7 @@
         <button
             id="mobile-share"
             class="small-button-primary white-icon"
-            (click)="shareNote()"
+            (click)="openSharingView()"
         >
             <icon-share></icon-share>
             {{

@@ -21,8 +21,10 @@ export class SharingComponent implements OnInit {
 
     @Input('activeNote') activeNote: frontendNote
     @Input('confirmPopup') confirmPopup: ConfirmPopupComponent
+    @Input() amountOfSharedNotes: number
 
     @Output() sharingCloseEvent = new EventEmitter()
+    @Output() requestPro = new EventEmitter()
 
     constructor(
         private readonly requests: RequestsService,
@@ -118,15 +120,47 @@ export class SharingComponent implements OnInit {
     revoke(): void {
         this.requests.notes.revoke.onSuccess =
             this.revokeSharingToken.bind(this)
+
         this.loaderVisible = true
         this.requests.notes.revoke.send(this.activeNote)
     }
 
     revokeSharingToken(backendResponse: backend_notes_response): void {
+        if (backendResponse.error) {
+            this.loaderVisible = false
+            this.notifyAboutErrorRevokingLink()
+            return
+        }
+
         const sharingToken = backendResponse.notes[0].sharing_token
         this.activeNote.sharingToken = sharingToken
         this.loaderVisible = false
         this.notifyAboutRevokedLink()
+    }
+
+    updateSharingToken(backendResponse: backend_notes_response): void {
+        if (backendResponse.error) {
+            this.loaderVisible = false
+            return
+        }
+        const sharingToken = backendResponse.notes[0].sharing_token
+        this.activeNote.sharingToken = sharingToken
+        this.activeNote.isShared = true
+        this.loaderVisible = false
+    }
+
+    shareNote() {
+        if (
+            this.proStatusService.proStatus === false &&
+            this.amountOfSharedNotes >= 3
+        ) {
+            this.requestPro.emit()
+            return
+        }
+
+        this.loaderVisible = true
+        this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
+        this.requests.notes.share.send(this.activeNote)
     }
 
     notifyAboutRevokedLink(): void {
@@ -144,6 +178,17 @@ export class SharingComponent implements OnInit {
         this.materialNotification.open(
             this.lang.copy.notifications.copied.body,
             this.lang.copy.notifications.copied.cta,
+            {
+                duration: 5000,
+                panelClass: ['notification'],
+            }
+        )
+    }
+
+    notifyAboutErrorRevokingLink() {
+        this.materialNotification.open(
+            this.lang.copy.notifications.errorRevoking.body,
+            this.lang.copy.notifications.errorRevoking.cta,
             {
                 duration: 5000,
                 panelClass: ['notification'],

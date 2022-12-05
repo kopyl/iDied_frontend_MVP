@@ -164,29 +164,15 @@ export class NoteComponent implements OnInit, OnChanges, OnDestroy {
         this.closeNoteEvent.emit()
     }
 
-    updateSharingToken(backendResponse: backend_notes_response): void {
-        if (backendResponse.error) {
-            this.loaderVisible = false
-        }
-        const sharingToken = backendResponse.notes[0].sharing_token
-        this.activeNote.sharingToken = sharingToken
-        this.activeNote.isShared = true
-        this.loaderVisible = false
-        this.openSharingViewEvent.emit()
-    }
-
-    shareNote() {
+    openSharingView() {
         if (this.activeNote.isShared) {
             return this.openSharingViewEvent.emit()
         }
-
         if (this.proStatus === false && this.amountOfSharedNotes >= 3) {
             this.requestPro.emit()
             return
+        } else {
+            this.openSharingViewEvent.emit()
         }
-
-        this.loaderVisible = true
-        this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
-        this.requests.notes.share.send(this.activeNote)
     }
 }

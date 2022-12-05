@@ -158,10 +158,12 @@
 
         <sharing
             [activeNote]="activeNote"
+            [amountOfSharedNotes]="amountOfSharedNotes"
             *ngIf="sharingView"
             (sharingCloseEvent)="closeSharingView()"
             [confirmPopup]="confirmPopup"
             (copied)="logCopied()"
+            (requestPro)="requestPro()"
         ></sharing>
     </div>
 </div>
