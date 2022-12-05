@@ -46,7 +46,7 @@ const en = {
         iUnderstand: 'I understand',
         tryAgain: 'Try again',
         login: 'Login',
-        makeAccessibleByLink: 'Make accessible by link when i die',
+        makeAccessibleByLink: 'Enable when i die',
     },
     popups: {
         titles: {
@@ -186,7 +186,7 @@ const ua: LocaleKey = {
         iUnderstand: 'Я розумію',
         tryAgain: 'Спробувати ще раз',
         login: 'Увійти',
-        makeAccessibleByLink: 'Відкрити доступ по посиланню коли я помру',
+        makeAccessibleByLink: 'Увімкнути коли я помру',
     },
     popups: {
         titles: {
@@ -307,7 +307,7 @@ const ru: LocaleKey = {
     },
     share: 'Поделиться',
     sharingSettings: 'Настройка доступа',
-    sharing: 'Поделиться доступом',
+    sharing: 'Поделиться',
     sharingNotice: {
         general:
             'Расшаренная заметка станет доступна по ссылке, если вы не зайдете на сайт раз в 30 дней',
@@ -327,7 +327,7 @@ const ru: LocaleKey = {
         iUnderstand: 'Я понимаю',
         tryAgain: 'Попробовать еще раз',
         login: 'Ввойти',
-        makeAccessibleByLink: 'Открыть доступ по ссылке когда я умру',
+        makeAccessibleByLink: 'Включить когда я умру',
     },
     popups: {
         titles: {

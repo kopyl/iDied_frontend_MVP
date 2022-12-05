@@ -26,6 +26,22 @@
         </header>
 
         <div class="link-and-buttons">
+            <div class="email-and-tg-buttons">
+                <button
+                    class="small-button-secondary"
+                    (click)="sendProRequiredPopup('email')"
+                >
+                    Email
+                    <icon-arrow-right color="#878179"></icon-arrow-right>
+                </button>
+                <button
+                    class="small-button-secondary"
+                    (click)="sendProRequiredPopup('telegram')"
+                >
+                    Telegram
+                    <icon-arrow-right color="#878179"></icon-arrow-right>
+                </button>
+            </div>
             <div
                 class="input-and-link"
                 [class.openLinkButtonVisible]="activeNote.sharingToken"
@@ -53,23 +69,6 @@
                 >
                     <icon-external-link></icon-external-link>
                 </a>
-            </div>
-
-            <div class="email-and-tg-buttons">
-                <button
-                    class="small-button-secondary"
-                    (click)="sendProRequiredPopup('email')"
-                >
-                    Email
-                    <icon-arrow-right color="#878179"></icon-arrow-right>
-                </button>
-                <button
-                    class="small-button-secondary"
-                    (click)="sendProRequiredPopup('telegram')"
-                >
-                    Telegram
-                    <icon-arrow-right color="#878179"></icon-arrow-right>
-                </button>
             </div>
         </div>
 
