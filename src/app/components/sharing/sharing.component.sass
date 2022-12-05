@@ -40,24 +40,15 @@ header
 
 
 
-a
-    text-decoration: underline
-    text-decoration-thickness: 1px
-    color: $black
-    display: block
-    font-family: $playfair
-    line-height: 49px
-    word-break: break-all
-
-    span
-        color: $red
-
-    font-size: 26px
+#link
+    text-overflow: ellipsis
+    white-space: nowrap
+    display: flex
+    width: calc(100% - 100px)
     margin: 55px 50px 0 50px
     @media screen and ( max-width:  $min-mobile-width)
         margin: 30px 30px 0 30px
-        font-size: 21px
-        line-height: 43px
+        width: calc(100% - 60px)
 
 
 

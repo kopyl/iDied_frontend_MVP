@@ -242,3 +242,12 @@
 @mixin grid-reverse
     & > *
         grid-column: 2
+
+@mixin input
+    @include small-button-base
+
+    background-color: $bisque-almost-white
+    color: $brown-light
+    border: $small-button-secondary-border
+    outline: none
+    cursor: text

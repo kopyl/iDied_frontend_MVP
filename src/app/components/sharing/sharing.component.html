@@ -25,10 +25,15 @@
             </button>
         </header>
 
-        <a id="link" [href]="sharingLink" target="_blank"
-            ><span>{{ baseUrl }}</span
-            >/n/{{ activeNote && activeNote.sharingToken }}</a
-        >
+        <input
+            readonly
+            value="{{
+                activeNote && baseUrl + '/n/' + activeNote.sharingToken
+            }}"
+            type="text"
+            id="link"
+            class="input"
+        />
 
         <section id="access-buttons-copy-unshare-revoke">
             <div class="unshare-revoke-buttons">
