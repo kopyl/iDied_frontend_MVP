@@ -65,7 +65,6 @@ export class NotesComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // console.log(this.route.snapshot.url)
         this.googleAuth.accessControl()
         this.pageTitle.setTitle('iDied - Notes')
         this.fetchNotes()
