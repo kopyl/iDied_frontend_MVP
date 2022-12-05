@@ -68,41 +68,23 @@ header
     white-space: nowrap
     display: flex
     grid-column: 1 / -1
-    // width: calc(100% - 100px)
-
-    // @media screen and ( max-width:  $min-mobile-width)
-        // width: calc(100% - 60px)
 
 
-
-section
-
-    & > *
-        flex: auto
+section#access-buttons-copy-unshare-revoke
 
     display: flex
-    // grid-template-columns: auto auto
-    // grid-template-rows: auto auto
-    // align-content: start
-    flex-flow: row wrap
+    flex-wrap: wrap
+    flex-direction: column
 
     gap: 30px 30px
 
-    margin: 53px 50px 0 50px
+    margin: 50px 50px 0 50px
     @media screen and ( max-width:  $min-mobile-width)
         margin: 50px 30px 0 30px
 
     @media screen and ( max-height: $small-mobile-height)
         margin: 20px 30px 0 30px
         gap: 5px 5px
-
-
-    button#copy-link
-        // bg
-        grid-column: 1 / -1
-
-
-
 
     button
         justify-content: center

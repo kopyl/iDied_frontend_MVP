@@ -55,6 +55,18 @@
         </div>
 
         <section id="access-buttons-copy-unshare-revoke">
+            <button
+                id="copy-link"
+                class="big-button-primary white-icon copy"
+                [cdkCopyToClipboard]="sharingLink"
+                (cdkCopyToClipboardCopied)="notifyAboutCopiedText()"
+            >
+                <icon-copy></icon-copy>
+                <span>
+                    {{ lang.copy.buttons.copyLink }}
+                </span>
+            </button>
+
             <div class="unshare-revoke-buttons">
                 <button
                     id="unshare"
@@ -78,18 +90,6 @@
                     </span>
                 </button>
             </div>
-
-            <button
-                id="copy-link"
-                class="small-button-primary white-icon copy"
-                [cdkCopyToClipboard]="sharingLink"
-                (cdkCopyToClipboardCopied)="notifyAboutCopiedText()"
-            >
-                <icon-copy></icon-copy>
-                <span>
-                    {{ lang.copy.buttons.copyLink }}
-                </span>
-            </button>
         </section>
     </div>
 
