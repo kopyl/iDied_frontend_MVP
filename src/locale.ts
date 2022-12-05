@@ -318,7 +318,7 @@ const ru: LocaleKey = {
             wantToDelete: 'Вы действительно хотите удалить заметку',
             proDetailed: 'Перейди на Pro и получи',
             proDetailedEmailRequest:
-                'Обновись на Pro чтобы отправлять заметки почтой и',
+                'Обновись на Pro чтобы отправлять заметки по почте и',
             proDetailedTelegramRequest:
                 'Обновись на Pro чтобы отправлять заметки в Telegram и',
             proLimitReached: 'Вы достигли лимита бесплатно расшаренных заметок',
