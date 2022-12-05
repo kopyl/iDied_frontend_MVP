@@ -108,7 +108,6 @@ export class SharingComponent implements OnInit {
         this.activeNote.sharingToken = ''
         this.activeNote.isShared = false
         this.loaderVisible = false
-        this.sharingCloseEvent.emit()
     }
 
     sendRevokingConfirmation(): void {
