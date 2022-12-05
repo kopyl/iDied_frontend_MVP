@@ -159,8 +159,12 @@ div.unshare-revoke-buttons
     gap: 5px
     flex-wrap: wrap
 
+    @media screen and ( max-width:  $min-mobile-width)
+        flex-direction: column
+
 div.unshare-revoke-buttons *
-    flex: 1
+    @media screen and ( min-width:  $min-mobile-width)
+        flex: 1
 
 
 
