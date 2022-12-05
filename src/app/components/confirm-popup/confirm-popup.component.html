@@ -19,7 +19,7 @@
             </h1>
             <h1 *ngIf="type === 'info'">{{ title }}</h1>
             <h1 id="pro-title" *ngIf="type === 'pro'">
-                {{ lang.copy.popups.titles.proDetailed }}
+                {{ title || lang.copy.popups.titles.proDetailed }}
             </h1>
             <h1 *ngIf="type === 'lang'">
                 {{ title }}
@@ -193,7 +193,7 @@
                     </p>
                 </div>
             </div>
-            <div class="pro-tile">
+            <div class="pro-tile" *ngIf="!hideTelegramAndEmailProItem">
                 <img src="assets/pro-popup/email-and-tg-sender.svg" alt="" />
                 <div class="description">
                     <p class="description-title">

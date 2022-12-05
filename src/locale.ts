@@ -50,6 +50,9 @@ const en = {
         titles: {
             wantToDelete: 'Do you really want to delete the note',
             proDetailed: 'Upgrade to Pro and get',
+            proDetailedEmailRequest: 'Upgrade to pro to get email sharing and',
+            proDetailedTelegramRequest:
+                'Upgrade to pro to get Telegram sharing and',
             proLimitReached:
                 'You have reached the limit of shared notes for free',
             remove: 'Remove note',
@@ -180,6 +183,10 @@ const ua: LocaleKey = {
         titles: {
             wantToDelete: 'Ви дійсно хочете видалити нотатку',
             proDetailed: 'Перейди на Pro і отримай',
+            proDetailedEmailRequest:
+                'Оновись до Pro щоб відправляти нотатки поштою і ще',
+            proDetailedTelegramRequest:
+                'Оновись до Pro щоб відправляти листи в Telegram і ще',
             proLimitReached: 'Ви досягли ліміту безкоштовно поширених нотаток',
             remove: 'Видалити нотатку',
             unshare: 'Закрити доступ',
@@ -310,6 +317,10 @@ const ru: LocaleKey = {
         titles: {
             wantToDelete: 'Вы действительно хотите удалить заметку',
             proDetailed: 'Перейди на Pro и получи',
+            proDetailedEmailRequest:
+                'Обновись на Pro чтобы отправлять заметки почтой и',
+            proDetailedTelegramRequest:
+                'Обновись на Pro чтобы отправлять заметки в Telegram и',
             proLimitReached: 'Вы достигли лимита бесплатно расшаренных заметок',
             remove: 'Удалить заметку',
             unshare: 'Закрыть доступ',

@@ -52,6 +52,9 @@
             "@services/lang": [
                 "src/app/services/lang/lang.service"
             ],
+            "@services/proStatus": [
+                "src/app/services/pro-status/pro-status.service"
+            ],
             "@components/confirmation-popup": [
                 "src/app/components/confirm-popup/confirm-popup.component"
             ],

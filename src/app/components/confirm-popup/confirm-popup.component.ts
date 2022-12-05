@@ -48,6 +48,8 @@ export class ConfirmPopupComponent implements OnInit {
         | 'contacts'
         | 'lang' = 'noteRemoval'
 
+    public hideTelegramAndEmailProItem = false
+
     public title = ''
     public body = 'Set body'
     public buttonText = 'Set button text'
@@ -61,6 +63,9 @@ export class ConfirmPopupComponent implements OnInit {
         if (!value) {
             this.noCancelButton = false
             this.title = ''
+            this.hideTelegramAndEmailProItem = false
+            this.onSuccess = () => {}
+            this.onCancel = () => {}
         }
         this._open = value
     }

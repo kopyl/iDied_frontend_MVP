@@ -37,8 +37,18 @@
             />
 
             <div class="email-and-tg-buttons">
-                <button class="small-button-secondary">Email</button>
-                <button class="small-button-secondary">Telegram</button>
+                <button
+                    class="small-button-secondary"
+                    (click)="sendProRequiredPopup('email')"
+                >
+                    Email
+                </button>
+                <button
+                    class="small-button-secondary"
+                    (click)="sendProRequiredPopup('telegram')"
+                >
+                    Telegram
+                </button>
             </div>
         </div>
 

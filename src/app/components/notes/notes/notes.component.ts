@@ -17,6 +17,7 @@ import { TooltipService } from '@services/tooltip'
 import { GoogleAnalyticsService } from '@services/google-analytics'
 import { LangService } from '@services/lang'
 import mixpanel from 'mixpanel-browser'
+import { ProStatusService } from '@services/proStatus'
 
 @Component({
     selector: 'app-notes',
@@ -59,7 +60,8 @@ export class NotesComponent implements OnInit {
         private cookies: CookieService,
         public tooltip: TooltipService,
         public googleAnalytics: GoogleAnalyticsService,
-        public lang: LangService
+        public lang: LangService,
+        private proStatusService: ProStatusService
     ) {}
 
     ngOnInit(): void {
@@ -153,6 +155,7 @@ export class NotesComponent implements OnInit {
 
     setProStatus(backendResponse: backend_init_notes_response) {
         this.proStatus = backendResponse.pro
+        this.proStatusService.setProStatus(this.proStatus)
         if (this.proStatus) {
             this.googleAnalytics.trackProStatusEnabled(this.googleAuth)
         }

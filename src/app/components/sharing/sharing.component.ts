@@ -4,6 +4,9 @@ import { ConfirmPopupComponent } from '@components/confirmation-popup'
 import { RequestsService } from '@services/requests'
 import { environment } from '@environment'
 import { LangService } from '@services/lang'
+import { GoogleAuthService } from '@services/auth'
+import { GoogleAnalyticsService } from '@services/google-analytics'
+import { ProStatusService } from '@services/proStatus'
 
 @Component({
     selector: 'sharing',
@@ -11,6 +14,7 @@ import { LangService } from '@services/lang'
     styleUrls: ['./sharing.component.sass'],
 })
 export class SharingComponent implements OnInit {
+    paymentUrl = `${environment.apiUrl}payment`
     baseUrl = environment.baseUrl
 
     loaderVisible = false
@@ -23,7 +27,10 @@ export class SharingComponent implements OnInit {
     constructor(
         private readonly requests: RequestsService,
         private materialNotification: MatSnackBar,
-        public lang: LangService
+        public lang: LangService,
+        public readonly googleAuth: GoogleAuthService,
+        public googleAnalytics: GoogleAnalyticsService,
+        private proStatusService: ProStatusService
     ) {}
 
     get sharingLink(): string {
@@ -48,6 +55,44 @@ export class SharingComponent implements OnInit {
         this.confirmPopup.type = 'noteUnshare'
         this.confirmPopup.open = true
         this.confirmPopup.onSuccess = this.unshare.bind(this)
+    }
+
+    sendTgReportConfirm(): void {
+        this.requests.sendTGreport.send({
+            type: 'requestProDetailedConfirmedInEmailTgSharing',
+            message:
+                'User pressed upgrade button in email/telegram sharing view ❤️',
+            userId: this.googleAuth.userId,
+        })
+    }
+
+    sendProRequiredPopup(_for: 'telegram' | 'email'): void {
+        if (this.proStatusService.proStatus) return
+        this.confirmPopup.type = 'pro'
+        this.confirmPopup.open = true
+        this.confirmPopup.hideTelegramAndEmailProItem = true
+        this.confirmPopup.buttonText = this.lang.copy.buttons.upgrade
+
+        this.confirmPopup.onSuccess = () => {
+            this.requests.sendTGreport.onSuccess = () => {
+                this.googleAnalytics.trackProAccountRequestConfirm(() => {
+                    window.location.href = this.paymentUrl
+                }, this.googleAuth)
+            }
+            this.sendTgReportConfirm()
+        }
+        this.requests.sendTGreport.send({
+            type: 'emailTgSharingRequest',
+            message: 'user pressed on email/telegram button in sharing view',
+            userId: this.googleAuth.userId,
+        })
+
+        if (_for === 'telegram')
+            this.confirmPopup.title =
+                this.lang.copy.popups.titles.proDetailedTelegramRequest
+        if (_for === 'email')
+            this.confirmPopup.title =
+                this.lang.copy.popups.titles.proDetailedEmailRequest
     }
 
     unshare() {
@@ -87,10 +132,12 @@ export class SharingComponent implements OnInit {
     notifyAboutRevokedLink(): void {
         this.materialNotification.open(
             this.lang.copy.notifications.revoked.body,
-            this.lang.copy.notifications.revoked.cta, {
-            duration: 5000,
-            panelClass: ['notification'],
-        })
+            this.lang.copy.notifications.revoked.cta,
+            {
+                duration: 5000,
+                panelClass: ['notification'],
+            }
+        )
     }
 
     notifyAboutCopiedText() {
