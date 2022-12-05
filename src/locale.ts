@@ -86,6 +86,7 @@ const en = {
             proLimitReached: 'Upgrade to Pro to share unlimited notes',
             unshare: {
                 beforeTitle: 'Do you really want to unshare the note “',
+                byLink: 'by link?',
                 afterTitle:
                     'This note will become inaccessible by the public link after you die if you unshare',
             },
@@ -179,7 +180,7 @@ const ua: LocaleKey = {
         limitReachedUpgrade: 'Оновитись за $1.99/місяць',
         cancel: 'Скасувати',
         remove: 'Видалити',
-        unshare: 'Відключити доступ по посиланню',
+        unshare: 'Закрити доступ',
         revoke: 'Змінити посилання',
         copyLink: 'Скопіювати посилання',
         iUnderstand: 'Я розумію',
@@ -226,6 +227,7 @@ const ua: LocaleKey = {
                 'Оновіться до Pro, щоб поділитися необмеженою кількістю нотаток',
             unshare: {
                 beforeTitle: 'Ви дійсно хочете закрити доступ до нотатки “',
+                byLink: 'по посиланню?',
                 afterTitle:
                     'Ця нотатка стане недоступною по посиланню після того, як ви помрете, якщо ви закриєте доступ',
             },
@@ -319,7 +321,7 @@ const ru: LocaleKey = {
         limitReachedUpgrade: 'Обновиться за $1.99 в месяц',
         cancel: 'Отменить',
         remove: 'Удалить',
-        unshare: 'Отменить доступ по ссылке',
+        unshare: 'Закрыть доступ',
         revoke: 'Изменить ссылку',
         copyLink: 'Скопировать ссылку',
         iUnderstand: 'Я понимаю',
@@ -366,13 +368,14 @@ const ru: LocaleKey = {
                 'Обновитесь до Pro, чтобы поделиться неограниченным количеством заметок',
             unshare: {
                 beforeTitle:
-                    'Вы действительно хотите закрыть доступ к заметке“',
+                    'Вы действительно хотите закрыть доступ к заметке “',
+                byLink: 'по ссылке?',
                 afterTitle:
                     'Эта заметка станет недоступной по ссылке после того, как вы умрете, если вы закроете доступ',
             },
             revoke: {
                 beforeTitle:
-                    'Вы действительно хотите изменить ссылку доступа к заметке“',
+                    'Вы действительно хотите изменить ссылку доступа к заметке “',
                 afterTitle:
                     'Все, с кем вы поделились текущей ссылкой, без доступа к вашей заметке с помощью него',
             },
