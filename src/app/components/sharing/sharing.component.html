@@ -100,7 +100,10 @@
             <div
                 class="unshare-revoke-buttons"
                 *ngIf="activeNote.sharingToken"
-                @fadeInOut
+                [@fadeSlideInOut]="{
+                    value: '*',
+                    params: { duration: '100ms' }
+                }"
             >
                 <button
                     id="unshare"

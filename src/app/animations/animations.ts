@@ -28,12 +28,19 @@ export const noteItem = trigger('noteItem', [
 ])
 
 export const fadeSlideInOut = trigger('fadeSlideInOut', [
+    state('*', style({}), { params: [{ duration: '500ms' }] }),
     transition(':enter', [
         style({ opacity: 0, transform: 'translateY(10px)' }),
-        animate('500ms', style({ opacity: 1, transform: 'translateY(0)' })),
+        animate(
+            '{{duration}}',
+            style({ opacity: 1, transform: 'translateY(0)' })
+        ),
     ]),
     transition(':leave', [
-        animate('500ms', style({ opacity: 0, transform: 'translateY(10px)' })),
+        animate(
+            '{{duration}}',
+            style({ opacity: 0, transform: 'translateY(10px)' })
+        ),
     ]),
 ])
 
