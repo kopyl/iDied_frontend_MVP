@@ -7,13 +7,13 @@ import { LangService } from '@services/lang'
 import { GoogleAuthService } from '@services/auth'
 import { GoogleAnalyticsService } from '@services/google-analytics'
 import { ProStatusService } from '@services/proStatus'
-import { fadeSlideInOut, shaketwo } from '@animations'
+import { fadeSlideInOut, shake } from '@animations'
 
 @Component({
     selector: 'sharing',
     templateUrl: './sharing.component.html',
     styleUrls: ['./sharing.component.sass'],
-    animations: [fadeSlideInOut, shaketwo],
+    animations: [fadeSlideInOut, shake],
 })
 export class SharingComponent implements OnInit {
     paymentUrl = `${environment.apiUrl}payment`

@@ -302,7 +302,7 @@ function slideTo(direction) {
     ]
 }
 
-export const shaketwo = trigger('shaketwo', [
+export const shake = trigger('shake', [
     transition('false => true', [
         animate(
             '0.5s linear',
