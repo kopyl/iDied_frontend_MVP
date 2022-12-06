@@ -97,7 +97,11 @@
                 </span>
             </button>
 
-            <div class="unshare-revoke-buttons" *ngIf="activeNote.sharingToken">
+            <div
+                class="unshare-revoke-buttons"
+                *ngIf="activeNote.sharingToken"
+                @fadeInOut
+            >
                 <button
                     id="unshare"
                     class="small-button-secondary red"
