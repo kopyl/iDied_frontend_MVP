@@ -97,12 +97,11 @@
                 </span>
             </button>
 
-            <div class="unshare-revoke-buttons">
+            <div class="unshare-revoke-buttons" *ngIf="activeNote.sharingToken">
                 <button
                     id="unshare"
                     class="small-button-secondary red"
                     (click)="sendUnsharingConfirmation()"
-                    *ngIf="activeNote.sharingToken"
                 >
                     <span>
                         {{ lang.copy.buttons.unshare }}
@@ -113,7 +112,6 @@
                     id="revoke"
                     class="small-button-secondary red"
                     (click)="sendRevokingConfirmation()"
-                    *ngIf="activeNote.sharingToken"
                 >
                     <icon-revoke></icon-revoke>
                     <span>
