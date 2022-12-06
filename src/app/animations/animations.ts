@@ -301,3 +301,176 @@ function slideTo(direction) {
         ]),
     ]
 }
+
+// make shaking animation
+export const shake = trigger('shake', [
+    transition('* => *', [
+        query(
+            ':enter',
+            [
+                style({ opacity: 0, transform: 'translateX(-100%)' }),
+                stagger(100, [
+                    animate(
+                        '0.5s ease-in',
+                        style({ opacity: 1, transform: 'translateX(0)' })
+                    ),
+                ]),
+            ],
+            { optional: true }
+        ),
+        query(
+            ':leave',
+            [
+                style({ opacity: 1, transform: 'translateX(0)' }),
+                stagger(100, [
+                    animate(
+                        '0.5s ease-in',
+                        style({ opacity: 0, transform: 'translateX(100%)' })
+                    ),
+                ]),
+            ],
+            { optional: true }
+        ),
+    ]),
+])
+
+// // make shaking animation from side to side a few times with kyframes
+// export const shaketwo = trigger('shaketwo', [
+//     transition('* => *', [
+//         query(
+//             'true',
+//             [
+//                 style({ opacity: 0, transform: 'translateX(-100%)' }),
+//                 stagger(100, [
+//                     animate(
+//                         '0.5s ease-in',
+//                         keyframes([
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 0,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(-10px)',
+//                                 offset: 0.1,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 0.2,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(-10px)',
+//                                 offset: 0.3,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 0.4,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(-10px)',
+//                                 offset: 0.5,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 0.6,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(-10px)',
+//                                 offset: 0.7,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 0.8,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(-10px)',
+//                                 offset: 0.9,
+//                             }),
+//                             style({
+//                                 opacity: 1,
+//                                 transform: 'translateX(0)',
+//                                 offset: 1,
+//                             }),
+//                         ])
+//                     ),
+//                 ]),
+//             ],
+//             { optional: true }
+//         ),
+//     ]),
+// ])
+
+// make shaking animation from side to side a few times with kyframes
+export const shaketwo = trigger('shaketwo', [
+    transition('false => true', [
+        animate(
+            '0.5s linear',
+            keyframes([
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 0,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(-10px)',
+                    offset: 0.1,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 0.2,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(-10px)',
+                    offset: 0.3,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 0.4,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(-10px)',
+                    offset: 0.5,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 0.6,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(-10px)',
+                    offset: 0.7,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 0.8,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(-10px)',
+                    offset: 0.9,
+                }),
+                style({
+                    opacity: 1,
+                    transform: 'translateX(0)',
+                    offset: 1,
+                }),
+            ])
+        ),
+    ]),
+])
