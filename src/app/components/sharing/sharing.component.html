@@ -56,6 +56,7 @@
                     type="text"
                     id="link"
                     class="input"
+                    (click)="toggleShake()"
                 />
                 <a
                     id="sharink-link-open"
@@ -91,6 +92,7 @@
                 class="big-button-primary white-icon copy"
                 (click)="shareNote()"
                 *ngIf="!activeNote.sharingToken"
+                [@shake]="{ value: shake }"
             >
                 <span>
                     {{ lang.copy.buttons.makeAccessibleByLink }}
