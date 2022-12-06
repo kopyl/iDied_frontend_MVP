@@ -7,19 +7,20 @@ import { LangService } from '@services/lang'
 import { GoogleAuthService } from '@services/auth'
 import { GoogleAnalyticsService } from '@services/google-analytics'
 import { ProStatusService } from '@services/proStatus'
-import { fadeSlideInOut } from '@animations'
+import { fadeSlideInOut, shaketwo } from '@animations'
 
 @Component({
     selector: 'sharing',
     templateUrl: './sharing.component.html',
     styleUrls: ['./sharing.component.sass'],
-    animations: [fadeSlideInOut],
+    animations: [fadeSlideInOut, shaketwo],
 })
 export class SharingComponent implements OnInit {
     paymentUrl = `${environment.apiUrl}payment`
     baseUrl = environment.baseUrl
 
     loaderVisible = false
+    shake = false
 
     @Input('activeNote') activeNote: frontendNote
     @Input('confirmPopup') confirmPopup: ConfirmPopupComponent
@@ -162,6 +163,14 @@ export class SharingComponent implements OnInit {
         this.loaderVisible = true
         this.requests.notes.share.onSuccess = this.updateSharingToken.bind(this)
         this.requests.notes.share.send(this.activeNote)
+    }
+
+    toggleShake(): void {
+        if (this.shake) return
+        this.shake = true
+        setTimeout(() => {
+            this.shake = false
+        }, 500)
     }
 
     notifyAboutRevokedLink(): void {
