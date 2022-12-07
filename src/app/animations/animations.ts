@@ -302,67 +302,24 @@ function slideTo(direction) {
     ]
 }
 
+const shaker = (amount: number) => {
+    const shake = (function* shaker() {
+        while (true) {
+            yield 0
+            yield -10
+            yield 0
+            yield 10
+        }
+    })()
+    return new Array(amount).fill(0).map(() =>
+        style({
+            transform: `translateX(${shake.next().value}px)`,
+        })
+    )
+}
+
 export const shake = trigger('shake', [
     transition('false => true', [
-        animate(
-            '0.5s linear',
-            keyframes([
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 0,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(-10px)',
-                    offset: 0.1,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 0.2,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(10px)',
-                    offset: 0.3,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 0.4,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(-10px)',
-                    offset: 0.5,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 0.6,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(10px)',
-                    offset: 0.7,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 0.8,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(-10px)',
-                    offset: 0.9,
-                }),
-                style({
-                    opacity: 1,
-                    transform: 'translateX(0)',
-                    offset: 1,
-                }),
-            ])
-        ),
+        animate('0.4s linear', keyframes(shaker(15))),
     ]),
 ])
