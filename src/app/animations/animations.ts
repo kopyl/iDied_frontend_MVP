@@ -324,7 +324,7 @@ export const shake = trigger('shake', [
                 }),
                 style({
                     opacity: 1,
-                    transform: 'translateX(-10px)',
+                    transform: 'translateX(10px)',
                     offset: 0.3,
                 }),
                 style({
@@ -344,7 +344,7 @@ export const shake = trigger('shake', [
                 }),
                 style({
                     opacity: 1,
-                    transform: 'translateX(-10px)',
+                    transform: 'translateX(10px)',
                     offset: 0.7,
                 }),
                 style({
