@@ -49,14 +49,15 @@
                 <input
                     readonly
                     value="{{
-                        activeNote.sharingToken
-                            ? baseUrl + '/n/' + activeNote.sharingToken
-                            : lang.copy.linkSharingDisabled
+                        activeNote.sharingToken &&
+                            baseUrl + '/n/' + activeNote.sharingToken
                     }}"
                     type="text"
                     id="link"
                     class="input"
-                    (click)="toggleShake()"
+                    #input
+                    (click)="toggleShake(); input.select()"
+                    placeholder="{{ lang.copy.linkSharingDisabled }}"
                 />
                 <a
                     id="sharink-link-open"
