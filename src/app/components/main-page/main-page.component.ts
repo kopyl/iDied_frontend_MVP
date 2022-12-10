@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { GoogleAuthService } from '@services/auth'
 import {
     buttonSliderNotes,
@@ -23,7 +23,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
         private router: Router,
         public googleAuth: GoogleAuthService,
         private pageTitle: Title,
-        public lang: LangService
+        public lang: LangService,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -33,6 +34,17 @@ export class MainPageComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit(): void {
         this.lang.confirmPopup = this.confirmPopup
+
+        if (this.route.snapshot.queryParams['langselect'] === 'true') {
+            this.confirmPopup.onCancel = () => {
+                this.router.navigate([''], {
+                    queryParamsHandling: 'merge',
+                    queryParams: { langselect: false },
+                })
+                this.confirmPopup.onCancel = () => {}
+            }
+            this.lang.toggle()
+        }
     }
 
     requestContactsPopup(): void {

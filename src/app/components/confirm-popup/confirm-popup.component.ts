@@ -65,7 +65,6 @@ export class ConfirmPopupComponent implements OnInit {
             this.title = ''
             this.hideTelegramAndEmailProItem = false
             this.onSuccess = () => {}
-            this.onCancel = () => {}
         }
         this._open = value
     }
