@@ -170,7 +170,7 @@ export class SharingComponent implements OnInit {
         this.shake = true
         setTimeout(() => {
             this.shake = false
-        }, 400)
+        }, 200)
     }
 
     notifyAboutRevokedLink(): void {

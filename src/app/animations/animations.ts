@@ -320,6 +320,6 @@ const shaker = (amount: number) => {
 
 export const shake = trigger('shake', [
     transition('false => true', [
-        animate('0.4s linear', keyframes(shaker(15))),
+        animate('0.20s linear', keyframes(shaker(7))),
     ]),
 ])
