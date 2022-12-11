@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core'
-import { Router } from '@angular/router'
 import { GoogleAuthService } from '@services/auth'
 import {
     buttonSliderNotes,
@@ -20,7 +19,6 @@ export class MainPageComponent implements OnInit, AfterViewInit {
     @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent
 
     constructor(
-        private router: Router,
         public googleAuth: GoogleAuthService,
         private pageTitle: Title,
         public lang: LangService
