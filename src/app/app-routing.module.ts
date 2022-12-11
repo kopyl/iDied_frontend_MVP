@@ -5,8 +5,6 @@ import { UnauthorizedComponent } from '@components/unauthorized'
 import { NotesComponent } from '@components/notes'
 import { NotFoundComponent } from '@components/not-found'
 import { MainPageComponent } from '@components/main-page'
-import { NoteComponent } from '@components/notes/note'
-import { SharingComponent } from './components/sharing/sharing.component'
 import { NoteForRecipientComponent } from '@components/notes/note-for-recipient'
 
 const routes = [
@@ -30,11 +28,11 @@ const routes = [
         children: [
             {
                 path: ':id',
-                component: NoteComponent,
+                component: NotesComponent,
                 children: [
                     {
                         path: 'sharing',
-                        component: SharingComponent,
+                        component: NotesComponent,
                     },
                 ],
             },
