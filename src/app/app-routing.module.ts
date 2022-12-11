@@ -1,32 +1,31 @@
-import { RouterModule } from "@angular/router"
-import { NgModule } from "@angular/core"
-import { CommonModule } from "@angular/common"
-import { UnauthorizedComponent } from "@components/unauthorized"
-import { NotesComponent } from "@components/notes"
-import { NotFoundComponent } from "@components/not-found"
-import { MainPageComponent } from "@components/main-page"
-import { NoteComponent } from "@components/notes/note"
-import { SharingComponent } from "./components/sharing/sharing.component"
-import { NoteForRecipientComponent } from "@components/notes/note-for-recipient"
-
+import { RouterModule } from '@angular/router'
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { UnauthorizedComponent } from '@components/unauthorized'
+import { NotesComponent } from '@components/notes'
+import { NotFoundComponent } from '@components/not-found'
+import { MainPageComponent } from '@components/main-page'
+import { NoteComponent } from '@components/notes/note'
+import { SharingComponent } from './components/sharing/sharing.component'
+import { NoteForRecipientComponent } from '@components/notes/note-for-recipient'
 
 const routes = [
     {
-        path: "",
+        path: '',
         component: MainPageComponent,
         data: {
-            animation: "isLeft"
-        }
+            animation: 'isLeft',
+        },
     },
     {
-        path: "unauthorized",
+        path: 'unauthorized',
         component: UnauthorizedComponent,
     },
     {
-        path: "notes",
+        path: 'notes',
         component: NotesComponent,
         data: {
-            animation: "isRight"
+            animation: 'isRight',
         },
         children: [
             {
@@ -36,19 +35,17 @@ const routes = [
                     {
                         path: 'sharing',
                         component: SharingComponent,
-                    }
+                    },
                 ],
             },
-
         ],
-
     },
     {
-        path: "n/:sharingToken",
+        path: 'n/:sharingToken',
         component: NoteForRecipientComponent,
     },
     {
-        path: "**",
+        path: '**',
         component: NotFoundComponent,
     },
 ]
