@@ -43,6 +43,7 @@ export class NotesComponent implements OnInit {
     firstLoadedIntoUI = false
     loaderVisible = true
     sharingView = false
+    popupOpened = false
 
     navigatedRoute$
 

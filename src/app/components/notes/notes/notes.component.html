@@ -1,6 +1,14 @@
-<confirm-popup #confirmPopup [activeNote]="activeNote"></confirm-popup>
+<confirm-popup
+    (popupState)="popupOpened = $event"
+    #confirmPopup
+    [activeNote]="activeNote"
+></confirm-popup>
 
-<div id="notes-page-container" [class.notesEditing]="notesEditing">
+<div
+    id="notes-page-container"
+    [class.notesEditing]="notesEditing"
+    [class.popupOpened]="popupOpened"
+>
     <loader-mobile [visible]="loaderVisible"></loader-mobile>
 
     <div id="sidebar">

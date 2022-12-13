@@ -32,6 +32,7 @@ export class ConfirmPopupComponent implements OnInit {
     @Input('activeNote') activeNote: frontendNote
 
     @Output() confirmationPressed = new EventEmitter()
+    @Output() popupState = new EventEmitter()
 
     keydowns$: Subject<KeyboardEvent> = new Subject()
 
@@ -67,6 +68,7 @@ export class ConfirmPopupComponent implements OnInit {
             this.onSuccess = () => {}
         }
         this._open = value
+        this.popupState.emit(value)
     }
 
     get activeNoteTitle(): string {

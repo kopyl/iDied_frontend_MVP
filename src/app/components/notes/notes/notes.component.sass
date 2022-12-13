@@ -11,6 +11,15 @@ div#notes-page-container
         grid-template-columns: inherit
         grid-template-rows: inherit
 
+    @media screen and ( max-width:  $min-mobile-width)
+        transform-origin: bottom
+        transition: .2s linear all
+        &.popupOpened
+
+            transform: scale(0.98)
+            border-radius: 20px
+            overflow: hidden
+
 
 
 
