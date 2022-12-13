@@ -4,10 +4,9 @@
 
 export const environment = {
     production: false,
-    apiUrl: "http://localhost:5001/",
-    baseUrl: "http://localhost",
-  };
-
+    apiUrl: 'http://olehs-macbook-prod.tailda636.ts.net:5001/',
+    baseUrl: 'http://olehs-macbook-prod.tailda636.ts.net',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
