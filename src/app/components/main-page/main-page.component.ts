@@ -16,6 +16,8 @@ import { ConfirmPopupComponent } from '@components/confirmation-popup'
     animations: [buttonSliderNotes, buttonSlider, logoutButtonSlider],
 })
 export class MainPageComponent implements OnInit, AfterViewInit {
+    popupOpened = false
+
     @ViewChild('confirmPopup') confirmPopup: ConfirmPopupComponent
 
     constructor(

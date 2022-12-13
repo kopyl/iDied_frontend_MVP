@@ -1,9 +1,10 @@
 <confirm-popup
     #confirmPopup
     (confirmationPressed)="googleAuth.authorize('needPayment=true')"
+    (popupState)="popupOpened = $event"
 ></confirm-popup>
 
-<div id="container">
+<div id="container" [class.popupOpened]="popupOpened">
     <section id="banner">
         <header>
             <icon-logo></icon-logo>
