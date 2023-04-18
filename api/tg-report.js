@@ -24,7 +24,7 @@ const saveMessageIdToRedis = async (userId, messageId) => {
 
 const getReplyMessageId = async (userId) => {
     await client.connect()
-    const result = await client.hGet("messages_idied_analytics", userId)
+    const result = await client.hGet("messages_idied_analytics", userId.toString())
     await client.quit()
     return result
 }
